@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace HospitalManagement
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
+        }
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (BtnOpenMenu.Visibility == Visibility.Visible)
+            {
+                BtnOpenMenu.Visibility = Visibility.Collapsed;
+                BtnCloseMenu.Visibility = Visibility.Visible;
+            }
+
+            else if (BtnOpenMenu.Visibility == Visibility.Collapsed)
+            {
+                BtnOpenMenu.Visibility = Visibility.Visible;
+                BtnCloseMenu.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

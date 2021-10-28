@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:HospitalManagement.ViewModel"
+                    xmlns:view="clr-namespace:HospitalManagement.View">
+    <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
+        <view:DashBoard></view:DashBoard>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
+        <view:Doctor></view:Doctor>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:PatientViewModel}">
+        <view:Patient></view:Patient>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:FacilitiesViewModel}">
+        <view:Facilities></view:Facilities>
+    </DataTemplate>
+</ResourceDictionary>
