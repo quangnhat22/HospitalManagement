@@ -15,6 +15,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.Resources>
             <Storyboard x:Key="MenuOpen">
