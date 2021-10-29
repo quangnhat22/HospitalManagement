@@ -85,7 +85,14 @@
     <Compile Include="View\DashBoard.xaml.cs" />
     <Compile Include="View\Doctor.xaml.cs" />
     <Compile Include="View\Facilities.xaml.cs" />
+    <Compile Include="View\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Patient.xaml.cs" />
+    <Page Include="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
