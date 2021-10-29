@@ -14,7 +14,8 @@
         TextOptions.TextRenderingMode="Auto"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        x:Name="mainwindow">
     <Window.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </Window.Resources>
@@ -52,10 +53,16 @@
                     <GradientStop Color="#ade8f4" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 20 0">
-                <ListBox Width="100">
-                    <ListBoxItem Content="Account"/>
-                    <ListBoxItem Content="Exit"/>
+            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 35 0">
+                <ListBox Width="68">
+                    <ListBoxItem Content="Accounts"/>
+                    <ListBoxItem Content="Logout">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Selected">
+                                <i:InvokeCommandAction Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListBoxItem>
                 </ListBox>
             </materialDesign:PopupBox>
         </Grid>

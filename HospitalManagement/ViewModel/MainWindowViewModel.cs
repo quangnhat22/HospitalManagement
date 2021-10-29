@@ -28,9 +28,16 @@ namespace HospitalManagement.ViewModel
             set;
         }
 
+        public ICommand LogoutCommand
+        {
+            get;
+            set;
+        }
+
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
+            LogoutCommand = new LogoutCommand();
         }
     }
 }
