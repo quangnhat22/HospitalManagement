@@ -87,7 +87,7 @@
                                 Margin="20 0 0 0">
                             <Rectangle>
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="\img\doctor_icon.png"/>
+                                    <ImageBrush ImageSource="/Images/doctor_icon.png"/>
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Grid>
@@ -149,7 +149,7 @@
                                 VerticalAlignment="Center">
                             <Rectangle>
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="\img\patient.png"/>
+                                    <ImageBrush ImageSource="/Images/patient.png"/>
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Grid>
@@ -211,7 +211,7 @@
                                 VerticalAlignment="Center">
                             <Rectangle>
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="\img\hospital bed_512.png"/>
+                                    <ImageBrush ImageSource="/Images/hospital bed_512.png" />
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Grid>
