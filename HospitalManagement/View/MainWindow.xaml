@@ -53,17 +53,12 @@
                     <GradientStop Color="#ade8f4" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 35 0">
-                <ListBox Width="68">
-                    <ListBoxItem Content="Accounts"/>
-                    <ListBoxItem Content="Logout">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Selected">
-                                <i:InvokeCommandAction Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}"></i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ListBoxItem>
-                </ListBox>
+            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 50 0">
+                <StackPanel>
+                    <Button Content="Accounts"/>
+                    <Button Content="Logout" Command="{Binding LogoutCommand}">
+                    </Button>
+                </StackPanel>
             </materialDesign:PopupBox>
         </Grid>
         <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left" 
