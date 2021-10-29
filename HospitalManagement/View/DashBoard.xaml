@@ -31,7 +31,7 @@
             <Border BorderBrush="White" BorderThickness="5" Margin="20 0" CornerRadius="15">
                 <materialDesign:Card
                         UniformCornerRadius="15"
-                        Background="#56c596"
+                        Background="#47deb2"
                         HorizontalAlignment="Left" 
                         Width="320"
                         Height="150"
@@ -86,7 +86,7 @@
                                 Margin="20 0 0 0">
                             <Rectangle>
                                 <Rectangle.Fill>
-                                    <ImageBrush ImageSource="/Images/doctor_icon.png"/>
+                                    <ImageBrush ImageSource="/Images/doctor.png"/>
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Grid>
