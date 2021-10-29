@@ -13,7 +13,6 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d" 
-             
              d:DesignHeight="760" d:DesignWidth="1387">
     <StackPanel Margin="50 30">
         <TextBlock Text="Danh sách nhân viên"
