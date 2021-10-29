@@ -53,10 +53,20 @@
                     <GradientStop Color="#ade8f4" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 50 0">
+            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 20 0"
+                                     PlacementMode="BottomAndAlignRightEdges">
                 <StackPanel>
-                    <Button Content="Accounts"/>
-                    <Button Content="Logout" Command="{Binding LogoutCommand}">
+                    <Button>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0">Account</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding LogoutCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="About" Margin="5 0 5 0"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0">About</TextBlock>
+                        </StackPanel>
                     </Button>
                 </StackPanel>
             </materialDesign:PopupBox>
