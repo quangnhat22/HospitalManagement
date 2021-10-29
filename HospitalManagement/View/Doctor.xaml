@@ -4,140 +4,130 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View"
-             mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             Background="{DynamicResource MaterialDesignPaper}"
-             TextElement.FontWeight="Medium"
+             TextElement.FontWeight="Regular"
              TextElement.FontSize="14"
-             FontFamily="{materialDesign:MaterialDesignFont}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d" 
+             
              d:DesignHeight="760" d:DesignWidth="1387">
-    <Grid Background="WhiteSmoke">
-        <StackPanel Orientation="Vertical">
-            <Grid Height="80">
-                <TextBlock 
-                    HorizontalAlignment="Left" 
-                    Text="Thông tin nhân viên y tế" VerticalAlignment="Center" Margin="100,0,0,0" 
-                    Foreground="#35a0fe" 
-                    TextAlignment="Center" 
-                    FontSize="30 px" 
-                    FontWeight="Bold" />
-            </Grid>
-            <StackPanel Height="250" Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" Width="900">
-                    <Grid Width="500" HorizontalAlignment="Left" Margin="100,12,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Họ và tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập họ và tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                    </Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid Width="350" HorizontalAlignment="Left" Margin="100,15,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                        </Grid>
-                        <Grid Width="420" HorizontalAlignment="Left" Margin="10,15,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                        </Grid>
-                    </StackPanel>
-                    
-                    <Grid Width="500" HorizontalAlignment="Left" Margin="100,15,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                    </Grid>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Width="400">
-                    <Grid>
-                        <Image Height="220" Width="200" Source="/images/medical-team.png" Margin="46,-1,154,30.6" />
-                        <Button 
-                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniButton"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="202,153,158,56.6">
-                            <materialDesign:PackIcon Kind="Pencil"/>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Height="85" Orientation="Horizontal">
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Ngày tháng năm sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker Margin="0,0,0,5" Width="300" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
-                </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox Margin="0,0,0,5" Grid.Row="1" Width="300" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="(none)"                       
-                        IsEditable="True">
-                        <ComboBoxItem
-                            Content="Nam" />
-                        <ComboBoxItem
-                            Content="Nữ" />
-                    </ComboBox>
-                </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-            </StackPanel>
-            <StackPanel Height="190" Orientation="Horizontal">
-                <Grid Width="680" HorizontalAlignment="Left" Margin="100,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <StackPanel Grid.Row="1">
-                        <TextBox Foreground="Black" FontSize="16"                           
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                            VerticalAlignment="Top"
-                            Height="100"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="This is a text area"
-                            />
-                    </StackPanel>
-                </Grid>
-                <Grid Height="80" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-            </StackPanel>
-            <Grid Height="80">
-                <Button Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="0,5,179.2,5"/>
-            </Grid>
-        </StackPanel>
-    </Grid>
+    <StackPanel Margin="50 30">
+        <TextBlock Text="Danh sách nhân viên"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#08AEEA"
+                   Margin="0 0 0 10"/>
+        <DataGrid x:Name="dtgDoctorList"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="All"
+                  ItemsSource="{Binding Doctors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+                <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                    <Setter Property="Height" Value="46"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox IsThreeState="True" 
+                                  Name="AllSelect" 
+                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                        Path=DataContext.IsCheckedAll, 
+                                                        UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.AllCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=AllSelect }"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </CheckBox>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Name="SingleSelect">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                               CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="Unchecked">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                               CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding ID}"
+                                                   Header="ID"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Name}"
+                                                   Header="Tên bác sĩ"
+                                                   Width="200"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Sex}"
+                                                   Header="Giới tính"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Age}"
+                                                   Header="Tuổi"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Phone}"
+                                                   Header="Số điện thoại"
+                                                   Width="140"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Mail}"
+                                                   Header="Email"
+                                                   Width="200"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Birthday}"
+                                                   Header="Ngày sinh"
+                                                   Width="110"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Specialization}"
+                                                   Header="Chuyên ngành"
+                                                   Width="200"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+
+                <materialDesign:DataGridTextColumn Binding="{Binding Rule}"
+                                                   Header="Vai trò"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>
