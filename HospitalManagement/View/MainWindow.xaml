@@ -85,7 +85,7 @@
                 </StackPanel>
             </materialDesign:PopupBox>
         </Grid>
-        <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left" 
+        <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left"  
           ClipToBounds="True"
           ScrollViewer.CanContentScroll="False">
             <Grid>
@@ -98,6 +98,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
@@ -151,6 +152,43 @@
                             </StackPanel>
                         </ListViewItem>
                     </ListView>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Button
+                            x:Name="btnLogin"
+                            Width="auto"
+                            Height="45"
+                            Background="#35a0fe"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            BorderThickness="2"
+                            BorderBrush="#35a0fe"
+                            Margin="5 0 5 10"
+                            HorizontalContentAlignment="Stretch"
+                            Foreground="White"
+                            Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}">
+                        <Button.Content>
+                            <Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <materialDesign:PackIcon Kind="Logout" 
+                                                                 Height="25" 
+                                                                 Width="25" 
+                                                                 Margin="-3 0 -13 0"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <TextBlock Text="Đăng xuất" 
+                                                   VerticalAlignment="Center" 
+                                                   Visibility="Visible" 
+                                                   Margin="43 0 0 0"/>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>

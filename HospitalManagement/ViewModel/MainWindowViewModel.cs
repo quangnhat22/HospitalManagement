@@ -34,10 +34,17 @@ namespace HospitalManagement.ViewModel
             set;
         }
 
+        public ICommand LogoutCommand
+        { 
+            get;
+            set; 
+        }
+
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
             ShowAboutCommand = new ShowAboutCommand();
+            LogoutCommand = new LogoutCommand();
         }
     }
 }
