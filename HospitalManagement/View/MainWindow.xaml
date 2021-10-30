@@ -49,8 +49,8 @@
         <Grid Height="50" VerticalAlignment="Top">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                    <GradientStop Color="#005faf" Offset="0.093"/>
-                    <GradientStop Color="#ade8f4" Offset="1"/>
+                    <GradientStop Color="#35a0fe" Offset="1"/>
+                    <GradientStop Color="#35a0fe" Offset="0.093"/>
                 </LinearGradientBrush>
             </Grid.Background>
             <materialDesign:PopupBox
@@ -82,8 +82,8 @@
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#005faf" Offset="0"/>
-                        <GradientStop Color="#ade8f4" Offset="1"/>
+                        <GradientStop Color="#35a0fe" Offset="0"/>
+                        <GradientStop Color="#b2eeff" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>
