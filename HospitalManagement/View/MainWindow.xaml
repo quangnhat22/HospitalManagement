@@ -75,7 +75,7 @@
                             <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">About</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding ShowAboutCommand}">
+                    <Button Command="{Binding OpenReportForm}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 0"
                                                      Width="25" Height="auto"></materialDesign:PackIcon>

@@ -14,7 +14,8 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="ReportForm">
+        Title="ReportForm"
+        >
     <Window.Resources>
         <SolidColorBrush x:Key="clrPrimary" Color="#FF35A0FE" />
 
@@ -66,8 +67,8 @@
             </TextBlock>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="30 10 30 10">
-            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
+        <StackPanel Grid.Row="1" Background="#f0f2f5">
+            <StackPanel Orientation="Horizontal" Margin="30 16 30 0">
                 <Border Style="{StaticResource borderStyle}">
                     <materialDesign:PackIcon Kind="Email" Style="{StaticResource styleIcon}"/>
                 </Border>
@@ -82,7 +83,7 @@
             <GroupBox
                     HorizontalAlignment="Left"
                     Header="Chi tiết"
-                    Margin="0 20 0 0"
+                    Margin="30 20 30 0"
                     Width="440"
                     Height="280">
                 <TextBox
@@ -101,7 +102,7 @@
                         Command="{Binding OpenLoginWindow}"
                         CommandParameter="{Binding ElementName=signUpFormWindow}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="0 0 50 0"
+                        Margin="30 0 50 0"
                         Height="30"
                         Width="auto"
                         BorderThickness="0.2"

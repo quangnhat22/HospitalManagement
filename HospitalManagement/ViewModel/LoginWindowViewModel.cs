@@ -14,12 +14,14 @@ namespace HospitalManagement.ViewModel
      {
         public ICommand OpenMainWindow { get; set; }
         public ICommand OpenSignUpForm { get; set; }
-        
+        public ICommand OpenReportForm { get; set; }
+
+
         public LoginWindowViewModel()
         {
             OpenMainWindow = new LoginWindowCommand();
             OpenSignUpForm = new OpenSignUpFormCommand();
-            
+
         }
 
     }
