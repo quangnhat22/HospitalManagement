@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:HospitalManagement.View"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="About" Height="450" Width="450">
+        Title="About" Height="450" Width="450" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterScreen">
     <Grid Margin="10 10 10 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
@@ -18,28 +19,36 @@
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <materialDesign:PackIcon Kind="Hospital" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="auto"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="Hospital" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center" 
+                                         Width="100" 
+                                         Height="auto"></materialDesign:PackIcon>
             </Grid>
             <Grid Grid.Column="1">
                 <StackPanel VerticalAlignment="Center">
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
+                    <materialDesign:Card BorderThickness="1px" 
+                                         BorderBrush="Black"
+                                         Width="auto"
+                                         Padding="5"
+                                         UniformCornerRadius="6" 
+                                         Margin="0 0 0 5">
                         <TextBlock TextWrapping="Wrap"  
-                            Text="Hospital Management là phần mềm hỗ trợ quản lý bệnh viện dã chiến." />
+                                   Text="Hospital Management là phần mềm hỗ trợ quản lý bệnh viện dã chiến." />
                     </materialDesign:Card>
                     <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
                                       Width="auto"
                                       Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
+                                      UniformCornerRadius="6" 
+                                      Margin="0 0 0 5">
                         <TextBlock TextWrapping="Wrap"  
-                            Text="Phần mềm được xây dựng nhằm tri ân các bác sĩ đã tham gia chống dịch." />
+                                   Text="Phần mềm được xây dựng nhằm tri ân các bác sĩ đã tham gia chống dịch." />
                     </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6">
+                    <materialDesign:Card BorderThickness="1px" 
+                                         BorderBrush="Black"
+                                         Width="auto"
+                                         Padding="5"
+                                         UniformCornerRadius="6">
                         <TextBlock TextWrapping="Wrap"  
                             Text="Phần mềm chạy trên hệ điều hành windows 10/11." />
                     </materialDesign:Card>
@@ -53,74 +62,51 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <StackPanel VerticalAlignment="Center" Width="237" HorizontalAlignment="Left">
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                <StackPanel VerticalAlignment="Top" 
+                            Width="237" 
+                            HorizontalAlignment="Left">
+                    <materialDesign:Card BorderThickness="1px" 
+                                         BorderBrush="Black"
+                                         Width="auto"
+                                         Padding="5"
+                                         UniformCornerRadius="6" Margin="0 0 0 5">
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Thành viên tham gia dự án" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Nguyễn Đình Nhật Quang (nhóm trưởng)" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Trần Đình Lộc" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Bùi Minh Tuấn" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Đỗ Phú Quang" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Võ Đình Nghĩa" />
+                        </StackPanel>
                     </materialDesign:Card>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel VerticalAlignment="Center">
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                    <materialDesign:Card BorderThickness="1px" 
+                                         BorderBrush="Black"
+                                         Width="auto"
+                                         Padding="5"
+                                         UniformCornerRadius="6" Margin="0 0 0 5">
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Giảng viên hướng dẫn" />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
+                            <TextBlock TextWrapping="Wrap"  
                             Text="Nguyễn Tấn Toàn" />
+                        </StackPanel>
                     </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" Margin="0 0 0 5">
+                    <materialDesign:Card BorderThickness="1px" 
+                                         BorderBrush="Black"
+                                         Width="auto"
+                                         Padding="5"
+                                         UniformCornerRadius="6" Margin="0 0 0 5">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock>Đường link dự án: 
-                                <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement" TextDecorations="None">
+                                <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement" 
+                                           TextDecorations="None" 
+                                           RequestNavigate="Hyperlink_RequestNavigate">
                                 Github
                                 </Hyperlink>
                             </TextBlock>
@@ -128,6 +114,25 @@
                     </materialDesign:Card>
                 </StackPanel>
             </Grid>
+            <Grid Grid.Column="1">
+                <StackPanel VerticalAlignment="Top">
+                    
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" >
+            <Button Click="btnClose_Click"
+                    x:Name="btnClose"
+                    Width="120"
+                    Height="40"
+                    Background="#35a0fe"
+                    Foreground="White"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    BorderThickness="2"
+                    BorderBrush="#35a0fe"
+                    ToolTip="Đóng"
+                    Content="Đóng">
+            </Button>
         </Grid>
     </Grid>
 </Window>

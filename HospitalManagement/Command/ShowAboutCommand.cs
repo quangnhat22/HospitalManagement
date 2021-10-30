@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,8 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            MessageBox.Show("Logout");
+            About about = new About();
+            about.Show();
         }
     }
 }
