@@ -126,8 +126,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220 50 0 0">
                 <Button 
-                        Command="{Binding OpenLoginWindow}"
-                        CommandParameter="{Binding ElementName=signUpFormWindow}"
+                        Click="btnClose_Click"
                         Content="HUỶ"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Margin="0 0 20 0"
