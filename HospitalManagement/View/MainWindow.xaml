@@ -155,8 +155,6 @@
                 </Grid>
                 <Grid Grid.Row="2">
                     <Button
-                            Command="{Binding OpenMainWindow}"
-                            CommandParameter="{Binding ElementName= loginWindow}"
                             x:Name="btnLogin"
                             Width="auto"
                             Height="45"
@@ -167,7 +165,7 @@
                             Margin="5 0 5 10"
                             HorizontalContentAlignment="Stretch"
                             Foreground="White"
-                            >
+                            Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}">
                         <Button.Content>
                             <Grid>
                                 <Grid>
@@ -176,10 +174,16 @@
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Logout" Height="25" Width="25" Margin="-3 0 -13 0"/>
+                                        <materialDesign:PackIcon Kind="Logout" 
+                                                                 Height="25" 
+                                                                 Width="25" 
+                                                                 Margin="-3 0 -13 0"/>
                                     </Grid>
                                     <Grid Grid.Column="1">
-                                        <TextBlock Text="Đăng xuất" VerticalAlignment="Center" Visibility="Visible" Margin="43 0 0 0"/>
+                                        <TextBlock Text="Đăng xuất" 
+                                                   VerticalAlignment="Center" 
+                                                   Visibility="Visible" 
+                                                   Margin="43 0 0 0"/>
                                     </Grid>
                                 </Grid>
                             </Grid>
