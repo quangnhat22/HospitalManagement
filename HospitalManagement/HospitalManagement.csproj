@@ -112,6 +112,9 @@
     <Compile Include="View\PatientForm.xaml.cs">
       <DependentUpon>PatientForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ReportForm.xaml.cs">
+      <DependentUpon>ReportForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\PatientForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReportForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
