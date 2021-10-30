@@ -84,7 +84,6 @@
     </ApplicationDefinition>
     <Compile Include="Command\LoginWindowCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
-    <Compile Include="Command\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\OpenSignUpFormCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -105,9 +104,6 @@
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Facilities.xaml.cs" />
-    <Compile Include="View\ForgotPasswordWindow.xaml.cs">
-      <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -123,10 +119,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ForgotPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
