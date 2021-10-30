@@ -49,14 +49,38 @@
         <Grid Height="50" VerticalAlignment="Top">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                    <GradientStop Color="#005faf" Offset="0.093"/>
-                    <GradientStop Color="#ade8f4" Offset="1"/>
+                    <GradientStop Color="#35a0fe" Offset="1"/>
+                    <GradientStop Color="#35a0fe" Offset="0.093"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 50 0">
+            <materialDesign:PopupBox
+                HorizontalAlignment="Right" Margin="0 0 20 0"
+                                     PlacementMode="BottomAndAlignRightEdges">
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon Kind="ArrowDownDropCircleOutline" Width="30" Height="auto"
+                                             Foreground="White" FontWeight="ExtraLight"></materialDesign:PackIcon>
+                </materialDesign:PopupBox.ToggleContent>
                 <StackPanel>
-                    <Button Content="Accounts"/>
-                    <Button Content="Logout" Command="{Binding LogoutCommand}">
+                    <Button>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Account</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ShowAboutCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">About</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ShowAboutCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Report</TextBlock>
+                        </StackPanel>
                     </Button>
                 </StackPanel>
             </materialDesign:PopupBox>
@@ -67,8 +91,8 @@
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#005faf" Offset="0"/>
-                        <GradientStop Color="#ade8f4" Offset="1"/>
+                        <GradientStop Color="#35a0fe" Offset="0.2"/>
+                        <GradientStop Color="#b2eeff" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
                 <Grid.RowDefinitions>

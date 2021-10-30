@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +15,13 @@ using System.Windows.Shapes;
 namespace HospitalManagement.View
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for DoctorForm.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class DoctorForm : Window
     {
-        
-        public LoginWindow()
+        public DoctorForm()
         {
             InitializeComponent();
-            this.DataContext = new LoginWindowViewModel();
         }
     }
 }
