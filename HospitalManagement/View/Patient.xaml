@@ -12,15 +12,14 @@
              TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             mc:Ignorable="d" 
-            >
+             mc:Ignorable="d">
     <Grid>
         <StackPanel Margin="50 30">
             <TextBlock Text="Danh sách bệnh nhân"
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="#08AEEA"
-                   Margin="20 0 0 10"/>
+                   Margin="0 0 0 10"/>
             <DataGrid x:Name="datagrid"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
@@ -83,7 +82,7 @@
                                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                     <materialDesign:DataGridTextColumn Binding="{Binding Name}"
                                                    Header="Tên bệnh nhân"
-                                                   Width="160"
+                                                   Width="200"
                                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Sex}"
@@ -93,7 +92,7 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Birthday}"
                                                    Header="Ngày sinh"
-                                                   Width="110"
+                                                   Width="150"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding DateCheckIn}"
                                                    Header="Ngày nhập viện"
@@ -101,7 +100,7 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding DoctorName}"
                                                    Header="Bác sĩ phụ trách"
-                                                   Width="160"
+                                                   Width="200"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Status}"
                                                    Header="Tình trạng"
