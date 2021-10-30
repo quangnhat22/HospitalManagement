@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.Command
 {
-    public class OpenSignUpFormCommand : ICommand
+    internal class OpenLoginWindowCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -21,9 +21,9 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            var signUpWindow = new SignUpWindow();
-            Application.Current.MainWindow = signUpWindow;
-            signUpWindow.Show();
+            var loginWindow = new LoginWindow();
+            Application.Current.MainWindow = loginWindow;
+            loginWindow.Show();
             window.Close();
         }
     }

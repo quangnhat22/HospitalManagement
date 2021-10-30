@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View"
         mc:Ignorable="d"
+        x:Name="signUpFormWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainWindow" 
         Height="600" 
@@ -58,8 +59,8 @@
             <Border CornerRadius="10 10 0 0">
                 <Border.Background>
                     <LinearGradientBrush>
-                        <GradientStop Color="#08AEEA" Offset="0"/>
-                        <GradientStop Color="#2AF598" Offset="1"/>
+                        <GradientStop Color="#35a0fe" Offset="2"/>
+                        <GradientStop Color="#35a0fe" Offset="0"/>
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
@@ -144,19 +145,31 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
-                <Button Content="HUỶ"
-                        Style="{StaticResource MaterialDesignOutlinedLightButton}"
-                        Margin="0 0 10 0"
+                <Button 
+                        Command="{Binding OpenLoginWindow}"
+                        CommandParameter="{Binding ElementName=signUpFormWindow}"
+                        Content="HUỶ"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="0 0 50 0"
                         Height="50"
                         Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton"
+                        BorderThickness="2"
+                        BorderBrush="#35a0fe"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        Background="White"
+                        Foreground="#35a0fe"
+                        ToolTip="Hủy đăng ký! Quay trở lại đăng nhập"
                         />
 
                 <Button Content="ĐĂNG KÝ"
-                    Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="50"
                     Width="100"
-                    ToolTip="Resource name: MaterialDesignRaisedLightButton"
+                    BorderThickness="2"
+                    BorderBrush="#35a0fe"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Background="#35a0fe"
+                    ToolTip="Hoàn tất đăng ký"
                     Command="{Binding }"/>
             </StackPanel>
         </StackPanel>
