@@ -67,7 +67,7 @@
                             <TextBlock Margin="5 0 5 0">Account</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding LogoutCommand}">
+                    <Button Command="{Binding ShowAboutCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="About" Margin="5 0 5 0"></materialDesign:PackIcon>
                             <TextBlock Margin="5 0 5 0">About</TextBlock>

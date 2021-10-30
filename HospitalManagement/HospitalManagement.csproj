@@ -83,7 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\LoginWindowCommand.cs" />
-    <Compile Include="Command\LogoutCommand.cs" />
+    <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
@@ -92,6 +92,9 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
+    <Compile Include="View\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DashBoard.xaml.cs" />
     <Compile Include="View\Doctor.xaml.cs" />
     <Compile Include="View\DoctorForm.xaml.cs">
@@ -105,6 +108,10 @@
     <Compile Include="View\PatientForm.xaml.cs">
       <DependentUpon>PatientForm.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DoctorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
