@@ -53,8 +53,13 @@
                     <GradientStop Color="#ade8f4" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 0 20 0"
+            <materialDesign:PopupBox
+                HorizontalAlignment="Right" Margin="0 0 20 0"
                                      PlacementMode="BottomAndAlignRightEdges">
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon Kind="ArrowDownDropCircleOutline" Width="30" Height="auto"
+                                             Foreground="White" FontWeight="ExtraLight"></materialDesign:PackIcon>
+                </materialDesign:PopupBox.ToggleContent>
                 <StackPanel>
                     <Button>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
