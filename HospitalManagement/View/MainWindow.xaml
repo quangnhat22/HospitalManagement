@@ -63,20 +63,23 @@
                 <StackPanel>
                     <Button>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0">Account</TextBlock>
+                            <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Account</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowAboutCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="About" Margin="5 0 5 0"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0">About</TextBlock>
+                            <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">About</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowAboutCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="AlertOctagon" Margin="5 0 5 0"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0">Report</TextBlock>
+                            <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 0"
+                                                     Width="25" Height="auto"></materialDesign:PackIcon>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Report</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>
