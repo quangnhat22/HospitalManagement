@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.Command
 {
-    class LogoutCommand : ICommand
+    class ShowAboutCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
