@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.Command
 {
-    public class LoginWindowCommand : ICommand
+    internal class OpenSignUpFormCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -20,7 +21,7 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            var mainWindow = new MainWindow();
+            var mainWindow = new SignUpWindow();
             Application.Current.MainWindow = mainWindow;
             mainWindow.Show();
             window.Close();

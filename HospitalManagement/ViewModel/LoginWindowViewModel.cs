@@ -13,9 +13,11 @@ namespace HospitalManagement.ViewModel
      public class LoginWindowViewModel :BaseViewModel
      {
         public ICommand OpenMainWindow { get; set; }
+        public ICommand OpenSignUpForm { get; set; }
         public LoginWindowViewModel()
         {
             OpenMainWindow = new LoginWindowCommand();
+            OpenSignUpForm = new OpenSignUpFormCommand();  
         }
 
     }

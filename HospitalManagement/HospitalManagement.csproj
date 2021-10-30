@@ -84,6 +84,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\LoginWindowCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
+    <Compile Include="Command\OpenSignUpFormCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

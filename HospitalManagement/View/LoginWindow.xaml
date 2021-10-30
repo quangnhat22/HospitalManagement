@@ -103,6 +103,8 @@
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center">
                         <Button 
+                            Command="{Binding OpenSignUpForm}"
+                            CommandParameter="{Binding ElementName= loginWindow}"
                             x:Name="btnSignUp" 
                             FocusVisualStyle="{x:Null}"
                             Content="Đăng ký" 
