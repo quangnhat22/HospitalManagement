@@ -87,14 +87,13 @@
                     Width="440"
                     Height="280">
                 <TextBox
+                        HorizontalAlignment="Left"
                         TextWrapping="Wrap"
-                        VerticalAlignment="Stretch"
                         MinWidth="280"
                         AcceptsReturn="True"
                         VerticalScrollBarVisibility="Auto"
                         SpellCheck.IsEnabled="True"
-                        materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..."
-                        Height="280"
+                        materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..." Margin="0,0,0,-4" Width="417"
                         />
             </GroupBox>
             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -115,13 +114,13 @@
                             <materialDesign:PackIcon Kind="LinkVariant" Margin="0 2 5 0"/>
                             <TextBlock Text="Thêm ảnh chụp màn hình (đề xuất)"/>
                         </StackPanel>
-                        
-                       
+
+
                     </Button.Content>
                 </Button>
-                       
-                    
-                
+
+
+
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220 50 0 0">
