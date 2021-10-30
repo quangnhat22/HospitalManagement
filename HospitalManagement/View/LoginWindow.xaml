@@ -64,6 +64,8 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Button 
+                            Command="{Binding OpenForgotPasswordForm}"
+                            CommandParameter="{Binding ElementName= loginWindow}"
                             x:Name="btnForgetPassword" 
                             Content="Quên mật khẩu?" 
                             HorizontalAlignment="Left" 
