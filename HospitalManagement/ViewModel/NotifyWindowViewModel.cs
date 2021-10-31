@@ -10,11 +10,9 @@ namespace HospitalManagement.ViewModel
 {
     class NotifyWindowViewModel
     {
-        public ICommand OpenForgotPasswordForm { get; set; }
         public ICommand CloseWindow { get; set; }
         public NotifyWindowViewModel()
         {
-            OpenForgotPasswordForm = new OpenForgotPasswordFormCommand();
             CloseWindow = new CloseWindowCommand();
         }
     }
