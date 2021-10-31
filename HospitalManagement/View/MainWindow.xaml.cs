@@ -32,12 +32,14 @@ namespace HospitalManagement
             {
                 BtnOpenMenu.Visibility = Visibility.Collapsed;
                 BtnCloseMenu.Visibility = Visibility.Visible;
+                //LogoIcon.Visibility = Visibility.Visible;
             }
 
             else if (BtnOpenMenu.Visibility == Visibility.Collapsed)
             {
                 BtnOpenMenu.Visibility = Visibility.Visible;
                 BtnCloseMenu.Visibility = Visibility.Collapsed;
+                //LogoIcon.Visibility = Visibility.Collapsed;
             }
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
