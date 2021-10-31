@@ -6,133 +6,153 @@
         xmlns:local="clr-namespace:HospitalManagement.View"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="About" Height="450" Width="450" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterScreen">
-    <Grid Margin="10 10 10 10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="0 0 0 10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <materialDesign:PackIcon Kind="Hospital" 
-                                         HorizontalAlignment="Center" 
-                                         VerticalAlignment="Center" 
-                                         Width="100" 
-                                         Height="auto"></materialDesign:PackIcon>
+        Title="About" 
+        Height="300" 
+        Width="500" 
+        FontFamily="Roboto"
+        ResizeMode="NoResize" 
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Deactivated="Window_Deactivated">
+    <Border BorderBrush="Black" BorderThickness="1" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Background="#35a0fe">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <TextBlock Text="FHMS"
+                               Foreground="White"
+                               Margin="25 15 0 0"
+                               Width="auto"
+                               FontSize="31.25"/>
+                    <TextBlock Text="Field Hospital Management Supporter"
+                               Foreground="White"
+                               Margin="25 50 0 0"
+                               Width="auto"
+                               FontSize="16"/>
+                    <TextBlock Text="Version 6.9.9.6"
+                               Foreground="White"
+                               Margin="25 80 0 0"
+                               Width="auto"
+                               FontSize="10.24"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <materialDesign:PackIcon Kind="HospitalBox" 
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             Width="80"
+                                             Margin="0 0 20 0"
+                                             Height="auto"></materialDesign:PackIcon>
+                </Grid>
             </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel VerticalAlignment="Center">
-                    <materialDesign:Card BorderThickness="1px" 
-                                         BorderBrush="Black"
-                                         Width="auto"
-                                         Padding="5"
-                                         UniformCornerRadius="6" 
-                                         Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
-                                   Text="Hospital Management là phần mềm hỗ trợ quản lý bệnh viện dã chiến." />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" BorderBrush="Black"
-                                      Width="auto"
-                                      Padding="5"
-                                      UniformCornerRadius="6" 
-                                      Margin="0 0 0 5">
-                        <TextBlock TextWrapping="Wrap"  
-                                   Text="Phần mềm được xây dựng nhằm tri ân các bác sĩ đã tham gia chống dịch." />
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" 
-                                         BorderBrush="Black"
-                                         Width="auto"
-                                         Padding="5"
-                                         UniformCornerRadius="6">
-                        <TextBlock TextWrapping="Wrap"  
-                            Text="Phần mềm chạy trên hệ điều hành windows 10/11." />
-                    </materialDesign:Card>
-                </StackPanel>
-            </Grid>
-        </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <TextBlock Text="Developer"
+                               FontWeight="Bold"
+                               Margin="25 15 0 0"
+                               FontSize="12.8"/>
 
-        <Grid Grid.Row="1" Margin="0 10 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <StackPanel VerticalAlignment="Top" 
-                            Width="237" 
-                            HorizontalAlignment="Left">
-                    <materialDesign:Card BorderThickness="1px" 
-                                         BorderBrush="Black"
-                                         Width="auto"
-                                         Padding="5"
-                                         UniformCornerRadius="6" Margin="0 0 0 5">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Thành viên tham gia dự án" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Nguyễn Đình Nhật Quang (nhóm trưởng)" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Trần Đình Lộc" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Bùi Minh Tuấn" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Đỗ Phú Quang" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Võ Đình Nghĩa" />
-                        </StackPanel>
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" 
-                                         BorderBrush="Black"
-                                         Width="auto"
-                                         Padding="5"
-                                         UniformCornerRadius="6" Margin="0 0 0 5">
-                        <StackPanel>
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Giảng viên hướng dẫn" />
-                            <TextBlock TextWrapping="Wrap"  
-                            Text="Nguyễn Tấn Toàn" />
-                        </StackPanel>
-                    </materialDesign:Card>
-                    <materialDesign:Card BorderThickness="1px" 
-                                         BorderBrush="Black"
-                                         Width="auto"
-                                         Padding="5"
-                                         UniformCornerRadius="6" Margin="0 0 0 5">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock>Đường link dự án: 
-                                <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement" 
-                                           TextDecorations="None" 
-                                           RequestNavigate="Hyperlink_RequestNavigate">
-                                Github
-                                </Hyperlink>
-                            </TextBlock>
-                        </StackPanel>
-                    </materialDesign:Card>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel VerticalAlignment="Top">
-                    
-                </StackPanel>
+                    <TextBlock Text="____"
+                               Margin="25 21 0 0"
+                               FontSize="12.8"/>
+
+                    <TextBlock Text="Nguyen Dinh Nhat Quang (Leader)"
+                               Margin="25,38,0,0"
+                               FontSize="12.8"/>
+                    <TextBlock Text="Tran Dinh Loc"
+                               Margin="25,53,0,0"
+                               FontSize="12.8"/>
+                    <TextBlock Text="Bui Minh Tuan"
+                               Margin="25,68,0,0"
+                               FontSize="12.8"/>
+                    <TextBlock Text="Do Phu Quang"
+                               Margin="25,83,0,0"
+                               FontSize="12.8"/>
+                    <TextBlock Text="Vo Dinh Nghia"
+                               Margin="25,98,0,0"
+                               FontSize="12.8"/>
+
+
+                    <TextBlock Text="Advisor"
+                               FontWeight="Bold"
+                               Margin="25,120,0,0"
+                               FontSize="12.8"/>
+
+                    <TextBlock Text="____"
+                               Margin="25,126,0,0"
+                               FontSize="12.8"/>
+
+                    <TextBlock Text="Nguyen Tan Toan"
+                               Margin="25,144,0,0"
+                               FontSize="12.8"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <TextBlock Text="More info"
+                               FontWeight="Bold"
+                               Margin="15 15 35 0"
+                               FontSize="12.8"/>
+
+                    <TextBlock Text="____"
+                               Margin="15 21 35 0"
+                               FontSize="12.8"/>
+
+                    <TextBlock 
+                               Margin="15 38 35 0"
+                               FontSize="12.8">
+                        <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement"
+                                   TextDecorations="None"
+                                   RequestNavigate="Hyperlink_RequestNavigate">
+                            HMS github site
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Text="Email"
+                               FontWeight="Bold"
+                               Margin="15 60 45 0"
+                               FontSize="12.8"/>
+                    <TextBlock Text="____"
+                               Margin="15 66 45 0"
+                               FontSize="12.8"/>
+                    <TextBlock 
+                               Margin="15 84 45 0"
+                               FontSize="12.8">
+                        <Hyperlink NavigateUri="mailto:"
+                                   TextDecorations="None"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   >
+                            fhms@gmail.com
+                        </Hyperlink>
+                    </TextBlock>
+                    <Button
+                            x:Name="btnLogin"
+                            Width="90"
+                            Height="33.75"
+                            Background="#35a0fe"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="5"
+                            BorderThickness="2"
+                            BorderBrush="#35a0fe"
+                            FontSize="12.8"
+                            VerticalAlignment="Bottom"
+                            Margin="0 0 20 35"
+                            Content="OK"
+                            Click="btnClose_Click">
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
-        <Grid Grid.Row="2" >
-            <Button Click="btnClose_Click"
-                    x:Name="btnClose"
-                    Width="120"
-                    Height="40"
-                    Background="#35a0fe"
-                    Foreground="White"
-                    materialDesign:ButtonAssist.CornerRadius="10"
-                    BorderThickness="2"
-                    BorderBrush="#35a0fe"
-                    ToolTip="Đóng"
-                    Content="Đóng">
-            </Button>
-        </Grid>
-    </Grid>
+    </Border>
 </Window>
