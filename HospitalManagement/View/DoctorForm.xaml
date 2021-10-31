@@ -65,11 +65,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="400">
                     <Grid>
-                        <Image Height="220" Width="200" Source="/images/medical-team.png" Margin="46,-1,154,30.6" />
+                        <Image Height="220" Width="200" Source="/images/medical-team.png" Margin="82,-10,118,39.6" />
                         <Button 
                             Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             ToolTip="MaterialDesignFloatingActionMiniButton"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="202,153,158,56.6">
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
                             <materialDesign:PackIcon Kind="Pencil"/>
                         </Button>
                     </Grid>
@@ -138,7 +138,7 @@
             </StackPanel>
             <Grid Height="80">
                 <Button Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="0,5,179.2,5"/>
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="0,0,182.8,10"/>
             </Grid>
         </StackPanel>
     </Grid>
