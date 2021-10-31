@@ -27,7 +27,7 @@
             </Grid>
             <StackPanel Height="250" Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Width="900">
-                    <Grid Width="500" HorizontalAlignment="Left" Margin="100,13,0,0">
+                    <Grid Width="300" HorizontalAlignment="Left" Margin="100,13,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -36,7 +36,7 @@
                         <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập họ và tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                     </Grid>
                     <StackPanel Orientation="Horizontal">
-                        <Grid Width="350" HorizontalAlignment="Left" Margin="100,16,0,0">
+                        <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
@@ -44,7 +44,7 @@
                             <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                             <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
-                        <Grid Width="420" HorizontalAlignment="Left" Margin="10,16,0,0">
+                        <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
@@ -54,7 +54,7 @@
                         </Grid>
                     </StackPanel>
 
-                    <Grid Width="500" HorizontalAlignment="Left" Margin="100,18,0,0">
+                    <Grid Width="600" HorizontalAlignment="Left" Margin="100,18,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
