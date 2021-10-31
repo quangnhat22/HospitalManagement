@@ -5,13 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="NotifyWindow" 
-        Height="200" 
-        Width="350"
-        ResizeMode="NoResize"
+        Height="190" 
+        Width="300"
         WindowStartupLocation="CenterScreen"
-        Background="White">
+        ResizeMode="NoResize" 
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
+        x:Name="notifyWindow"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="clrPrimary" Color="#F6416C" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="10" Grid.RowSpan="2" Background="{StaticResource clrPrimary}"/>
+
+        <Grid Grid.Row="0">
+            <Border CornerRadius="10 10 0 0" Background="{StaticResource clrPrimary}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border Background="White" BorderThickness="2" CornerRadius="0 0 10 10"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="AlertCircleOutline" 
+                                         HorizontalAlignment="Center"
+                                         Width="50"
+                                         Height="50"
+                                         Foreground="{StaticResource clrPrimary}"
+                                         Margin="0 20 0 12"/>
+                <TextBlock Text="Sai tên đăng nhập hoặc mật khẩu"
+                           HorizontalAlignment="Center"
+                           FontSize="16"/>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            Margin="0 20 0 0">
+                    
+
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                                Content="Thử lại"
+                                Width="130"
+                                Margin="0 0 10 0"
+                                Background="White"
+                                Foreground="{StaticResource clrPrimary}"
+                                BorderBrush="{StaticResource clrPrimary}"
+                                BorderThickness="2"
+                                Command="{Binding CloseWindow}"
+                                CommandParameter="{Binding ElementName=notifyWindow}"/>
+
+                      
+                    <Button x:Name="btnForgotPassword"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            Content="Quên mật khẩu"
+                            Width="130"
+                            Command="{Binding OpenForgotPasswordForm}"
+                            CommandParameter="{Binding ElementName=notifyWindow}"
+                            Background="{StaticResource clrPrimary}"
+                            BorderBrush="{StaticResource clrPrimary}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

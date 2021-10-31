@@ -11,9 +11,12 @@ namespace HospitalManagement.ViewModel
     internal class SignUpFormViewModel: BaseViewModel
     {
         public ICommand OpenLoginWindow { get; set; }
+        public ICommand SignUpValidation { get; set; }
+
         public SignUpFormViewModel()
         {
             OpenLoginWindow = new OpenLoginWindowCommand();
+            SignUpValidation = new SignUpValidationCommand();
         }
     }
 }

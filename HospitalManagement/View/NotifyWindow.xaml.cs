@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HospitalManagement.ViewModel;
 
 namespace HospitalManagement.View
 {
@@ -22,6 +23,7 @@ namespace HospitalManagement.View
         public NotifyWindow()
         {
             InitializeComponent();
+            this.DataContext = new NotifyWindowViewModel();
         }
     }
 }
