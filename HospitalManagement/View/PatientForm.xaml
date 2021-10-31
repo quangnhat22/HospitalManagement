@@ -41,8 +41,8 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Bệnh nhân số" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="Nhập số của bệnh nhân" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBlock Text="Mã bệnh nhân" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                            <TextBox HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="Nhập mã bệnh nhân" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

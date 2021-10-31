@@ -1,4 +1,4 @@
-﻿<Window x:Class="HospitalManagement.View.DoctorInformationForm"
+﻿<Window x:Class="HospitalManagement.View.PatientInformationForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,19 +14,13 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="DoctorInformationForm" Height="700" Width="400">
+        Title="PatientInformationForm" Height="700" Width="400">
     <Grid>
         <StackPanel Orientation="Vertical">
             <Grid Height="220">
-                <Image Source="/Images/medical-team.png" Height="200" Width="200"/>
+                <Image Source="/Images/man.png" Height="200" Width="200"/>
             </Grid>
             <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Vai trò" Foreground="Black" FontSize="20" HorizontalAlignment="Right">
-                </TextBlock>
                 <TextBlock Text="Họ và tên" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
@@ -35,26 +29,39 @@
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Chuyên khoa:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                 </TextBlock>
-                <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Vertical" Width="180">
-                        <TextBlock
-                            FontSize="18" 
-                            TextWrapping="Wrap" 
-                            Foreground="Black"
-                            Text="Chuyên khoa" />
-                    </StackPanel>
-                </Viewbox>
+                <TextBlock Text="Mã bệnh nhân" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                </TextBlock>
             </Grid>
             <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Năm sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                 </TextBlock>
-                <TextBlock Text="Ngày tháng năm sinh" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                </TextBlock>
+            </Grid>
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                </TextBlock>
+                <TextBlock Text="Quốc tịch" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                </TextBlock>
+            </Grid>
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition Width="190"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                </TextBlock>
+                <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
             <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
