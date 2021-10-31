@@ -109,6 +109,9 @@
     <Compile Include="View\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DoctorInformationForm.xaml.cs">
+      <DependentUpon>DoctorInformationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Facilities.xaml.cs" />
     <Compile Include="View\ForgotPasswordWindow.xaml.cs">
       <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DoctorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DoctorInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
