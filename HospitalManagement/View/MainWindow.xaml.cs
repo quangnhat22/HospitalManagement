@@ -40,5 +40,13 @@ namespace HospitalManagement
                 BtnCloseMenu.Visibility = Visibility.Collapsed;
             }
         }
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (BtnCloseMenu.Visibility == Visibility.Visible)
+            {
+                var newEventArgs = new RoutedEventArgs(Button.ClickEvent);
+                BtnCloseMenu.RaiseEvent(newEventArgs);
+            }
+        }
     }
 }
