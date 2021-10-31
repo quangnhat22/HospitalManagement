@@ -20,28 +20,6 @@
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid.Resources>
-            <Storyboard x:Key="MenuOpen" x:Name="OpenStoryBoard">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
-                    <EasingDoubleKeyFrame KeyTime="0" Value="60"></EasingDoubleKeyFrame>
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"></EasingDoubleKeyFrame>
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-            <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
-                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
-                    <EasingDoubleKeyFrame KeyTime="0" Value="200"></EasingDoubleKeyFrame>
-                    <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"></EasingDoubleKeyFrame>
-                </DoubleAnimationUsingKeyFrames>
-            </Storyboard>
-        </Grid.Resources>
-        <Grid.Triggers>
-            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnOpenMenu">
-                <BeginStoryboard Storyboard="{StaticResource MenuOpen}"></BeginStoryboard>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnCloseMenu">
-                <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
-            </EventTrigger>
-        </Grid.Triggers>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" 
               Width="1383" Height="733" Margin="0,0,-0.2,0">
             <UserControl Content="{Binding SelectedViewModel}" Margin="10,10,0,0"></UserControl>
@@ -87,7 +65,29 @@
         </Grid>
         <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left"  
           ClipToBounds="True"
-          ScrollViewer.CanContentScroll="False">
+          ScrollViewer.CanContentScroll="False" MouseLeave="GridNavigate_MouseLeave">
+            <Grid.Resources>
+                <Storyboard x:Key="MenuOpen" x:Name="OpenStoryBoard">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"></EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+                <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="60"></EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </Grid.Resources>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnOpenMenu">
+                    <BeginStoryboard Storyboard="{StaticResource MenuOpen}"></BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnCloseMenu">
+                    <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -168,7 +168,7 @@
                             Style="{StaticResource MaterialDesignFlatButton}"
                             BorderThickness="2"
                             BorderBrush="#35a0fe"
-                            Margin="5 0 5 10"
+                            Margin="5 0 5 -3"
                             HorizontalContentAlignment="Stretch"
                             Foreground="White"
                             Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}">

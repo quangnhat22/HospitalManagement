@@ -48,5 +48,15 @@ namespace HospitalManagement
                 BtnCloseMenu.RaiseEvent(newEventArgs);
             }
         }
+
+        private void GridNavigate_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            if (BtnCloseMenu.Visibility == Visibility.Visible)
+            {
+                var newEventArgs = new RoutedEventArgs(Button.ClickEvent);
+                BtnCloseMenu.RaiseEvent(newEventArgs);
+            }
+        }
     }
 }
