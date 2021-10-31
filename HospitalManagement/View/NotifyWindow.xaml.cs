@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HospitalManagement.View
 {
     /// <summary>
-    /// Interaction logic for Patient.xaml
+    /// Interaction logic for NotifyWindow.xaml
     /// </summary>
-    public partial class Patient : UserControl
+    public partial class NotifyWindow : Window
     {
-        public Patient()
+        public NotifyWindow()
         {
             InitializeComponent();
-            this.DataContext = new PatientViewModel();
         }
     }
 }

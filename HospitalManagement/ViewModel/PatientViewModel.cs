@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Model;
 using System.ComponentModel;
+using HospitalManagement.Command;
 
 namespace HospitalManagement.ViewModel
 {
@@ -35,6 +36,7 @@ namespace HospitalManagement.ViewModel
             get { return isCheckedAll; }
             set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
         }
+        public ICommand OpenPatientForm { get; set; }
 
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
@@ -119,6 +121,7 @@ namespace HospitalManagement.ViewModel
                     if (CheckedCount == 0)
                     IsCheckedAll = false;
             });
+            OpenPatientForm = new OpenPatientFormCommand();  
         }
     }
 }
