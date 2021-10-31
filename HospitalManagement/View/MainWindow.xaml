@@ -72,11 +72,19 @@
                         <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
                         <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"></EasingDoubleKeyFrame>
                     </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="0"></EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"></EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
                 <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
                         <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
                         <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"></EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="1"></EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"></EasingDoubleKeyFrame>
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Grid.Resources>
@@ -101,6 +109,16 @@
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
+                    <Grid x:Name="Logo" Opacity="0">
+                        <materialDesign:PackIcon Kind="HospitalBoxOutline" 
+                                                 Foreground="White"
+                                                 VerticalAlignment="Top"
+                                                 Margin=" 5 0 0 0"
+                                                 Width="50"
+                                                 Height="auto"
+                                                 x:Name="LogoIcon"
+                                                 />
+                    </Grid>
                     <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
                         Background="{x:Null}" BorderBrush="{x:Null}"
                         Foreground="White"
