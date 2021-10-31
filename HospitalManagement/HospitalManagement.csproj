@@ -116,6 +116,9 @@
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NotifyWindow.xaml.cs">
+      <DependentUpon>NotifyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Patient.xaml.cs" />
     <Compile Include="View\PatientForm.xaml.cs">
       <DependentUpon>PatientForm.xaml</DependentUpon>
@@ -170,6 +173,10 @@
     <Page Include="View\Facilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\NotifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Patient.xaml">
       <Generator>MSBuild:Compile</Generator>
