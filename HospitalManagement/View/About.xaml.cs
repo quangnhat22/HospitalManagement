@@ -40,5 +40,10 @@ namespace HospitalManagement.View
         {
             this.Close();
         }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
