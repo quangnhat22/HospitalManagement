@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             x:Name="patientListUC"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="14"
@@ -15,11 +16,38 @@
              mc:Ignorable="d">
     <Grid>
         <StackPanel Margin="50 30">
-            <TextBlock Text="Danh sách bệnh nhân"
+            <WrapPanel Margin="0 0 0 10">
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    
+                </Grid>
+                <Grid Grid.Column="1">
+                    
+                </Grid>-->
+                <TextBlock Text="Danh sách bệnh nhân"
                    FontSize="20"
                    FontWeight="Bold"
-                   Foreground="#08AEEA"
-                   Margin="0 0 0 10"/>
+                   Foreground="#08AEEA"/>
+                <Button 
+                    Margin="10 0 0 0"
+                    Command="{Binding OpenPatientForm}"
+                    CommandParameter="{Binding ElementName=patientListUC}"
+                    x:Name="btnAddPatient"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Height="25" Width="25"
+                    HorizontalAlignment="Right">
+                    <materialDesign:PackIcon 
+                    Kind="Plus"
+                    Height="25"
+                    Width="25" 
+                    Foreground="White"
+                    Background="#08AEEA"
+                    />
+                </Button>
+            </WrapPanel>
             <DataGrid x:Name="datagrid"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
@@ -78,37 +106,42 @@
 
                     <materialDesign:DataGridTextColumn Binding="{Binding ID}"
                                                     Header="ID"
-                                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn Binding="{Binding Name}"
                                                    Header="Tên bệnh nhân"
                                                    Width="200"
-                                                   ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Sex}"
                                                    Header="Giới tính"
                                                    Width="100"
-                                                   ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Birthday}"
                                                    Header="Ngày sinh"
                                                    Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding DateCheckIn}"
                                                    Header="Ngày nhập viện"
                                                    Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding DoctorName}"
                                                    Header="Bác sĩ phụ trách"
                                                    Width="200"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Status}"
                                                    Header="Tình trạng"
                                                    Width="120"
+                                                  ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Room}"
                                                    Header="Phòng"
                                                    Width="90"
+                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
