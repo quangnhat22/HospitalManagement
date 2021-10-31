@@ -76,7 +76,7 @@
                 <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
                         <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="60"></EasingDoubleKeyFrame>
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"></EasingDoubleKeyFrame>
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Grid.Resources>
