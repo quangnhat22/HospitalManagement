@@ -51,6 +51,7 @@ namespace HospitalManagement.ViewModel
             SelectViewCommand = new SelectViewCommand(this);
             ShowAboutCommand = new ShowAboutCommand();
             OpenReportForm = new OpenReportFormCommand();
+            LogoutCommand = new LogoutCommand();
         }
     }
 }
