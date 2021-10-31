@@ -21,6 +21,7 @@ namespace HospitalManagement.ViewModel
         {
             OpenMainWindow = new LoginWindowCommand();
             OpenSignUpForm = new OpenSignUpFormCommand();
+            OpenForgotPasswordForm = new OpenForgotPasswordFormCommand();
 
         }
 
