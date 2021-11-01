@@ -27,7 +27,7 @@ namespace HospitalManagement.Command
             w.txtMessage.Text = w.Title.ToString();
             
             if (w.Tag.ToString() == "Success")
-                SetProperties(w, "#74EBD5", "CheckboxMarkedCircleOutline");
+                SetProperties(w, "#2FDD92", "CheckboxMarkedCircleOutline");
             else
                 if (w.Tag.ToString() == "Warning")
                     SetProperties(w, "#FCCF31", "AlertCircleOutline");

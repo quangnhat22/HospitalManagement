@@ -32,7 +32,7 @@ namespace HospitalManagement.Command
             }
             else
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Sai tên đăng nhập hoặc mật khẩu");
+                NotifyWindow notifyWindow = new NotifyWindow("Error", "Sai tên đăng nhập hoặc mật khẩu");
                 notifyWindow.Show();
             }
         }
