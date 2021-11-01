@@ -20,10 +20,12 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class NotifyWindow : Window
     {
-        public NotifyWindow()
+        public NotifyWindow(string state, string Message = "")
         {
             InitializeComponent();
             this.DataContext = new NotifyWindowViewModel();
+            this.Tag = state;
+            this.Title = Message;
         }
     }
 }
