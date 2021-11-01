@@ -24,7 +24,7 @@ namespace HospitalManagement.Command
         {
             LoginWindow loginWindow = parameter as LoginWindow;
             var mainWindow = new MainWindow();
-            if(checkPassword(loginWindow.txtPassword.Text))
+            if(checkPassword(loginWindow.txtPassword.Password))
             {
                 Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();

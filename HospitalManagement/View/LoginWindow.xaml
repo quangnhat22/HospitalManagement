@@ -54,13 +54,14 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Margin="0 5 0 0"/>
-                        <TextBox
+                        <PasswordBox
                             x:Name="txtPassword"
                             Margin="10 0"
                             Width="250"
-                            materialDesign:HintAssist.Hint="Mật khấu"
-                            BorderBrush="#35a0fe"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                            materialDesign:HintAssist.Hint="Mật khẩu"
+                            materialDesign:HintAssist.Foreground="#35a0fe"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#35a0fe"
+                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Button 
