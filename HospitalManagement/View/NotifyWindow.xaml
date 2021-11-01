@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:HospitalManagement.View"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="NotifyWindow" 
         Height="190" 
         Width="300"
@@ -15,39 +16,44 @@
         AllowsTransparency="True"
         Background="Transparent"
         x:Name="notifyWindow"
+        
         >
-    <Window.Resources>
-        <SolidColorBrush x:Key="clrPrimary" Color="#F6416C" />
-    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadContent}" CommandParameter="{Binding ElementName=notifyWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border CornerRadius="10" Grid.RowSpan="2" Background="{StaticResource clrPrimary}"/>
+        <Border x:Name="bodyBorder" CornerRadius="10" Grid.RowSpan="2"/>
 
         <Grid Grid.Row="0">
-            <Border CornerRadius="10 10 0 0" Background="{StaticResource clrPrimary}"/>
+            <Border x:Name="headBorder" CornerRadius="10 10 0 0"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Border Background="White" BorderThickness="2" CornerRadius="0 0 10 10"/>
-            <StackPanel>
-                <materialDesign:PackIcon Kind="AlertCircleOutline" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="271*"/>
+                <ColumnDefinition Width="29*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="White" BorderThickness="2" CornerRadius="0 0 10 10" Grid.ColumnSpan="2" Margin="0,0,0,0.4"/>
+            <StackPanel Grid.ColumnSpan="2" Margin="0,0,0,0.4">
+                <materialDesign:PackIcon x:Name="Icon"
+                                         Kind="{Binding ElementName=notifyWindow, Path=ToolTip}" 
                                          HorizontalAlignment="Center"
                                          Width="50"
                                          Height="50"
-                                         Foreground="{StaticResource clrPrimary}"
                                          Margin="0 20 0 12"/>
-                <TextBlock Text="Sai tên đăng nhập hoặc mật khẩu"
+                <TextBlock x:Name="txtMessage"
                            HorizontalAlignment="Center"
                            FontSize="16"/>
-                <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                                Content="Thử lại"
+                <Button x:Name="btnOK" Style="{StaticResource MaterialDesignOutlinedButton}"
+                                Content="OK"
                                 Width="130"
                                 Margin="0 20 0 0"
                                 Background="White"
-                                Foreground="{StaticResource clrPrimary}"
-                                BorderBrush="{StaticResource clrPrimary}"
                                 BorderThickness="2"
                                 Command="{Binding CloseWindow}"
                                 CommandParameter="{Binding ElementName=notifyWindow}"/>
