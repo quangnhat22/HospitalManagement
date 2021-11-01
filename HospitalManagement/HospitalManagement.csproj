@@ -85,6 +85,7 @@
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\LoginWindowCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
+    <Compile Include="Command\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\OpenLoginWindowCommand.cs" />
     <Compile Include="Command\OpenPatientFormCommand.cs" />
