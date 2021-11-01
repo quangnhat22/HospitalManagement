@@ -136,7 +136,7 @@
                             fhms@gmail.com
                         </Hyperlink>
                     </TextBlock>
-                    <Button
+                    <Button IsEnabled="True"
                             x:Name="btnLogin"
                             Width="90"
                             Height="33.75"

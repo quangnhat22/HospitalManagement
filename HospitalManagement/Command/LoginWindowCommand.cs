@@ -24,7 +24,7 @@ namespace HospitalManagement.Command
         {
             LoginWindow loginWindow = parameter as LoginWindow;
             var mainWindow = new MainWindow();
-            if(checkPassword(loginWindow.txtPassword.Text))
+            if(CheckPassword(loginWindow.txtPassword.Text))
             {
                 Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
@@ -38,7 +38,7 @@ namespace HospitalManagement.Command
         }
 
 
-        private bool checkPassword(string plainText)
+        private bool CheckPassword(string plainText)
         {
             string hashedPasswordInput = Hash(plainText);
             string databasePassword = "cdd96d3cc73d1dbdaffa03cc6cd7339b";

@@ -38,12 +38,19 @@ namespace HospitalManagement.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Window_Deactivated(null, null);
         }
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                ;
+            }
         }
     }
 }
