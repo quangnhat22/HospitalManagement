@@ -25,7 +25,8 @@ namespace HospitalManagement.Command
         {
             if (Check(parameter as SignUpWindow))
             {
-                MessageBox.Show("Đăng ký thành công!");
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký thành công!");
+                notifyWindow.Show();
             }
         }
 
@@ -34,60 +35,67 @@ namespace HospitalManagement.Command
             if (mw == null) return false;
             if (string.IsNullOrWhiteSpace(mw.txbHo.Text))
             {
-                MessageBox.Show("Vui lòng nhập họ");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
+                notifyWindow.Show();
                 mw.txbHo.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbTen.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
+                notifyWindow.Show();
                 mw.txbTen.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbTenDangNhap.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
+                notifyWindow.Show();
                 mw.txbTenDangNhap.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbEmail.Text))
             {
-                MessageBox.Show("Vui lòng nhập email");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
+                notifyWindow.Show();
                 mw.txbEmail.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbMatKhau.Password))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mật khẩu");
+                notifyWindow.Show();
                 mw.txbMatKhau.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbNhapLaiMatKhau.Password))
             {
-                MessageBox.Show("Vui lòng nhập lại mật khẩu");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập lại mật khẩu");
+                notifyWindow.Show();
                 mw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
 
             if (mw.txbMatKhau.Password != mw.txbNhapLaiMatKhau.Password)
             {
-                MessageBox.Show("Mật khẩu đã nhập không khớp");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu đã nhập không khớp");
+                notifyWindow.Show();
                 mw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(mw.txbNgaySinh.Text))
             {
-                MessageBox.Show("Vui lòng nhập ngày sinh");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
+                notifyWindow.Show();
                 mw.txbNgaySinh.Focus();
                 return false;
             }
-
             return true;
         }
     }
