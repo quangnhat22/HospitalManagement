@@ -11,7 +11,11 @@ namespace HospitalManagement.Command
 {
     class LogoutCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public bool CanExecute(object parameter)
         {
