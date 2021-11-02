@@ -13,79 +13,79 @@
         WindowStyle="None" 
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
-        Background="Transparent"
+        Background="White"
         Title="ReportForm"
         >
-    <Window.Resources>
-        <SolidColorBrush x:Key="clrPrimary" Color="#FF35A0FE" />
+    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10">
+        <Grid x:Name="main_grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <SolidColorBrush x:Key="clrPrimary" Color="#FF35A0FE" />
 
-        <Style TargetType="TextBox" x:Key="textboxStyle" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-            <Setter Property="BorderBrush" Value="{StaticResource clrPrimary}"/>
-            <Setter Property="AcceptsReturn" Value="True"/>
-            <Setter Property="Width" Value="333"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="8 0 8 8"/>
-        </Style>
+                <Style TargetType="TextBox" x:Key="textboxStyle" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <Setter Property="BorderBrush" Value="{StaticResource clrPrimary}"/>
+                    <Setter Property="AcceptsReturn" Value="True"/>
+                    <Setter Property="Width" Value="333"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Padding" Value="8 0 8 8"/>
+                </Style>
 
-        <Style TargetType="materialDesign:PackIcon" x:Key="styleIcon">
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{StaticResource clrPrimary}"/>
+                <Style TargetType="materialDesign:PackIcon" x:Key="styleIcon">
+                    <Setter Property="Height" Value="20"/>
+                    <Setter Property="Width" Value="40"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Foreground" Value="{StaticResource clrPrimary}"/>
 
-        </Style>
+                </Style>
 
-        <Style TargetType="Border" x:Key="borderStyle">
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="{StaticResource clrPrimary}"/>
-            <Setter Property="CornerRadius" Value="5"/>
-            <Setter Property="Margin" Value="0 0 5 0"/>
-        </Style>
-    </Window.Resources>
-    <Grid x:Name="main_grid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Border CornerRadius="10" Grid.RowSpan="2" Background="White"/>
-        <Grid Grid.Row="0">
-            <Border CornerRadius="10 10 0 0">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#35a0fe" Offset="2"/>
-                        <GradientStop Color="#35a0fe" Offset="0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-            <TextBlock 
+                <Style TargetType="Border" x:Key="borderStyle">
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource clrPrimary}"/>
+                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="Margin" Value="0 0 5 0"/>
+                </Style>
+            </Grid.Resources>
+            <Grid Grid.Row="0">
+                <Border>
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#35a0fe" Offset="2"/>
+                            <GradientStop Color="#35a0fe" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock 
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Center"
                         Foreground="White"
                         FontSize="20" FontFamily="Inter"
                         FontWeight="DemiBold">
                         REPORT FORM
-            </TextBlock>
-        </Grid>
+                </TextBlock>
+            </Grid>
 
-        <StackPanel Grid.Row="1" Background="#f0f2f5">
-            <StackPanel Orientation="Horizontal" Margin="30 16 30 0">
-                <Border Style="{StaticResource borderStyle}">
-                    <materialDesign:PackIcon Kind="Email" Style="{StaticResource styleIcon}"/>
-                </Border>
-                <TextBox 
+            <StackPanel Grid.Row="1">
+                <StackPanel Orientation="Horizontal" Margin="30 16 30 0">
+                    <Border Style="{StaticResource borderStyle}">
+                        <materialDesign:PackIcon Kind="Email" Style="{StaticResource styleIcon}"/>
+                    </Border>
+                    <TextBox 
                         x:Name="txbEmail"
                         Style="{StaticResource textboxStyle}"
                         materialDesign:HintAssist.Hint="E-mail"
                         Margin="8 0 0 0" Width="384"
                 />
-            </StackPanel>
-            <GroupBox
+                </StackPanel>
+                <GroupBox
                     HorizontalAlignment="Left"
                     Header="Subject"
                     Margin="30 20 30 0"
                     Width="440"
                     Height="80">
-                <TextBox
+                    <TextBox
                         x:Name="txbSubject"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
@@ -95,14 +95,14 @@
                         SpellCheck.IsEnabled="True"
                         materialDesign:HintAssist.Hint="Subject" Margin="0,0,0,-4" Width="417"
                         />
-            </GroupBox>
-            <GroupBox
+                </GroupBox>
+                <GroupBox
                     HorizontalAlignment="Left"
                     Header="Chi tiết"
                     Margin="30 15 30 0"
                     Width="440"
                     Height="190">
-                <TextBox
+                    <TextBox
                         x:Name="txbBody"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
@@ -112,9 +112,9 @@
                         SpellCheck.IsEnabled="True"
                         materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..." Margin="0,0,0,-4" Width="417"
                         />
-            </GroupBox>
-            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                <Button
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <Button
                         Command="{Binding OpenLoginWindow}"
                         CommandParameter="{Binding ElementName=signUpFormWindow}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -126,22 +126,22 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Background="#e4e6eb"
                         Foreground="Black">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="LinkVariant" Margin="0 2 5 0"/>
-                            <TextBlock Text="Thêm ảnh chụp màn hình (đề xuất)"/>
-                        </StackPanel>
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="LinkVariant" Margin="0 2 5 0"/>
+                                <TextBlock Text="Thêm ảnh chụp màn hình (đề xuất)"/>
+                            </StackPanel>
 
 
-                    </Button.Content>
-                </Button>
+                        </Button.Content>
+                    </Button>
 
 
 
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220 50 0 0">
-                <Button 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220 50 0 0">
+                    <Button 
                         Click="btnClose_Click"
                         Content="HUỶ"
                         Style="{StaticResource MaterialDesignRaisedButton}"
@@ -156,7 +156,7 @@
                         ToolTip="Hủy đăng ký! Quay trở lại đăng nhập"
                         />
 
-                <Button Content="GỬI"
+                    <Button Content="GỬI"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="50"
                     Width="100"
@@ -167,8 +167,10 @@
                     ToolTip="Hoàn tất đăng ký"
                     Command="{Binding sendEmailReport}"
                     CommandParameter="{Binding ElementName= reportForm}"/>
-                    
+
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </Border>
+    
 </Window>
