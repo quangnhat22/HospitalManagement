@@ -129,11 +129,11 @@
     <Compile Include="View\NotifyWindow.xaml.cs">
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Patient.xaml.cs" />
-    <Compile Include="View\PatientForm.xaml.cs">
+    <Compile Include="View\Patient\Patient.xaml.cs" />
+    <Compile Include="View\Patient\PatientForm.xaml.cs">
       <DependentUpon>PatientForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PatientInformationForm.xaml.cs">
+    <Compile Include="View\Patient\PatientInformationForm.xaml.cs">
       <DependentUpon>PatientInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ReportForm.xaml.cs">
@@ -195,15 +195,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Patient.xaml">
+    <Page Include="View\Patient\Patient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PatientForm.xaml">
+    <Page Include="View\Patient\PatientForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PatientInformationForm.xaml">
+    <Page Include="View\Patient\PatientInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
