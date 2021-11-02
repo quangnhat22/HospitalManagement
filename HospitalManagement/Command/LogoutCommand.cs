@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace HospitalManagement.Command
 {
@@ -27,8 +29,17 @@ namespace HospitalManagement.Command
             Window mainWindow = parameter as Window;
             LoginWindow loginWindow = new LoginWindow();
             Application.Current.MainWindow = loginWindow;
-            loginWindow.Show();
             mainWindow.Close();
+            Thread windowThread = new Thread(new ThreadStart(() =>
+            {
+                mainWindow.Closed += (s, e) =>
+                Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
+                System.Windows.Threading.Dispatcher.Run();
+            }));
+            windowThread.SetApartmentState(ApartmentState.STA);
+            windowThread.IsBackground = true;
+            windowThread.Start();
+            loginWindow.Show();
         }
     }
 }
