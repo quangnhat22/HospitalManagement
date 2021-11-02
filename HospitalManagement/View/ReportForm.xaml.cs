@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel;
+﻿using HospitalManagement.Command;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class ReportForm : Window
     {
+       
         public ReportForm()
         {
             InitializeComponent();
             this.DataContext = new ReportFormViewModel();
+            
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
