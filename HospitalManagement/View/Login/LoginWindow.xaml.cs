@@ -26,5 +26,11 @@ namespace HospitalManagement.View
             InitializeComponent();
             this.DataContext = new LoginWindowViewModel();
         }
+
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            LoginWindowViewModel loginWindowViewModel = this.DataContext as LoginWindowViewModel;
+            loginWindowViewModel.Password = txtPassword.Password;
+        }
     }
 }
