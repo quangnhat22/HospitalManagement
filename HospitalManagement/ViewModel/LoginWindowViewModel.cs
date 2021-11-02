@@ -20,9 +20,12 @@ namespace HospitalManagement.ViewModel
         public ICommand OpenReportForm { get; set; }
         public ICommand OpenForgotPasswordForm { get; set; }
 
+        public string Username { get; set; }
+        public string Password { get; set; }
+
         public LoginWindowViewModel()
         {
-            OpenMainWindow = new LoginWindowCommand();
+            OpenMainWindow = new LoginWindowCommand(this);
             OpenSignUpForm = new OpenSignUpFormCommand();
             OpenForgotPasswordForm = new OpenForgotPasswordFormCommand();
         }

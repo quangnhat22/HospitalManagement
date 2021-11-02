@@ -12,7 +12,11 @@ namespace HospitalManagement.Command
     class SelectViewCommand : ICommand
     {
         private MainWindowViewModel mainWindowViewModel;
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public SelectViewCommand(MainWindowViewModel mainWindowViewModel)
         {
