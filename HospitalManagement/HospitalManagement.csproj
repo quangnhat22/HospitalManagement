@@ -98,6 +98,7 @@
     <Compile Include="Command\SignUpValidationCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Patient.cs" />
+    <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
