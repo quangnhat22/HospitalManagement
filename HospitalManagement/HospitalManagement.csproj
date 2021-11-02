@@ -117,10 +117,10 @@
       <DependentUpon>DoctorInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Facilities.xaml.cs" />
-    <Compile Include="View\ForgotPasswordWindow.xaml.cs">
+    <Compile Include="View\Login\ForgotPasswordWindow.xaml.cs">
       <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\LoginWindow.xaml.cs">
+    <Compile Include="View\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NotifyWindow.xaml.cs">
@@ -136,7 +136,7 @@
     <Compile Include="View\ReportForm.xaml.cs">
       <DependentUpon>ReportForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SignUpWindow.xaml.cs">
+    <Compile Include="View\Login\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\About.xaml">
@@ -151,11 +151,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ForgotPasswordWindow.xaml">
+    <Page Include="View\Login\ForgotPasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LoginWindow.xaml">
+    <Page Include="View\Login\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,7 +208,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SignUpWindow.xaml">
+    <Page Include="View\Login\SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
