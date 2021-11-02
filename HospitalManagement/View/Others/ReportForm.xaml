@@ -83,7 +83,7 @@
                     HorizontalAlignment="Left"
                     Header="Subject"
                     Margin="30 20 30 0"
-                    Width="440"
+                    Width="430"
                     Height="80">
                     <TextBox
                         x:Name="txbSubject"
@@ -100,7 +100,7 @@
                     HorizontalAlignment="Left"
                     Header="Chi tiết"
                     Margin="30 15 30 0"
-                    Width="440"
+                    Width="430"
                     Height="190">
                     <TextBox
                         x:Name="txbBody"
@@ -115,12 +115,14 @@
                 </GroupBox>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <Button
-                        Command="{Binding OpenLoginWindow}"
-                        CommandParameter="{Binding ElementName=signUpFormWindow}"
+                        x:Name="btnAttachment"
+                        Command="{Binding openFileImageDialog}"
+                        CommandParameter="{Binding ElementName=reportForm}"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Margin="30 0 50 0"
                         Height="30"
                         Width="auto"
+                        MaxWidth="430"
                         BorderThickness="0.2"
                         BorderBrush="Black"
                         materialDesign:ButtonAssist.CornerRadius="10"

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using HospitalManagement.View;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace HospitalManagement.Command
 {
@@ -20,6 +21,7 @@ namespace HospitalManagement.Command
             return true;
         }
 
+        string filename = "";
         public void Execute(object parameter)
         {
             try
@@ -27,7 +29,8 @@ namespace HospitalManagement.Command
                 ReportForm rpf = parameter as ReportForm;
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                 client.EnableSsl = true;
-                client.Timeout = 100000;
+                //client.Timeout = 100000;
+                client.Timeout = 0;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential("hotrofhms@gmail.com", "supportfhms719");
@@ -37,6 +40,8 @@ namespace HospitalManagement.Command
                 msg.Subject = rpf.txbSubject.Text;
                 string bodyEmail = rpf.txbEmail.Text + " đã gửi: \n" + rpf.txbBody.Text;
                 msg.Body = bodyEmail;
+                Attachment atc = new Attachment(rpf.btnAttachment.Content.ToString());
+                msg.Attachments.Add(atc);
                 client.Send(msg);
                 
                 MessageBox.Show("Đã gửi thành công. Cảm ơn đã phản hồi, chúng tôi sẽ phàn hồi bạn sớm nhất có thể.");

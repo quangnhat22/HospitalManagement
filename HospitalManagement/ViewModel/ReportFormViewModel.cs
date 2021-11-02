@@ -11,9 +11,11 @@ namespace HospitalManagement.ViewModel
     internal class ReportFormViewModel : BaseViewModel
     {
         public ICommand sendEmailReport { get; set; }
+        public ICommand openFileImageDialog { get; set; }
         public ReportFormViewModel()
         {
             sendEmailReport = new SendEmailReportCommand();
+            openFileImageDialog = new OpenFileImageDialogCommand();
         }
     }
 }
