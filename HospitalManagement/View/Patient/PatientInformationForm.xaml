@@ -7,15 +7,146 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
         Title="PatientInformationForm" Height="700" Width="400">
-    <Grid>
+    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Border BorderBrush="#35a0fe" Background="#35a0fe" CornerRadius="2 2 0 0"  BorderThickness="0"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="220">
+                            <Image Source="/Images/man.png" Height="200" Width="200"/>
+                        </Grid>
+                        <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <TextBlock Text="Họ và tên" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Mã bệnh nhân" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Quốc tịch" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Giới tính" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                    <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
+                    <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Số điện thoại:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Số điện thoại" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Width="180">
+                                    <TextBlock
+                            FontSize="18" 
+                            TextWrapping="Wrap" 
+                            Foreground="Black"
+                            Text="Địa chỉ Email" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Địa chỉ liên lạc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Width="180">
+                                    <TextBlock
+                            FontSize="18" 
+                            TextWrapping="Wrap" 
+                            Foreground="Black"
+                            Text="thành phố Kon Tum tỉnh Kon Tum phường alo alo alo lao lao" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Background="White" CornerRadius="0 0 8 8"></Border>
+                    <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                    
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+    <!--<Grid>
         <StackPanel Orientation="Vertical">
             <Grid Height="220">
                 <Image Source="/Images/man.png" Height="200" Width="200"/>
@@ -125,5 +256,5 @@
             <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"
                 materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top"/>
         </Grid>
-    </Grid>
+    </Grid>-->
 </Window>
