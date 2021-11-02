@@ -110,8 +110,8 @@
     <Compile Include="ViewModel\PatientViewModel.cs" />
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
-    <Compile Include="View\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
+    <Compile Include="View\Others\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard.xaml.cs" />
     <Compile Include="View\Doctor.xaml.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="View\Login\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NotifyWindow.xaml.cs">
+    <Compile Include="View\Others\NotifyWindow.xaml.cs">
       <DependentUpon>NotifyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Patient\Patient.xaml.cs" />
@@ -138,13 +138,13 @@
     <Compile Include="View\Patient\PatientInformationForm.xaml.cs">
       <DependentUpon>PatientInformationForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReportForm.xaml.cs">
+    <Compile Include="View\Others\ReportForm.xaml.cs">
       <DependentUpon>ReportForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\About.xaml">
+    <Page Include="View\Others\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,7 +193,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\NotifyWindow.xaml">
+    <Page Include="View\Others\NotifyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ReportForm.xaml">
+    <Page Include="View\Others\ReportForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
