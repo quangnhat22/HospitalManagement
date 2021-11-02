@@ -79,14 +79,31 @@
                         Margin="8 0 0 0" Width="384"
                 />
             </StackPanel>
-
+            <GroupBox
+                    HorizontalAlignment="Left"
+                    Header="Subject"
+                    Margin="30 20 30 0"
+                    Width="440"
+                    Height="80">
+                <TextBox
+                        x:Name="txbSubject"
+                        HorizontalAlignment="Left"
+                        TextWrapping="Wrap"
+                        MinWidth="280"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto"
+                        SpellCheck.IsEnabled="True"
+                        materialDesign:HintAssist.Hint="Subject" Margin="0,0,0,-4" Width="417"
+                        />
+            </GroupBox>
             <GroupBox
                     HorizontalAlignment="Left"
                     Header="Chi tiết"
-                    Margin="30 20 30 0"
+                    Margin="30 15 30 0"
                     Width="440"
-                    Height="280">
+                    Height="190">
                 <TextBox
+                        x:Name="txbBody"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
@@ -148,7 +165,9 @@
                     materialDesign:ButtonAssist.CornerRadius="10"
                     Background="#35a0fe"
                     ToolTip="Hoàn tất đăng ký"
-                    Command="{Binding }"/>
+                    Command="{Binding sendEmailReport}"
+                    CommandParameter="{Binding ElementName= reportForm}"/>
+                    
             </StackPanel>
         </StackPanel>
     </Grid>
