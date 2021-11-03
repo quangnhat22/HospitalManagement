@@ -15,7 +15,6 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="ReportForm"
-        Deactivated="reportForm_Deactivated"
         >
     <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10">
         <Grid x:Name="main_grid">
