@@ -117,11 +117,11 @@
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard.xaml.cs" />
-    <Compile Include="View\Doctor.xaml.cs" />
-    <Compile Include="View\DoctorForm.xaml.cs">
+    <Compile Include="View\Doctor\Doctor.xaml.cs" />
+    <Compile Include="View\Doctor\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DoctorInformationForm.xaml.cs">
+    <Compile Include="View\Doctor\DoctorInformationForm.xaml.cs">
       <DependentUpon>DoctorInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Facilities\Facilities.xaml.cs" />
@@ -154,11 +154,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorForm.xaml">
+    <Page Include="View\Doctor\DoctorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DoctorInformationForm.xaml">
+    <Page Include="View\Doctor\DoctorInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,7 +191,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Doctor.xaml">
+    <Page Include="View\Doctor\Doctor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
