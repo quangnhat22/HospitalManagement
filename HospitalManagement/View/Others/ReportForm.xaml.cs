@@ -33,17 +33,5 @@ namespace HospitalManagement.View
         {
             this.Close();
         }
-
-        private void reportForm_Deactivated(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Close();
-            }
-            catch
-            {
-                ;
-            }
-        }
     }
 }
