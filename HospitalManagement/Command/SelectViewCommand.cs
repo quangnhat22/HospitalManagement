@@ -50,6 +50,10 @@ namespace HospitalManagement.Command
                 {
                     mainWindowViewModel.SelectedViewModel = new FacilitiesViewModel();
                 }
+                if (tag == "Rooms")
+                {
+                    mainWindowViewModel.SelectedViewModel = new RoomViewModel();
+                }
             }
         }
     }

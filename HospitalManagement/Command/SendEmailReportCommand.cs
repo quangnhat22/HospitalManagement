@@ -14,14 +14,17 @@ namespace HospitalManagement.Command
 {
     class SendEmailReportCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { }
+            remove { }
+        }
 
         public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        string filename = "";
         public void Execute(object parameter)
         {
             try
