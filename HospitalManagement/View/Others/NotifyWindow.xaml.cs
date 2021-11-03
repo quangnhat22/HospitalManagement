@@ -27,5 +27,16 @@ namespace HospitalManagement.View
             this.Tag = state;
             this.Title = Message;
         }
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                ;
+            }
+        }
     }
 }
