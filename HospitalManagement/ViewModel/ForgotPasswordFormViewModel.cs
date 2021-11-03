@@ -11,9 +11,11 @@ namespace HospitalManagement.ViewModel
     internal class ForgotPasswordFormViewModel : BaseViewModel
     {
         public ICommand OpenLoginWindow { get; set; }
+        public ICommand ForgotPasswordValidation { get; set; }
         public ForgotPasswordFormViewModel()
         {
             OpenLoginWindow = new OpenLoginWindowCommand();
+            ForgotPasswordValidation = new ForgotPasswordValidationCommand();
         }
     }
 }
