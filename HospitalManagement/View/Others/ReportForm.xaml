@@ -67,7 +67,7 @@
                 </TextBlock>
             </Grid>
             <Grid Grid.Row="1">
-                <Border BorderBrush="#35a0fe" Background="White" CornerRadius="0 0 8 8" Margin="0,-1,0,-0.4" Height="523" VerticalAlignment="Bottom"></Border>
+                <Border BorderBrush="#35a0fe" Background="White" CornerRadius="0 0 8 8" Margin="0,-1,0,-0.2" Height="523" VerticalAlignment="Bottom"></Border>
                 <StackPanel Grid.Row="1" >
                     <StackPanel Orientation="Horizontal" Margin="30 16 30 0">
                         <Border Style="{StaticResource borderStyle}">
