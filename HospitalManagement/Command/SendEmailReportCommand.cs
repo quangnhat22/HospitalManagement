@@ -43,8 +43,11 @@ namespace HospitalManagement.Command
                 msg.Subject = rpf.txbSubject.Text;
                 string bodyEmail = rpf.txbEmail.Text + " đã gửi: \n" + rpf.txbBody.Text;
                 msg.Body = bodyEmail;
-                Attachment atc = new Attachment(rpf.btnAttachment.Content.ToString());
-                msg.Attachments.Add(atc);
+                foreach(string path in spliter(rpf.btnAttachment.Content.ToString()))
+                {
+                    Attachment atc = new Attachment(path);
+                    msg.Attachments.Add(atc);
+                }
                 client.Send(msg);
                 
                 MessageBox.Show("Đã gửi thành công. Cảm ơn đã phản hồi, chúng tôi sẽ phàn hồi bạn sớm nhất có thể.");
@@ -54,5 +57,7 @@ namespace HospitalManagement.Command
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private string[] spliter(string text) => text.Split(';');
     }
 }
