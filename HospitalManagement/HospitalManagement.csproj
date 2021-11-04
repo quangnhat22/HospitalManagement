@@ -109,19 +109,20 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\NurseViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="View\Others\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard.xaml.cs" />
-    <Compile Include="View\Doctor\Doctor.xaml.cs" />
-    <Compile Include="View\Doctor\DoctorForm.xaml.cs">
+    <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Doctor\DoctorInformationForm.xaml.cs">
+    <Compile Include="View\Staff\DoctorInformationForm.xaml.cs">
       <DependentUpon>DoctorInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Facilities\Facilities.xaml.cs" />
@@ -150,15 +151,24 @@
     <Compile Include="View\Room\RoomUsercontrol.xaml.cs">
       <DependentUpon>RoomUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Staff\DoctorUsercontrol.xaml.cs">
+      <DependentUpon>DoctorUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\NurseUsercontrol.xaml.cs">
+      <DependentUpon>NurseUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
+      <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\Others\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Doctor\DoctorForm.xaml">
+    <Page Include="View\Staff\DoctorForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Doctor\DoctorInformationForm.xaml">
+    <Page Include="View\Staff\DoctorInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,10 +201,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Doctor\Doctor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Facilities\Facilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -224,6 +230,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Room\RoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\DoctorUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\NurseUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\StaffUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -155,10 +155,10 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
-                                      Tag="Doctor">
+                                      Tag="Staff">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Doctor" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Bác sĩ" VerticalAlignment="Center" Margin="20 10"/>
+                                <TextBlock Text="Nhân viên" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"

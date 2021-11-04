@@ -38,9 +38,9 @@ namespace HospitalManagement.Command
                 {
                     mainWindowViewModel.SelectedViewModel = new DashBoardViewModel();
                 }
-                if (tag == "Doctor")
+                if (tag == "Staff")
                 {
-                    mainWindowViewModel.SelectedViewModel = new DoctorViewModel();
+                    mainWindowViewModel.SelectedViewModel = new StaffViewModel();
                 }
                 if (tag == "Patient")
                 {

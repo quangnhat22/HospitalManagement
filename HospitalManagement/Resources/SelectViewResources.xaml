@@ -2,12 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:HospitalManagement.ViewModel"
                     xmlns:view="clr-namespace:HospitalManagement.View"
-                    xmlns:viewroom="clr-namespace:HospitalManagement.View.Room">
+                    xmlns:viewroom="clr-namespace:HospitalManagement.View.Room"
+                    xmlns:viewstaff="clr-namespace:HospitalManagement.View.Staff"
+                    xmlns:viewdoctor="c">
     <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
         <view:DashBoard></view:DashBoard>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
-        <view:Doctor></view:Doctor>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:PatientViewModel}">
         <view:Patient></view:Patient>
@@ -17,5 +16,14 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:RoomViewModel}">
         <viewroom:RoomUsercontrol></viewroom:RoomUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:StaffViewModel}">
+        <viewstaff:StaffUsercontrol></viewstaff:StaffUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
+        <viewstaff:DoctorUsercontrol></viewstaff:DoctorUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:NurseViewModel}">
+        <viewstaff:NurseUsercontrol></viewstaff:NurseUsercontrol>
     </DataTemplate>
 </ResourceDictionary>
