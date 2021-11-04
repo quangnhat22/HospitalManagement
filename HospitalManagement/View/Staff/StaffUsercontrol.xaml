@@ -5,16 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View.Staff"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             x:Name="staffListUC"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto">
     <UserControl.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <TabControl>
-        <TabItem Header="Bác sĩ">
-            <UserControl Content="{Binding DoctorViewModel}"></UserControl>
-        </TabItem>
-        <TabItem Header="Y tá">
-            <UserControl Content="{Binding NurseViewModel}"></UserControl>
-        </TabItem>
-    </TabControl>
+    <Grid>
+        <StackPanel Margin="50 30">
+            <WrapPanel Margin="0 0 0 10">
+                <TextBlock Text="Danh sách bệnh nhân"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#08AEEA"/>
+                <Button 
+                    Margin="10 0 0 0"
+                    Command="{Binding OpenPatientForm}"
+                    CommandParameter="{Binding ElementName=patientListUC}"
+                    x:Name="btnAddPatient"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Height="25" Width="25"
+                    HorizontalAlignment="Right">
+                    <materialDesign:PackIcon 
+                    Kind="Plus"
+                    Height="25"
+                    Width="25" 
+                    Foreground="White"
+                    Background="#08AEEA"
+                    />
+                </Button>
+            </WrapPanel>
+            <TabControl BorderThickness="0">
+                <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                         Header="Bác sĩ"
+                         FontSize="18"
+                         Width="120" 
+                         Height="40" 
+                         Margin="-3,0,0,0" 
+                         Padding="0">
+                    <UserControl Content="{Binding DoctorViewModel}"></UserControl>
+                </TabItem>
+                <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                         Header="Y tá"
+                         FontSize="18"
+                         Width="120" 
+                         Height="40" 
+                         Margin="-3,0,0,0" 
+                         Padding="0">
+                    <UserControl Content="{Binding NurseViewModel}"></UserControl>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+   
 </UserControl>
