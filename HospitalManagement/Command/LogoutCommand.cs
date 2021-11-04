@@ -28,6 +28,7 @@ namespace HospitalManagement.Command
         {
             Window mainWindow = parameter as Window;
             LoginWindow loginWindow = new LoginWindow();
+            Application.Current.MainWindow = loginWindow;
             mainWindow.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>
             {
