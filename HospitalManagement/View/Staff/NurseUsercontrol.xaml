@@ -16,7 +16,14 @@
              d:DesignHeight="760" d:DesignWidth="1387"
              x:Name="nurseListUC">
     <StackPanel>
-
+        <Button 
+                x:Name="btnAddNurse"
+                Command="{Binding OpenDoctorForm}"
+                CommandParameter="{Binding ElementName=nurseListUC}"
+                Margin="0 -40 0 5"
+                HorizontalAlignment="Right"
+                Content="Thêm y tá"
+                Width="110"/>
         <DataGrid x:Name="dtgNurseList"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
