@@ -37,9 +37,9 @@ namespace HospitalManagement.ViewModel
             set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
         }
         public ICommand OpenPatientForm { get; set; }
-
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
+        public ICommand ShowPatientInfomationCommand { get; set; }
 
         public PatientViewModel()
         {
@@ -100,6 +100,9 @@ namespace HospitalManagement.ViewModel
             });
             CheckedCount = 0;
             IsCheckedAll = false;
+
+            ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
+
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
                 bool allcheckbox = (p.IsChecked == true);

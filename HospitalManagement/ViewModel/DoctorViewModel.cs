@@ -40,6 +40,7 @@ namespace HospitalManagement.ViewModel
         public ICommand OpenDoctorForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
+        public ICommand ShowDoctorInfomationCommand { get; set; }
 
         public DoctorViewModel()
         {
@@ -106,6 +107,8 @@ namespace HospitalManagement.ViewModel
 
             CheckedCount = 0;
             IsCheckedAll = false;
+
+            ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
 
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {

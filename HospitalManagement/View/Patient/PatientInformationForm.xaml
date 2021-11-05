@@ -37,7 +37,7 @@
                             <Image Source="/Images/man.png" Height="200" Width="200"/>
                         </Grid>
                         <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                            <TextBlock Text="Họ và tên" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Text="{Binding Patient.Name}" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
@@ -47,7 +47,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                             </TextBlock>
-                            <TextBlock Text="Mã bệnh nhân" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Text="{Binding Patient.ID}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
@@ -87,7 +87,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                             </TextBlock>
-                            <TextBlock Text="Giới tính" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Text="{Binding Patient.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                     <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
                     <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
                             </TextBlock>

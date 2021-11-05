@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HospitalManagement.ViewModel;
+using HospitalManagement.Model;
 
 namespace HospitalManagement.View
 {
@@ -19,9 +21,10 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class DoctorInformationForm : Window
     {
-        public DoctorInformationForm()
+        public DoctorInformationForm(Doctor doctor)
         {
             InitializeComponent();
+            this.DataContext = new DoctorInformationViewModel(doctor);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
