@@ -20,7 +20,7 @@
                 x:Name="btnAddNurse"
                 Command="{Binding OpenDoctorForm}"
                 CommandParameter="{Binding ElementName=nurseListUC}"
-                Margin="0 -40 0 5"
+                Margin="0,-40,0.2,5"
                 HorizontalAlignment="Right"
                 Content="Thêm y tá"
                 Width="110"/>
