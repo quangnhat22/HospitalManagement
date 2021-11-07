@@ -92,6 +92,7 @@
     <Compile Include="Command\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\OpenLoginWindowCommand.cs" />
+    <Compile Include="Command\OpenNurseFormCommand.cs" />
     <Compile Include="Command\OpenPatientFormCommand.cs" />
     <Compile Include="Command\OpenReportFormCommand.cs" />
     <Compile Include="Command\OpenSignUpFormCommand.cs" />

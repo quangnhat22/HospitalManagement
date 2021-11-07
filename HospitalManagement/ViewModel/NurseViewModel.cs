@@ -37,7 +37,7 @@ namespace HospitalManagement.ViewModel
             set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
         }
 
-        public ICommand OpenDoctorForm { get; set; }
+        public ICommand OpenNurseForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
 
@@ -124,7 +124,7 @@ namespace HospitalManagement.ViewModel
                     IsCheckedAll = false;
             });
 
-            OpenDoctorForm = new OpenDoctorFormCommand();
+            OpenNurseForm = new OpenNurseFormCommand();
         }
     }
 }
