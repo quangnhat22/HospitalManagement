@@ -25,7 +25,7 @@ namespace HospitalManagement.Command
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             try
             {
@@ -48,8 +48,8 @@ namespace HospitalManagement.Command
                     Attachment atc = new Attachment(path);
                     msg.Attachments.Add(atc);
                 }
-                client.Send(msg);
-                
+                var send = client.SendMailAsync(msg);
+               
                 MessageBox.Show("Đã gửi thành công. Cảm ơn đã phản hồi, chúng tôi sẽ phàn hồi bạn sớm nhất có thể.");
             }
             catch (Exception ex)
