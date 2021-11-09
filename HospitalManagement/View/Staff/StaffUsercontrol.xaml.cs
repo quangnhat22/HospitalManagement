@@ -26,5 +26,28 @@ namespace HospitalManagement.View.Staff
             InitializeComponent();
             this.DataContext = new StaffViewModel();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnAddDoctor.Visibility = btnAddNurse.Visibility = Visibility.Collapsed;
+            TabControl tabControl = sender as TabControl;
+            TabItem tabItem = tabControl.SelectedItem as TabItem;
+            if(tabItem != null)
+            {
+                if(tabItem.Tag?.ToString() == "Doctor")
+                {
+                    btnAddDoctor.Visibility= Visibility.Visible;
+                }
+                else if(tabItem.Tag?.ToString() == "Nurse")
+                {
+                    btnAddNurse.Visibility= Visibility.Visible;
+                }
+            }
+        }
     }
 }

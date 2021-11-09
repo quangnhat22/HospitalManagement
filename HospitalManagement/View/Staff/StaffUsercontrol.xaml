@@ -13,34 +13,60 @@
              TextElement.FontWeight="Regular"
              TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto">
+             TextOptions.TextRenderingMode="Auto"
+             Width="1383">
     <UserControl.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid Width="auto" Panel.ZIndex="1">
+            <Button
+                DataContext="{Binding ElementName=DoctorUC, Path=Content}"
+                x:Name="btnAddDoctor"
+                Command="{Binding OpenDoctorForm}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 60 50 5"
+                Content="Thêm bác sĩ"
+                Width="110"/>
+            <Button 
+                x:Name="btnAddNurse"
+                DataContext="{Binding ElementName=NurseUC, Path=Content}"
+                Command="{Binding OpenNurseForm}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 60 50 5"
+                Content="Thêm y tá"
+                Width="110"
+                Visibility="Collapsed"/>
+        </Grid>
         <StackPanel Margin="50 30">
             <TextBlock Text="Danh sách bệnh nhân"
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
-                <TabControl BorderThickness="0">
+                <TabControl BorderThickness="0"
+                            SelectionChanged="TabControl_SelectionChanged">
                 <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                         Tag="Doctor"
                          Header="Bác sĩ"
                          FontSize="18"
                          Width="120" 
                          Height="40" 
                          Margin="-3,0,0,0" 
                          Padding="0">
-                    <UserControl Content="{Binding DoctorViewModel}"></UserControl>
+                    <UserControl x:Name="DoctorUC" Content="{Binding DoctorViewModel}">
+                    </UserControl>
                 </TabItem>
                 <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}"
+                         Tag="Nurse"
                          Header="Y tá"
                          FontSize="18"
                          Width="120" 
                          Height="40" 
                          Margin="-3,0,0,0" 
                          Padding="0">
-                    <UserControl Content="{Binding NurseViewModel}"></UserControl>
+                    <UserControl x:Name="NurseUC" Content="{Binding NurseViewModel}"></UserControl>
                 </TabItem>
             </TabControl>
         </StackPanel>
