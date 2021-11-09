@@ -18,7 +18,7 @@
     <Grid MaxHeight="580">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
             <StackPanel>
-                <DataGrid x:Name="dtgDoctorList"
+                <DataGrid x:Name="dtgDoctorList" VirtualizingPanel.ScrollUnit="Pixel"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
@@ -79,47 +79,43 @@
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
-                        <materialDesign:DataGridTextColumn Binding="{Binding Name}"
+                        <materialDesign:DataGridTextColumn 
                                                    Header="Tên bác sĩ"
-                                                   Width="200"
+                                                   Width="250"
                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="FirstName" />
+                                    <Binding Path="LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </materialDesign:DataGridTextColumn>
 
                         <materialDesign:DataGridTextColumn Binding="{Binding Sex}"
                                                    Header="Giới tính"
-                                                   Width="95"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                        <materialDesign:DataGridTextColumn Binding="{Binding Age}"
-                                                   Header="Tuổi"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                        <materialDesign:DataGridTextColumn Binding="{Binding Phone}"
-                                                   Header="Số điện thoại"
-                                                   Width="140"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                        <materialDesign:DataGridTextColumn Binding="{Binding Mail}"
-                                                   Header="Email"
-                                                   Width="200"
+                                                   Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
                         <materialDesign:DataGridTextColumn Binding="{Binding Birthday}"
                                                    Header="Ngày sinh"
-                                                   Width="110"
+                                                   Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
                         <materialDesign:DataGridTextColumn Binding="{Binding Specialization}"
-                                                   Header="Chuyên ngành"
-                                                   Width="200"
+                                                   Header="Chuyên khoa"
+                                                   Width="250"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
 
+                        <materialDesign:DataGridTextColumn Binding="{Binding Rule}"
+                                                   Header="Vai trò"
+                                                   Width="250"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.Header>
                                 <TextBlock Text="Thông tin"/>
@@ -144,5 +140,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-    
 </UserControl>
