@@ -29,7 +29,7 @@ namespace Seeds
             Task<int> reset = dataProvider.DB.Database.ExecuteSqlCommandAsync("DBCC CHECKIDENT ('Users', RESEED, 0)");
             User admin = new User();
             admin.USERNAME = "admin";
-            admin.PWD = "1";
+            admin.PWD = Encryptor.Hash("1");
             dataProvider.DB.Users.Add(admin);
             for (int i = 0; i < Username.Count; i++)
             {
@@ -38,12 +38,12 @@ namespace Seeds
                 user.TEN = Ten[random.Next(Ten.Count)];
                 user.USERNAME = Username[i]; //Unique reason
                 user.EMAIL = user.USERNAME + "@gmail.com";
-                user.PWD = Password[random.Next(Password.Count)];
+                user.PWD = Encryptor.Hash(Password[random.Next(Password.Count)]);
                 user.NGSINH = (new RandomDateTime(1970, 1995))?.Next();
                 user.GIOITINH = random.Next(2) == 0;
                 dataProvider.DB.Users.Add(user);
             }
-            reset.Wait();
+            await reset;
             dataProvider.DB.SaveChanges();
         }
     }
