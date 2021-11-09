@@ -5,8 +5,131 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View"
              mc:Ignorable="d" 
-             Background="Green">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             x:Name="facilityListUC"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto">
     <Grid>
-            
+        <StackPanel Margin="50 30">
+            <WrapPanel Margin="0 0 0 10">
+                <TextBlock Text="Danh sách vật tư"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#08AEEA"/>
+                <Button 
+                    Margin="10 0 0 0"     
+                    x:Name="btnAddFacility"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    Height="25" Width="25"
+                    HorizontalAlignment="Right">
+                    <materialDesign:PackIcon 
+                    Kind="Plus"
+                    Height="25"
+                    Width="25" 
+                    Foreground="White"
+                    Background="#08AEEA"
+                    />
+                </Button>
+                <!--Command="{Binding OpenPatientForm}"
+                    CommandParameter="{Binding ElementName=patientListUC}"-->
+            </WrapPanel>
+            <DataGrid x:Name="dtgFacilityList"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="All"
+                  ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <Setter Property="Height" Value="46"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox IsThreeState="True" 
+                                  Name="AllSelect" 
+                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                        Path=DataContext.IsCheckedAll, 
+                                                        UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.AllCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=AllSelect }"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Name="SingleSelect">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="Unchecked">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <materialDesign:DataGridTextColumn Binding="{Binding ID}"
+                                                    Header="ID"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding DisplayName}"
+                                                   Header="Tên vật tư"
+                                                   Width="250"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Type}"
+                                                   Header="Loại vật tư"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding ManufactureDate}"
+                                                   Header="Ngày sản xuất"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Amount}"
+                                                   Header="Số lượng"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Unit}"
+                                                   Header="Đơn vị tính"
+                                                   Width="130"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Note}"
+                                                   Header="Ghi chú"
+                                                   Width="370"
+                                                  ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace HospitalManagement.View
         public Facilities()
         {
             InitializeComponent();
+            this.DataContext = new FacilitiesViewModel();
         }
     }
 }

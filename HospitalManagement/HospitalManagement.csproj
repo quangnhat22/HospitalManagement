@@ -102,6 +102,7 @@
     <Compile Include="Command\ShowPatientInfomationCommand.cs" />
     <Compile Include="Command\SignUpValidationCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Facility.cs" />
     <Compile Include="Model\Nurse.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Utils\Encryptor.cs" />
