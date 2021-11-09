@@ -115,6 +115,7 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\NurseInformationViewModel.cs" />
     <Compile Include="ViewModel\NurseViewModel.cs" />
     <Compile Include="ViewModel\PatientInformationViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
@@ -163,6 +164,9 @@
     </Compile>
     <Compile Include="View\Staff\NurseForm.xaml.cs">
       <DependentUpon>NurseForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\NurseInformationForm.xaml.cs">
+      <DependentUpon>NurseInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\NurseUsercontrol.xaml.cs">
       <DependentUpon>NurseUsercontrol.xaml</DependentUpon>
@@ -248,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Staff\NurseForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\NurseInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
