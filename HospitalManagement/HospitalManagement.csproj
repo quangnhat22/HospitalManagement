@@ -99,6 +99,7 @@
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
+    <Compile Include="Command\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\ShowPatientInfomationCommand.cs" />
     <Compile Include="Command\SignUpValidationCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
