@@ -47,20 +47,20 @@ namespace HospitalManagement.ViewModel
             Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
                 Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
                 Specialization = "CN 1",
                 Rule = "Cô y tá may mắn"
-            });
+            }); 
             Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -70,8 +70,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -81,8 +81,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -92,8 +92,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -103,8 +103,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -114,8 +114,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -125,8 +125,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -136,8 +136,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -147,63 +147,8 @@ namespace HospitalManagement.ViewModel
             }); Doctors.Add(new Doctor()
             {
                 ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
-                Phone = "0232343211",
-                Mail = "1@kteam.com",
-                Sex = SexType.Nam,
-                Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-                Specialization = "CN 1",
-                Rule = "Cô y tá may mắn"
-            }); Doctors.Add(new Doctor()
-            {
-                ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
-                Phone = "0232343211",
-                Mail = "1@kteam.com",
-                Sex = SexType.Nam,
-                Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-                Specialization = "CN 1",
-                Rule = "Cô y tá may mắn"
-            }); Doctors.Add(new Doctor()
-            {
-                ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
-                Phone = "0232343211",
-                Mail = "1@kteam.com",
-                Sex = SexType.Nam,
-                Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-                Specialization = "CN 1",
-                Rule = "Cô y tá may mắn"
-            }); Doctors.Add(new Doctor()
-            {
-                ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
-                Phone = "0232343211",
-                Mail = "1@kteam.com",
-                Sex = SexType.Nam,
-                Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-                Specialization = "CN 1",
-                Rule = "Cô y tá may mắn"
-            }); Doctors.Add(new Doctor()
-            {
-                ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
-                Phone = "0232343211",
-                Mail = "1@kteam.com",
-                Sex = SexType.Nam,
-                Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-                Specialization = "CN 1",
-                Rule = "Cô y tá may mắn"
-            }); Doctors.Add(new Doctor()
-            {
-                ID = 1,
-                Name = "Quang 2k4",
-                Age = 17,
+                FirstName = "Quang",
+                LastName = "2k4",
                 Phone = "0232343211",
                 Mail = "1@kteam.com",
                 Sex = SexType.Nam,
@@ -214,8 +159,8 @@ namespace HospitalManagement.ViewModel
             Doctors.Add(new Doctor()
             {
                 ID = 2,
-                Name = "Quang 2k2",
-                Age = 19,
+                FirstName = "Quang",
+                LastName = "2k2",
                 Phone = "0232343212",
                 Mail = "2@kteam.com",
                 Sex = SexType.Nam,
@@ -226,8 +171,8 @@ namespace HospitalManagement.ViewModel
             Doctors.Add(new Doctor()
             {
                 ID = 3,
-                Name = "Lộc wibu",
-                Age = 7,
+                FirstName = "Lộc",
+                LastName = "wibu",
                 Phone = "0232343213",
                 Mail = "3@kteam.com",
                 Sex = SexType.Nam,
@@ -238,8 +183,8 @@ namespace HospitalManagement.ViewModel
             Doctors.Add(new Doctor()
             {
                 ID = 4,
-                Name = "Nghĩa tay to",
-                Age = 39,
+                FirstName = "Nghĩa",
+                LastName = "tay to",
                 Phone = "0232343214",
                 Mail = "3@kteam.com",
                 Sex = SexType.Nam,
@@ -250,8 +195,8 @@ namespace HospitalManagement.ViewModel
             Doctors.Add(new Doctor()
             {
                 ID = 5,
-                Name = "Tuấn khỉ",
-                Age = 39,
+                FirstName = "Tuấn",
+                LastName = "khỉ",
                 Phone = "0232343215",
                 Mail = "3@kteam.com",
                 Sex = SexType.Nam,
