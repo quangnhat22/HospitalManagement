@@ -26,5 +26,10 @@ namespace HospitalManagement.View.Staff
             InitializeComponent();
             this.DataContext = new DoctorViewModel();
         }
+
+        private void ScrollViewer_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }
