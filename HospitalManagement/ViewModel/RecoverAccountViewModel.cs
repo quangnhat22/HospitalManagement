@@ -15,16 +15,12 @@ namespace HospitalManagement.ViewModel
         public ICommand openLoginWindow { get; set; }
         public ICommand recoverAccouneCommand { get; set; }
         public ICommand resendEmailCommand { get; set; }    
-
-        public int verifiedCode { get; set; }
-        public string emailToAddress { get; set; }
-
         public RecoverAccountViewModel()
         {
             openForgotPasswordFormCommand = new OpenForgotPasswordFormCommand();
             openLoginWindow = new OpenLoginWindowCommand();
             recoverAccouneCommand = new RecoverAccountCommand();
-            resendEmailCommand = new ResendEmailRecoverCommand(emailToAddress);
+            resendEmailCommand = new ResendEmailRecoverCommand();
         }
     }
 }

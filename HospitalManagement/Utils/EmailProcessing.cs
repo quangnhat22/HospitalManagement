@@ -16,6 +16,8 @@ namespace HospitalManagement.Utils
         private string passEmail; 
         private string emailSubject;
         private string emailBody;
+        public static string emailName;
+        public static long vertificedNumber;
 
         public EmailProcessing(string emailTo, string emailFrom, string pass,string subject, string body ) 
         { 
@@ -25,7 +27,7 @@ namespace HospitalManagement.Utils
             this.emailSubject = subject;
             this.emailBody = body;
         }
-        public async void sendEmail()
+        public void sendEmail()
         {
             try
             {

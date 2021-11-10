@@ -42,20 +42,15 @@ namespace HospitalManagement.Command
             ForgotPasswordWindow mw = parameter as ForgotPasswordWindow;
             if (Check(mw))
             {
-               
-                
                 Window window = parameter as Window;
                 var recoverWindow = new RecoverAccountWindow();
-                Application.Current.MainWindow = recoverWindow;
-
                 //process email and save address, code
                 Random rd = new Random();
                 VerifiedCode = rd.Next(0, 999999);
                 EmailToAddress = mw.tbMailAddress.Text;
-                RecoverAccountViewModel recoverAccountViewModel = recoverWindow.DataContext as RecoverAccountViewModel;
-                recoverAccountViewModel.emailToAddress = EmailToAddress;
-                recoverAccountViewModel.verifiedCode = VerifiedCode;
+                
                 sendEmail(mw);
+                Application.Current.MainWindow = recoverWindow;
                 window.Close();
                 Thread windowThread = new Thread(new ThreadStart(() =>
                 {
@@ -63,6 +58,7 @@ namespace HospitalManagement.Command
                     Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
                     System.Windows.Threading.Dispatcher.Run();
                 }));
+
                 windowThread.SetApartmentState(ApartmentState.STA);
                 windowThread.IsBackground = true;
                 windowThread.Start();
@@ -82,33 +78,18 @@ namespace HospitalManagement.Command
             }
             return true;
         }
-        public async void sendEmail(ForgotPasswordWindow mw)
+        public void sendEmail(ForgotPasswordWindow mw)
         {
             try
             {
-                string emailSubject = "Mã xác thực FHMS";
-
-                string emailBody = "Mã xác thực của bạn là: " + VerifiedCode;
-                EmailProcessing emailProcessing = new EmailProcessing(mw.tbMailAddress.Text, "hotrofhms@gmail.com", "supportfhms719",emailSubject,emailBody);
-                emailProcessing.sendEmail();
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.Timeout = 0;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-
-
                 string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
                 string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
-                client.Credentials = new NetworkCredential(emailAddress, emailPassword);
-                MailMessage msg = new MailMessage();
-                msg.To.Add(mw.tbMailAddress.Text);
-                msg.From = new MailAddress(emailAddress);
-                msg.Subject = "Mã xác thực FHMS";
-                Random rd = new Random();
-                string bodyEmail = "Mã xác thực của bạn là: " + rd.Next(0, 999999);
-                msg.Body = bodyEmail;
-                var send = client.SendMailAsync(msg);
+                string emailSubject = "Mã xác thực FHMS";
+                string emailBody = "Mã xác thực của bạn là: " + VerifiedCode;
+                EmailProcessing emailProcessing = new EmailProcessing(mw.tbMailAddress.Text, emailAddress, emailPassword, emailSubject,emailBody);
+                EmailProcessing.emailName = mw.tbMailAddress.Text;
+                EmailProcessing.vertificedNumber = VerifiedCode;
+                emailProcessing.sendEmail();
             }
             catch (Exception ex)
             {
