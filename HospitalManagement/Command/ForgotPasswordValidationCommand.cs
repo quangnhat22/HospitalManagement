@@ -15,6 +15,7 @@ using System.Threading;
 using System.Windows.Threading;
 using HospitalManagement.View.Login;
 using HospitalManagement.Utils;
+using System.Configuration;
 
 namespace HospitalManagement.Command
 {
@@ -90,6 +91,24 @@ namespace HospitalManagement.Command
                 string emailBody = "Mã xác thực của bạn là: " + VerifiedCode;
                 EmailProcessing emailProcessing = new EmailProcessing(mw.tbMailAddress.Text, "hotrofhms@gmail.com", "supportfhms719",emailSubject,emailBody);
                 emailProcessing.sendEmail();
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 0;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+
+
+                string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
+                string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
+                client.Credentials = new NetworkCredential(emailAddress, emailPassword);
+                MailMessage msg = new MailMessage();
+                msg.To.Add(mw.tbMailAddress.Text);
+                msg.From = new MailAddress(emailAddress);
+                msg.Subject = "Mã xác thực FHMS";
+                Random rd = new Random();
+                string bodyEmail = "Mã xác thực của bạn là: " + rd.Next(0, 999999);
+                msg.Body = bodyEmail;
+                var send = client.SendMailAsync(msg);
             }
             catch (Exception ex)
             {

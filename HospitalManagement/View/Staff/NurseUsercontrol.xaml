@@ -22,6 +22,8 @@
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
+                  Height="550"
+                  HorizontalScrollBarVisibility="Disabled"
                   ItemsSource="{Binding Nurses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
