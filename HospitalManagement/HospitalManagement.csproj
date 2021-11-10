@@ -124,6 +124,9 @@
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="View\Login\RecoverAccountWindow.xaml.cs">
+      <DependentUpon>RecoverAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Others\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
     <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
       <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Login\RecoverAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Others\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
