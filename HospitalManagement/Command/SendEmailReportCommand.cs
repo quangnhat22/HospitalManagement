@@ -9,6 +9,7 @@ using System.Net.Mail;
 using HospitalManagement.View;
 using System.Windows;
 using Microsoft.Win32;
+using System.Configuration;
 
 namespace HospitalManagement.Command
 {
@@ -36,10 +37,14 @@ namespace HospitalManagement.Command
                 client.Timeout = 0;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("hotrofhms@gmail.com", "supportfhms719");
+
+                string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
+                string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
+
+                client.Credentials = new NetworkCredential(emailAddress, emailPassword);
                 MailMessage msg = new MailMessage();
-                msg.To.Add("hotrofhms@gmail.com");
-                msg.From = new MailAddress("hotrofhms@gmail.com");
+                msg.To.Add(emailAddress);
+                msg.From = new MailAddress(emailAddress);
                 msg.Subject = rpf.txbSubject.Text;
                 string bodyEmail = rpf.txbEmail.Text + " đã gửi: \n" + rpf.txbBody.Text;
                 msg.Body = bodyEmail;
