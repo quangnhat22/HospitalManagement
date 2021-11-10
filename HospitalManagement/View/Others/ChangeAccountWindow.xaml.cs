@@ -11,23 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using HospitalManagement.ViewModel;
-
 
 namespace HospitalManagement.View.Others
 {
     /// <summary>
-    /// Interaction logic for AccountWindow.xaml
+    /// Interaction logic for ChangeAccountWindow.xaml
     /// </summary>
-    public partial class AccountWindow : Window
+    public partial class ChangeAccountWindow : Window
     {
-        public AccountWindow()
+        public ChangeAccountWindow()
         {
             InitializeComponent();
-            this.DataContext = new AccountViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

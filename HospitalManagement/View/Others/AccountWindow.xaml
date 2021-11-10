@@ -31,7 +31,7 @@
                         Foreground="White"
                         FontSize="20" FontFamily="Inter"
                         FontWeight="DemiBold">
-                        ACCOUNT SETTING
+                        ACCOUNT INFORMATION
                 </TextBlock>
             </Grid>
             <Grid Grid.Row="1">
@@ -45,12 +45,68 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Image Source="/Images/profile.png" Height="300"/>
-                    
+                    <Grid Grid.Column="1" VerticalAlignment="Center">
+                        <StackPanel>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Họ và tên:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Tên đăng nhập:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Password:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="********"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
                 </Grid>
                 <Grid Grid.Row="1">
                     <Border Background="White" CornerRadius="0 0 8 8"></Border>
                     <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Thoát" FontSize="20" VerticalAlignment="Top" Click="Button_Click" Margin="557,0,285,0"/>
+                    <Button Command="{Binding OpenChangeAccount}" Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                     
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Chỉnh sửa" FontSize="20" VerticalAlignment="Top" Margin="321,0,521,0"/>
                 </Grid>
             </Grid>
         </Grid>
