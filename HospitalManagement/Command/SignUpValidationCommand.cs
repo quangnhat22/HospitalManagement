@@ -30,7 +30,7 @@ namespace HospitalManagement.Command
             if (Check(parameter as SignUpWindow))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký thành công!");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
             }
         }
 
@@ -40,7 +40,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbHo.Focus();
                 return false;
             }
@@ -48,7 +48,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbTen.Focus();
                 return false;
             }
@@ -56,7 +56,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbTenDangNhap.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbTenDangNhap.Focus();
                 return false;
             }
@@ -64,7 +64,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbEmail.Focus();
                 return false;
             }
@@ -72,7 +72,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbMatKhau.Password))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mật khẩu");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbMatKhau.Focus();
                 return false;
             }
@@ -80,7 +80,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbNhapLaiMatKhau.Password))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập lại mật khẩu");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
@@ -88,7 +88,7 @@ namespace HospitalManagement.Command
             if (mw.txbMatKhau.Password != mw.txbNhapLaiMatKhau.Password)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu đã nhập không khớp");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
@@ -96,7 +96,7 @@ namespace HospitalManagement.Command
             if (string.IsNullOrWhiteSpace(mw.txbNgaySinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
-                notifyWindow.Show();
+                notifyWindow.ShowDialog();
                 mw.txbNgaySinh.Focus();
                 return false;
             }
