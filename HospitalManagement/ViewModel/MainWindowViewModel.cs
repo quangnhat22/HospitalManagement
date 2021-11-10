@@ -46,12 +46,19 @@ namespace HospitalManagement.ViewModel
             set;
         }
 
+        public ICommand OpenAccountSetting
+        {          
+            get;
+            set;
+        }
+
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
             ShowAboutCommand = new ShowAboutCommand();
             OpenReportForm = new OpenReportFormCommand();
             LogoutCommand = new LogoutCommand();
+            OpenAccountSetting = new OpenAccountWindowCommand();
         }
     }
 }

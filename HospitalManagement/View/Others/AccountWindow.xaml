@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Others"
         mc:Ignorable="d"
-        Title="AccountWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="DoctorInformationForm" Height="600" Width="1000">
+    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Border BorderBrush="#35a0fe" Background="#35a0fe" CornerRadius="2 2 0 0"  BorderThickness="0"/>
+                <TextBlock 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Foreground="White"
+                        FontSize="20" FontFamily="Inter"
+                        FontWeight="DemiBold">
+                        ACCOUNT SETTING
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Images/profile.png" Height="300"/>
+                    
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Background="White" CornerRadius="0 0 8 8"></Border>
+                    <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                    
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>
