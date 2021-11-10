@@ -13,13 +13,13 @@ namespace HospitalManagement.ViewModel
     {
         public ICommand openForgotPasswordFormCommand { get; set; }
         public ICommand openLoginWindow { get; set; }
-        public ICommand recoverAccouneCommand { get; set; }
-        public ICommand resendEmailCommand { get; set; }    
+        public ICommand recoverAccountCommand { get; set; }
+        public ICommand resendEmailCommand { get; set; }
         public RecoverAccountViewModel()
         {
             openForgotPasswordFormCommand = new OpenForgotPasswordFormCommand();
             openLoginWindow = new OpenLoginWindowCommand();
-            recoverAccouneCommand = new RecoverAccountCommand();
+            recoverAccountCommand = new RecoverAccountCommand();
             resendEmailCommand = new ResendEmailRecoverCommand();
         }
     }

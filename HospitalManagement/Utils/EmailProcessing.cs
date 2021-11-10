@@ -17,7 +17,7 @@ namespace HospitalManagement.Utils
         private string emailSubject;
         private string emailBody;
         public static string emailName;
-        public static long vertificedNumber;
+        public static int vertificedNumber;
 
         public EmailProcessing(string emailTo, string emailFrom, string pass,string subject, string body ) 
         { 
