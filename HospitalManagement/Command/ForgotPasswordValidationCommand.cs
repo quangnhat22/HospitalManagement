@@ -11,11 +11,20 @@ using System.ComponentModel;
 using System.Windows;
 using System.Net.Mail;
 using System.Net;
+using System.Threading;
+using System.Windows.Threading;
+using HospitalManagement.View.Login;
+using HospitalManagement.Utils;
 
 namespace HospitalManagement.Command
 {
     class ForgotPasswordValidationCommand : ICommand
     {
+        
+        //save email and verified code
+        public int VerifiedCode { get; set; }
+        public string EmailToAddress { get; set; }
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -32,9 +41,31 @@ namespace HospitalManagement.Command
             ForgotPasswordWindow mw = parameter as ForgotPasswordWindow;
             if (Check(mw))
             {
+               
+                
+                Window window = parameter as Window;
+                var recoverWindow = new RecoverAccountWindow();
+                Application.Current.MainWindow = recoverWindow;
+
+                //process email and save address, code
+                Random rd = new Random();
+                VerifiedCode = rd.Next(0, 999999);
+                EmailToAddress = mw.tbMailAddress.Text;
+                RecoverAccountViewModel recoverAccountViewModel = recoverWindow.DataContext as RecoverAccountViewModel;
+                recoverAccountViewModel.emailToAddress = EmailToAddress;
+                recoverAccountViewModel.verifiedCode = VerifiedCode;
                 sendEmail(mw);
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Mã xác thực đã được gửi về email!");
-                notifyWindow.ShowDialog();
+                window.Close();
+                Thread windowThread = new Thread(new ThreadStart(() =>
+                {
+                    window.Closed += (s, e) =>
+                    Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
+                    System.Windows.Threading.Dispatcher.Run();
+                }));
+                windowThread.SetApartmentState(ApartmentState.STA);
+                windowThread.IsBackground = true;
+                windowThread.Start();
+                recoverWindow.Show();
             }
         }
 
@@ -54,20 +85,11 @@ namespace HospitalManagement.Command
         {
             try
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.Timeout = 0;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("hotrofhms@gmail.com", "supportfhms719");
-                MailMessage msg = new MailMessage();
-                msg.To.Add(mw.tbMailAddress.Text);
-                msg.From = new MailAddress("hotrofhms@gmail.com");
-                msg.Subject = "Mã xác thực FHMS";
-                Random rd = new Random();
-                string bodyEmail = "Mã xác thực của bạn là: " + rd.Next(0, 999999);
-                msg.Body = bodyEmail;
-                var send = client.SendMailAsync(msg);
+                string emailSubject = "Mã xác thực FHMS";
+
+                string emailBody = "Mã xác thực của bạn là: " + VerifiedCode;
+                EmailProcessing emailProcessing = new EmailProcessing(mw.tbMailAddress.Text, "hotrofhms@gmail.com", "supportfhms719",emailSubject,emailBody);
+                emailProcessing.sendEmail();
             }
             catch (Exception ex)
             {

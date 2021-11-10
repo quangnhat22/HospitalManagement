@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Command;
+using HospitalManagement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace HospitalManagement.ViewModel
     {
         public ICommand OpenLoginWindow { get; set; }
         public ICommand ForgotPasswordValidation { get; set; }
+
         public ForgotPasswordFormViewModel()
         {
             OpenLoginWindow = new OpenLoginWindowCommand();

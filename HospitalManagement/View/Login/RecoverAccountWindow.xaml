@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Login"
         mc:Ignorable="d"
-        x:Name="forgotPasswordFormWindow"
+        x:Name="recoverAccountWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
          TextElement.FontWeight="Regular"
@@ -76,8 +76,8 @@
             </Grid>
             <Button 
                 x:Name="btnBack"
-                Command="{Binding OpenLoginWindow}"
-                CommandParameter="{Binding ElementName=forgotPasswordFormWindow}"
+                Command="{Binding openForgotPasswordFormCommand}"
+                CommandParameter="{Binding ElementName=recoverAccountWindow}"
                 Margin="8"
                 Height="35" Width="35"
                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -97,7 +97,7 @@
                 HorizontalAlignment="Center"
                 FontSize="25" FontWeight="Bold" 
                 TextDecorations="{x:Null}"/>
-            <StackPanel Grid.Row="1" Margin="30 30">
+            <StackPanel Grid.Row="1" Margin="30 10">
                 <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
                     <Border Style="{StaticResource borderStyle}">
                         <materialDesign:PackIcon Kind="Account" Style="{StaticResource styleIcon }"/>
@@ -125,10 +125,35 @@
                     materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
                 />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Button 
+                            Command="{Binding resendEmailCommand}"
+                            CommandParameter="{Binding ElementName= recoverAccountWindow}"
+                            x:Name="btnForgetPassword" 
+                            Content="Gửi lại mã xác nhận" 
+                            HorizontalAlignment="Left" 
+                            Height="24"
+                            Width="120" 
+                            VerticalAlignment="Top" 
+                            Padding="0" 
+                            HorizontalContentAlignment="Right" 
+                            VerticalContentAlignment="Center" 
+                            FontSize="13" 
+                            Margin="210,10,0,0" 
+                            FontWeight="Medium" 
+                            Foreground="#35a0fe"
+                            Cursor="Hand" 
+                            ToolTip="Chưa nhận được mã xác thực. Bấm để gửi lại"
+                            FocusVisualStyle="{x:Null}"
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            IsTabStop="False">
+                    </Button>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 40 0 0">
                     <Button 
-                        Command="{Binding OpenLoginWindow}"
-                        CommandParameter="{Binding ElementName=signUpFormWindow}"
+                        Command="{Binding openLoginWindow}"
+                        CommandParameter="{Binding ElementName=recoverAccountWindow}"
                         Content="HUỶ"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Margin="0 0 50 0"
@@ -142,15 +167,15 @@
                         ToolTip="Hủy đăng ký! Quay trở lại đăng nhập"
                         />
 
-                    <Button Content="ĐĂNG KÝ"
+                    <Button Content="XÁC NHẬN"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="50"
-                    Width="100"
+                    Width="105"
                     BorderThickness="2"
                     BorderBrush="#35a0fe"
                     materialDesign:ButtonAssist.CornerRadius="10"
                     Background="#35a0fe"
-                    ToolTip="Hoàn tất đăng ký"
+                    ToolTip="Hoàn tất khôi phục"
                     Command="{Binding SignUpValidation}"
                     CommandParameter="{Binding ElementName=signUpFormWindow}"/>
                 </StackPanel>

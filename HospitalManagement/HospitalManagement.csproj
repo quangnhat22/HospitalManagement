@@ -96,6 +96,8 @@
     <Compile Include="Command\OpenPatientFormCommand.cs" />
     <Compile Include="Command\OpenReportFormCommand.cs" />
     <Compile Include="Command\OpenSignUpFormCommand.cs" />
+    <Compile Include="Command\RecoverAccountCommand.cs" />
+    <Compile Include="Command\ResendEmailRecoverCommand.cs" />
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Model\Facility.cs" />
     <Compile Include="Model\Nurse.cs" />
     <Compile Include="Model\Patient.cs" />
+    <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="ViewModel\NurseViewModel.cs" />
     <Compile Include="ViewModel\PatientInformationViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
+    <Compile Include="ViewModel\RecoverAccountViewModel.cs" />
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
