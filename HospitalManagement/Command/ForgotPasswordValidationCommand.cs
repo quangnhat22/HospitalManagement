@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Net.Mail;
 using System.Net;
+using System.Configuration;
 
 namespace HospitalManagement.Command
 {
@@ -59,10 +60,14 @@ namespace HospitalManagement.Command
                 client.Timeout = 0;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("hotrofhms@gmail.com", "supportfhms719");
+
+
+                string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
+                string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
+                client.Credentials = new NetworkCredential(emailAddress, emailPassword);
                 MailMessage msg = new MailMessage();
                 msg.To.Add(mw.tbMailAddress.Text);
-                msg.From = new MailAddress("hotrofhms@gmail.com");
+                msg.From = new MailAddress(emailAddress);
                 msg.Subject = "Mã xác thực FHMS";
                 Random rd = new Random();
                 string bodyEmail = "Mã xác thực của bạn là: " + rd.Next(0, 999999);
