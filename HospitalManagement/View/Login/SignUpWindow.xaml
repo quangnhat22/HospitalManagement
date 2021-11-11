@@ -8,7 +8,7 @@
         x:Name="signUpFormWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainWindow" 
-        Height="600" 
+        Height="632.348" 
         Width="500" 
         ResizeMode="NoResize" 
         WindowStyle="None" 
@@ -73,7 +73,7 @@
             </TextBlock>
         </Grid>
 
-        <StackPanel Grid.Row="1" Margin="60 50">
+        <StackPanel Grid.Row="1" Margin="60,49.6,60,10">
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="txbHo"
                          Style="{StaticResource textboxStyle}"
@@ -118,6 +118,20 @@
                     materialDesign:HintAssist.Hint="Mật khẩu" 
                 />
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
+                <Border Style="{StaticResource borderStyle}">
+                    <materialDesign:PackIcon Kind="GenderMaleFemale" Style="{StaticResource styleIcon}"/>
+                </Border>
+                <ComboBox materialDesign:HintAssist.Hint="Giới tính" 
+                          Width="333" 
+                          Padding="10 11" 
+                          FontSize="14"
+                          BorderBrush="{StaticResource clrPrimary}">
+                    <ComboBoxItem Content="Nam" />
+                    <ComboBoxItem Content="Nữ" />
+                </ComboBox>
+            </StackPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
                 <Border Style="{StaticResource borderStyle}">
                     <materialDesign:PackIcon Kind="LockOpen" Style="{StaticResource styleIcon}"/>
