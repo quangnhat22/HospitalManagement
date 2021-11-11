@@ -27,14 +27,25 @@
             </Grid>
             <StackPanel Height="250" Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Width="900">
-                    <Grid Width="300" HorizontalAlignment="Left" Margin="100,13,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Họ và tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập họ và tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Width="300" HorizontalAlignment="Left" Margin="100,13,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Họ và tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                            <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập họ và tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                        </Grid>
+                        <Grid Width="300" HorizontalAlignment="Left" Margin="60,13,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                            <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số chứng minh/ căn cước" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                        </Grid>
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal">
                         <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
                             <Grid.RowDefinitions>
@@ -123,7 +134,6 @@
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="This is a text area"
                             />
                 </StackPanel>
             </Grid>
