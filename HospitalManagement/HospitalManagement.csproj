@@ -92,6 +92,7 @@
     <Compile Include="Command\OpenAccountWindowCommand.cs" />
     <Compile Include="Command\OpenChangeAccountWindowCommand.cs" />
     <Compile Include="Command\OpenDoctorFormCommand.cs" />
+    <Compile Include="Command\OpenFacilitiesFormCommand.cs" />
     <Compile Include="Command\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\OpenLoginWindowCommand.cs" />
@@ -132,6 +133,9 @@
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
+      <DependentUpon>FacilitiesForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Login\RecoverAccountWindow.xaml.cs">
       <DependentUpon>RecoverAccountWindow.xaml</DependentUpon>
     </Compile>
@@ -192,6 +196,10 @@
     <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
       <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Facilities\FacilitiesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Login\RecoverAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
