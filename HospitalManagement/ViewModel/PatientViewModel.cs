@@ -114,7 +114,7 @@ namespace HospitalManagement.ViewModel
             //        if (CheckedCount == 0)
             //        IsCheckedAll = false;
             //});
-            //OpenPatientForm = new OpenPatientFormCommand();  
+            OpenPatientForm = new OpenPatientFormCommand();
         }
     }
 }
