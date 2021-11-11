@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using HospitalManagement.View.Login;
 using HospitalManagement.Utils;
 using System.Configuration;
+using HospitalManagement.Model;
 
 namespace HospitalManagement.Command
 {
@@ -25,6 +26,13 @@ namespace HospitalManagement.Command
         //save email and verified code
         public int VerifiedCode { get; set; }
         public string EmailToAddress { get; set; }
+
+        private ForgotPasswordFormViewModel forgotPasswordFormViewModel;
+
+        public ForgotPasswordValidationCommand (ForgotPasswordFormViewModel forgotPasswordFormViewModel)
+        {
+            this.forgotPasswordFormViewModel = forgotPasswordFormViewModel;
+        }
 
         public event EventHandler CanExecuteChanged
         {
@@ -69,11 +77,19 @@ namespace HospitalManagement.Command
         public bool Check(ForgotPasswordWindow mw)
         {
             if (mw == null) return false;
-            if (string.IsNullOrWhiteSpace(mw.tbMailAddress.Text) || mw.tbMailAddress.Text.Contains('@') == false)
+            if (string.IsNullOrWhiteSpace(mw.tbMailAddress.Text) || string.IsNullOrWhiteSpace(mw.tbUsername.Text) || mw.tbMailAddress.Text.Contains('@') == false)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ email");
                 notifyWindow.ShowDialog();
-                mw.tbMailAddress.Focus();
+                mw.tbUsername.Focus();
+                return false;
+            }
+            var users = forgotPasswordFormViewModel?.db?.DB?.USERs.Where(x => x.USERNAME == mw.tbUsername.Text && x.EMAIL == mw.tbMailAddress.Text);
+            if (users == null || users.Count() == 0)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng kiểm tra lại thông tin nhập!");
+                notifyWindow.ShowDialog();
+                mw.tbUsername.Focus();
                 return false;
             }
             return true;
@@ -89,6 +105,7 @@ namespace HospitalManagement.Command
                 EmailProcessing emailProcessing = new EmailProcessing(mw.tbMailAddress.Text, emailAddress, emailPassword, emailSubject,emailBody);
                 EmailProcessing.emailName = mw.tbMailAddress.Text;
                 EmailProcessing.vertificedNumber = VerifiedCode;
+                EmailProcessing.emailUserName = mw.tbUsername.Text;
                 emailProcessing.sendEmail();
             }
             catch (Exception ex)

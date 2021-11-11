@@ -1,6 +1,8 @@
-﻿using HospitalManagement.Utils;
+﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.Login;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,8 @@ namespace HospitalManagement.Command
 {
     internal class RecoverAccountCommand : ICommand
     {
+        private RecoverAccountViewModel recoverAccountViewModel;
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -24,14 +28,28 @@ namespace HospitalManagement.Command
         {
             return true;
         }
+        public RecoverAccountCommand(RecoverAccountViewModel recoverAccountViewModel)
+        {
+            this.recoverAccountViewModel = recoverAccountViewModel;
+        }
 
         public void Execute(object parameter)
         {
             RecoverAccountWindow rw = parameter as RecoverAccountWindow;
             if (Check(rw))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Khôi phục tài khoản thành công!");
-                notifyWindow.ShowDialog();
+               List<USER> users = recoverAccountViewModel.db.DB.USERs.ToList();
+               foreach (USER user in users)
+                {
+                    if (user.USERNAME == EmailProcessing.emailUserName)
+                    {
+                        user.PASSWORD = Encryptor.Hash(rw.txbMatKhau.Password);
+                        recoverAccountViewModel.db.DB.SaveChanges();
+                        NotifyWindow notifyWindow = new NotifyWindow("Success", "Khôi phục tài khoản thành công!");
+                        notifyWindow.ShowDialog();
+                        break;
+                    }
+                }
             }
         }
         public bool Check(RecoverAccountWindow rw)
@@ -61,6 +79,13 @@ namespace HospitalManagement.Command
                 return false;
             }
 
+            if (rw.txbNhapLaiMatKhau.Password != rw.txbMatKhau.Password)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu đã nhập không khớp");
+                notifyWindow.ShowDialog();
+                rw.txbNhapLaiMatKhau.Focus();
+                return false;
+            }
             if (Convert.ToInt32(rw.txbMaXacThuc.Text) != EmailProcessing.vertificedNumber)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mã xác thực không chính xác");
