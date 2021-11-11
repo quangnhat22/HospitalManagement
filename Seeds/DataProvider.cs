@@ -22,10 +22,10 @@ namespace Seeds
                 _ins = value;
             }
         }
-        public HospitalManagementEntities DB { get; set; }
+        public QUANLYBENHVIENEntities DB { get; set; }
         public DataProvider()
         {
-            DB = new HospitalManagementEntities();
+            DB = new QUANLYBENHVIENEntities();
         }
     }
 }

@@ -12,15 +12,22 @@ namespace Seeds
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class BACSI
     {
-        public int ID { get; set; }
+        public string CMND_CCCD { get; set; }
         public string HO { get; set; }
         public string TEN { get; set; }
-        public string USERNAME { get; set; }
-        public string PASSWORD { get; set; }
+        public string SDT { get; set; }
         public string EMAIL { get; set; }
+        public string QUOCTICH { get; set; }
+        public string DIACHI { get; set; }
         public Nullable<System.DateTime> NGSINH { get; set; }
         public Nullable<bool> GIOITINH { get; set; }
+        public string VAITRO { get; set; }
+        public string CHUYENKHOA { get; set; }
+        public string GHICHU { get; set; }
+        public Nullable<int> IDTO { get; set; }
+    
+        public virtual TO TO { get; set; }
     }
 }

@@ -4,8 +4,95 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HospitalManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Users">
+      <Schema Namespace="QUANLYBENHVIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BACSI">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="VAITRO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUYENKHOA" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTO" Type="int" />
+        </EntityType>
+        <EntityType Name="BENHNHAN">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="MABENHNHAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="GIUONGBENH" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGNHAPVIEN" Type="smalldatetime" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="TINHTRANG" Type="nvarchar(max)" />
+          <Property Name="BENHNEN" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CHIDINH">
+          <Key>
+            <PropertyRef Name="IDTO" />
+            <PropertyRef Name="IDVATTU" />
+          </Key>
+          <Property Name="IDTO" Type="int" Nullable="false" />
+          <Property Name="IDVATTU" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="O">
+          <Key>
+            <PropertyRef Name="IDPHONG" />
+            <PropertyRef Name="IDBENHNHAN" />
+          </Key>
+          <Property Name="IDPHONG" Type="int" Nullable="false" />
+          <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOPHONG" Type="int" />
+          <Property Name="LOAIPHONG" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="SUDUNG">
+          <Key>
+            <PropertyRef Name="IDVATTU" />
+            <PropertyRef Name="IDBENHNHAN" />
+          </Key>
+          <Property Name="IDVATTU" Type="int" Nullable="false" />
+          <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOTANG" Type="int" />
+          <Property Name="SLPHONG" Type="int" />
+        </EntityType>
+        <EntityType Name="TO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="USER">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -13,20 +100,294 @@
           <Property Name="HO" Type="nvarchar" MaxLength="100" />
           <Property Name="TEN" Type="nvarchar" MaxLength="100" />
           <Property Name="USERNAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="PWD" Type="varchar" MaxLength="32" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="32" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
           <Property Name="NGSINH" Type="smalldatetime" />
           <Property Name="GIOITINH" Type="bit" />
         </EntityType>
-        <EntityContainer Name="HospitalManagementModelStoreContainer">
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        <EntityType Name="VATTU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="LOAIVATTU" Type="nvarchar" MaxLength="100" />
+          <Property Name="NGSX" Type="smalldatetime" />
+          <Property Name="SLUONG" Type="int" />
+          <Property Name="DVTINH" Type="nvarchar(max)" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="YTA">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="VAITRO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUYENKHOA" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTO" Type="int" />
+        </EntityType>
+        <Association Name="BACSI_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHIDINH_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="1" />
+          <End Role="CHIDINH" Type="Self.CHIDINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHIDINH">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHIDINH_IDVATTU_FK">
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+          <End Role="CHIDINH" Type="Self.CHIDINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHIDINH">
+              <PropertyRef Name="IDVATTU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="O_IDBENHNHAN_FK">
+          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="1" />
+          <End Role="O" Type="Self.O" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENHNHAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="O">
+              <PropertyRef Name="IDBENHNHAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="O_IDPHONG_FK">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="1" />
+          <End Role="O" Type="Self.O" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="O">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PHONG_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUDUNG_IDBENHNHAN_FK">
+          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="1" />
+          <End Role="SUDUNG" Type="Self.SUDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BENHNHAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="SUDUNG">
+              <PropertyRef Name="IDBENHNHAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SUDUNG_IDVATTU_FK">
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
+          <End Role="SUDUNG" Type="Self.SUDUNG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VATTU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUDUNG">
+              <PropertyRef Name="IDVATTU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="YTA" Type="Self.YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYBENHVIENModelStoreContainer">
+          <EntitySet Name="BACSI" EntityType="Self.BACSI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BENHNHAN" EntityType="Self.BENHNHAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="O" EntityType="Self.O" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="BACSI_IDTO_FK" Association="Self.BACSI_IDTO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="BACSI" EntitySet="BACSI" />
+          </AssociationSet>
+          <AssociationSet Name="CHIDINH_IDTO_FK" Association="Self.CHIDINH_IDTO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="CHIDINH" EntitySet="CHIDINH" />
+          </AssociationSet>
+          <AssociationSet Name="CHIDINH_IDVATTU_FK" Association="Self.CHIDINH_IDVATTU_FK">
+            <End Role="VATTU" EntitySet="VATTU" />
+            <End Role="CHIDINH" EntitySet="CHIDINH" />
+          </AssociationSet>
+          <AssociationSet Name="O_IDBENHNHAN_FK" Association="Self.O_IDBENHNHAN_FK">
+            <End Role="BENHNHAN" EntitySet="BENHNHAN" />
+            <End Role="O" EntitySet="O" />
+          </AssociationSet>
+          <AssociationSet Name="O_IDPHONG_FK" Association="Self.O_IDPHONG_FK">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="O" EntitySet="O" />
+          </AssociationSet>
+          <AssociationSet Name="PHONG_IDTANG_FK" Association="Self.PHONG_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANG" />
+            <End Role="PHONG" EntitySet="PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="SUDUNG_IDBENHNHAN_FK" Association="Self.SUDUNG_IDBENHNHAN_FK">
+            <End Role="BENHNHAN" EntitySet="BENHNHAN" />
+            <End Role="SUDUNG" EntitySet="SUDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="SUDUNG_IDVATTU_FK" Association="Self.SUDUNG_IDVATTU_FK">
+            <End Role="VATTU" EntitySet="VATTU" />
+            <End Role="SUDUNG" EntitySet="SUDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANG" />
+            <End Role="TO" EntitySet="TO" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_IDTO_FK" Association="Self.YTA_IDTO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="YTA" EntitySet="YTA" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HospitalManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
+      <Schema Namespace="QUANLYBENHVIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BACSI">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="VAITRO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYENKHOA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTO" Type="Int32" />
+          <NavigationProperty Name="TO" Relationship="Self.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
+        </EntityType>
+        <EntityType Name="BENHNHAN">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MABENHNHAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="GIUONGBENH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGNHAPVIEN" Type="DateTime" Precision="0" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BENHNEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHONGs" Relationship="Self.O" FromRole="BENHNHAN" ToRole="PHONG" />
+          <NavigationProperty Name="VATTUs" Relationship="Self.SUDUNG" FromRole="BENHNHAN" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOPHONG" Type="Int32" />
+          <Property Name="LOAIPHONG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTANG" Type="Int32" />
+          <NavigationProperty Name="TANG" Relationship="Self.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
+          <NavigationProperty Name="BENHNHANs" Relationship="Self.O" FromRole="PHONG" ToRole="BENHNHAN" />
+        </EntityType>
+        <EntityType Name="TANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOTANG" Type="Int32" />
+          <Property Name="SLPHONG" Type="Int32" />
+          <NavigationProperty Name="PHONGs" Relationship="Self.PHONG_IDTANG_FK" FromRole="TANG" ToRole="PHONG" />
+          <NavigationProperty Name="TOes" Relationship="Self.TO_IDTANG_FK" FromRole="TANG" ToRole="TO" />
+        </EntityType>
+        <EntityType Name="TO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTANG" Type="Int32" />
+          <NavigationProperty Name="BACSIs" Relationship="Self.BACSI_IDTO_FK" FromRole="TO" ToRole="BACSI" />
+          <NavigationProperty Name="TANG" Relationship="Self.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
+          <NavigationProperty Name="YTAs" Relationship="Self.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
+          <NavigationProperty Name="VATTUs" Relationship="Self.CHIDINH" FromRole="TO" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="USER">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -34,34 +395,286 @@
           <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PWD" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NGSINH" Type="DateTime" Precision="0" />
           <Property Name="GIOITINH" Type="Boolean" />
         </EntityType>
-        <EntityContainer Name="HospitalManagementEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
+        <EntityType Name="VATTU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LOAIVATTU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NGSX" Type="DateTime" Precision="0" />
+          <Property Name="SLUONG" Type="Int32" />
+          <Property Name="DVTINH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TOes" Relationship="Self.CHIDINH" FromRole="VATTU" ToRole="TO" />
+          <NavigationProperty Name="BENHNHANs" Relationship="Self.SUDUNG" FromRole="VATTU" ToRole="BENHNHAN" />
+        </EntityType>
+        <EntityType Name="YTA">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="VAITRO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYENKHOA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTO" Type="Int32" />
+          <NavigationProperty Name="TO" Relationship="Self.YTA_IDTO_FK" FromRole="YTA" ToRole="TO" />
+        </EntityType>
+        <Association Name="BACSI_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PHONG_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="YTA" Type="Self.YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CHIDINH">
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="*" />
+        </Association>
+        <Association Name="O">
+          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="*" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+        </Association>
+        <Association Name="SUDUNG">
+          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="*" />
+          <End Role="VATTU" Type="Self.VATTU" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QUANLYBENHVIENEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BACSIs" EntityType="Self.BACSI" />
+          <EntitySet Name="BENHNHANs" EntityType="Self.BENHNHAN" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="TANGs" EntityType="Self.TANG" />
+          <EntitySet Name="TOes" EntityType="Self.TO" />
+          <EntitySet Name="USERs" EntityType="Self.USER" />
+          <EntitySet Name="VATTUs" EntityType="Self.VATTU" />
+          <EntitySet Name="YTAs" EntityType="Self.YTA" />
+          <AssociationSet Name="BACSI_IDTO_FK" Association="Self.BACSI_IDTO_FK">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="BACSI" EntitySet="BACSIs" />
+          </AssociationSet>
+          <AssociationSet Name="PHONG_IDTANG_FK" Association="Self.PHONG_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANGs" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANGs" />
+            <End Role="TO" EntitySet="TOes" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_IDTO_FK" Association="Self.YTA_IDTO_FK">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="YTA" EntitySet="YTAs" />
+          </AssociationSet>
+          <AssociationSet Name="CHIDINH" Association="Self.CHIDINH">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="VATTU" EntitySet="VATTUs" />
+          </AssociationSet>
+          <AssociationSet Name="O" Association="Self.O">
+            <End Role="BENHNHAN" EntitySet="BENHNHANs" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="SUDUNG" Association="Self.SUDUNG">
+            <End Role="BENHNHAN" EntitySet="BENHNHANs" />
+            <End Role="VATTU" EntitySet="VATTUs" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HospitalManagementModelStoreContainer" CdmEntityContainer="HospitalManagementEntities">
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="HospitalManagementModel.User">
-              <MappingFragment StoreEntitySet="Users">
+        <EntityContainerMapping StorageEntityContainer="QUANLYBENHVIENModelStoreContainer" CdmEntityContainer="QUANLYBENHVIENEntities">
+          <EntitySetMapping Name="BACSIs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BACSI">
+              <MappingFragment StoreEntitySet="BACSI">
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="VAITRO" ColumnName="VAITRO" />
+                <ScalarProperty Name="CHUYENKHOA" ColumnName="CHUYENKHOA" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="IDTO" ColumnName="IDTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BENHNHANs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BENHNHAN">
+              <MappingFragment StoreEntitySet="BENHNHAN">
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MABENHNHAN" ColumnName="MABENHNHAN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="GIUONGBENH" ColumnName="GIUONGBENH" />
+                <ScalarProperty Name="NGNHAPVIEN" ColumnName="NGNHAPVIEN" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="BENHNEN" ColumnName="BENHNEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TANGs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TANG">
+              <MappingFragment StoreEntitySet="TANG">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SOTANG" ColumnName="SOTANG" />
+                <ScalarProperty Name="SLPHONG" ColumnName="SLPHONG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOes">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TO">
+              <MappingFragment StoreEntitySet="TO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.USER">
+              <MappingFragment StoreEntitySet="USER">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="HO" ColumnName="HO" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="PWD" ColumnName="PWD" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VATTUs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.VATTU">
+              <MappingFragment StoreEntitySet="VATTU">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
+                <ScalarProperty Name="LOAIVATTU" ColumnName="LOAIVATTU" />
+                <ScalarProperty Name="NGSX" ColumnName="NGSX" />
+                <ScalarProperty Name="SLUONG" ColumnName="SLUONG" />
+                <ScalarProperty Name="DVTINH" ColumnName="DVTINH" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YTAs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.YTA">
+              <MappingFragment StoreEntitySet="YTA">
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="VAITRO" ColumnName="VAITRO" />
+                <ScalarProperty Name="CHUYENKHOA" ColumnName="CHUYENKHOA" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="IDTO" ColumnName="IDTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CHIDINH" TypeName="QUANLYBENHVIENModel.CHIDINH" StoreEntitySet="CHIDINH">
+            <EndProperty Name="TO">
+              <ScalarProperty Name="ID" ColumnName="IDTO" />
+            </EndProperty>
+            <EndProperty Name="VATTU">
+              <ScalarProperty Name="ID" ColumnName="IDVATTU" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="O" TypeName="QUANLYBENHVIENModel.O" StoreEntitySet="O">
+            <EndProperty Name="BENHNHAN">
+              <ScalarProperty Name="CMND_CCCD" ColumnName="IDBENHNHAN" />
+            </EndProperty>
+            <EndProperty Name="PHONG">
+              <ScalarProperty Name="ID" ColumnName="IDPHONG" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SUDUNG" TypeName="QUANLYBENHVIENModel.SUDUNG" StoreEntitySet="SUDUNG">
+            <EndProperty Name="BENHNHAN">
+              <ScalarProperty Name="CMND_CCCD" ColumnName="IDBENHNHAN" />
+            </EndProperty>
+            <EndProperty Name="VATTU">
+              <ScalarProperty Name="ID" ColumnName="IDVATTU" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
