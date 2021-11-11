@@ -98,6 +98,7 @@
                             <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
+                        
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -108,6 +109,26 @@
                             <TextBlock Text="{Binding Patient.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                     <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
                     <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Ngày nhập viện:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Ngày nhập viện" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Bệnh nền:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Bệnh nền" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
