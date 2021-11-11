@@ -18,7 +18,8 @@ namespace Seeds
             SeedUSERs();
             SeedTANG();
             SeedTo();
-            //SeedsYTA();
+            SeedsYTA();
+            SeedsBACSI();
             Console.WriteLine("Seeds successful");
         }
 
@@ -26,9 +27,17 @@ namespace Seeds
         {
             // Delete User
             List<USER> users = dataProvider.DB.USERs.ToList();
-
             dataProvider.DB.USERs.RemoveRange(users);
             dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            dataProvider.DB.SaveChanges();
+            // Detele YTA
+            List<YTA> ytalist = dataProvider.DB.YTAs.ToList();
+            dataProvider.DB.YTAs.RemoveRange(ytalist);
+            dataProvider.DB.SaveChanges();
+            // Delete BACSI
+            List<BACSI> bacsilist = dataProvider.DB.BACSIs.ToList();
+            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
+            dataProvider.DB.SaveChanges();
             // Delete TO
             List<TO> toList = dataProvider.DB.TOes.ToList();
             dataProvider.DB.TOes.RemoveRange(toList);
@@ -37,9 +46,10 @@ namespace Seeds
             List<TANG> tangList = dataProvider.DB.TANGs.ToList();
             dataProvider.DB.TANGs.RemoveRange(tangList);
             dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TANG', RESEED, 0)");
+            
         }
 
-        private static async void SeedTo()
+        private static void SeedTo()
         {
             
             List<TANG> ts = dataProvider.DB.TANGs.ToList();
@@ -56,7 +66,7 @@ namespace Seeds
             dataProvider.DB.SaveChanges();
         }
 
-        private static async void SeedTANG()
+        private static void SeedTANG()
         {
             for(int i = 0; i < 6; i++)
             {
@@ -70,21 +80,50 @@ namespace Seeds
 
         private static void SeedsYTA()
         {
-            List<YTA> list = new List<YTA>();
-            dataProvider.DB.YTAs.RemoveRange(list);
-
-            for (int i = 0; i < 100; i++)
+            List<TO> toList = dataProvider.DB.TOes.ToList();
+            foreach(TO to in toList)
             {
-                YTA yta = new YTA();
-                yta.CMND_CCCD = RandomInformation.GenerateCCCD();
-                yta.HO = RandomInformation.GenerateHo();
-                yta.TEN = RandomInformation.GenerateTen();
-                yta.SDT = RandomInformation.GenerateSDT();
-                yta.NGSINH = RandomInformation.GenerateDate(1970, 1995);
-                yta.QUOCTICH = "Việt Nam";
-                yta.EMAIL = RandomInformation.GenerateEmail();
-                yta.DIACHI = RandomInformation.GenerateAddress();
+                for(int i = 0; i < 2; i++)
+                {
+                    YTA yta = new YTA();
+                    yta.CMND_CCCD = RandomInformation.GenerateCCCD();
+                    yta.HO = RandomInformation.GenerateHo();
+                    yta.TEN = RandomInformation.GenerateTen();
+                    yta.SDT = RandomInformation.GenerateSDT();
+                    yta.NGSINH = RandomInformation.GenerateDate(1970, 1995);
+                    yta.QUOCTICH = "Việt Nam";
+                    yta.EMAIL = RandomInformation.GenerateEmail();
+                    yta.DIACHI = RandomInformation.GenerateAddress();
+                    yta.GIOITINH = RandomInformation.GenerateGioiTinh();
+                    yta.TO = to;
+                    dataProvider.DB.YTAs.Add(yta);
+                }
             }
+            dataProvider.DB.SaveChanges();
+        }
+
+        private static void SeedsBACSI()
+        {
+            List<TO> toList = dataProvider.DB.TOes.ToList();
+            foreach (TO to in toList)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    BACSI bacsi = new BACSI();
+                    bacsi.CMND_CCCD = RandomInformation.GenerateCCCD();
+                    bacsi.HO = RandomInformation.GenerateHo();
+                    bacsi.TEN = RandomInformation.GenerateTen();
+                    bacsi.SDT = RandomInformation.GenerateSDT();
+                    bacsi.NGSINH = RandomInformation.GenerateDate(1970, 1995);
+                    bacsi.QUOCTICH = "Việt Nam";
+                    bacsi.EMAIL = RandomInformation.GenerateEmail();
+                    bacsi.DIACHI = RandomInformation.GenerateAddress();
+                    bacsi.GIOITINH = RandomInformation.GenerateGioiTinh();
+                    bacsi.TO = to;
+                    dataProvider.DB.BACSIs.Add(bacsi);
+                }
+            }
+            dataProvider.DB.SaveChanges();
         }
 
         static void SeedUSERs()
@@ -201,6 +240,10 @@ namespace Seeds
         public static string GenerateAddress()
         {
             return Province[rd.Next(Province.Count)];
+        }
+        public static bool GenerateGioiTinh()
+        {
+            return rd.Next(2) == 1;
         }
         
         #endregion
