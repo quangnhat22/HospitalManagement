@@ -120,6 +120,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
                 <Border Style="{StaticResource borderStyle}">
+                    <materialDesign:PackIcon Kind="LockOpen" Style="{StaticResource styleIcon}"/>
+                </Border>
+                <PasswordBox x:Name="txbNhapLaiMatKhau"
+                    Style="{StaticResource pwdBoxStyle}"
+                    materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
+                />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
+                <Border Style="{StaticResource borderStyle}">
                     <materialDesign:PackIcon Kind="GenderMaleFemale" Style="{StaticResource styleIcon}"/>
                 </Border>
                 <ComboBox materialDesign:HintAssist.Hint="Giới tính" 
@@ -130,16 +139,6 @@
                     <ComboBoxItem Content="Nam" />
                     <ComboBoxItem Content="Nữ" />
                 </ComboBox>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
-                <Border Style="{StaticResource borderStyle}">
-                    <materialDesign:PackIcon Kind="LockOpen" Style="{StaticResource styleIcon}"/>
-                </Border>
-                <PasswordBox x:Name="txbNhapLaiMatKhau"
-                    Style="{StaticResource pwdBoxStyle}"
-                    materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
-                />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
                 <Border Style="{StaticResource borderStyle}">
@@ -154,7 +153,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 30 0 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 40 0 0">
                 <Button 
                         Command="{Binding OpenLoginWindow}"
                         CommandParameter="{Binding ElementName=signUpFormWindow}"
@@ -168,7 +167,7 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         Background="White"
                         Foreground="#35a0fe"
-                        ToolTip="Hủy đăng ký! Quay trở lại đăng nhập"
+                        ToolTip="Quay trở lại đăng nhập"
                         />
 
                 <Button Content="ĐĂNG KÝ"
