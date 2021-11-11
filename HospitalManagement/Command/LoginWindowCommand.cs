@@ -77,8 +77,7 @@ namespace HospitalManagement.Command
 
         private bool CheckUsername(string username)
         {
-            string databaseUsername = "admin";
-            return username == databaseUsername;
+            return loginWindowViewModel?.db?.DB.USERs.Where(p => p.USERNAME == username).Count() > 0;
         }
     }
 }
