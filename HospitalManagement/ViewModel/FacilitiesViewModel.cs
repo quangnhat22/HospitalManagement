@@ -110,12 +110,11 @@ namespace HospitalManagement.ViewModel
             //        CheckedCount++;
             //    else
             //        CheckedCount--;
-                if (CheckedCount == facilities.Count)
-                    IsCheckedAll = true;
-                else
-                    if (CheckedCount == 0)
-                    IsCheckedAll = false;
-            });
+                //if (CheckedCount == facilities.Count)
+                //    IsCheckedAll = true;
+                //else
+                //    if (CheckedCount == 0)
+                //    IsCheckedAll = false;
             OpenFacilitiesForm = new OpenFacilitiesFormCommand();
             //    if (CheckedCount == facilities.Count)
             //        IsCheckedAll = true;
