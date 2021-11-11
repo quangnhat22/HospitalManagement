@@ -83,7 +83,7 @@
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
-                        
+
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -138,7 +138,7 @@
                             <TextBlock Text="{Binding Doctor.Birthday}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
-                        
+
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -181,7 +181,7 @@
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
-                        
+
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -206,8 +206,6 @@
                 materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
                 </Grid>
             </Grid>
-
         </Grid>
     </Border>
-    
 </Window>
