@@ -65,6 +65,7 @@
                             materialDesign:HintAssist.Hint="Mật khẩu"
                             materialDesign:HintAssist.Foreground="#35a0fe"
                             materialDesign:TextFieldAssist.UnderlineBrush="#35a0fe"
+                            BorderBrush="#35a0fe"
                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">

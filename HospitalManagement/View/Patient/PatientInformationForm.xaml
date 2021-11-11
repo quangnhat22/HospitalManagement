@@ -37,9 +37,16 @@
                             <Image Source="/Images/man.png" Height="200" Width="200"/>
                         </Grid>
                         <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Patient.Name}" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Patient.FirstName" />
+                                        <Binding Path="Patient.LastName" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
                             </TextBlock>
                         </Grid>
+                        
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -50,6 +57,7 @@
                             <TextBlock Text="{Binding Patient.ID}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
+                        
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -58,6 +66,16 @@
                             <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                             </TextBlock>
                             <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Ngày sinh" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
@@ -80,6 +98,7 @@
                             <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
+                        
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -90,6 +109,26 @@
                             <TextBlock Text="{Binding Patient.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                     <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
                     <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Ngày nhập viện:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Ngày nhập viện" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Bệnh nền:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="Bệnh nền" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
