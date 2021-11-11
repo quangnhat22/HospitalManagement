@@ -16,17 +16,17 @@ namespace HospitalManagement.ViewModel
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        private Nurse nurse;
+        //private Nurse nurse;
 
-        public Nurse Nurse
-        {
-            get { return nurse; }
-            set { nurse = value; OnPropertyChanged("Nurse"); }
-        }
+        //public Nurse Nurse
+        //{
+        //    get { return nurse; }
+        //    set { nurse = value; OnPropertyChanged("Nurse"); }
+        //}
 
-        public NurseInformationViewModel(Nurse nurse)
-        {
-            Nurse = nurse;
-        }
+        //public NurseInformationViewModel(Nurse nurse)
+        //{
+        //    Nurse = nurse;
+        //}
     }
 }
