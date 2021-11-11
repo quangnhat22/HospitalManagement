@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View
+namespace HospitalManagement.View.Others
 {
     /// <summary>
-    /// Interaction logic for Facilities.xaml
+    /// Interaction logic for ChangeAccountWindow.xaml
     /// </summary>
-    public partial class Facilities : UserControl
+    public partial class ChangeAccountWindow : Window
     {
-        public Facilities()
+        public ChangeAccountWindow()
         {
             InitializeComponent();
-            this.DataContext = new FacilitiesViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

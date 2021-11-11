@@ -11,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View
+namespace HospitalManagement.View.Login
 {
     /// <summary>
-    /// Interaction logic for Facilities.xaml
+    /// Interaction logic for RecoverAccountWindow.xaml
     /// </summary>
-    public partial class Facilities : UserControl
+    public partial class RecoverAccountWindow : Window
     {
-        public Facilities()
+        public RecoverAccountWindow()
         {
             InitializeComponent();
-            this.DataContext = new FacilitiesViewModel();
+            this.DataContext = new RecoverAccountViewModel();
         }
     }
 }

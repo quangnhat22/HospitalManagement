@@ -60,6 +60,7 @@
       <HintPath>..\packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -88,6 +89,8 @@
     <Compile Include="Command\LoginWindowCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
     <Compile Include="Command\NotifyWindowCommand.cs" />
+    <Compile Include="Command\OpenAccountWindowCommand.cs" />
+    <Compile Include="Command\OpenChangeAccountWindowCommand.cs" />
     <Compile Include="Command\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\OpenForgotPasswordFormCommand.cs" />
@@ -96,15 +99,21 @@
     <Compile Include="Command\OpenPatientFormCommand.cs" />
     <Compile Include="Command\OpenReportFormCommand.cs" />
     <Compile Include="Command\OpenSignUpFormCommand.cs" />
+    <Compile Include="Command\RecoverAccountCommand.cs" />
+    <Compile Include="Command\ResendEmailRecoverCommand.cs" />
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
+    <Compile Include="Command\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\ShowPatientInfomationCommand.cs" />
     <Compile Include="Command\SignUpValidationCommand.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Facility.cs" />
     <Compile Include="Model\Nurse.cs" />
     <Compile Include="Model\Patient.cs" />
+    <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
@@ -114,17 +123,28 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\NurseInformationViewModel.cs" />
     <Compile Include="ViewModel\NurseViewModel.cs" />
     <Compile Include="ViewModel\PatientInformationViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
+    <Compile Include="ViewModel\RecoverAccountViewModel.cs" />
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="View\Login\RecoverAccountWindow.xaml.cs">
+      <DependentUpon>RecoverAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Others\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard.xaml.cs" />
+    <Compile Include="View\Others\AccountWindow.xaml.cs">
+      <DependentUpon>AccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\ChangeAccountWindow.xaml.cs">
+      <DependentUpon>ChangeAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
@@ -163,13 +183,28 @@
     <Compile Include="View\Staff\NurseForm.xaml.cs">
       <DependentUpon>NurseForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Staff\NurseInformationForm.xaml.cs">
+      <DependentUpon>NurseInformationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Staff\NurseUsercontrol.xaml.cs">
       <DependentUpon>NurseUsercontrol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
       <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Login\RecoverAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Others\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\AccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ChangeAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,6 +285,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Staff\NurseInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Staff\NurseUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +352,9 @@
   <ItemGroup>
     <Resource Include="Images\doctoravatar.png" />
     <Resource Include="Images\nurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />

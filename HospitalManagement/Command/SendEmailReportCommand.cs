@@ -9,6 +9,7 @@ using System.Net.Mail;
 using HospitalManagement.View;
 using System.Windows;
 using Microsoft.Win32;
+using System.Configuration;
 
 namespace HospitalManagement.Command
 {
@@ -25,7 +26,7 @@ namespace HospitalManagement.Command
             return true;
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             try
             {
@@ -36,10 +37,14 @@ namespace HospitalManagement.Command
                 client.Timeout = 0;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("hotrofhms@gmail.com", "supportfhms719");
+
+                string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
+                string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
+
+                client.Credentials = new NetworkCredential(emailAddress, emailPassword);
                 MailMessage msg = new MailMessage();
-                msg.To.Add("hotrofhms@gmail.com");
-                msg.From = new MailAddress("hotrofhms@gmail.com");
+                msg.To.Add(emailAddress);
+                msg.From = new MailAddress(emailAddress);
                 msg.Subject = rpf.txbSubject.Text;
                 string bodyEmail = rpf.txbEmail.Text + " đã gửi: \n" + rpf.txbBody.Text;
                 msg.Body = bodyEmail;
@@ -48,8 +53,8 @@ namespace HospitalManagement.Command
                     Attachment atc = new Attachment(path);
                     msg.Attachments.Add(atc);
                 }
-                client.Send(msg);
-                
+                var send = client.SendMailAsync(msg);
+               
                 MessageBox.Show("Đã gửi thành công. Cảm ơn đã phản hồi, chúng tôi sẽ phàn hồi bạn sớm nhất có thể.");
             }
             catch (Exception ex)

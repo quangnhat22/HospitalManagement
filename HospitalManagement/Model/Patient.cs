@@ -24,14 +24,21 @@ namespace HospitalManagement.Model
         }
 
         public int ID { get; set; }
-
         public string Name { get; set; }
-
-        public SexType Sex { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PatientCode { get; set; }
+        public string Phone { get; set; }
+        public string Mail { get; set; }
+        public string Address { get; set; }
         public string Birthday { get; set; }
+        public SexType Sex { get; set; }
+        public string BedNum { get; set; }
         public string DateCheckIn { get; set; }
-        public string DoctorName { get; set; }
+        public string Nationality { get; set; }
+        public string IDCard { get; set; }
+        public string Note { get; set; }
         public string Status { get; set; }
-        public string Room { get; set; }
+        public string BackgroundDisease { get; set; }
     }
 }

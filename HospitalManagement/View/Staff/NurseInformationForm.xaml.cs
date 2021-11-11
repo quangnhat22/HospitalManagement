@@ -12,19 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HospitalManagement.ViewModel;
+using HospitalManagement.Model;
 
-
-namespace HospitalManagement.View.Others
+namespace HospitalManagement.View.Staff
 {
     /// <summary>
-    /// Interaction logic for AccountWindow.xaml
+    /// Interaction logic for NurseInformationForm.xaml
     /// </summary>
-    public partial class AccountWindow : Window
+    public partial class NurseInformationForm : Window
     {
-        public AccountWindow()
+        public NurseInformationForm(Nurse nurse)
         {
             InitializeComponent();
-            this.DataContext = new AccountViewModel();
+            this.DataContext = new NurseInformationViewModel(nurse);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
