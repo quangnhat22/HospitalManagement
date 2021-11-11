@@ -54,47 +54,57 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Họ và tên:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
                                 </TextBlock>
-                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
                                 </TextBlock>
                             </Grid>
-                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
                                     <ColumnDefinition Width="190"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Tên đăng nhập:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
                                 </TextBlock>
-                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
                                 </TextBlock>
                             </Grid>
-                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
                                     <ColumnDefinition Width="190"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
                                 </TextBlock>
-                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
                                 </TextBlock>
                             </Grid>
-                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="170"></ColumnDefinition>
+                                    <ColumnDefinition Width="190"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
+                                </TextBlock>
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
+                                </TextBlock>
+                            </Grid>
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
                                     <ColumnDefinition Width="190"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
                                 </TextBlock>
-                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock Foreground="Black" Text="Họ và tên"  FontSize="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
                                 </TextBlock>
                             </Grid>
-                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
                                     <ColumnDefinition Width="190"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Password:" Foreground="#35a0fe" FontSize="25" HorizontalAlignment="Right">
                                 </TextBlock>
-                                <TextBlock Foreground="Black" Text="********"  FontSize="25" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock Foreground="Black" Text="********"  FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="1">
                                 </TextBlock>
                             </Grid>
                         </StackPanel>
