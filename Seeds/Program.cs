@@ -13,23 +13,51 @@ namespace Seeds
 
         static void Main(string[] args)
         {
+            CleanDatabase();
+
             SeedUSERs();
             SeedTANG();
             SeedTo();
             //SeedsYTA();
+            Console.WriteLine("Seeds successful");
         }
 
-        private static void SeedTo()
+        private static void CleanDatabase()
+        {
+            // Delete User
+            List<USER> users = dataProvider.DB.USERs.ToList();
+
+            dataProvider.DB.USERs.RemoveRange(users);
+            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            // Delete TO
+            List<TO> toList = dataProvider.DB.TOes.ToList();
+            dataProvider.DB.TOes.RemoveRange(toList);
+            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TO', RESEED, 0)");
+            // Delete TANG
+            List<TANG> tangList = dataProvider.DB.TANGs.ToList();
+            dataProvider.DB.TANGs.RemoveRange(tangList);
+            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TANG', RESEED, 0)");
+        }
+
+        private static async void SeedTo()
         {
             
+            List<TANG> ts = dataProvider.DB.TANGs.ToList();
+            
+            foreach(TANG tang in ts)
+            {
+                for(int i = 0; i < 3; i++)
+                {
+                    TO t = new TO();
+                    t.TANG = tang;
+                    dataProvider.DB.TOes.Add(t);
+                }
+            }
+            dataProvider.DB.SaveChanges();
         }
 
-        private static void SeedTANG()
+        private static async void SeedTANG()
         {
-            List<TANG> tangList = dataProvider.DB.TANGs.ToList();
-
-            dataProvider.DB.TANGs.RemoveRange(tangList);
-            Task<int> reset = dataProvider.DB.Database.ExecuteSqlCommandAsync("DBCC CHECKIDENT ('TANG', RESEED, 0)");
             for(int i = 0; i < 6; i++)
             {
                 TANG tang = new TANG();
@@ -59,16 +87,12 @@ namespace Seeds
             }
         }
 
-        static async void SeedUSERs()
+        static void SeedUSERs()
         {
 
             List<String> USERname = new List<string> { "nimda", "test", "guest", "root", "info", "guess", "mysql", "user", "Myname" };
             List<String> Password = new List<string> { "password", "1234567890", "qwerty", "idontknow", "onetoeight", "admin", "123", "hihihi", "thisispassword", "me", "nothingelse" };
 
-            List<USER> users = dataProvider.DB.USERs.ToList();
-
-            dataProvider.DB.USERs.RemoveRange(users);
-            Task<int> reset = dataProvider.DB.Database.ExecuteSqlCommandAsync("DBCC CHECKIDENT ('USER', RESEED, 0)");
             USER admin = new USER();
             admin.USERNAME = "admin";
             admin.PASSWORD = Encryptor.Hash("1");
@@ -85,7 +109,6 @@ namespace Seeds
                 user.GIOITINH = random.Next(2) == 0;
                 dataProvider.DB.USERs.Add(user);
             }
-            await reset;
             dataProvider.DB.SaveChanges();
         }
     }
