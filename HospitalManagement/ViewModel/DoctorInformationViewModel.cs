@@ -19,17 +19,17 @@ namespace HospitalManagement.ViewModel
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        private Doctor doctor;
+        //private Doctor doctor;
 
-        public Doctor Doctor
-        {
-            get { return doctor; }
-            set { doctor = value; OnPropertyChanged("Doctor"); }
-        }
+        //public Doctor Doctor
+        //{
+        //    get { return doctor; }
+        //    set { doctor = value; OnPropertyChanged("Doctor"); }
+        //}
 
-        public DoctorInformationViewModel(Doctor doctor)
-        {
-            Doctor = doctor;
-        }
+        //public DoctorInformationViewModel(Doctor doctor)
+        //{
+        //    Doctor = doctor;
+        //}
     }
 }

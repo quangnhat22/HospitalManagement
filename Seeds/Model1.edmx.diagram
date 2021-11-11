@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af31c85baeef4ce8a1d01f05758a88b1" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSI" Width="1.5" PointX="2.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BENHNHAN" Width="1.5" PointX="12.875" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.PHONG" Width="1.5" PointX="9.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TANG" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TO" Width="1.5" PointX="6.375" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.USER" Width="1.5" PointX="15.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.VATTU" Width="1.5" PointX="6.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTA" Width="1.5" PointX="2.375" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BACSI_IDTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.TO_IDTANG_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.YTA_IDTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.CHIDINH" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.O" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.SUDUNG" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

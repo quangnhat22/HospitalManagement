@@ -27,14 +27,66 @@
             </Grid>
             <StackPanel Height="250" Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Width="900">
-                    <Grid Width="300" HorizontalAlignment="Left" Margin="100,13,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Họ và tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập họ và tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                    </Grid>
+                    <StackPanel Height="250" Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="900">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="200" HorizontalAlignment="Left" Margin="100,13,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                    <TextBox HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập họ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                </Grid>
+                                <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                    <TextBox HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                    <TextBox HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                </Grid>
+                                <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                    <TextBox HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                </Grid>
+                            </StackPanel>
+                            <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="400">
+                            <Grid>
+                                <Image Height="220" Width="200" Source="/images/man.png" Margin="82,-10,118,39.6"  />
+                                <Button 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                            ToolTip="MaterialDesignFloatingActionMiniButton"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
+                                    <materialDesign:PackIcon Kind="Pencil"/>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+
                     <StackPanel Orientation="Horizontal">
                         <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
                             <Grid.RowDefinitions>
@@ -77,22 +129,22 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Height="85" Orientation="Horizontal">
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
+                <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Ngày tháng năm sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker Margin="0,0,0,5" Width="300" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <DatePicker Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
+                <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox Margin="0,0,0,5" Grid.Row="1" Width="300" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="(none)"                       
+                    <ComboBox Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
+                        materialDesign:HintAssist.Hint="Chọn giới tính"                       
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Nam" />
@@ -100,23 +152,50 @@
                             Content="Nữ" />
                     </ComboBox>
                 </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
+                <Grid Width="200" HorizontalAlignment="Left" Margin="80,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập quốc tịch" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                </Grid>
+                <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập CMND/CCCD" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                </Grid>
+            </StackPanel>
+            <StackPanel Height="85" Orientation="Horizontal">
+                <Grid Width="400" HorizontalAlignment="Left" Margin="100,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                </Grid>
+                <Grid Width="400" HorizontalAlignment="Left" Margin="160,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
-            <Grid Width="680" HorizontalAlignment="Left" Margin="100,20,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                <StackPanel Grid.Row="1">
-                    <TextBox Foreground="Black" FontSize="16"                           
+            <StackPanel Height="190" Orientation="Horizontal">
+                <Grid Width="680" HorizontalAlignment="Left" Margin="100,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <StackPanel Grid.Row="1">
+                        <TextBox Foreground="Black" FontSize="16"                           
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             VerticalAlignment="Top"
                             Height="100"
@@ -125,12 +204,15 @@
                             VerticalScrollBarVisibility="Auto"
                             materialDesign:HintAssist.Hint="This is a text area"
                             />
-                </StackPanel>
-            </Grid>
-            <Grid Height="80">
-                <Button Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="0,0,182.8,10"/>
-            </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0">
+                    <Grid Height="80" Margin="50,50,0,10">
+                        <Button Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="30,0,0,0"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

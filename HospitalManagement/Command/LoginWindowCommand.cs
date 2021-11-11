@@ -72,14 +72,12 @@ namespace HospitalManagement.Command
         private bool CheckPassword(string plainText)
         {
             string hashedPasswordInput = Encryptor.Hash(plainText);
-            string databasePassword = "cdd96d3cc73d1dbdaffa03cc6cd7339b";
-            return string.Compare(databasePassword, hashedPasswordInput, true) == 0;
+            return loginWindowViewModel?.db?.DB.USERs?.Where(p => p.PASSWORD == hashedPasswordInput).Count() > 0;
         }
 
         private bool CheckUsername(string username)
         {
-            string databaseUsername = "admin";
-            return username == databaseUsername;
+            return loginWindowViewModel?.db?.DB.USERs.Where(p => p.USERNAME == username).Count() > 0;
         }
     }
 }

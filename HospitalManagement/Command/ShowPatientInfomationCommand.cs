@@ -25,10 +25,10 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            DataGrid dg = parameter as DataGrid;
-            Model.Patient p = dg.SelectedItem as Model.Patient;
-            PatientInformationForm patientif = new PatientInformationForm(p);
-            patientif.Show();
+            //DataGrid dg = parameter as DataGrid;
+            //Model.Patient p = dg.SelectedItem as Model.Patient;
+            //PatientInformationForm patientif = new PatientInformationForm(p);
+            //patientif.Show();
         }
     }
 }

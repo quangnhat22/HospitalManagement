@@ -36,18 +36,12 @@
                         <Grid Height="220">
                             <Image Source="/Images/medical-team.png" Height="200" Width="200"/>
                         </Grid>
-                        <TextBlock Text="Bác sĩ" 
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Bác sĩ" 
                                    Foreground="Black" 
                                    FontSize="20" 
                                    HorizontalAlignment="Center"
                                    FontWeight="Bold"/>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Họ và tên:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
                             <TextBlock Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} {1}">
@@ -56,6 +50,22 @@
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
+                        </StackPanel>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Vai trò:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Width="180">
+                                    <TextBlock FontSize="18" 
+                                               TextWrapping="Wrap" 
+                                               Foreground="Black"
+                                               Text="{Binding Doctor.Rule}" />
+                                </StackPanel>
+                            </Viewbox>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
@@ -73,6 +83,51 @@
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
+
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Width="180">
+                                    <TextBlock FontSize="18" 
+                                               TextWrapping="Wrap" 
+                                               Foreground="Black"
+                                               Text="{Binding Doctor.Rule}" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" Width="180">
+                                    <TextBlock FontSize="18" 
+                                               TextWrapping="Wrap" 
+                                               Foreground="Black"
+                                               Text="{Binding Doctor.Rule}" />
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="{Binding Doctor.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
+                                <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
+                            </TextBlock>
+                        </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -83,18 +138,7 @@
                             <TextBlock Text="{Binding Doctor.Birthday}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="{Binding Doctor.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                    <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
-                    <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
-                            </TextBlock>
-                        </Grid>
+
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -137,22 +181,7 @@
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Vai trò:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                                <StackPanel Orientation="Vertical" Width="180">
-                                    <TextBlock FontSize="18" 
-                                               TextWrapping="Wrap" 
-                                               Foreground="Black"
-                                               Text="{Binding Doctor.Rule}" />
-                                </StackPanel>
-                            </Viewbox>
-                        </Grid>
+
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
@@ -177,8 +206,6 @@
                 materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
                 </Grid>
             </Grid>
-
         </Grid>
     </Border>
-    
 </Window>
