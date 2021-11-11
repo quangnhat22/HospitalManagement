@@ -197,6 +197,9 @@
     <Compile Include="View\Others\ChangeAccountWindow.xaml.cs">
       <DependentUpon>ChangeAccountWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Others\ThankyouWindow.xaml.cs">
+      <DependentUpon>ThankyouWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
     </Compile>
@@ -261,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ChangeAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ThankyouWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -421,6 +428,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Images\thankyouimg.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

@@ -10,6 +10,7 @@ using HospitalManagement.View;
 using System.Windows;
 using Microsoft.Win32;
 using System.Configuration;
+using HospitalManagement.View.Others;
 
 namespace HospitalManagement.Command
 {
@@ -48,14 +49,20 @@ namespace HospitalManagement.Command
                 msg.Subject = rpf.txbSubject.Text;
                 string bodyEmail = rpf.txbEmail.Text + " đã gửi: \n" + rpf.txbBody.Text;
                 msg.Body = bodyEmail;
-                foreach(string path in spliter(rpf.btnAttachment.Content.ToString()))
+
+                if (rpf.btnAttachment.Content.ToString().Contains(".jpg") ||
+                    rpf.btnAttachment.Content.ToString().Contains(".png") ||
+                    rpf.btnAttachment.Content.ToString().Contains(".pdf"))
                 {
-                    Attachment atc = new Attachment(path);
-                    msg.Attachments.Add(atc);
+                    foreach (string path in spliter(rpf.btnAttachment.Content.ToString()))
+                    {
+                        Attachment atc = new Attachment(path);
+                        msg.Attachments.Add(atc);
+                    }
                 }
                 var send = client.SendMailAsync(msg);
-               
-                MessageBox.Show("Đã gửi thành công. Cảm ơn đã phản hồi, chúng tôi sẽ phàn hồi bạn sớm nhất có thể.");
+                ThankyouWindow thankyouWindow = new ThankyouWindow();
+                thankyouWindow.ShowDialog();
             }
             catch (Exception ex)
             {
