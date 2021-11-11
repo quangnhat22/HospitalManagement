@@ -10,6 +10,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows;
 using HospitalManagement.Model;
+using HospitalManagement.Utils;
 
 namespace HospitalManagement.Command
 {
@@ -41,7 +42,7 @@ namespace HospitalManagement.Command
                     HO = signUpWindow.txbHo.Text ,
                     TEN = signUpWindow.txbTen.Text,
                     USERNAME = signUpWindow.txbTenDangNhap.Text,
-                    PASSWORD = signUpWindow.txbMatKhau.Password,
+                    PASSWORD = Encryptor.Hash(signUpWindow.txbMatKhau.Password),
                     EMAIL = signUpWindow.txbEmail.Text
                 };
                 signUpFormViewModel?.db?.DB?.USERs?.Add(userInput);
