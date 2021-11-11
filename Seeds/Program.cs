@@ -12,36 +12,36 @@ namespace Seeds
         static DataProvider dataProvider = new DataProvider();
         static void Main(string[] args)
         {
-            SeedUsers();
+            SeedUSERs();
         }
 
-        static async void SeedUsers()
+        static async void SeedUSERs()
         {
             
             List<String> Ho = new List<string> { "Nguyễn", "Trần", "Bùi", "Đỗ", "Lê", "Phan", "Võ", "Lý", "Ngô" };
             List<String> Ten = new List<string> { "Anh", "Bình", "Châu", "Dũng", "Huy", "Khang", "Linh", "Mạnh", "Nghĩa" ,"Quang", "Tuấn" };
-            List<String> Username = new List<string> { "nimda", "test", "guest", "root", "info", "guess", "mysql", "user", "Myname" };
+            List<String> USERname = new List<string> { "nimda", "test", "guest", "root", "info", "guess", "mysql", "user", "Myname" };
             List<String> Password = new List<string> { "password", "1234567890", "qwerty", "idontknow", "onetoeight", "admin", "123", "hihihi", "thisispassword", "me", "nothingelse" };
             
-            List<User> users = dataProvider.DB.Users.ToList();
+            List<USER> users = dataProvider.DB.USERs.ToList();
 
-            dataProvider.DB.Users.RemoveRange(users);
-            Task<int> reset = dataProvider.DB.Database.ExecuteSqlCommandAsync("DBCC CHECKIDENT ('Users', RESEED, 0)");
-            User admin = new User();
+            dataProvider.DB.USERs.RemoveRange(users);
+            Task<int> reset = dataProvider.DB.Database.ExecuteSqlCommandAsync("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            USER admin = new USER();
             admin.USERNAME = "admin";
-            admin.PWD = Encryptor.Hash("1");
-            dataProvider.DB.Users.Add(admin);
-            for (int i = 0; i < Username.Count; i++)
+            admin.PASSWORD = Encryptor.Hash("1");
+            dataProvider.DB.USERs.Add(admin);
+            for (int i = 0; i < USERname.Count; i++)
             {
-                User user = new User();
+                USER user = new USER();
                 user.HO = Ho[random.Next(Ho.Count)];
                 user.TEN = Ten[random.Next(Ten.Count)];
-                user.USERNAME = Username[i]; //Unique reason
+                user.USERNAME = USERname[i]; //Unique reason
                 user.EMAIL = user.USERNAME + "@gmail.com";
-                user.PWD = Encryptor.Hash(Password[random.Next(Password.Count)]);
+                user.PASSWORD = Encryptor.Hash(Password[random.Next(Password.Count)]);
                 user.NGSINH = (new RandomDateTime(1970, 1995))?.Next();
                 user.GIOITINH = random.Next(2) == 0;
-                dataProvider.DB.Users.Add(user);
+                dataProvider.DB.USERs.Add(user);
             }
             await reset;
             dataProvider.DB.SaveChanges();

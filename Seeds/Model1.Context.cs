@@ -13,10 +13,10 @@ namespace Seeds
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HospitalManagementEntities : DbContext
+    public partial class QUANLYBENHVIENEntities : DbContext
     {
-        public HospitalManagementEntities()
-            : base("name=HospitalManagementEntities")
+        public QUANLYBENHVIENEntities()
+            : base("name=QUANLYBENHVIENEntities")
         {
         }
     
@@ -25,6 +25,13 @@ namespace Seeds
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<BACSI> BACSIs { get; set; }
+        public virtual DbSet<BENHNHAN> BENHNHANs { get; set; }
+        public virtual DbSet<PHONG> PHONGs { get; set; }
+        public virtual DbSet<TANG> TANGs { get; set; }
+        public virtual DbSet<TO> TOes { get; set; }
+        public virtual DbSet<USER> USERs { get; set; }
+        public virtual DbSet<VATTU> VATTUs { get; set; }
+        public virtual DbSet<YTA> YTAs { get; set; }
     }
 }
