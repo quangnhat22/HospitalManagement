@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Command;
+using HospitalManagement.Model;
 using HospitalManagement.View;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace HospitalManagement.ViewModel
 {
      public class LoginWindowViewModel :BaseViewModel
      {
+        public DataProvider db;
         public ICommand OpenMainWindow { 
             get ; 
             set ; }
@@ -25,6 +27,7 @@ namespace HospitalManagement.ViewModel
 
         public LoginWindowViewModel()
         {
+            this.db = new DataProvider();
             OpenMainWindow = new LoginWindowCommand(this);
             OpenSignUpForm = new OpenSignUpFormCommand();
             OpenForgotPasswordForm = new OpenForgotPasswordFormCommand();

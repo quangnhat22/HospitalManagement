@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalManagement.Model
 {
-    internal class DataProvider
+    public class DataProvider
     {
         private static DataProvider _ins;
         public static DataProvider Ins

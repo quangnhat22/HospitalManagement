@@ -9,11 +9,17 @@ using HospitalManagement.View;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows;
+using HospitalManagement.Model;
 
 namespace HospitalManagement.Command
 {
     class SignUpValidationCommand : ICommand
     {
+        private SignUpFormViewModel signUpFormViewModel;
+        public SignUpValidationCommand(SignUpFormViewModel signUpFormViewModel)
+        {
+            this.signUpFormViewModel = signUpFormViewModel;
+        }
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -27,8 +33,19 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            if (Check(parameter as SignUpWindow))
+            SignUpWindow signUpWindow = parameter as SignUpWindow;
+            if (Check(signUpWindow))
             {
+                var userInput = new USER
+                {
+                    HO = signUpWindow.txbHo.Text ,
+                    TEN = signUpWindow.txbTen.Text,
+                    USERNAME = signUpWindow.txbTenDangNhap.Text,
+                    PASSWORD = signUpWindow.txbMatKhau.Password,
+                    EMAIL = signUpWindow.txbEmail.Text
+                };
+                signUpFormViewModel?.db?.DB?.USERs?.Add(userInput);
+                signUpFormViewModel?.db?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký thành công!");
                 notifyWindow.ShowDialog();
             }
