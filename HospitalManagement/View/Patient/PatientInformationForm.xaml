@@ -57,7 +57,16 @@
                             <TextBlock Text="{Binding Patient.ID}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
-                        
+                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"></ColumnDefinition>
+                                <ColumnDefinition Width="190"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
+                            </TextBlock>
+                            <TextBlock Text="ID phòng" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            </TextBlock>
+                        </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170"></ColumnDefinition>
