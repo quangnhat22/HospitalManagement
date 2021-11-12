@@ -17,7 +17,6 @@ namespace Seeds
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BENHNHAN()
         {
-            this.PHONGs = new HashSet<PHONG>();
             this.VATTUs = new HashSet<VATTU>();
         }
     
@@ -36,9 +35,9 @@ namespace Seeds
         public string GHICHU { get; set; }
         public string TINHTRANG { get; set; }
         public string BENHNEN { get; set; }
+        public Nullable<int> IDPHONG { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHONG> PHONGs { get; set; }
+        public virtual PHONG PHONG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VATTU> VATTUs { get; set; }
     }
