@@ -38,6 +38,7 @@ namespace HospitalManagement.ViewModel
         //}
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
+        public ICommand OpenFacilitiesForm { get; set; }
 
         public FacilitiesViewModel()
         {
@@ -109,7 +110,12 @@ namespace HospitalManagement.ViewModel
             //        CheckedCount++;
             //    else
             //        CheckedCount--;
-
+                //if (CheckedCount == facilities.Count)
+                //    IsCheckedAll = true;
+                //else
+                //    if (CheckedCount == 0)
+                //    IsCheckedAll = false;
+            OpenFacilitiesForm = new OpenFacilitiesFormCommand();
             //    if (CheckedCount == facilities.Count)
             //        IsCheckedAll = true;
             //    else

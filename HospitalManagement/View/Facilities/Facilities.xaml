@@ -22,6 +22,8 @@
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
                 <Button 
+                    Command="{Binding OpenFacilitiesForm}"
+                    CommandParameter="{Binding ElementName=facilityListUC}"
                     Margin="10 0 0 0"     
                     x:Name="btnAddFacility"
                     Style="{StaticResource MaterialDesignIconButton}"
@@ -35,8 +37,7 @@
                     Background="#08AEEA"
                     />
                 </Button>
-                <!--Command="{Binding OpenPatientForm}"
-                    CommandParameter="{Binding ElementName=patientListUC}"-->
+               
             </WrapPanel>
             <DataGrid x:Name="dtgFacilityList"
                   CanUserAddRows="False"
