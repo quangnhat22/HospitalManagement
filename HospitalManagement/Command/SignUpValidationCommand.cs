@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Windows;
 using HospitalManagement.Model;
 using HospitalManagement.Utils;
+using System.Windows.Controls;
 
 namespace HospitalManagement.Command
 {
@@ -37,13 +38,16 @@ namespace HospitalManagement.Command
             SignUpWindow signUpWindow = parameter as SignUpWindow;
             if (Check(signUpWindow))
             {
+                string gioiTinh = signUpWindow.txbGioiTinh.SelectedValue as string;
                 var userInput = new USER
                 {
                     HO = signUpWindow.txbHo.Text ,
                     TEN = signUpWindow.txbTen.Text,
                     USERNAME = signUpWindow.txbTenDangNhap.Text,
                     PASSWORD = Encryptor.Hash(signUpWindow.txbMatKhau.Password),
-                    EMAIL = signUpWindow.txbEmail.Text
+                    EMAIL = signUpWindow.txbEmail.Text,
+                    NGSINH = signUpWindow.txbNgaySinh.DisplayDate,
+                    GIOITINH = (gioiTinh != "Nam"),
                 };
                 signUpFormViewModel?.db?.DB?.USERs?.Add(userInput);
                 signUpFormViewModel?.db?.DB?.SaveChanges();

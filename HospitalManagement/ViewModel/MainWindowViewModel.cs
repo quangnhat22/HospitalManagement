@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Command;
+using HospitalManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace HospitalManagement.ViewModel
     class MainWindowViewModel : BaseViewModel
     {
         private BaseViewModel _selectedViewModel = new DashBoardViewModel();
+
+        static public USER User;
 
         public BaseViewModel SelectedViewModel
         {

@@ -131,7 +131,9 @@
                 <Border Style="{StaticResource borderStyle}">
                     <materialDesign:PackIcon Kind="GenderMaleFemale" Style="{StaticResource styleIcon}"/>
                 </Border>
-                <ComboBox materialDesign:HintAssist.Hint="Giới tính" 
+                <ComboBox
+                          x:Name="txbGioiTinh"
+                          materialDesign:HintAssist.Hint="Giới tính" 
                           Width="333" 
                           Padding="10 11" 
                           FontSize="14"
