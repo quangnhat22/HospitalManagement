@@ -41,7 +41,7 @@
                 Visibility="Collapsed"/>
         </Grid>
         <StackPanel Margin="50 30">
-            <TextBlock Text="Danh sách bệnh nhân"
+            <TextBlock Text="Danh sách nhân viên y tế"
                    FontSize="20"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>

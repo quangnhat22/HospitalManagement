@@ -26,8 +26,8 @@ namespace HospitalManagement.Model
         public string GHICHU { get; set; }
         public Nullable<int> IDTANG { get; set; }
     
-        public virtual TANG TANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BENHNHAN> BENHNHANs { get; set; }
+        public virtual TANG TANG { get; set; }
     }
 }

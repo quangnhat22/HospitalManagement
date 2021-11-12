@@ -57,10 +57,6 @@ namespace Seeds
             dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TO', RESEED, 0)");
             // Delete BENHNHAN
             List<BENHNHAN> bnList = dataProvider.DB.BENHNHANs.ToList();
-            foreach(BENHNHAN benhnhan in bnList)
-            {
-                benhnhan.PHONGs.Clear();
-            }
             dataProvider.DB.BENHNHANs.RemoveRange(bnList);
             // Delete PHONG
             List<PHONG> phong = dataProvider.DB.PHONGs.ToList();
@@ -205,7 +201,7 @@ namespace Seeds
                     bn.GIUONGBENH = (i + 1).ToString();
                     bn.NGNHAPVIEN = RandomInformation.GenerateDate(2020, 2021);
                     bn.QUOCTICH = "Việt Nam";
-                    bn.PHONGs.Add(p);
+                    bn.PHONG = p;
                     dataProvider.DB.BENHNHANs.Add(bn);
                 }
             }
