@@ -25,7 +25,7 @@
     </Window.Resources>
     <Border BorderBrush="#2FDD92" BorderThickness="4" CornerRadius="10,10,10,10" >
         <Grid>
-            <Border CornerRadius="10" Background="White"/>
+            <Border CornerRadius="8" Background="White"/>
             <StackPanel>
                 <Grid 
                 Width="200" 
