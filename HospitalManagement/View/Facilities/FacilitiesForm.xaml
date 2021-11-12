@@ -54,12 +54,12 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="400">
                     <Grid>
-                        <Image Height="220" Width="200" Source="/images/man.png" Margin="82,-10,118,39.6"  />
+                        <Image Height="220" Width="200" Source="/Images/first-aid-kit.png" Margin="82,-10,118,39.6"  />
                         <Button 
                             Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                             ToolTip="MaterialDesignFloatingActionMiniButton"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
-                            <materialDesign:PackIcon Kind="Pencil"/>
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="253,151,107,59">
+                            <materialDesign:PackIcon Kind="Pencil" VerticalAlignment="Center"/>
                         </Button>
                     </Grid>
                     <Grid Width="400" Margin="0,0,0,0">
@@ -87,7 +87,7 @@
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="This is a text area"
+                            materialDesign:HintAssist.Hint="Nhập ghi chú tại đây"
                             />
                     </StackPanel>
                 </Grid>

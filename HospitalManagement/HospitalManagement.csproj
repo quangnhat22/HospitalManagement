@@ -435,6 +435,7 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\thankyouimg.png" />
+    <Resource Include="Images\first-aid-kit.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
