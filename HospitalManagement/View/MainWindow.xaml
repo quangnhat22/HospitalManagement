@@ -43,21 +43,21 @@
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"
                                                      Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Account</TextBlock>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Tài khoản</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding ShowAboutCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
                                                      Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">About</TextBlock>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Về FHMS</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding OpenReportForm}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 0"
+                            <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 -5"
                                                      Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Report</TextBlock>
+                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Đóng góp</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>

@@ -111,7 +111,7 @@ namespace Seeds
                     yta.SDT = RandomInformation.GenerateSDT();
                     yta.NGSINH = RandomInformation.GenerateDate(1970, 1995);
                     yta.QUOCTICH = "Việt Nam";
-                    yta.EMAIL = RandomInformation.GenerateEmail();
+                    yta.EMAIL = RandomInformation.GenerateEmail(yta.HO, yta.TEN);
                     yta.DIACHI = RandomInformation.GenerateAddress();
                     yta.GIOITINH = RandomInformation.GenerateGioiTinh();
                     yta.TO = to;
@@ -134,7 +134,7 @@ namespace Seeds
                     bacsi.SDT = RandomInformation.GenerateSDT();
                     bacsi.NGSINH = RandomInformation.GenerateDate(1970, 1995);
                     bacsi.QUOCTICH = "Việt Nam";
-                    bacsi.EMAIL = RandomInformation.GenerateEmail();
+                    bacsi.EMAIL = RandomInformation.GenerateEmail(bacsi.HO, bacsi.TEN);
                     bacsi.DIACHI = RandomInformation.GenerateAddress();
                     bacsi.GIOITINH = RandomInformation.GenerateGioiTinh();
                     bacsi.TO = to;
@@ -146,21 +146,19 @@ namespace Seeds
         private static void SeedsUSERs()
         {
 
-            List<String> USERname = new List<string> { "nimda", "test", "guest", "root", "info", "guess", "mysql", "user", "Myname" };
-            List<String> Password = new List<string> { "password", "1234567890", "qwerty", "idontknow", "onetoeight", "admin", "123", "hihihi", "thisispassword", "me", "nothingelse" };
-
+            List<String> Password = new List<string> { "password", "1234567890", "qwerty", "idontknow" };
             USER admin = new USER();
             admin.USERNAME = "admin";
             admin.PASSWORD = Encryptor.Hash("1");
             dataProvider.DB.USERs.Add(admin);
-            for (int i = 0; i < USERname.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
                 USER user = new USER();
                 user.HO = RandomInformation.GenerateHo();
                 user.TEN = RandomInformation.GenerateTen();
-                user.USERNAME = USERname[i]; //Unique reason
+                user.USERNAME = RandomInformation.GenerateUsername(user.HO, user.TEN); //Unique reason
                 user.EMAIL = user.USERNAME + "@gmail.com";
-                user.PASSWORD = Encryptor.Hash(Password[random.Next(Password.Count)]);
+                user.PASSWORD = Encryptor.Hash(Password[i]);
                 user.NGSINH = (new RandomDateTime(1970, 1995))?.Next();
                 user.GIOITINH = random.Next(2) == 0;
                 dataProvider.DB.USERs.Add(user);
@@ -196,7 +194,7 @@ namespace Seeds
                     bn.TEN = RandomInformation.GenerateTen();
                     bn.MABENHNHAN = "BN" + random.Next(10000, 50000).ToString();
                     bn.SDT = RandomInformation.GenerateSDT();
-                    bn.EMAIL = RandomInformation.GenerateEmail();
+                    bn.EMAIL = RandomInformation.GenerateEmail(bn.HO, bn.TEN);
                     bn.DIACHI = RandomInformation.GenerateAddress();
                     bn.GIOITINH = RandomInformation.GenerateGioiTinh();
                     bn.NGSINH = RandomInformation.GenerateDate(1960, 2000);
@@ -339,9 +337,13 @@ namespace Seeds
                 return new DateTime(1970,1,1);
             }
         }
-        public static string GenerateEmail()
+        public static string GenerateEmail(string Ho, string Ten)
         {
-            return Email[rd.Next(Email.Count)] + "@gmail.com";
+            return GenerateUsername(Ho, Ten) + "@gmail.com";
+        }
+        public static string GenerateUsername(string Ho, string Ten)
+        {
+            return convertToUnSign2(Ho + Ten) + rd.Next(10000).ToString();
         }
         public static string GenerateAddress()
         {
@@ -353,6 +355,25 @@ namespace Seeds
         }
 
         #endregion
-        
+        #region utils
+        public static string convertToUnSign2(string s)
+        {
+            string stFormD = s.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            for (int ich = 0; ich < stFormD.Length; ich++)
+            {
+                System.Globalization.UnicodeCategory uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(stFormD[ich]);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(stFormD[ich]);
+                }
+            }
+            sb = sb.Replace('Đ', 'D');
+            sb = sb.Replace('đ', 'd');
+            return (sb.ToString().Normalize(NormalizationForm.FormD));
+        }
+        #endregion
     }
+
+
 }

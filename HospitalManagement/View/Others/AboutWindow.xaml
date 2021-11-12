@@ -8,8 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="About" 
         Height="300" 
-        Width="500" 
-        FontFamily="Roboto"
+        Width="500"
         ResizeMode="NoResize" 
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen"
@@ -39,7 +38,7 @@
                                Margin="25 50 0 0"
                                Width="auto"
                                FontSize="16"/>
-                    <TextBlock Text="Version 6.9.9.6"
+                    <TextBlock Text="Version 1.0.0.0"
                                Foreground="White"
                                Margin="25 80 0 0"
                                Width="auto"
@@ -52,6 +51,11 @@
                                              Width="80"
                                              Margin="0 0 20 0"
                                              Height="auto"></materialDesign:PackIcon>
+                    <!--<Image Source="/Images/Logo/FHMS-logos_white.png"
+                           VerticalAlignment="Center"
+                           SnapsToDevicePixels="True"
+                           Width="auto"
+                           Height="175"/>-->
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
@@ -61,7 +65,7 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <TextBlock Text="Developer"
+                    <TextBlock Text="Tác giả"
                                FontWeight="Bold"
                                Margin="25 15 0 0"
                                FontSize="12.8"/>
@@ -70,24 +74,25 @@
                                Margin="25 21 0 0"
                                FontSize="12.8"/>
 
-                    <TextBlock Text="Nguyen Dinh Nhat Quang (Leader)"
+                    <TextBlock Text="Nguyễn Đình Nhật Quang"
                                Margin="25,38,0,0"
+                               FontWeight="SemiBold"
                                FontSize="12.8"/>
-                    <TextBlock Text="Tran Dinh Loc"
+                    <TextBlock Text="Trần Đình Lộc"
                                Margin="25,53,0,0"
                                FontSize="12.8"/>
-                    <TextBlock Text="Bui Minh Tuan"
+                    <TextBlock Text="Bùi Minh Tuấn"
                                Margin="25,68,0,0"
                                FontSize="12.8"/>
-                    <TextBlock Text="Do Phu Quang"
+                    <TextBlock Text="Đỗ Phú Quang"
                                Margin="25,83,0,0"
                                FontSize="12.8"/>
-                    <TextBlock Text="Vo Dinh Nghia"
+                    <TextBlock Text="Võ Đình Nghĩa"
                                Margin="25,98,0,0"
                                FontSize="12.8"/>
 
 
-                    <TextBlock Text="Advisor"
+                    <TextBlock Text="Giảng viên hướng dẫn"
                                FontWeight="Bold"
                                Margin="25,120,0,0"
                                FontSize="12.8"/>
@@ -96,12 +101,12 @@
                                Margin="25,126,0,0"
                                FontSize="12.8"/>
 
-                    <TextBlock Text="Nguyen Tan Toan"
+                    <TextBlock Text="Nguyễn Tấn Toàn"
                                Margin="25,144,0,0"
                                FontSize="12.8"/>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <TextBlock Text="More info"
+                    <TextBlock Text="Thông tin thêm"
                                FontWeight="Bold"
                                Margin="15 15 35 0"
                                FontSize="12.8"/>
@@ -116,7 +121,7 @@
                         <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement"
                                    TextDecorations="None"
                                    RequestNavigate="Hyperlink_RequestNavigate">
-                            HMS github site
+                            Trang Github của FHMS
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock Text="Email"
@@ -129,11 +134,11 @@
                     <TextBlock 
                                Margin="15 84 45 0"
                                FontSize="12.8">
-                        <Hyperlink NavigateUri="mailto:"
+                        <Hyperlink NavigateUri="mailto:hotrofhms@gmail.com"
                                    TextDecorations="None"
                                    RequestNavigate="Hyperlink_RequestNavigate"
                                    >
-                            fhms@gmail.com
+                            hotrofhms@gmail.com
                         </Hyperlink>
                     </TextBlock>
                     <Button IsEnabled="True"

@@ -14,7 +14,7 @@ namespace HospitalManagement.ViewModel
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
         //public int CheckedCount;
-        //public List<Patient> patients = new List<Patient>();
+        public static List<BENHNHAN> patients = DataProvider.Ins.DB.BENHNHANs.ToList();
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,11 +23,11 @@ namespace HospitalManagement.ViewModel
         //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         //}
 
-        //public List<Patient> Patients
-        //{
-        //    get { return patients; }
-        //    set { patients = value; OnPropertyChanged("Patients"); }
-        //}
+        public List<BENHNHAN> Patients
+        {
+            get { return patients; }
+            set { patients = value; OnPropertyChanged("Patients"); }
+        }
 
         //private bool? isCheckedAll;
 
