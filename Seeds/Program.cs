@@ -16,13 +16,21 @@ namespace Seeds
             CleanDatabase();
 
             SeedsUSERs();
+            Console.WriteLine("Seeds User successful");
             SeedsTANG();
+            Console.WriteLine("Seeds TANG successful");
             SeedsTo();
+            Console.WriteLine("Seeds TO successful");
             SeedsYTA();
+            Console.WriteLine("Seeds YTA successful");
             SeedsBACSI();
+            Console.WriteLine("Seeds BACSI successful");
             SeedsPHONG();
+            Console.WriteLine("Seeds PHONG successful");
             SeedsBENHNHAN();
+            Console.WriteLine("Seeds BENHNHAN successful");
             SeedsVATTU();
+            Console.WriteLine("Seeds VATTU successful");
             Console.WriteLine("Seeds successful");
             VATTU vATTU = new VATTU();
         }
