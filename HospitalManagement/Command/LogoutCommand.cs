@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.View;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace HospitalManagement.Command
         {
             Window mainWindow = parameter as Window;
             LoginWindow loginWindow = new LoginWindow();
+            MainWindowViewModel.User = null;
             Application.Current.MainWindow = loginWindow;
             mainWindow.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>

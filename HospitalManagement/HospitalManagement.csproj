@@ -111,6 +111,7 @@
     <Compile Include="Command\OpenSignUpFormCommand.cs" />
     <Compile Include="Command\RecoverAccountCommand.cs" />
     <Compile Include="Command\ResendEmailRecoverCommand.cs" />
+    <Compile Include="Command\SaveChangeAccountCommand.cs" />
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
@@ -166,10 +167,12 @@
     <Compile Include="Model\YTA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BooleanToSexConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
