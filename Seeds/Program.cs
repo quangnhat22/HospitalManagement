@@ -57,10 +57,10 @@ namespace Seeds
             dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TO', RESEED, 0)");
             // Delete BENHNHAN
             List<BENHNHAN> bnList = dataProvider.DB.BENHNHANs.ToList();
-            foreach(BENHNHAN benhnhan in bnList)
-            {
-                benhnhan.PHONGs.Clear();
-            }
+            //foreach(BENHNHAN benhnhan in bnList)
+            //{
+            //    benhnhan.PHONGs.Clear();
+            //}
             dataProvider.DB.BENHNHANs.RemoveRange(bnList);
             // Delete PHONG
             List<PHONG> phong = dataProvider.DB.PHONGs.ToList();
