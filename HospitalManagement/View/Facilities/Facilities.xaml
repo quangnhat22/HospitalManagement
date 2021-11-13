@@ -16,29 +16,20 @@
              TextOptions.TextRenderingMode="Auto">
     <Grid>
         <StackPanel Margin="50 30">
-            <WrapPanel Margin="0 0 0 10">
-                <TextBlock Text="Danh sách vật tư"
+            <TextBlock Text="Danh sách vật tư"
                    FontSize="20"
+                   Margin="0 0 0 5"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
-                <Button 
-                    Command="{Binding OpenFacilitiesForm}"
-                    CommandParameter="{Binding ElementName=facilityListUC}"
-                    Margin="10 0 0 0"     
-                    x:Name="btnAddFacility"
-                    Style="{StaticResource MaterialDesignIconButton}"
-                    Height="25" Width="25"
-                    HorizontalAlignment="Right">
-                    <materialDesign:PackIcon 
-                    Kind="Plus"
-                    Height="25"
-                    Width="25" 
-                    Foreground="White"
-                    Background="#08AEEA"
-                    />
-                </Button>
-               
-            </WrapPanel>
+            <Button
+                x:Name="btnAddFacilities"
+                Command="{Binding OpenFacilitiesForm}"
+                CommandParameter="{Binding ElementName=facilityListUC}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 0 0 5"
+                Content="Thêm vật tư"
+                Width="110"/>
             <DataGrid x:Name="dtgFacilityList"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
