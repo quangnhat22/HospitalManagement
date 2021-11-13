@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Others"
+        xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,14 +18,25 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="DoctorInformationForm" Height="600" Width="1000">
-    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
+    <Window.Resources>
+        <utils:DateTimeConverter x:Key="DateTimeConverter"/>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter"/>
+    </Window.Resources>
+    <Border 
+        BorderBrush="#35a0fe" 
+        BorderThickness="4" 
+        CornerRadius="10,10,10,10" >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Border BorderBrush="#35a0fe" Background="#35a0fe" CornerRadius="2 2 0 0"  BorderThickness="0"/>
+                <Border 
+                    BorderBrush="#35a0fe" 
+                    Background="#35a0fe" 
+                    CornerRadius="2 2 0 0"  
+                    BorderThickness="0"/>
                 <TextBlock 
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Center"
@@ -60,38 +72,108 @@
                                 VerticalAlignment="Top" 
                                 Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="Họ:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,10,0">
+                                </TextBlock>
+                                <TextBox 
+                                    Grid.Column="2"
+                                    x:Name="txbLastName"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left" 
+                                    Width="200" FontSize="20" 
+                                    materialDesign:HintAssist.Hint="Nhập Họ"
+                                    Text="{Binding Ho}"
+                                    Foreground="Black" 
+                                    TextAlignment="Left" />
+                                <TextBlock 
+                                    Grid.Column="4"
+                                    Text="Tên:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Center" 
+                                    Margin="0,0,0,0">
+                                </TextBlock>
+                                <TextBox 
+                                    Grid.Column="5"
+                                    x:Name="txbFistName"
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left" 
+                                    Width="200" FontSize="20" 
+                                    materialDesign:HintAssist.Hint="Nhập Tên"
+                                    Text="{Binding Ten}"
+                                    Foreground="Black" 
+                                    TextAlignment="Left" />
+                            </Grid>
+                            <Grid 
+                                Width="600" 
+                                Height="auto" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Top" 
+                                Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
                                     <ColumnDefinition Width="300"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock 
-                                    Text="Họ và tên:" 
+                                    Text="Ngày sinh:" 
                                     VerticalAlignment="Center" 
                                     Foreground="#35a0fe" 
                                     FontSize="20" 
                                     HorizontalAlignment="Right" 
                                     Margin="0,0,10,0">
                                 </TextBlock>
-                                <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" FontSize="20" materialDesign:HintAssist.Hint="Họ và tên" Foreground="Black" TextAlignment="Left" />
+                                <DatePicker 
+                                    x:Name="tbDateTimePicker"
+                                    Grid.Column="1" 
+                                    Margin="0,0,0,0" 
+                                    Width="200" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    materialDesign:HintAssist.Hint="Chọn ngày"
+                                    SelectedDate="{Binding NgaySinhDatePicker}"
+                                    Grid.Row ="1" 
+                                    FontSize="20" 
+                                    Foreground="Black">
+                                </DatePicker>
                             </Grid>
-                            <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                            <Grid Width="600" 
+                                  Height="auto" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Top" 
+                                  Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
-                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                    <ColumnDefinition Width="51.566"></ColumnDefinition>
+                                    <ColumnDefinition Width="248.434"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Ngày sinh:" VerticalAlignment="Center" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Right" Margin="0,0,10,0">
+                                <TextBlock Text="Giới tính:" VerticalAlignment="Center" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Left" Margin="82,0,0,0">
                                 </TextBlock>
-                                <DatePicker Grid.Column="1" Margin="0,0,0,0" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
-                            </Grid>
-                            <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="170"></ColumnDefinition>
-                                    <ColumnDefinition Width="300"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Giới tính:" VerticalAlignment="Center" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Right" Margin="0,0,10,0">
-                                </TextBlock>
-                                <ComboBox Grid.Column="1" Margin="0,0,0,0" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="Chọn giới tính"                       
-                        IsEditable="True">
+                                <ComboBox 
+                                    x:Name="cbSex"
+                                    Grid.Column="1" 
+                                    Width="160" 
+                                    HorizontalAlignment="Left" 
+                                    Foreground="Black" 
+                                    FontFamily="Inter" 
+                                    FontSize="20"
+                                    materialDesign:HintAssist.Hint="Chọn giới tính"  
+                                    Text="{Binding GioiTinh,  Converter={StaticResource BooleanToSexConverter}}"
+                                    IsEditable="True" Grid.ColumnSpan="2">
                                     <ComboBoxItem
                             Content="Nam" />
                                     <ComboBoxItem
@@ -101,23 +183,73 @@
                             <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
-                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                    <ColumnDefinition Width="43.271"></ColumnDefinition>
+                                    <ColumnDefinition Width="256.729"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Email:" VerticalAlignment="Center" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Right" Margin="0,0,10,0">
+                                <TextBlock 
+                                    Text="Email:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" FontSize="20" 
+                                    HorizontalAlignment="Left" 
+                                    Margin="106,0,0,0">
                                 </TextBlock>
-                                <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" FontSize="20" materialDesign:HintAssist.Hint="Email" Foreground="Black" TextAlignment="Left" />
+                                <TextBox 
+                                    x:Name="txbEmail"
+                                    Text="{Binding Email}"
+                                    TextWrapping="Wrap"
+                                    Grid.Column="1" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left" 
+                                    Width="350" FontSize="20" 
+                                    materialDesign:HintAssist.Hint="Email" 
+                                    Foreground="Black" TextAlignment="Left" Grid.ColumnSpan="2" />
                             </Grid>
                             <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="24.609"></ColumnDefinition>
+                                    <ColumnDefinition Width="31.104"/>
+                                    <ColumnDefinition Width="244.287"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Password:" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0">
+                                <TextBlock 
+                                    Text="Password:" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" 
+                                    Margin="0,5,10,0">
                                 </TextBlock>
-                                <StackPanel Orientation="Vertical" Grid.Column="1">
-                                    <TextBox Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Nhập mật khẩu hiện tại" Foreground="Black" TextAlignment="Left" />
-                                    <TextBox Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Nhập mật khẩu mới" Foreground="Black" TextAlignment="Left" />
-                                    <TextBox Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" FontSize="20" materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới" Foreground="Black" TextAlignment="Left" />
+                                <StackPanel 
+                                    Orientation="Vertical" 
+                                    Grid.Column="1" 
+                                    Grid.ColumnSpan="3">
+                                    <TextBox 
+                                        x:Name="txbPasswordCurent"
+                                        Margin="0,0,0,5" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Left" 
+                                        Width="300" FontSize="20" 
+                                        materialDesign:HintAssist.Hint="Nhập mật khẩu hiện tại" 
+                                        Foreground="Black" 
+                                        TextAlignment="Left" />
+                                    <TextBox 
+                                        x:Name="txbNewPassword"
+                                        Margin="0,0,0,5" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Left" 
+                                        Width="300" FontSize="20" 
+                                        materialDesign:HintAssist.Hint="Nhập mật khẩu mới" 
+                                        Foreground="Black" 
+                                        TextAlignment="Left" />
+                                    <TextBox 
+                                        x:Name="txbNewRepassword"
+                                        Margin="0,0,0,5" 
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Left" 
+                                        Width="300" FontSize="20" 
+                                        materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới" 
+                                        Foreground="Black" 
+                                        TextAlignment="Left" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>

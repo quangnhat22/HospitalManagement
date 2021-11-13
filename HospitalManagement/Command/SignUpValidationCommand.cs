@@ -47,7 +47,7 @@ namespace HospitalManagement.Command
                     PASSWORD = Encryptor.Hash(signUpWindow.txbMatKhau.Password),
                     EMAIL = signUpWindow.txbEmail.Text,
                     NGSINH = signUpWindow.txbNgaySinh.DisplayDate,
-                    GIOITINH = (gioiTinh != "Nam"),
+                    GIOITINH = (gioiTinh == "Nam"),
                 };
                 signUpFormViewModel?.db?.DB?.USERs?.Add(userInput);
                 signUpFormViewModel?.db?.DB?.SaveChanges();

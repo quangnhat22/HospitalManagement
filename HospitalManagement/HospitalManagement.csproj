@@ -168,6 +168,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\BooleanToSexConverter.cs" />
+    <Compile Include="Utils\DateTimeConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />

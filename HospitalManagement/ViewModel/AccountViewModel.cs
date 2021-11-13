@@ -38,7 +38,10 @@ namespace HospitalManagement.ViewModel
                 NgaySinh = ngsinh.ToString("dd/MM/yyyy");
             }
 
-            GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
+            if (MainWindowViewModel.User.GIOITINH.HasValue)
+            {
+                GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
+            }
             Email = MainWindowViewModel.User.EMAIL;
         }
     }
