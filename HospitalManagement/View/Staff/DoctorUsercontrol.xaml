@@ -112,7 +112,7 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn Binding="{Binding Unknown}"
                                                     Header=""
-                                                    Width="300"
+                                                    Width="270"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <DataGridTemplateColumn>
