@@ -37,17 +37,26 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            if (CheckAuthentication(loginWindowViewModel.Username, loginWindowViewModel.Password))
+            if (loginWindowViewModel.Username == null)
+            {
+                LoginFailed("Tên đăng nhập không được để trống");
+            }
+            else if (loginWindowViewModel.Password == null)
+            {
+                LoginFailed("Mật khẩu không được để trống");
+            }
+            else if (CheckAuthentication(loginWindowViewModel.Username, loginWindowViewModel.Password))
             {
                 LoginSuccessful();
                 return;
             }
-            LoginFailed();
+            else
+                LoginFailed("Sai tên đăng nhập hoặc mật khẩu");
         }
 
-        private void LoginFailed()
+        private void LoginFailed(string errorMessage)
         {
-            NotifyWindow notifyWindow = new NotifyWindow("Error", "Sai tên đăng nhập hoặc mật khẩu");
+            NotifyWindow notifyWindow = new NotifyWindow("Error", errorMessage);
             notifyWindow.Show();
         }
 

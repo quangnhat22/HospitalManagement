@@ -11,7 +11,9 @@ namespace HospitalManagement.Utils
     {
         public static string Hash(string plainText)
         {
-            return CreateMD5(CreateSHA1WithSalt(Base64Encode(plainText)));
+            if(plainText != String.Empty && plainText != null)
+                return CreateMD5(CreateSHA1WithSalt(Base64Encode(plainText)));
+            throw new ArgumentNullException(nameof(plainText));
         }
 
         private static string Base64Encode(string plainText)
