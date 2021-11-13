@@ -37,14 +37,12 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            if (CheckUsername(loginWindowViewModel.Username))
-                if (CheckPassword(loginWindowViewModel.Password))
-                {
-                    LoginSuccessful();
-                    return;
-                }    
+            if (CheckAuthentication(loginWindowViewModel.Username, loginWindowViewModel.Password))
+            {
+                LoginSuccessful();
+                return;
+            }
             LoginFailed();
-                    
         }
 
         private void LoginFailed()
@@ -73,15 +71,10 @@ namespace HospitalManagement.Command
             MainWindowViewModel.User = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
         }
 
-        private bool CheckPassword(string plainText)
+        private bool CheckAuthentication(string username, string password)
         {
-            string hashedPasswordInput = Encryptor.Hash(plainText);
-            return DataProvider.Ins.DB.USERs?.Where(p => p.PASSWORD == hashedPasswordInput).Count() > 0;
-        }
-
-        private bool CheckUsername(string username)
-        {
-            return DataProvider.Ins.DB.USERs.Where(p => p.USERNAME == username).Count() > 0;
+            string hashPassword = Encryptor.Hash(password);
+            return DataProvider.Ins.DB.USERs.Where(p => p.USERNAME == username && p.PASSWORD == hashPassword).Count() > 0;
         }
     }
 }
