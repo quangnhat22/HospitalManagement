@@ -20,28 +20,20 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Margin="50 30">
-            <WrapPanel Margin="0 0 0 10">
-                <TextBlock Text="Danh sách bệnh nhân"
+            <TextBlock Text="Danh sách bệnh nhân"
                    FontSize="20"
+                   Margin="0 0 0 5"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
-                <Button 
-                    Margin="10 0 0 0"
-                    Command="{Binding OpenPatientForm}"
-                    CommandParameter="{Binding ElementName=patientListUC}"
-                    x:Name="btnAddPatient"
-                    Style="{StaticResource MaterialDesignIconButton}"
-                    Height="25" Width="25"
-                    HorizontalAlignment="Right">
-                    <materialDesign:PackIcon 
-                    Kind="Plus"
-                    Height="25"
-                    Width="25" 
-                    Foreground="White"
-                    Background="#08AEEA"
-                    />
-                </Button>
-            </WrapPanel>
+            <Button
+                x:Name="btnAddDoctor"
+                Command="{Binding OpenPatientForm}"
+                CommandParameter="{Binding ElementName=patientListUC}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 0 0 5"
+                Content="Thêm bệnh nhân"
+                Width="140"/>
             <DataGrid x:Name="dtgPatientList"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
