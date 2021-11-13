@@ -15,7 +15,7 @@
              d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3.5*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
@@ -26,7 +26,7 @@
             </Style>
         </Grid.Resources>
 
-        <WrapPanel Grid.Row="0" Margin="0 20 0 0" HorizontalAlignment="Center" Background="#F6F6F8">
+        <WrapPanel Grid.Row="0" Margin="0 10 0 0" HorizontalAlignment="Center" Background="#F6F6F8">
             <!--Pannel-->
             <Border BorderBrush="White" BorderThickness="5" Margin="20 0" CornerRadius="15">
                 <materialDesign:Card
@@ -59,12 +59,12 @@
                             <TextBlock 
                                 x:Name="txbRevenueThisMonth"
                                 Grid.Row="1"
-                                Text="50"
+                                Text="{Binding StaffCount}"
                                 HorizontalAlignment="Center"
                                 Margin="5,0.8,0,4.8" 
                                 TextWrapping="Wrap" 
                                 VerticalAlignment="Center" 
-                                FontSize="36" 
+                                FontSize="40" 
                                 FontWeight="Bold" 
                                 Foreground="white" />
                             <TextBlock
@@ -122,15 +122,15 @@
                                 FontWeight="Medium"/>
                             <TextBlock 
                                 Grid.Row="1"
-                                Text="100"
+                                Text="{Binding PatientCount}"
                                 HorizontalAlignment="Center"
                                 Margin="5,0.8,0,4.8" 
                                 TextWrapping="Wrap" 
                                 VerticalAlignment="Center" 
-                                FontSize="36" 
+                                FontSize="40" 
                                 FontWeight="Bold" 
                                 Foreground="white" />
-                            <TextBlock
+                            <!--<TextBlock
                                 Text="{Binding ThisMonth}"
                                 Grid.Row="2"
                                 HorizontalAlignment="Left"
@@ -139,7 +139,7 @@
                                 VerticalAlignment="Center" 
                                 FontSize="16" 
                                 FontWeight="Medium" 
-                                Foreground="White" />
+                                Foreground="White" />-->
                         </Grid>
                         <Grid 
                                 Width="100" 
@@ -184,12 +184,12 @@
                                 FontWeight="Medium"/>
                             <TextBlock 
                                 Grid.Row="1"
-                                Text="2000"
+                                Text="{Binding BedCount}"
                                 HorizontalAlignment="Center"
                                 Margin="5,0.8,0,4.8" 
                                 TextWrapping="Wrap" 
                                 VerticalAlignment="Center" 
-                                FontSize="36" 
+                                FontSize="40" 
                                 FontWeight="Bold" 
                                 Foreground="white" />
                             <TextBlock
@@ -279,7 +279,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="10">
                 <materialDesign:Card Margin="30,0,30,10" UniformCornerRadius="20">
-                    <StackPanel>
+                    <StackPanel Margin="0,0,-0.2,35.6">
                         <Grid>
                             <TextBlock Margin="20" HorizontalAlignment="Left" FontWeight="SemiBold" Text="Tình hình COVID-19" FontSize="18"></TextBlock>
                             <StackPanel Margin="0 0 15 0" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -292,34 +292,164 @@
                             </StackPanel>
                         </Grid>
                         <!--chart-->
-                        <lvc:CartesianChart Series="{Binding SeriesCollect}" Foreground="Black" Height="414" Margin="15 30 15 20">
+                        <!--<lvc:CartesianChart Series="{Binding SeriesCollect}" Foreground="Black" Height="414" Margin="15 30 15 20">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Labels="{Binding Labels}" Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
                             </lvc:CartesianChart.AxisX>
                             <lvc:CartesianChart.AxisY>
                                 <lvc:Axis LabelFormatter="{Binding Formatter}" />
                             </lvc:CartesianChart.AxisY>
-                        </lvc:CartesianChart>
+                        </lvc:CartesianChart>-->
+                        <Grid Height="457" Margin="0,0,-0.2,0">
+                            <Grid Margin="0,0,0,20">
+                                <Grid.Resources>
+                                    <Style x:Key="CleanSeparator" TargetType="lvc:Separator">
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap">
+                                </TextBlock>
+                                <lvc:CartesianChart Grid.Row="2" Margin="0,0.2,-0.2,18.8">
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis Foreground="DodgerBlue" Title="Blue Axis"/>
+                                        <lvc:Axis Foreground="IndianRed" Title="Red Axis" Position="RightTop">
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Style="{StaticResource CleanSeparator}"></lvc:Separator>
+                                            </lvc:Axis.Separator>
+                                        </lvc:Axis>
+                                        <lvc:Axis Foreground="DarkOliveGreen" Title="Green Axis" Position="RightTop">
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Style="{StaticResource CleanSeparator}"></lvc:Separator>
+                                            </lvc:Axis.Separator>
+                                        </lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                    <lvc:CartesianChart.Series>
+                                        <lvc:LineSeries Values="1,5,3,5,3" ScalesYAt="0"/>
+                                        <!--Scales at blue axis, Axis[0]-->
+                                        <lvc:LineSeries Values="20,30,70,20,10"  ScalesYAt="1"/>
+                                        <!--Scales at red axis, Axis[1]-->
+                                        <lvc:LineSeries Values="600,300,200,600,800"  ScalesYAt="2"/>
+                                        <!--Scales at green axis, Axis[2]-->
+                                    </lvc:CartesianChart.Series>
+                                </lvc:CartesianChart>
+                            </Grid>
+                        </Grid>
                     </StackPanel>
                 </materialDesign:Card>
             </Grid>
             <Grid Grid.Column="1">
-                <Grid Margin="0">
-                    <materialDesign:Card Margin="10,10,25,20" UniformCornerRadius="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0">
+                    <materialDesign:Card 
+                        Margin="10,10,25,20" 
+                        UniformCornerRadius="20">
                         <StackPanel>
                             <Grid>
-                                <TextBlock Margin="20" HorizontalAlignment="Left" FontWeight="SemiBold" Text="Số giường bệnh" FontSize="18"></TextBlock>
+                                <TextBlock 
+                                    Margin="20 10 20 0" 
+                                    HorizontalAlignment="Left" 
+                                    FontWeight="SemiBold" 
+                                    Text="Số giường bệnh" 
+                                    FontSize="18">
+                                </TextBlock>
                             </Grid>
                             <!--chart  DataClick="Chart_OnDataClick"-->
-                            <lvc:PieChart LegendLocation="Bottom" Hoverable="False" DataTooltip="{x:Null}" Height="414" Width="350">
+                            <lvc:PieChart 
+                                LegendLocation="Right" 
+                                Hoverable="False" 
+                                DataTooltip="{x:Null}" 
+                                Height="189" 
+                                Margin="45,0,10.2,0">
                                 <lvc:PieChart.Series>
-                                    <lvc:PieSeries Title="Còn trống" Values="3" DataLabels="True"
+                                    <lvc:PieSeries 
+                                        Title="Còn trống" 
+                                        Values="3" 
+                                        DataLabels="True"
                                            />
                                     <!--LabelPoint="{Binding PointLabel}"-->
-                                    <lvc:PieSeries Title="Đã sử dụng" Values="4" DataLabels="True" 
+                                    <lvc:PieSeries 
+                                        Title="Đã sử dụng" 
+                                        Values="4" 
+                                        DataLabels="True" 
                                      />
                                 </lvc:PieChart.Series>
                             </lvc:PieChart>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0">
+                    <materialDesign:Card Margin="10,10,25,20" UniformCornerRadius="20">
+                        <StackPanel RenderTransformOrigin="0.505,0.533">
+                            <!--<Grid>
+                                
+                            </Grid>-->
+                            <!--chart  DataClick="Chart_OnDataClick"-->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel 
+                                    Grid.Row="0" 
+                                    Orientation="Horizontal" 
+                                    Margin="0,0,0.2,0.2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock 
+                                            Grid.Row="1"
+                                            Margin="10 5 20 0" 
+                                            HorizontalAlignment="Left" 
+                                            FontWeight="SemiBold" 
+                                            Text="Trung bình bệnh nhân theo ngày" 
+                                            FontSize="16">
+                                        </TextBlock>
+                                        <TextBlock 
+                                            VerticalAlignment="Center" 
+                                            Margin="10 0 0 0">Search
+                                        </TextBlock>
+                                        <TextBox 
+                                            x:Name="Query" 
+                                            VerticalContentAlignment="Center" 
+                                            Width="77" Height="30" 
+                                            Margin="10,0,0,0.4" 
+                                        />
+                                    </StackPanel>
+
+
+                                    <!--TextChanged="TextBoxBase_OnTextChanged"-->
+                                </StackPanel>
+                                <lvc:CartesianChart 
+                                    Margin="14,9.6,13.2,-198.6" Grid.Row="2" >
+                                    <lvc:CartesianChart.Series>
+                                        <lvc:ColumnSeries 
+                                            Title="2016 Population by City" 
+                                            Values="{Binding Results}"
+                                            Configuration="{Binding Mapper}"/>
+                                    </lvc:CartesianChart.Series>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis 
+                                            LabelsRotation="-20" 
+                                            Labels="{Binding Labels}" 
+                                            DisableAnimations="True">
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Step="1"></lvc:Separator>
+                                            </lvc:Axis.Separator>
+                                        </lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis LabelFormatter="{Binding MillionFormatter}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                </lvc:CartesianChart>
+
+                            </Grid>
                         </StackPanel>
                     </materialDesign:Card>
                 </Grid>
