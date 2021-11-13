@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
              x:Name="patientListUC"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -14,6 +15,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </UserControl.Resources>
     <Grid>
         <StackPanel Margin="50 30">
             <WrapPanel Margin="0 0 0 10">
@@ -109,17 +113,17 @@
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
                                                    Header="Giới tính"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sinh"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGNHAPVIEN}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày nhập viện"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
