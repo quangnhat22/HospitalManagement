@@ -130,7 +130,7 @@
                                                    Width="120"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Room}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Phong}"
                                                    Header="Phòng"
                                                    Width="90"
                                                    ElementStyle="{StaticResource ElementStyle}"

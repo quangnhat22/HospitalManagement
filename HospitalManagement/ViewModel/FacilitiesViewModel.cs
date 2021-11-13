@@ -14,7 +14,7 @@ namespace HospitalManagement.ViewModel
     class FacilitiesViewModel : BaseViewModel, INotifyPropertyChanged
     {
         //public int CheckedCount;
-        //public List<Facility> facilities = new List<Facility>();
+        public static List<VATTU> facilities = DataProvider.Ins.DB.VATTUs.ToList();
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,11 +23,11 @@ namespace HospitalManagement.ViewModel
         //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         //}
 
-        //public List<Facility> Facilities
-        //{
-        //    get { return facilities; }
-        //    set { facilities = value; OnPropertyChanged("Facilities"); }
-        //}
+        public List<VATTU> Facilities
+        {
+            get { return facilities; }
+            set { facilities = value; OnPropertyChanged("Facilities"); }
+        }
 
         //private bool? isCheckedAll;
 

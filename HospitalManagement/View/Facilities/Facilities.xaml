@@ -90,22 +90,22 @@
                                                     Header="ID"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding DisplayName}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding DISPLAYNAME}"
                                                    Header="Tên vật tư"
                                                    Width="250"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Type}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding LOAIVATTU}"
                                                    Header="Loại vật tư"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding ManufactureDate}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding NGSX, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sản xuất"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Amount}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding SLUONG}"
                                                    Header="Số lượng"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
@@ -115,9 +115,9 @@
                                                    Width="130"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Note}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding GHICHU}"
                                                    Header="Ghi chú"
-                                                   Width="370"
+                                                   Width="330"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                 </DataGrid.Columns>

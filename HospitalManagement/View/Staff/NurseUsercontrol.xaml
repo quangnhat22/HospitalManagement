@@ -8,6 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="14"
@@ -15,6 +16,9 @@
              TextOptions.TextRenderingMode="Auto"
              d:DesignHeight="600" d:DesignWidth="1387"
              x:Name="nurseListUC">
+    <UserControl.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </UserControl.Resources>
     <Grid MaxHeight="580">
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
             <StackPanel>

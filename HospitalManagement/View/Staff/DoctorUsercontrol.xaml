@@ -8,6 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="14"
@@ -15,6 +16,9 @@
              TextOptions.TextRenderingMode="Auto"
              d:DesignHeight="600" d:DesignWidth="1387"
              x:Name="doctorListUC">
+    <UserControl.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </UserControl.Resources>
     <Grid MaxHeight="580">
         <StackPanel>
             <DataGrid x:Name="dtgDoctorList" VirtualizingPanel.ScrollUnit="Pixel"
@@ -75,48 +79,36 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <materialDesign:DataGridTextColumn Binding="{Binding ID}"
-                                                   Header="ID"
+                    <materialDesign:DataGridTextColumn Binding="{Binding CMND_CCCD}"
+                                                    Header="CMND"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <materialDesign:DataGridTextColumn Binding="{Binding HO}"
+                                                    Header="Họ"
+                                                    Width="100"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding TEN}"
+                                                   Header="Tên"
+                                                   Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                    <materialDesign:DataGridTextColumn 
-                                                   Header="Tên bác sĩ"
-                                                   Width="250"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="FirstName" />
-                                <Binding Path="LastName" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </materialDesign:DataGridTextColumn>
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding Sex}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
                                                    Header="Giới tính"
-                                                   Width="120"
+                                                   Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding Birthday}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sinh"
-                                                   Width="120"
+                                                   Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding Specialization}"
-                                                   Header="Chuyên khoa"
-                                                   Width="250"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding Rule}"
-                                                   Header="Vai trò"
-                                                   Width="250"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-
+                    <materialDesign:DataGridTextColumn Binding="{Binding TO}"
+                                                    Header="Tổ"
+                                                    Width="100"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <TextBlock Text="Thông tin"/>
