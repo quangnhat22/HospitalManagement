@@ -192,7 +192,9 @@ namespace Seeds
         private static void SeedsBENHNHAN()
         {
             List<PHONG> phongList = dataProvider.DB.PHONGs.ToList();
-            foreach(PHONG p in phongList)
+            List<string> tinhTrang = new List<string>() {"Không triệu chứng", "Có triệu chứng", "Triệu chứng trở nặng" };
+            List<string> benhNen = new List<string>() { "Cao huyết áp", "Viêm phổi", "Đau dạ dày", "Béo phì" };
+            foreach (PHONG p in phongList)
             {
                 for(int i = 0; i < random.Next(5); i++)
                 {
@@ -209,6 +211,8 @@ namespace Seeds
                     bn.GIUONGBENH = (i + 1).ToString();
                     bn.NGNHAPVIEN = RandomInformation.GenerateDate(2020, 2021);
                     bn.QUOCTICH = "Việt Nam";
+                    bn.TINHTRANG = tinhTrang[random.Next(tinhTrang.Count)];
+                    bn.BENHNEN = benhNen[random.Next(benhNen.Count)];
                     bn.PHONG = p;
                     dataProvider.DB.BENHNHANs.Add(bn);
                 }
