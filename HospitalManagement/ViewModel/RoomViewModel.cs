@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using HospitalManagement.View.Room;
 
 namespace HospitalManagement.ViewModel
 {
@@ -13,24 +15,44 @@ namespace HospitalManagement.ViewModel
             public string ten { get; set; }
             public string tinhtrang { get; set; }
         }
-        private List<Patient> lp = new List<Patient>();
 
-        public List<Patient> LP
+        public class Room
         {
-            get { return lp; }
-            set { lp = value; OnPropertyChanged("LP"); }
+            public int soluong { get; set; }
+            public int soluongmax { get; set; }
+            public string ten { get; set; }
+        }
+
+        private List<Patient> patientList = new List<Patient>();
+        public List<Patient> PatientList
+        {
+            get { return patientList; }
+            set { patientList = value; OnPropertyChanged("PatientList"); }
+        }
+
+        private List<Room> roomList = new List<Room>();
+        public List<Room> RoomList
+        {
+            get { return roomList; }
+            set { roomList = value; OnPropertyChanged("RoomList"); }
         }
 
         public RoomViewModel()
         {
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            lp.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
+            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
         }
     }
 }

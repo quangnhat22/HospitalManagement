@@ -11,341 +11,86 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel Orientation="Horizontal" Grid.Column="0">
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
+        <ListBox ItemsSource="{Binding RoomList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="White" BorderBrush="White">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="20"  
+                            Background="White" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Margin="20" Cursor="Hand">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Direction="-90"
                               RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" 
-                  Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                        </Border.Effect>
+                        <Grid Background="Transparent" Width="300">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Grid Width="50" 
+                                      Height="50" 
+                                      HorizontalAlignment="Left" 
+                                      Margin="20">
+                                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                                          Height="50"
                                          Width="50"
-                                         Value="6" Maximum="8" Background="{x:Null}" Foreground="#FF00FF1F"/>
-                            <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
+                                         Value="{Binding soluong}" 
+                                         Maximum="{Binding soluongmax}" 
+                                         Background="{x:Null}" Foreground="#2AE2BE"/>
+                                    <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                                <TextBlock Grid.Row="1" 
+                                           Text="Phòng A304 - A18" 
+                                           FontWeight="Bold" FontSize="20" 
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
+                            <StackPanel Grid.Row="2" 
                                 Orientation="Horizontal" 
                                 HorizontalAlignment="Right" 
                                 Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                         Height="50"
-                                         Width="50"
-                                         Value="8" Maximum="8" Foreground="#FFFF4000"/>
-                            <TextBlock Text="8/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
+                                    </Border.Background>
+                                </Border>
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
+                                    </Border.Background>
+                                </Border>
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
+                                    </Border.Background>
+                                </Border>
+                            </StackPanel>
                         </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right" 
-                                Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" 
-                  Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                         Height="50"
-                                         Width="50"
-                                         Value="6" Maximum="8" Background="{x:Null}" Foreground="#FF00FF1F"/>
-                            <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right" 
-                                Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                         Height="50"
-                                         Width="50"
-                                         Value="8" Maximum="8" Foreground="#FFFF4000"/>
-                            <TextBlock Text="8/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right" 
-                                Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" 
-                  Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                         Height="50"
-                                         Width="50"
-                                         Value="6" Maximum="8" Background="{x:Null}" Foreground="#FF00FF1F"/>
-                            <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right" 
-                                Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-            <Border CornerRadius="20" 
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Margin="20">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
-                </Border.Effect>
-                <Grid Background="Transparent" Width="300">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Grid Width="50" 
-                              Height="50" 
-                              HorizontalAlignment="Left" 
-                              Margin="20">
-                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                         Height="50"
-                                         Width="50"
-                                         Value="8" Maximum="8" Foreground="#FFFF4000"/>
-                            <TextBlock Text="8/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                        <TextBlock Grid.Row="1" 
-                               Text="Phòng A304 - A18" 
-                               FontWeight="Bold" FontSize="20" 
-                               VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
-                    <StackPanel Grid.Row="2" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right" 
-                                Margin="0 0 20 20">
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                            </Border.Background>
-                        </Border>
-                        <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
-                            <Border.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </WrapPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
@@ -357,7 +102,7 @@
                        FontWeight="Bold"
                        Margin="30"/>
             <DataGrid Grid.Row="1" 
-                      ItemsSource="{Binding LP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      ItemsSource="{Binding PatientList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       GridLinesVisibility="None" 
                       CanUserResizeRows="False" 
@@ -370,8 +115,7 @@
                         <DataGridTemplateColumn.Header>
                             <TextBlock Text="Danh sách bệnh nhân"
                                        FontSize="20"
-                                       FontWeight="SemiBold"
-                                       />
+                                       FontWeight="SemiBold"/>
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
