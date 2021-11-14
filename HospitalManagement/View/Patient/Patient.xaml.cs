@@ -26,5 +26,11 @@ namespace HospitalManagement.View
             InitializeComponent();
             this.DataContext = new PatientViewModel();
         }
+
+        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            BindingExpression binding = txbSearchBox.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
+        }
     }
 }

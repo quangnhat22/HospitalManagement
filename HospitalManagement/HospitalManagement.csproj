@@ -171,6 +171,7 @@
     <Compile Include="Utils\DateTimeConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="Utils\RemoveVietnameseSign.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />

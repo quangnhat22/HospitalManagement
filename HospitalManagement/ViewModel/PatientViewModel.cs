@@ -8,20 +8,17 @@ using System.Windows.Input;
 using HospitalManagement.Model;
 using System.ComponentModel;
 using HospitalManagement.Command;
+using HospitalManagement.Utils;
 
 namespace HospitalManagement.ViewModel
 {
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        //public int CheckedCount;
         public static List<BENHNHAN> patients = DataProvider.Ins.DB.BENHNHANs.ToList();
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void OnPropertyChanged(string name)
-        //{
-        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-        //}
+        private List<String> filterList = new List<string> { "CMND", "Họ", "Tên", "Họ và Tên" };
+        private string selectedFilter;
+        private string searchBox;
 
         public List<BENHNHAN> Patients
         {
@@ -29,91 +26,56 @@ namespace HospitalManagement.ViewModel
             set { patients = value; OnPropertyChanged("Patients"); }
         }
 
-        //private bool? isCheckedAll;
-
-        //public bool? IsCheckedAll
-        //{
-        //    get { return isCheckedAll; }
-        //    set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
-        //}
         public ICommand OpenPatientForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowPatientInfomationCommand { get; set; }
+        public string SearchBox
+        {
+            get => searchBox;
+            set
+            {
+                searchBox = value;
+                OnPropertyChanged("SearchBox");
+                Filtering();
+            }
+        }
+
+        private void Filtering()
+        {
+            if(SearchBox == string.Empty || SearchBox == null)
+            {
+                Patients = DataProvider.Ins.DB.BENHNHANs.ToList();
+            }
+            else
+            {
+                string RemoveSignString = RemoveVietnameseSign.convertToUnSign2(SelectedFilter).ToLower();
+                if (RemoveSignString == "cmnd")
+                {
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.CMND_CCCD.Contains(searchBox)).ToList();
+                }
+                else if (RemoveSignString == "ho")
+                {
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.HO.Contains(searchBox)).ToList();
+                }
+                else if (RemoveSignString == "ten")
+                {
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.TEN.Contains(searchBox)).ToList();
+                }
+                else if (RemoveSignString == "ho va ten")
+                {
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.HO + " " + p.TEN).Contains(searchBox)).ToList();
+                }
+            }
+        }
+
+        public List<string> FilterList { get => filterList; set => filterList = value; }
+        public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
 
         public PatientViewModel()
         {
-            //Patients.Add(new Patient()
-            //{
-            //    ID = 1,
-            //    Name = "Quang 2k4",
-            //    Sex = SexType.Nam,
-            //    Birthday = (new DateTime(2004, 1, 1)).ToString("dd/MM/yyyy"),
-            //    DateCheckIn = (new DateTime(2020, 1, 1)).ToString("dd/MM/yyyy"),
-            //    Status = "Đang điều trị",
-            //});
-            //Patients.Add(new Patient()
-            //{
-            //    ID = 2,
-            //    Name = "Quang 2k2",
-            //    Sex = SexType.Nam,
-            //    Birthday = (new DateTime(2002, 1, 1)).ToString("dd/MM/yyyy"),
-            //    DateCheckIn = (new DateTime(2019, 1, 1)).ToString("dd/MM/yyyy"),
-            //    Status = "Đang điều trị",
-            //});
-            //Patients.Add(new Patient()
-            //{
-            //    ID = 3,
-            //    Name = "Lộc wibu",
-            //    Sex = SexType.Nam,
-            //    Birthday = (new DateTime(2002, 1, 1)).ToString("dd/MM/yyyy"),
-            //    DateCheckIn = (new DateTime(2020, 2, 1)).ToString("dd/MM/yyyy"),
-            //    Status = "Đang điều trị",
-            //});
-            //Patients.Add(new Patient()
-            //{
-            //    ID = 4,
-            //    Name = "Nghĩa ăn hại",
-            //    Sex = SexType.Nam,
-            //    Birthday = (new DateTime(2002, 1, 1)).ToString("dd/MM/yyyy"),
-            //    DateCheckIn = (new DateTime(2021, 1, 1)).ToString("dd/MM/yyyy"),
-            //    Status = "Đang điều trị",
-            //});
-            //Patients.Add(new Patient()
-            //{
-            //    ID = 5,
-            //    Name = "Tuấn khỉ",
-            //    Sex = SexType.Nam,
-            //    Birthday = (new DateTime(2002, 1, 1)).ToString("dd/MM/yyyy"),
-            //    DateCheckIn = (new DateTime(2021, 1, 3)).ToString("dd/MM/yyyy"),
-            //    Status = "Đang điều trị",
-            //});
-            //CheckedCount = 0;
-            //IsCheckedAll = false;
-
-            //ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
-
-            //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
-            //{
-            //    bool allcheckbox = (p.IsChecked == true);
-            //    for (int i = 0; i < Patients.Count; i++)
-            //        Patients[i].IsChecked = allcheckbox;
-            //});
-
-            //SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
-            //{
-            //    IsCheckedAll = null;
-            //    if (p.IsChecked == true)
-            //        CheckedCount++;
-            //    else
-            //        CheckedCount--;
-
-            //    if (CheckedCount == patients.Count)
-            //        IsCheckedAll = true;
-            //    else
-            //        if (CheckedCount == 0)
-            //        IsCheckedAll = false;
-            //});
+            SelectedFilter = filterList[0];
+            SearchBox = String.Empty;
             OpenPatientForm = new OpenPatientFormCommand();
         }
     }
