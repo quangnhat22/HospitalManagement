@@ -20,7 +20,7 @@
             <ColumnDefinition Width="294*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="/HospitalManagement;component/Images/Background.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Building.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <StackPanel Background="#7FFFFFFF"
                     Margin="542,-18,178.2,348.4"
