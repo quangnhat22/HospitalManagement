@@ -22,10 +22,10 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class PatientInformationForm : Window
     {
-        public PatientInformationForm()
+        public PatientInformationForm(BENHNHAN bn)
         {
             InitializeComponent();
-            //this.DataContext = new PatientInformationViewModel(p);
+            this.DataContext = new PatientInformationViewModel(bn);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
