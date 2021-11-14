@@ -13,8 +13,12 @@ namespace HospitalManagement.ViewModel
 {
     class DoctorViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        //public int CheckedCount;
-        //public List<Doctor> doctors = new List<Doctor>();
+        public static List<BACSI> doctors = DataProvider.Ins.DB.BACSIs.ToList();
+        public List<BACSI> Doctors
+        {
+            get { return doctors; }
+            set { doctors = value; OnPropertyChanged("Doctors"); }
+        }
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
