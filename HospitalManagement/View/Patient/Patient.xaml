@@ -161,11 +161,6 @@
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <!--<materialDesign:DataGridTextColumn Binding="{Binding DoctorName}"
-                                                   Header="Bác sĩ phụ trách"
-                                                   Width="200"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>-->
                     <materialDesign:DataGridTextColumn Binding="{Binding TINHTRANG}"
                                                    Header="Tình trạng"
                                                    Width="120"
