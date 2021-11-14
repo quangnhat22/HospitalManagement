@@ -34,6 +34,7 @@ namespace HospitalManagement.ViewModel
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowPatientInfomationCommand { get; set; }
         public ICommand SearchPatientCommand { get; set; }
+        public ICommand DeletePatientCommand { get; set; }
         public string SearchBox
         {
             get => searchBox;
@@ -60,6 +61,7 @@ namespace HospitalManagement.ViewModel
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
+            DeletePatientCommand = new DeletePatientCommand();
         }
     }
 }

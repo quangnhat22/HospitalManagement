@@ -92,7 +92,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                             </TextBlock>
-                            <TextBlock Text="Ngày sinh" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Text="{Binding BenhNhan.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
@@ -135,7 +135,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Ngày nhập viện:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
                             </TextBlock>
-                            <TextBlock Text="Ngày nhập viện" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                            <TextBlock Text="{Binding BenhNhan.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                             </TextBlock>
                         </Grid>
                         <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">

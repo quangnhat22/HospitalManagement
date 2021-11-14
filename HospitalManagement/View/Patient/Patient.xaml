@@ -218,7 +218,7 @@
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
-                                                                                     Path=DataContext.ShowPatientInfomationCommand}"
+                                                                                     Path=DataContext.DeletePatientCommand}"
                                                                    CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
