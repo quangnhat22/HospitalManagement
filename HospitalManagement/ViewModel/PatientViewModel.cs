@@ -22,7 +22,7 @@ namespace HospitalManagement.ViewModel
                                                             /*, "Họ và Tên"*/ };
         private string selectedFilter;
         private string searchBox;
-
+        private string cmnd;
         public List<BENHNHAN> Patients
         {
             get { return patients; }
@@ -51,6 +51,7 @@ namespace HospitalManagement.ViewModel
 
         public List<string> FilterList { get => filterList; set => filterList = value; }
         public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
+        public string CMND { get => cmnd; set => cmnd = value; }
 
         public PatientViewModel()
         {
@@ -58,6 +59,7 @@ namespace HospitalManagement.ViewModel
             SearchBox = String.Empty;
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
+            ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
         }
     }
 }
