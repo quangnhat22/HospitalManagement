@@ -34,18 +34,18 @@ namespace HospitalManagement.View.Staff
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAddDoctor.Visibility = btnAddNurse.Visibility = Visibility.Collapsed;
+            DoctorStackPanelComponent.Visibility = NurseStackPanelComponent.Visibility = Visibility.Collapsed;
             TabControl tabControl = sender as TabControl;
             TabItem tabItem = tabControl.SelectedItem as TabItem;
             if(tabItem != null)
             {
                 if(tabItem.Tag?.ToString() == "Doctor")
                 {
-                    btnAddDoctor.Visibility= Visibility.Visible;
+                    DoctorStackPanelComponent.Visibility= Visibility.Visible;
                 }
                 else if(tabItem.Tag?.ToString() == "Nurse")
                 {
-                    btnAddNurse.Visibility= Visibility.Visible;
+                    NurseStackPanelComponent.Visibility= Visibility.Visible;
                 }
             }
         }

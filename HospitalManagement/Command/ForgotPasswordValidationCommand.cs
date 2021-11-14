@@ -57,7 +57,7 @@ namespace HospitalManagement.Command
                 VerifiedCode = rd.Next(0, 999999);
                 EmailToAddress = mw.tbMailAddress.Text;
                 
-                sendEmail(mw);
+                SendEmail(mw);
                 Application.Current.MainWindow = recoverWindow;
                 window.Close();
                 Thread windowThread = new Thread(new ThreadStart(() =>
@@ -94,7 +94,7 @@ namespace HospitalManagement.Command
             }
             return true;
         }
-        public void sendEmail(ForgotPasswordWindow mw)
+        public void SendEmail(ForgotPasswordWindow mw)
         {
             try
             {
