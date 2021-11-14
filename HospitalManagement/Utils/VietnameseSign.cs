@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalManagement.Utils
 {
-    public class RemoveVietnameseSign
+    public class VietnameseSign
     {
         public static string convertToUnSign2(string s)
         {
@@ -23,6 +23,14 @@ namespace HospitalManagement.Utils
             sb = sb.Replace('Đ', 'D');
             sb = sb.Replace('đ', 'd');
             return (sb.ToString().Normalize(NormalizationForm.FormD));
+        }
+
+        public static bool ContainsUnsigned(string Container, string BeContained)
+        {
+            if (convertToUnSign2(Container).IndexOf(convertToUnSign2(BeContained), StringComparison.CurrentCultureIgnoreCase) >= 0)
+                return true;
+            else
+                return false;
         }
     }
 }

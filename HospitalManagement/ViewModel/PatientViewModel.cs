@@ -16,7 +16,10 @@ namespace HospitalManagement.ViewModel
     {
         public static List<BENHNHAN> patients = DataProvider.Ins.DB.BENHNHANs.ToList();
 
-        private List<String> filterList = new List<string> { "CMND", "Họ", "Tên", "Họ và Tên" };
+        private List<String> filterList = new List<string> { "CMND", 
+                                                            "Họ", 
+                                                            "Tên"
+                                                            /*, "Họ và Tên"*/ };
         private string selectedFilter;
         private string searchBox;
 
@@ -35,7 +38,7 @@ namespace HospitalManagement.ViewModel
             get => searchBox;
             set
             {
-                searchBox = value;
+                searchBox = value.Trim();
                 OnPropertyChanged("SearchBox");
                 Filtering();
             }
@@ -49,22 +52,34 @@ namespace HospitalManagement.ViewModel
             }
             else
             {
-                string RemoveSignString = RemoveVietnameseSign.convertToUnSign2(SelectedFilter).ToLower();
+                string RemoveSignString = VietnameseSign.convertToUnSign2(SelectedFilter).ToLower();
                 if (RemoveSignString == "cmnd")
                 {
                     Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.CMND_CCCD.Contains(searchBox)).ToList();
                 }
                 else if (RemoveSignString == "ho")
                 {
-                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.HO.Contains(searchBox)).ToList();
+                    //Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.HO.Contains(searchBox)).ToList();
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(delegate (BENHNHAN bn)
+                    {
+                        return VietnameseSign.ContainsUnsigned(bn.HO, searchBox);
+                    }).AsQueryable().ToList();
                 }
                 else if (RemoveSignString == "ten")
                 {
-                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.TEN.Contains(searchBox)).ToList();
+                    //Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.TEN.Contains(searchBox)).ToList();
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(delegate (BENHNHAN bn)
+                    {
+                        return VietnameseSign.ContainsUnsigned(bn.TEN, searchBox);
+                    }).AsQueryable().ToList();
                 }
                 else if (RemoveSignString == "ho va ten")
                 {
-                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.HO + " " + p.TEN).Contains(searchBox)).ToList();
+                    Patients = DataProvider.Ins.DB.BENHNHANs.Where(delegate (BENHNHAN bn)
+                    {
+                        // Has some problems
+                        return VietnameseSign.ContainsUnsigned(bn.HO + " " + bn.TEN, searchBox);
+                    }).AsQueryable().ToList();
                 }
             }
         }

@@ -69,7 +69,6 @@
                 x:Name="btnAddDoctor"
                 Command="{Binding OpenPatientForm}"
                 CommandParameter="{Binding ElementName=patientListUC}"
-                
                 Content="Thêm bệnh nhân"
                 Width="140"/>
             </StackPanel>
@@ -169,11 +168,18 @@
                                                    Width="120"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Room}"
+                    <materialDesign:DataGridTextColumn
                                                    Header="Phòng"
                                                    Width="90"
                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}.{1}">
+                                <Binding Path="PHONG.TANG.SOTANG" />
+                                <Binding Path="PHONG.SOPHONG" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <TextBlock Text="Thông tin"/>
