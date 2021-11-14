@@ -112,6 +112,7 @@
     <Compile Include="Command\RecoverAccountCommand.cs" />
     <Compile Include="Command\ResendEmailRecoverCommand.cs" />
     <Compile Include="Command\SaveChangeAccountCommand.cs" />
+    <Compile Include="Command\SearchPatientCommand.cs" />
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />

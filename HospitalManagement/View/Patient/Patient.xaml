@@ -15,6 +15,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchPatientCommand}"/>
+    </UserControl.InputBindings>
     <UserControl.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </UserControl.Resources>
@@ -42,7 +45,7 @@
                     Width="130">
                 </ComboBox>
                 <TextBox
-                            Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                            Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txbSearchBox"
                             Margin="10 10"
                             Padding="3 5 0 0"
@@ -55,7 +58,7 @@
                 <Button
                     Margin="-16 0 20 0"
                     Padding="8"
-                    Click="ButtonSearch_Click">
+                    Command="{Binding SearchPatientCommand}">
                     <Button.Content>
                         <materialDesign:PackIcon 
                             Kind="Search"/>
