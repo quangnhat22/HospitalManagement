@@ -94,6 +94,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\CloseWindowCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\InitPieChartCommand.cs" />
     <Compile Include="Command\DeletePatientCommand.cs" />
     <Compile Include="Command\ForgotPasswordValidationCommand.cs" />
     <Compile Include="Command\LoginWindowCommand.cs" />
