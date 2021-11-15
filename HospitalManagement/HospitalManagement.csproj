@@ -94,6 +94,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\CloseWindowCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\InitPieChartCommand.cs" />
+    <Compile Include="Command\DeletePatientCommand.cs" />
     <Compile Include="Command\ForgotPasswordValidationCommand.cs" />
     <Compile Include="Command\LoginWindowCommand.cs" />
     <Compile Include="Command\LogoutCommand.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Command\RecoverAccountCommand.cs" />
     <Compile Include="Command\ResendEmailRecoverCommand.cs" />
     <Compile Include="Command\SaveChangeAccountCommand.cs" />
+    <Compile Include="Command\SearchPatientCommand.cs" />
     <Compile Include="Command\SendEmailReportCommand.cs" />
     <Compile Include="Command\ShowDoctorInfomationCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
@@ -171,6 +175,7 @@
     <Compile Include="Utils\DateTimeConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="Utils\VietnameseSign.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
@@ -209,6 +214,9 @@
     </Compile>
     <Compile Include="View\Others\ThankyouWindow.xaml.cs">
       <DependentUpon>ThankyouWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Room\Room.xaml.cs">
+      <DependentUpon>Room.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
@@ -278,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ThankyouWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Room\Room.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -438,8 +450,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="View\Room\Untitled.jpg" />
     <Resource Include="Images\thankyouimg.png" />
     <Resource Include="Images\first-aid-kit.png" />
+    <Resource Include="Images\Background.jpg" />
+    <Resource Include="Images\Building.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

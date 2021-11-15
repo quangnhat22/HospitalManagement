@@ -15,6 +15,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchPatientCommand}"/>
+    </UserControl.InputBindings>
     <UserControl.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </UserControl.Resources>
@@ -25,21 +28,59 @@
                    Margin="0 0 0 5"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
-            <Button
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 0 0 5">
+                <ComboBox
+                    x:Name="OutlinedComboBox"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                    materialDesign:HintAssist.Hint="Tìm kiếm theo"
+                    ItemsSource="{Binding FilterList}"
+                    SelectedItem="{Binding SelectedFilter}"
+                    Padding="5 5 5 0"
+                    Height="30"
+                    Width="130">
+                </ComboBox>
+                <TextBox
+                            Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txbSearchBox"
+                            Margin="10 10"
+                            Padding="3 5 0 0"
+                            Width="400"
+                            Height="30"
+                            materialDesign:HintAssist.Hint="Tìm kiếm"
+                            BorderBrush="#35a0fe"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                </TextBox>
+                <Button
+                    Margin="-16 0 20 0"
+                    Padding="8"
+                    Command="{Binding SearchPatientCommand}">
+                    <Button.Content>
+                        <materialDesign:PackIcon 
+                            Kind="Search"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button" 
+                               BasedOn="{StaticResource MaterialDesignFlatLightBgButton}"></Style>
+                    </Button.Style>
+                </Button>
+                <Button
                 x:Name="btnAddDoctor"
                 Command="{Binding OpenPatientForm}"
                 CommandParameter="{Binding ElementName=patientListUC}"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Margin="0 0 0 5"
                 Content="Thêm bệnh nhân"
                 Width="140"/>
+            </StackPanel>
             <DataGrid x:Name="dtgPatientList"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
                   Height="550"
                   HeadersVisibility="All"
-                  ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -120,21 +161,23 @@
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <!--<materialDesign:DataGridTextColumn Binding="{Binding DoctorName}"
-                                                   Header="Bác sĩ phụ trách"
-                                                   Width="200"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>-->
                     <materialDesign:DataGridTextColumn Binding="{Binding TINHTRANG}"
                                                    Header="Tình trạng"
                                                    Width="120"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Phong}"
+                    <materialDesign:DataGridTextColumn
                                                    Header="Phòng"
                                                    Width="90"
                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0}.{1}">
+                                <Binding Path="PHONG.TANG.SOTANG" />
+                                <Binding Path="PHONG.SOPHONG" />
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <TextBlock Text="Thông tin"/>
@@ -146,8 +189,9 @@
                                     VerticalAlignment="Center">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowPatientInfomationCommand}"
-                                                               CommandParameter="{Binding ElementName=dtgPatientList}"/>
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                                     Path=DataContext.ShowPatientInfomationCommand}"
+                                                                   CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Button>
@@ -168,8 +212,9 @@
                                     </Button.Style>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowPatientInfomationCommand}"
-                                                               CommandParameter="{Binding ElementName=dtgPatientList}"/>
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                                     Path=DataContext.DeletePatientCommand}"
+                                                                   CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Button>

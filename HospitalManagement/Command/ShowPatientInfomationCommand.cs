@@ -7,11 +7,19 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Model;
 using HospitalManagement.View;
+using HospitalManagement.ViewModel;
 
 namespace HospitalManagement.Command
 {
     class ShowPatientInfomationCommand : ICommand
     {
+        private PatientViewModel patientViewModel;
+
+        public ShowPatientInfomationCommand(PatientViewModel patientViewModel)
+        {
+            this.patientViewModel = patientViewModel;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -20,15 +28,14 @@ namespace HospitalManagement.Command
 
         public bool CanExecute(object parameter)
         {
-            return parameter == null ? false : true;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            //DataGrid dg = parameter as DataGrid;
-            //Model.Patient p = dg.SelectedItem as Model.Patient;
-            //PatientInformationForm patientif = new PatientInformationForm(p);
-            //patientif.Show();
+            BENHNHAN bn = parameter as BENHNHAN;
+            PatientInformationForm patientInformationForm = new PatientInformationForm(bn);
+            patientInformationForm.Show();
         }
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View"
+        xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,180 +17,212 @@
         WindowStyle="None" 
         AllowsTransparency="True"
         Background="Transparent"
-        Title="PatientInformationForm" Height="700" Width="400">
+        Title="PatientInformationForm" Height="640" Width="550">
+    <Window.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </Window.Resources>
     <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Border BorderBrush="#35a0fe" Background="#35a0fe" CornerRadius="2 2 0 0"  BorderThickness="0"/>
-            </Grid>
-            <Grid Grid.Row="1">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="White">
+                <Grid Grid.Row="0">
+                    <Border Background="White" CornerRadius="8 8 0 0"></Border>
                     <StackPanel Orientation="Vertical">
-                        <Grid Height="220">
-                            <Image Source="/Images/man.png" Height="200" Width="200"/>
+                        <Grid Height="150" Margin="0,10,0,0">
+                            <Image Source="/Images/man.png" Height="150" Width="150"/>
                         </Grid>
-                        <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} {1}">
-                                        <Binding Path="Patient.FirstName" />
-                                        <Binding Path="Patient.LastName" />
+                                        <Binding Path="BenhNhan.HO" />
+                                        <Binding Path="BenhNhan.TEN" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </Grid>
                         
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="{Binding Patient.ID}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
+                        <Grid Height="380">
+                            <StackPanel>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.MABENHNHAN}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Ngày nhập viện:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.PHONG.SOPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.GIUONGBENH}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.GIOITINH, Converter={StaticResource BooleanToSexConverter}}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.QUOCTICH}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.CMND_CCCD}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Bệnh nền:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding BenhNhan.BENHNEN}" />
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Số điện thoại:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding BenhNhan.SDT}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding BenhNhan.EMAIL}"/>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Địa chỉ liên lạc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding BenhNhan.DIACHI}"/>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="4.75*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Ghi chú:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding BenhNhan.GHICHU}" />
+                                </Grid>
+                            </StackPanel>
                         </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="ID phòng" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Ngày sinh" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Quốc tịch" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="{Binding Patient.Sex}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                    <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
-                    <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Ngày nhập viện:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Ngày nhập viện" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Bệnh nền:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Bệnh nền" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Số điện thoại:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <TextBlock Text="Số điện thoại" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                            </TextBlock>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                                <StackPanel Orientation="Vertical" Width="180">
-                                    <TextBlock
-                            FontSize="18" 
-                            TextWrapping="Wrap" 
-                            Foreground="Black"
-                            Text="Địa chỉ Email" />
-                                </StackPanel>
-                            </Viewbox>
-                        </Grid>
-                        <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="170"></ColumnDefinition>
-                                <ColumnDefinition Width="190"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Địa chỉ liên lạc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                            </TextBlock>
-                            <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                                <StackPanel Orientation="Vertical" Width="180">
-                                    <TextBlock
-                            FontSize="18" 
-                            TextWrapping="Wrap" 
-                            Foreground="Black"
-                            Text="thành phố Kon Tum tỉnh Kon Tum phường alo alo alo lao lao" />
-                                </StackPanel>
-                            </Viewbox>
-                        </Grid>
+                       
+
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Border Background="White" CornerRadius="0 0 8 8"></Border>
-                    <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                    <Button Height="50" Width="100" Style="{StaticResource MaterialDesignRaisedButton}"                    
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -203,7 +236,7 @@
                 <TextBlock Text="Họ và tên" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -213,7 +246,7 @@
                 <TextBlock Text="Mã bệnh nhân" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -223,7 +256,7 @@
                 <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -233,7 +266,7 @@
                 <TextBlock Text="Quốc tịch" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -243,7 +276,7 @@
                 <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -255,7 +288,7 @@
                     <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -265,7 +298,7 @@
                 <TextBlock Text="Số điện thoại" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                 </TextBlock>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -282,7 +315,7 @@
                     </StackPanel>
                 </Viewbox>
             </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0">
+            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"></ColumnDefinition>
                     <ColumnDefinition Width="190"></ColumnDefinition>

@@ -10,6 +10,15 @@ namespace HospitalManagement.ViewModel
 {
     class PatientInformationViewModel : INotifyPropertyChanged
     {
+        private BENHNHAN benhnhan;
+
+        public PatientInformationViewModel(BENHNHAN bn)
+        {
+            this.BenhNhan = bn;
+        }
+
+        public BENHNHAN BenhNhan { get => benhnhan; set => benhnhan = value; }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string name)
@@ -17,17 +26,5 @@ namespace HospitalManagement.ViewModel
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        //private Patient patient;
-
-        //public Patient Patient
-        //{
-        //    get { return patient; }
-        //    set { patient = value; OnPropertyChanged("Patient"); }
-        //}
-
-        //public PatientInformationViewModel(Patient patient)
-        //{
-        //    Patient = patient;
-        //}
     }
 }

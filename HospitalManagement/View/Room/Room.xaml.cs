@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HospitalManagement.ViewModel;
 
-namespace HospitalManagement.View
+namespace HospitalManagement.View.Room
 {
     /// <summary>
-    /// Interaction logic for DashBoard.xaml
+    /// Interaction logic for Room.xaml
     /// </summary>
-    public partial class DashBoard : UserControl
+    public partial class Room : Window
     {
-        public DashBoard()
+        public Room()
         {
             InitializeComponent();
-            this.DataContext = new DashBoardViewModel();
+            this.DataContext = new RoomViewModel();
         }
     }
 }
