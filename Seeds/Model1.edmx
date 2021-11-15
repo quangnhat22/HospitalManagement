@@ -58,7 +58,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SOPHONG" Type="int" />
-          <Property Name="LOAIPHONG" Type="nvarchar" MaxLength="100" />
+          <Property Name="SUCCHUA" Type="int" />
           <Property Name="GHICHU" Type="nvarchar(max)" />
           <Property Name="IDTANG" Type="int" />
         </EntityType>
@@ -374,7 +374,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SOPHONG" Type="Int32" />
-          <Property Name="LOAIPHONG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SUCCHUA" Type="Int32" />
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDTANG" Type="Int32" />
           <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
@@ -515,7 +515,7 @@
           <End Type="QUANLYBENHVIENModel.BENHNHAN" Role="BENHNHAN" Multiplicity="*" />
           <End Type="QUANLYBENHVIENModel.VATTU" Role="VATTU" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -567,7 +567,7 @@
               <MappingFragment StoreEntitySet="PHONG">
                 <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
                 <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
-                <ScalarProperty Name="LOAIPHONG" ColumnName="LOAIPHONG" />
+                <ScalarProperty Name="SUCCHUA" ColumnName="SUCCHUA" />
                 <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
