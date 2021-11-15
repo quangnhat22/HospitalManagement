@@ -22,7 +22,7 @@ namespace Seeds
     
         public int ID { get; set; }
         public Nullable<int> SOPHONG { get; set; }
-        public string LOAIPHONG { get; set; }
+        public Nullable<int> SUCCHUA { get; set; }
         public string GHICHU { get; set; }
         public Nullable<int> IDTANG { get; set; }
     

@@ -176,13 +176,14 @@ namespace Seeds
         private static void SeedsPHONG()
         {
             List<TANG> ts = dataProvider.DB.TANGs.ToList();
+            
             foreach(TANG tang in ts)
             {
                 for(int i = 0; i < tang.SLPHONG; i++)
                 {
                     PHONG p = new PHONG();
                     p.SOPHONG = i + 1;
-                    //p.LOAIPHONG = 
+                //    p.SUCCHUA=ra
                     p.TANG = tang;
                     dataProvider.DB.PHONGs.Add(p);
                 }
