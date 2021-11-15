@@ -27,6 +27,7 @@ namespace HospitalManagement.ViewModel
         public string NgaySinhDatePicker { get => ngaySinhDatePicker; set => ngaySinhDatePicker = value; }
 
         public ICommand SaveChangeAccount { get; set; }
+        public ICommand OpenChangePasswordWindow { get; set; }
         
 
         public ChangeAccountViewModel()
@@ -52,7 +53,7 @@ namespace HospitalManagement.ViewModel
                 GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
             }
             Email = MainWindowViewModel.User.EMAIL;
-
+            OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
             //SaveChangeAccount = new SaveChangeAccountCommand(); 
         }
     }

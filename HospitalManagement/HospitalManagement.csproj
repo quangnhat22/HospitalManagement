@@ -103,6 +103,7 @@
     <Compile Include="Command\NotifyWindowCommand.cs" />
     <Compile Include="Command\OpenAccountWindowCommand.cs" />
     <Compile Include="Command\OpenChangeAccountWindowCommand.cs" />
+    <Compile Include="Command\OpenChangePasswordWindowCommand.cs" />
     <Compile Include="Command\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\OpenFacilitiesFormCommand.cs" />
     <Compile Include="Command\OpenFileImageDialogCommand.cs" />
@@ -212,6 +213,9 @@
     <Compile Include="View\Others\ChangeAccountWindow.xaml.cs">
       <DependentUpon>ChangeAccountWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Others\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Others\ThankyouWindow.xaml.cs">
       <DependentUpon>ThankyouWindow.xaml</DependentUpon>
     </Compile>
@@ -282,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ChangeAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
