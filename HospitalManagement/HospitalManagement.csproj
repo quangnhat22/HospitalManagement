@@ -455,6 +455,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="View\Room\Background.jpg" />
     <Resource Include="View\Room\Untitled.jpg" />
     <Resource Include="Images\thankyouimg.png" />
     <Resource Include="Images\first-aid-kit.png" />

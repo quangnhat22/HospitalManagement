@@ -15,15 +15,15 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="1087*"/>
             <ColumnDefinition Width="294*"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>-->
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Building.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="Background.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <StackPanel Background="#7FFFFFFF"
-                    Margin="542,-18,178.2,348.4"
+                    Margin="540,0,470,205"
                     VerticalAlignment="Bottom"
                     Orientation="Vertical">
             <StackPanel>
@@ -53,7 +53,6 @@
                         Height="60"
                         Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5" Click="Button_Click"/>
             </StackPanel>
-
         </StackPanel>
     </Grid>
 </UserControl>
