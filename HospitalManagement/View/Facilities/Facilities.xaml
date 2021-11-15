@@ -32,6 +32,7 @@
                 Width="110"/>
             <DataGrid x:Name="dtgFacilityList"
                   CanUserAddRows="False"
+                  Height="550"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
                   ItemsSource="{Binding Facilities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
