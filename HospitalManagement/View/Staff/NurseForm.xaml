@@ -177,13 +177,21 @@
                     <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
-                <Grid Width="400" HorizontalAlignment="Left" Margin="160,10,0,0">
+                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                </Grid>
+                <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                    <TextBox Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập ID Tổ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="190" Orientation="Horizontal">

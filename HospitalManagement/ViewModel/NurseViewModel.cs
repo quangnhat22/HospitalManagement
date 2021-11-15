@@ -105,7 +105,7 @@ namespace HospitalManagement.ViewModel
 
             //CheckedCount = 0;
             //IsCheckedAll = false;
-            //ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
+            ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
 
             //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             //{

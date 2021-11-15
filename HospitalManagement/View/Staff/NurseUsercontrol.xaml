@@ -128,8 +128,8 @@
                                     VerticalAlignment="Center">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Click">
-                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowDoctorInfomationCommand}"
-                                                               CommandParameter="{Binding ElementName=dtgDoctorList}"/>
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.ShowNurseInfomationCommand}"
+                                                               CommandParameter="{Binding ElementName=dtgNurseList, Path=SelectedItem}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Button>

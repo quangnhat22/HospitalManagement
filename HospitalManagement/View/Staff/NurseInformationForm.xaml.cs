@@ -21,10 +21,10 @@ namespace HospitalManagement.View.Staff
     /// </summary>
     public partial class NurseInformationForm : Window
     {
-        public NurseInformationForm()
+        public NurseInformationForm(YTA yt)
         {
             InitializeComponent();
-            //this.DataContext = new NurseInformationViewModel(nurse);
+            this.DataContext = new NurseInformationViewModel(yt);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
