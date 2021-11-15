@@ -35,7 +35,7 @@
                         Foreground="White"
                         FontSize="25" FontFamily="Inter"
                         FontWeight="DemiBold">
-                        ACCOUNT INFORMATION
+                        THÔNG TIN TÀI KHOẢN
                 </TextBlock>
             </Grid>
             <Grid Grid.Row="1">
@@ -157,7 +157,7 @@
                             <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="170"></ColumnDefinition>
-                                    <ColumnDefinition Width="250"></ColumnDefinition>
+                                    <ColumnDefinition Width="330"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock 
                                     Text="Email:" 
@@ -165,18 +165,11 @@
                                     FontSize="25" 
                                     HorizontalAlignment="Right">
                                 </TextBlock>
-                                <Viewbox 
-                                    Grid.Column="1" 
-                                    Margin="5,0,0,0" 
-                                    HorizontalAlignment="Left">
-                                    <StackPanel Orientation="Vertical" Width="250">
-                                        <TextBlock 
+                                 <TextBlock    Grid.Column="1" Margin="5,0,0,0"
                                                FontSize="25"    
                                                TextWrapping="Wrap"
                                                Foreground="Black"
                                                Text="{Binding Email}"/>
-                                    </StackPanel>
-                                </Viewbox>
                             </Grid>
                             <Grid 
                                 Width="500" 
