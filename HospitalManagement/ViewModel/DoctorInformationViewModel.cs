@@ -12,6 +12,13 @@ namespace HospitalManagement.ViewModel
 {
     class DoctorInformationViewModel : INotifyPropertyChanged
     {
+        private BACSI doctor;
+        public DoctorInformationViewModel(BACSI bs)
+        {
+            this.Doctor = bs;
+        }
+        public BACSI Doctor { get => doctor; set => doctor = value;}
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string name)

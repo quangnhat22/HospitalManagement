@@ -26,10 +26,9 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            //DataGrid dg = parameter as DataGrid;
-            //Doctor d = dg.SelectedItem as Doctor;
-            //DoctorInformationForm doctorif = new DoctorInformationForm(d);
-            //doctorif.Show();
+            BACSI bs = parameter as BACSI;
+            DoctorInformationForm doctorInformationForm = new DoctorInformationForm(bs);
+            doctorInformationForm.Show();
         }
     }
 }
