@@ -28,7 +28,7 @@
                   HeadersVisibility="All"
                   Height="550"
                   HorizontalScrollBarVisibility="Disabled"
-                  ItemsSource="{Binding Nurses, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Nurses, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -80,10 +80,8 @@
 
                         <materialDesign:DataGridTextColumn Binding="{Binding CMND_CCCD}"
                                                     Header="CMND"
-                                                    Width="120"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-
                         <materialDesign:DataGridTextColumn Binding="{Binding HO}"
                                                     Header="Họ"
                                                     Width="100"
@@ -104,16 +102,21 @@
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                        <materialDesign:DataGridTextColumn Binding="{Binding To}"
-                                                    Header="Tổ"
-                                                    Width="100"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                        <materialDesign:DataGridTextColumn Binding="{Binding Unknown}"
-                                                    Header=""
-                                                    Width="270"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                        <materialDesign:DataGridTextColumn Binding="{Binding CHUYENKHOA}"
+                                                   Header="Chuyên khoa"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding VAITRO}"
+                                                   Header="Vai trò"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding IDTO}"
+                                                   Header="Tổ"
+                                                   Width="60"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.Header>
                                 <TextBlock Text="Thông tin"/>
@@ -136,22 +139,18 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Xóa"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center">
-                                        <Button.Style>
-                                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryLightBgButton}">
-                                                <Setter Property="Background" Value="#dc3545"></Setter>
-                                                <Setter Property="Foreground" Value="#f1f1f1"></Setter>
-                                            </Style>
-                                        </Button.Style>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="Click">
-                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowPatientInfomationCommand}"
-                                                               CommandParameter="{Binding ElementName=dtgPatientList}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </Button>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}, Path=DataContext.OpenEditStaff}"
+                            CommandParameter="{Binding ElementName=StaffDetailCT}"
+                            Background="Transparent" Height="25" BorderThickness="0" Padding="0" Margin="0 0 20 0">
+                                            <materialDesign:PackIcon Height="25" Width="25" Foreground="Blue" Kind="PencilBoxOutline" />
+                                        </Button>
+                                        <Button Background="Transparent" Height="25" BorderThickness="0" Padding="0"
+                            Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteStaffCommand}"
+                            CommandParameter="{Binding ElementName=StaffDetailCT}">
+                                            <materialDesign:PackIcon Height="25" Width="25" Foreground="Red" Kind="Delete" />
+                                        </Button>
+                                    </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
