@@ -280,9 +280,25 @@
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="10">
-                <materialDesign:Card Margin="30,0,30,10" UniformCornerRadius="20">
+                <materialDesign:Card Margin="30,0,30,10" 
+                                     UniformCornerRadius="20">
                     <StackPanel Margin="0,0,-0.2,0">
-                        <Grid Height="520" Margin="0,0,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                        <TextBlock
+                                Grid.Row="0"
+                                Text="Tình trạng bệnh nhân"
+                                FontSize="30"
+                                HorizontalAlignment="Center"
+                                Margin="0 15 0 10"/>
+                        <Grid 
+                            Grid.Row="1"
+                            Height="520" 
+                            Margin="0,0,0,0">
                             <Grid>
                                 <Grid.Resources>
                                     <Style x:Key="CleanSeparator" TargetType="lvc:Separator">
@@ -349,11 +365,11 @@
                                         x:Name="lvcColumnChart" 
                                         Series="{Binding SeriesCollection}" 
                                         LegendLocation="Bottom"
-                                        Width="805" 
-                                        Height="380" 
+                                        Width="780" 
+                                        Height="360" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Top"
-                                        Margin="0,135,0,0" >
+                                        Margin="0,100,0,0" >
                                     <lvc:CartesianChart.AxisX>
                                         <lvc:Axis 
                                             Title="{Binding AxisXTitle, Mode=TwoWay}" 
@@ -390,78 +406,57 @@
                     <materialDesign:Card 
                         Margin="10,10,25,20" 
                         UniformCornerRadius="20">
-                        <StackPanel>
-                            <!--<Grid>
-                                <TextBlock 
-                                    Margin="20 10 20 0" 
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Text="Tình trạng giường bệnh"
+                                FontSize="30"
+                                HorizontalAlignment="Center"
+                                Margin="0 15 0 10"/>
+                            <StackPanel Grid.Row="1">
+                                <ComboBox
+                                    x:Name="cboSelectTimePie"
+                                    materialDesign:ComboBoxAssist.ClassicMode="true"
+                                    FontSize="16"
+                                    FontWeight="Medium" 
+                                    Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                    materialDesign:HintAssist.Hint="Chọn thời gian"
+                                    Width="160" 
+                                    Height="40" 
                                     HorizontalAlignment="Left" 
-                                    FontWeight="SemiBold" 
-                                    Text="Số giường bệnh" 
-                                    FontSize="18">
-                                </TextBlock>
-                            </Grid>
-                            -->
-                            <!--chart  DataClick="Chart_OnDataClick"-->
-                            <!--
-                            <lvc:PieChart 
-                                LegendLocation="Right" 
-                                Hoverable="False" 
-                                DataTooltip="{x:Null}" 
-                                Height="189" 
-                                Margin="45,0,10.2,0">
-                                <lvc:PieChart.Series>
-                                    <lvc:PieSeries 
-                                        Title="Còn trống" 
-                                        Values="3" 
-                                        DataLabels="True"
-                                           />
-                                    -->
-                            <!--LabelPoint="{Binding PointLabel}"-->
-                            <!--
-                                    <lvc:PieSeries 
-                                        Title="Đã sử dụng" 
-                                        Values="4" 
-                                        DataLabels="True" 
-                                     />
-                                </lvc:PieChart.Series>
-                            </lvc:PieChart>-->
-                            <ComboBox
-                                x:Name="cboSelectTimePie"
-                                materialDesign:ComboBoxAssist.ClassicMode="true"
-                                FontSize="16"
-                                FontWeight="Medium" 
-                                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                materialDesign:HintAssist.Hint="Chọn thời gian"
-                                Width="160" 
-                                Height="40" 
-                                HorizontalAlignment="Left" 
-                                HorizontalContentAlignment="Left"
-                                VerticalContentAlignment="Center" 
-                                Padding="3,0,0,0" 
-                                Margin="30,15,0,0"
-                                VerticalAlignment="Top">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <i:InvokeCommandAction Command="{Binding InitPieChartCommand}" 
+                                    HorizontalContentAlignment="Left"
+                                    VerticalContentAlignment="Center" 
+                                    Padding="3,0,0,0" 
+                                    Margin="30,15,0,0"
+                                    VerticalAlignment="Top">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding InitPieChartCommand}" 
                                                 CommandParameter="{Binding ElementName=dab}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <ComboBoxItem Content="Hôm nay"/>
-                                <ComboBoxItem Content="Tháng nay"/>
-                            </ComboBox>
-                            <lvc:PieChart 
-                            x:Name="lvcPieChart1"
-                            Series="{Binding PieSeriesCollection}"
-                            LegendLocation="None"  
-                            Hoverable="True"
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Top"
-                            Width="360"
-                            Height="320" 
-                            Margin="0,70,0,0" 
-                            HoverPushOut="10"
-                            FontSize="16"/>
-                        </StackPanel>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ComboBoxItem Content="Hôm nay"/>
+                                    <ComboBoxItem Content="Tháng nay"/>
+                                </ComboBox>
+                                <lvc:PieChart 
+                                    x:Name="lvcPieChart1"
+                                    Series="{Binding PieSeriesCollection}"
+                                    LegendLocation="None"  
+                                    Hoverable="True"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Top"
+                                    Width="360"
+                                    Height="340" 
+                                    Margin="0,35,0,0" 
+                                    HoverPushOut="10"
+                                    FontSize="16"/>
+                            </StackPanel>
+                        </Grid>
+                        
                     </materialDesign:Card>
                 </Grid>
             </Grid>
