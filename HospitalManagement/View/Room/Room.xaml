@@ -125,8 +125,11 @@
                                         <!--Auto set color for vertical line-->
                                         <Style TargetType="Border" x:Key="VerticalBorderStyle">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Không có triệu chứng">
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Không triệu chứng">
                                                     <Setter Property="Background" Value="#2AE2BE"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Có triệu chứng">
+                                                    <Setter Property="Background" Value="#FCCF31"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Triệu chứng trở nặng">
                                                     <Setter Property="Background" Value="#FF7F7E"/>
@@ -142,6 +145,13 @@
                                                         <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
                                                     </MultiDataTrigger.Conditions>
                                                     <Setter Property="Background" Value="#C9F9EB" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Có triệu chứng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#F8FF89" />
                                                 </MultiDataTrigger>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
