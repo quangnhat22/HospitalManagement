@@ -183,7 +183,7 @@ namespace Seeds
                 {
                     PHONG p = new PHONG();
                     p.SOPHONG = i + 1;
-                //    p.SUCCHUA=ra
+                    p.SUCCHUA = random.Next(2, 5) * 2;
                     p.TANG = tang;
                     dataProvider.DB.PHONGs.Add(p);
                 }
@@ -197,7 +197,10 @@ namespace Seeds
             List<string> benhNen = new List<string>() { "Cao huyết áp", "Viêm phổi", "Đau dạ dày", "Béo phì" };
             foreach (PHONG p in phongList)
             {
-                for(int i = 0; i < random.Next(5); i++)
+                int succhua = 0;
+                if (p.SUCCHUA != null)
+                    succhua = (int)p.SUCCHUA;
+                for (int i = 0; i < random.Next(succhua); i++)
                 {
                     BENHNHAN bn = new BENHNHAN();
                     bn.CMND_CCCD = RandomInformation.GenerateCCCD();
