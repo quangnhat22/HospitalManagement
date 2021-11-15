@@ -50,7 +50,7 @@ namespace HospitalManagement.Command.DashBoardCommand
                 {
                     new PieSeries
                     {
-                        Title = "Bán hàng",
+                        Title = "Bác sĩ",
                         //Values = ReportDAL.Instance.QueryRevenueFromSellingInDay(currentDay, currentMonth, currentYear),
                         Values = bedEmptyCount,
                         Fill = (System.Windows.Media.Brush)new BrushConverter().ConvertFrom("#FF1976D2"),
@@ -60,7 +60,7 @@ namespace HospitalManagement.Command.DashBoardCommand
                     },
                     new PieSeries
                     {
-                        Title="Sân bóng",
+                        Title="Y tá",
                         Values = bedFullCount,
                         Fill = (System.Windows.Media.Brush)new BrushConverter().ConvertFrom("#FF27AE60"),
                         DataLabels = true,
