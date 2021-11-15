@@ -78,43 +78,6 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding CMND_CCCD}"
-                                                    Header="CMND"
-                                                    Width="120"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-
-                    <materialDesign:DataGridTextColumn Binding="{Binding HO}"
-                                                    Header="Họ"
-                                                    Width="100"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding TEN}"
-                                                   Header="Tên"
-                                                   Width="100"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
-                                                   Header="Giới tính"
-                                                   Width="100"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
-                                                   Header="Ngày sinh"
-                                                   Width="150"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding To}"
-                                                    Header="Tổ"
-                                                    Width="100"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding Unknown}"
-                                                    Header=""
-                                                    Width="270"
-                                                    ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <TextBlock Text="Thông tin"/>
