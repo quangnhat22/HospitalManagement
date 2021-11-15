@@ -39,14 +39,14 @@ namespace HospitalManagement.ViewModel
 
         public RoomViewModel()
         {
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
-            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tot" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
+            patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
             roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
             roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
             roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
