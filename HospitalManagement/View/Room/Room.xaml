@@ -110,6 +110,7 @@
                       CanUserResizeColumns="False" 
                       CanUserSortColumns="False" 
                       CanUserAddRows="False"
+                      Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
                       RowDetailsVisibilityMode="Collapsed" 
                       SelectionUnit="Cell">
@@ -129,7 +130,7 @@
                                                     <Setter Property="Background" Value="#2AE2BE"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Có triệu chứng">
-                                                    <Setter Property="Background" Value="#FCCF31"/>
+                                                    <Setter Property="Background" Value="#FEB721"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Triệu chứng trở nặng">
                                                     <Setter Property="Background" Value="#FF7F7E"/>
@@ -151,7 +152,7 @@
                                                         <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Có triệu chứng" />
                                                         <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
                                                     </MultiDataTrigger.Conditions>
-                                                    <Setter Property="Background" Value="#F8FF89" />
+                                                    <Setter Property="Background" Value="#FFF3D9" />
                                                 </MultiDataTrigger>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
@@ -166,7 +167,7 @@
                                     
                                     <Border Margin="15 0 0 0" 
                                             CornerRadius="10" 
-                                            Width="300" Height="100" 
+                                            Width="300" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
                                         <TextBlock>
@@ -184,17 +185,16 @@
                                                     </Border.Background>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="20">
-                                                    <WrapPanel>
-                                                        <TextBlock Text="{Binding HO}" 
-                                                           Foreground="Black"
-                                                           FontSize="16"
-                                                           FontWeight="SemiBold"/>
-                                                    <TextBlock Text="{Binding TEN}" 
-                                                               Margin="8 0 0 0"
-                                                               Foreground="Black"
-                                                           FontSize="16"
-                                                           FontWeight="SemiBold"/>
-                                                    </WrapPanel>
+                                                    <TextBlock Foreground="Black"
+                                                               FontSize="16"
+                                                               FontWeight="SemiBold">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                                <Binding Path="HO" />
+                                                                <Binding Path="TEN" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>       
+                                                    </TextBlock>
                                                     
                                                     <TextBlock Text="{Binding TINHTRANG}"
                                                                x:Name="txtTinhTrang"
