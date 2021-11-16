@@ -11,7 +11,7 @@ namespace HospitalManagement.ViewModel
 {
     class RoomViewModel : BaseViewModel
     {
-        public static List<BENHNHAN> patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG==1).ToList();
+        public static List<BENHNHAN> patients;
         public List<BENHNHAN> Patients
         {
             get { return patients; }
@@ -44,8 +44,21 @@ namespace HospitalManagement.ViewModel
             set { roomList = value; OnPropertyChanged("RoomList"); }
         }
 
-        public RoomViewModel()
+        public RoomViewModel(string Floor)
         {
+            switch (Floor)
+            {
+                case "Floor1":
+                    patients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
+                    break;
+                case "Floor2":
+                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
+                    break;
+                case "Floor3":
+                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
+                    break;
+
+            }
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });

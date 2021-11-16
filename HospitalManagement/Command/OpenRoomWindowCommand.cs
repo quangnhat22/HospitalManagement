@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -17,7 +18,6 @@ namespace HospitalManagement.Command
             add { }
             remove { }
         }
-
         public bool CanExecute(object parameter)
         {
             return parameter == null ? false : true;
@@ -25,8 +25,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            Window window = parameter as Window;
-            var roomWindow = new Room();
+            Button button = parameter as Button;
+            var roomWindow = new Room(button.Name);
             Application.Current.MainWindow = roomWindow;
             roomWindow.Show();
         }
