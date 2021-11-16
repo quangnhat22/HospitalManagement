@@ -57,7 +57,15 @@ namespace HospitalManagement.ViewModel
                 case "Floor3":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
                     break;
-
+                case "Floor4":
+                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
+                    break;
+                case "Floor5":
+                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
+                    break;
+                case "Floor6":
+                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
+                    break;
             }
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
