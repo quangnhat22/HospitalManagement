@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,7 @@ namespace HospitalManagement.View.Room
         public RoomUsercontrol()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Room room = new Room();
-            room.Show();
+            this.DataContext = new RoomUsercontrolViewModel();
         }
     }
 }

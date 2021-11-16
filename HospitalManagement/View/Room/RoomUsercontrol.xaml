@@ -12,6 +12,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="White"
+             x:Name="roomUC"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
@@ -51,7 +52,9 @@
                         ToolTip="MaterialDesignOutlinedButton"
                         Content="TẦNG 1"
                         Height="60"
-                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5" Click="Button_Click"/>
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5" 
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=roomUC}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

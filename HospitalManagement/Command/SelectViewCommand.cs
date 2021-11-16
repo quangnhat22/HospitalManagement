@@ -52,7 +52,7 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Rooms")
                 {
-                    mainWindowViewModel.SelectedViewModel = new RoomViewModel();
+                    mainWindowViewModel.SelectedViewModel = new RoomUsercontrolViewModel();
                 }
             }
         }

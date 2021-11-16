@@ -14,7 +14,7 @@
     <DataTemplate DataType="{x:Type viewmodel:FacilitiesViewModel}">
         <view:Facilities></view:Facilities>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:RoomViewModel}">
+    <DataTemplate DataType="{x:Type viewmodel:RoomUsercontrolViewModel}">
         <viewroom:RoomUsercontrol></viewroom:RoomUsercontrol>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:StaffViewModel}">
