@@ -74,7 +74,7 @@ namespace HospitalManagement.ViewModel
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
-            DeletePatientCommand = new DeletePatientCommand();
+            DeletePatientCommand = new DeletePatientCommand(this);
 
             CheckedCount = 0;
             IsCheckedAll = false;
