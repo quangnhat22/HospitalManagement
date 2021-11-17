@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.ViewModel;
 
@@ -33,7 +34,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            BENHNHAN bn = parameter as BENHNHAN;
+            SelectableItem<BENHNHAN> selectableItem = parameter as SelectableItem<BENHNHAN>;
+            BENHNHAN bn = selectableItem.Value as BENHNHAN;
             PatientInformationForm patientInformationForm = new PatientInformationForm(bn);
             patientInformationForm.Show();
         }
