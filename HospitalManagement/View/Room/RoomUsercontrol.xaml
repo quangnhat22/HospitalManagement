@@ -21,7 +21,7 @@
             <ColumnDefinition Width="294*"/>
         </Grid.ColumnDefinitions>-->
         <Grid.Background>
-            <ImageBrush ImageSource="Background.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <StackPanel Background="#7FFFFFFF"
                     Margin="540,0,470,205"
