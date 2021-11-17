@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitPieChartCommand.cs" />
@@ -458,12 +459,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="View\Room\Background.jpg" />
-    <Resource Include="View\Room\Untitled.jpg" />
     <Resource Include="Images\thankyouimg.png" />
     <Resource Include="Images\first-aid-kit.png" />
     <Resource Include="Images\Background.jpg" />
-    <Resource Include="Images\Building.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
