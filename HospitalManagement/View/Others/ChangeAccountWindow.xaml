@@ -318,14 +318,16 @@
                     <Button 
                         Height="60" 
                         Width="150" 
-                        Style="{StaticResource MaterialDesignRaisedButton}"                    
+                        Style="{StaticResource MaterialDesignRaisedButton}"     
+                        Command="{Binding ReturnAccountWindow}"
+                        CommandParameter="{Binding ElementName=changeAccountWindow}"
                         materialDesign:ButtonAssist.CornerRadius="10" 
                         ToolTip="MaterialDesignRaisedButton with Round Corners" 
                         Content="Hủy" 
                         FontSize="20" 
                         VerticalAlignment="Top" 
                         Margin="321,0,521,0" 
-                        Click="Button_Click"/>
+                        />
                 </Grid>
             </Grid>
         </Grid>
