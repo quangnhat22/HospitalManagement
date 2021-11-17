@@ -26,6 +26,11 @@ namespace HospitalManagement.ViewModel
         }
 
         private bool? isCheckedAll;
+        private List<String> filterList = new List<string> { "Tên vật tư",
+                                                            "Loại vật tư"
+                                                            /*, "Họ và Tên"*/ };
+        private string selectedFilter;
+        private string searchBox;
 
         public bool? IsCheckedAll
         {
@@ -35,13 +40,23 @@ namespace HospitalManagement.ViewModel
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand OpenFacilitiesForm { get; set; }
+        public ICommand SearchFacilitiesCommand { get; set; }
         public ICommand DeleteFacilitiesCommand { get; set; }
+        public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
+        public string SearchBox { get => searchBox; set => searchBox = value; }
+        public List<string> FilterList { get => filterList; set => filterList = value; }
 
         public FacilitiesViewModel()
         {
+            DeleteFacilitiesCommand = new DeleteFacilitiesCommand(this);
+            SearchFacilitiesCommand = new SearchFacilitiesCommand(this);
+            if(FilterList.Count > 0)
+            {
+                SelectedFilter = FilterList[0];
+            }
+
             CheckedCount = 0;
             IsCheckedAll = false;
-            DeleteFacilitiesCommand = new DeleteFacilitiesCommand(this);
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
                 bool allcheckbox = (p.IsChecked == true);

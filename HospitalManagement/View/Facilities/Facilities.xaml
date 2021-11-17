@@ -14,6 +14,9 @@
              TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchFacilitiesCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
         <StackPanel Margin="50 30">
             <TextBlock Text="Danh sách vật tư"
@@ -50,7 +53,7 @@
                 <Button
                     Margin="-16 0 20 0"
                     Padding="8"
-                    Command="{Binding SearchPatientCommand}">
+                    Command="{Binding SearchFacilitiesCommand}">
                     <Button.Content>
                         <materialDesign:PackIcon 
                             Kind="Search"/>
