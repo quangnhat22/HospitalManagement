@@ -9,12 +9,22 @@ using HospitalManagement.Model;
 using System.ComponentModel;
 using HospitalManagement.Command;
 using HospitalManagement.Utils;
+using System.Collections.ObjectModel;
 
 namespace HospitalManagement.ViewModel
 {
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public static List<BENHNHAN> patients = DataProvider.Ins.DB.BENHNHANs.ToList();
+        private int checkedCount;
+        public int CheckedCount { 
+            get => checkedCount; 
+            set 
+            {
+                checkedCount = value;
+                OnPropertyChanged("CheckedCount");
+            }
+        }
+        private static ObservableCollection<SelectableItem<BENHNHAN>> patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
 
         private List<String> filterList = new List<string> { "CMND", 
                                                             "Họ", 
@@ -23,7 +33,7 @@ namespace HospitalManagement.ViewModel
         private string selectedFilter;
         private string searchBox;
         private string cmnd;
-        public List<BENHNHAN> Patients
+        public ObservableCollection<SelectableItem<BENHNHAN>> Patients
         {
             get { return patients; }
             set { patients = value; OnPropertyChanged("Patients"); }
@@ -35,6 +45,16 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowPatientInfomationCommand { get; set; }
         public ICommand SearchPatientCommand { get; set; }
         public ICommand DeletePatientCommand { get; set; }
+
+
+        private bool? isCheckedAll;
+
+        public bool? IsCheckedAll
+        {
+            get { return isCheckedAll; }
+            set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
+        }
+
         public string SearchBox
         {
             get => searchBox;
@@ -44,7 +64,7 @@ namespace HospitalManagement.ViewModel
                 OnPropertyChanged("SearchBox");
                 if(searchBox == string.Empty || searchBox == null)
                 {
-                    Patients = DataProvider.Ins.DB.BENHNHANs.ToList();
+                    Patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
                 }
             }
         }
@@ -61,7 +81,32 @@ namespace HospitalManagement.ViewModel
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
-            DeletePatientCommand = new DeletePatientCommand();
+            DeletePatientCommand = new DeletePatientCommand(this);
+
+            CheckedCount = 0;
+            IsCheckedAll = false;
+            AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                bool allcheckbox = (p.IsChecked == true);
+                for (int i = 0; i < Patients.Count; i++)
+                    Patients[i].IsSelected = allcheckbox;
+                p.IsChecked = allcheckbox;
+            });
+
+            SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                IsCheckedAll = null;
+                if (p.IsChecked == true)
+                    CheckedCount++;
+                else
+                    CheckedCount--;
+
+                if (CheckedCount == patients.Count)
+                    IsCheckedAll = true;
+                else
+                    if (CheckedCount == 0)
+                    IsCheckedAll = false;
+            });
         }
     }
 }

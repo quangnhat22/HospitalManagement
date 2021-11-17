@@ -240,6 +240,7 @@ namespace Seeds
                 {
                     vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
                     vt.LOAIVATTU = "Thuốc";
+                    vt.DVTINH = "Viên";
                     vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
                     vt.SLUONG = random.Next(500, 5000);
                     vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
@@ -248,6 +249,7 @@ namespace Seeds
                 {
                     vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
                     vt.LOAIVATTU = "Thiết bị";
+                    vt.DVTINH = "Máy";
                     vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
                     vt.SLUONG = random.Next(50, 500);
                 }

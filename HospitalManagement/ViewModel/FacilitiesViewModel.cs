@@ -8,120 +8,62 @@ using System.Windows.Input;
 using HospitalManagement.Model;
 using System.ComponentModel;
 using HospitalManagement.Command;
+using System.Collections.ObjectModel;
+using HospitalManagement.Utils;
+using HospitalManagement.Command.FacilitiesListCommand;
 
 namespace HospitalManagement.ViewModel
 {
     class FacilitiesViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        //public int CheckedCount;
-        public static List<VATTU> facilities = DataProvider.Ins.DB.VATTUs.ToList();
+        public int CheckedCount;
+        private static ObservableCollection<SelectableItem<VATTU>> facilities = SelectableItem<VATTU>.GetSelectableItems(DataProvider.Ins.DB.VATTUs.ToList());
 
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void OnPropertyChanged(string name)
-        //{
-        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-        //}
-
-        public List<VATTU> Facilities
+        public ObservableCollection<SelectableItem<VATTU>> Facilities
         {
             get { return facilities; }
             set { facilities = value; OnPropertyChanged("Facilities"); }
         }
 
-        //private bool? isCheckedAll;
+        private bool? isCheckedAll;
 
-        //public bool? IsCheckedAll
-        //{
-        //    get { return isCheckedAll; }
-        //    set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
-        //}
+        public bool? IsCheckedAll
+        {
+            get { return isCheckedAll; }
+            set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
+        }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand OpenFacilitiesForm { get; set; }
+        public ICommand DeleteFacilitiesCommand { get; set; }
 
         public FacilitiesViewModel()
         {
-            //Facilities.Add(new Facility()
-            //{
-            //    ID = 1,
-            //    DisplayName = "Máy thở Bellavista",
-            //    Type = "Thiết bị",
-            //    ManufactureDate = (new DateTime(2021, 1, 1)).ToString("dd/MM/yyyy"),
-            //    Amount = 200,
-            //    Unit = "Bộ",
-            //    Note=""
-            //});
-            //Facilities.Add(new Facility()
-            //{
-            //    ID = 2,
-            //    DisplayName = "Bình chứa oxi",
-            //    Type = "Thiết bị",
-            //    ManufactureDate = (new DateTime(2021, 4, 15)).ToString("dd/MM/yyyy"),
-            //    Amount = 50,
-            //    Unit = "Bình",
-            //    Note = ""
-            //});
-            //Facilities.Add(new Facility()
-            //{
-            //    ID = 3,
-            //    DisplayName = "Panadol Extra",
-            //    Type = "Thuốc",
-            //    ManufactureDate = (new DateTime(2021, 2, 7)).ToString("dd/MM/yyyy"),
-            //    Amount = 500,
-            //    Unit = "Hộp",
-            //    Note = "Hạn sử dụng 2 năm"
-            //});
-            //Facilities.Add(new Facility()
-            //{
-            //    ID = 4,
-            //    DisplayName = "Hapacol",
-            //    Type = "Thuốc",
-            //    ManufactureDate = (new DateTime(2021, 2, 3)).ToString("dd/MM/yyyy"),
-            //    Amount = 200,
-            //    Unit = "Hộp",
-            //    Note = "Hạn sử dụng 2 năm",
-            //});
-            //Facilities.Add(new Facility()
-            //{
-            //    ID = 5,
-            //    DisplayName = "BreFence Go",
-            //    Type = "Thiết bị",
-            //    ManufactureDate = (new DateTime(2021, 1, 3)).ToString("dd/MM/yyyy"),
-            //    Amount = 10,
-            //    Unit = "Bộ",
-            //    Note = "Bảo trì: 6 tháng/lần",
-            //});
-            //CheckedCount = 0;
-            //IsCheckedAll = false;
+            CheckedCount = 0;
+            IsCheckedAll = false;
+            DeleteFacilitiesCommand = new DeleteFacilitiesCommand(this);
+            AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                bool allcheckbox = (p.IsChecked == true);
+                for (int i = 0; i < Facilities.Count; i++)
+                    Facilities[i].IsSelected = allcheckbox;
+                p.IsChecked = allcheckbox;
+            });
 
+            SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
+            {
+                IsCheckedAll = null;
+                if (p.IsChecked == true)
+                    CheckedCount++;
+                else
+                    CheckedCount--;
 
-            //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
-            //{
-            //    bool allcheckbox = (p.IsChecked == true);
-            //    for (int i = 0; i < Facilities.Count; i++)
-            //        Facilities[i].IsChecked = allcheckbox;
-            //});
-
-            //SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
-            //{
-            //    IsCheckedAll = null;
-            //    if (p.IsChecked == true)
-            //        CheckedCount++;
-            //    else
-            //        CheckedCount--;
-                //if (CheckedCount == facilities.Count)
-                //    IsCheckedAll = true;
-                //else
-                //    if (CheckedCount == 0)
-                //    IsCheckedAll = false;
-            OpenFacilitiesForm = new OpenFacilitiesFormCommand();
-            //    if (CheckedCount == facilities.Count)
-            //        IsCheckedAll = true;
-            //    else
-            //        if (CheckedCount == 0)
-            //        IsCheckedAll = false;
-            //});
+                if (CheckedCount == Facilities.Count)
+                    IsCheckedAll = true;
+                else
+                    if (CheckedCount == 0)
+                    IsCheckedAll = false;
+            });
         }
     }
 }

@@ -21,15 +21,66 @@
                    Margin="0 0 0 5"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
-            <Button
-                x:Name="btnAddFacilities"
-                Command="{Binding OpenFacilitiesForm}"
-                CommandParameter="{Binding ElementName=facilityListUC}"
+            <StackPanel 
+                Orientation="Horizontal"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Margin="0 0 0 5"
+                Margin="0 0 0 5">
+                <ComboBox
+                    x:Name="OutlinedComboBox"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                    materialDesign:HintAssist.Hint="Tìm kiếm theo"
+                    ItemsSource="{Binding FilterList}"
+                    SelectedItem="{Binding SelectedFilter}"
+                    Padding="5 5 5 0"
+                    Height="30"
+                    Width="130">
+                </ComboBox>
+                <TextBox
+                            Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txbSearchBox"
+                            Padding="3 5 0 0"
+                            Width="400"
+                            Height="30"
+                            materialDesign:HintAssist.Hint="Tìm kiếm"
+                            BorderBrush="#35a0fe"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                </TextBox>
+                <Button
+                    Margin="-16 0 20 0"
+                    Padding="8"
+                    Command="{Binding SearchPatientCommand}">
+                    <Button.Content>
+                        <materialDesign:PackIcon 
+                            Kind="Search"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button" 
+                               BasedOn="{StaticResource MaterialDesignFlatLightBgButton}"></Style>
+                    </Button.Style>
+                </Button>
+                <Button
+                x:Name="btnAddDoctor"
+                Command="{Binding OpenPatientForm}"
+                CommandParameter="{Binding ElementName=patientListUC}"
                 Content="Thêm vật tư"
-                Width="110"/>
+                
+                Width="140"/>
+                <Button Content="Xóa"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="15 0 0 0"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                         Path=DataContext.DeleteFacilitiesCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightButton}">
+                            <Setter Property="Background" Value="#dc3545"></Setter>
+                            <Setter Property="Foreground" Value="#f1f1f1"></Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
             <DataGrid x:Name="dtgFacilityList"
                   CanUserAddRows="False"
                   Height="550"
@@ -70,16 +121,16 @@
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Name="SingleSelect">
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Name="abc">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Checked">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
-                                                           CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                         </i:EventTrigger>
                                         <i:EventTrigger EventName="Unchecked">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
-                                                           CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </CheckBox>
@@ -87,62 +138,41 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <materialDesign:DataGridTextColumn Binding="{Binding ID}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.ID}"
                                                     Header="ID"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding DISPLAYNAME}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.DISPLAYNAME}"
                                                    Header="Tên vật tư"
                                                    Width="200"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding LOAIVATTU}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.LOAIVATTU}"
                                                    Header="Loại vật tư"
                                                    Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGSX, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.NGSX, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sản xuất"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding SLUONG}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.SLUONG}"
                                                    Header="Số lượng"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Unit}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.DVTINH}"
                                                    Header="Đơn vị tính"
                                                    Width="130"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding GHICHU}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GHICHU}"
                                                    Header="Ghi chú"
                                                    Width="330"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Xóa"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center">
-                                    <Button.Style>
-                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatSecondaryLightBgButton}">
-                                            <Setter Property="Background" Value="#dc3545"></Setter>
-                                            <Setter Property="Foreground" Value="#f1f1f1"></Setter>
-                                        </Style>
-                                    </Button.Style>
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.ShowPatientInfomationCommand}"
-                                                               CommandParameter="{Binding ElementName=dtgPatientList}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                   
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
