@@ -115,7 +115,7 @@
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       Name="abc">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Checked">
@@ -132,36 +132,36 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <materialDesign:DataGridTextColumn Binding="{Binding CMND_CCCD}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.CMND_CCCD}"
                                                     Header="CMND"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding HO}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.HO}"
                                                     Header="Họ"
                                                     Width="100"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding TEN}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.TEN}"
                                                    Header="Tên"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
                                                    Header="Giới tính"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sinh"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày nhập viện"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding TINHTRANG}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.TINHTRANG}"
                                                    Header="Tình trạng"
                                                    Width="120"
                                                   ElementStyle="{StaticResource ElementStyle}"
@@ -173,8 +173,8 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                         <DataGridTextColumn.Binding>
                             <MultiBinding StringFormat="{}{0}.{1}">
-                                <Binding Path="PHONG.TANG.SOTANG" />
-                                <Binding Path="PHONG.SOPHONG" />
+                                <Binding Path="Value.PHONG.TANG.SOTANG" />
+                                <Binding Path="Value.PHONG.SOPHONG" />
                             </MultiBinding>
                         </DataGridTextColumn.Binding>
                     </materialDesign:DataGridTextColumn>
