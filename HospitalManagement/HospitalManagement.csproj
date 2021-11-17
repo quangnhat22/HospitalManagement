@@ -97,6 +97,7 @@
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitPieChartCommand.cs" />
+    <Compile Include="Command\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
     <Compile Include="Command\LoginCommand\ForgotPasswordValidationCommand.cs" />
     <Compile Include="Command\LoginCommand\LoginWindowCommand.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="ViewModel\PatientViewModel.cs" />
     <Compile Include="ViewModel\RecoverAccountViewModel.cs" />
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
+    <Compile Include="ViewModel\RoomUsercontrolViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />

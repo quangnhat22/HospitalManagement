@@ -12,6 +12,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="White"
+             x:Name="roomUC"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
@@ -31,7 +32,10 @@
                       Background="#FFE0EBFD"/>
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="MaterialDesignOutlinedButton"
-                        Content="TẦNG 3"
+                        Content="TẦNG 6"
+                        x:Name="Floor6"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor6}"
                         Height="60"
                         Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"/>
             </StackPanel>
@@ -40,18 +44,61 @@
                       Background="#FFE0EBFD"/>
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="MaterialDesignOutlinedButton"
+                        Content="TẦNG 5"
+                        x:Name="Floor5"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor5}"
+                        Height="60"
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"/>
+            </StackPanel>
+            <StackPanel>
+                <Grid Height="10" 
+                      Background="#FFE0EBFD"/>
+                <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="TẦNG 4"
+                        x:Name="Floor4"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor4}"
+                        Height="60"
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"/>
+            </StackPanel>
+            <StackPanel>
+                <Grid Height="10" 
+                      Background="#FFE0EBFD"/>
+                <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Content="TẦNG 3"
+                        x:Name="Floor3"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor3}"
+                        Height="60"
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"/>
+            </StackPanel>
+            <StackPanel>
+                <Grid Height="10" 
+                      Background="#FFE0EBFD"/>
+                <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        x:Name="Floor2"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor2}"
                         Content="TẦNG 2"
                         Height="60"
-                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"/>
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5"
+                        />
             </StackPanel>
             <StackPanel>
                 <Grid Height="10" 
                       Background="#FFE0EBFD"/>
                 <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                         ToolTip="MaterialDesignOutlinedButton"
+                        x:Name="Floor1"
                         Content="TẦNG 1"
                         Height="60"
-                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5" Click="Button_Click"/>
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5" 
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor1}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
