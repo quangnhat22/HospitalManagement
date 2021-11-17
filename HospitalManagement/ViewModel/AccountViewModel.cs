@@ -26,9 +26,11 @@ namespace HospitalManagement.ViewModel
         public string Email { get => email; set => email = value; }
         public ICommand OpenChangeAccount { get; set; }
         
+        
         public AccountViewModel()
         {
             OpenChangeAccount = new OpenChangeAccoutWindowCommand();
+            
             HoTen = MainWindowViewModel.User.HO + " " + MainWindowViewModel.User.TEN;
             TenDangNhap = MainWindowViewModel.User.USERNAME;
 

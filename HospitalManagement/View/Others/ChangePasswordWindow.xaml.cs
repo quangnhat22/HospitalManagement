@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HospitalManagement.Command.AccountCommand;
+using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,7 @@ namespace HospitalManagement.View.Others
         public ChangePasswordWindow()
         {
             InitializeComponent();
+            this.DataContext = new ChangePasswordViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

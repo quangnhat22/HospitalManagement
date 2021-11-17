@@ -16,7 +16,7 @@ namespace HospitalManagement.Utils
 
 		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			return (value.ToString().ToLower() == "Nam" ? false : true); // return bool
+			return (value.ToString().ToLower() == "nam" ? false : true); // return bool
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using HospitalManagement.View;
-using HospitalManagement.View.Others;
+﻿using HospitalManagement.View.Others;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +9,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace HospitalManagement.Command
+namespace HospitalManagement.Command.AccountCommand
 {
-    class OpenChangeAccoutWindowCommand : ICommand
+    internal class ReturnAccountWindowCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged
-        {
-            add { }
-            remove { }
-        }
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -27,8 +22,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            AccountWindow window = parameter as AccountWindow;
-            ChangeAccountWindow account = new ChangeAccountWindow();
+            Window window = parameter as Window;
+            AccountWindow account = new AccountWindow();
             Application.Current.MainWindow = account;
             window.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>

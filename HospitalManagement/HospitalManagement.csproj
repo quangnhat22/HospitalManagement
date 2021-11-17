@@ -93,6 +93,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
+    <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />

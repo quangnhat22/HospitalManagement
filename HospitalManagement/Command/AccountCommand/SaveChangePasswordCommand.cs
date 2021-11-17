@@ -1,5 +1,8 @@
-﻿using HospitalManagement.View;
+﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
+using HospitalManagement.View;
 using HospitalManagement.View.Others;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,23 +27,26 @@ namespace HospitalManagement.Command.AccountCommand
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            ChangePasswordWindow changePasswordWindow = parameter as ChangePasswordWindow;  
+            if(Check(changePasswordWindow))
+            {
+                List<USER> users = DataProvider.Ins?.DB?.USERs?.ToList();
+                foreach (USER user in users)
+                {
+                    if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
+                    {
+                        user.PASSWORD = Encryptor.Hash(changePasswordWindow.txbNewPassword.Password);
+                        DataProvider.Ins?.DB?.SaveChanges();
+                        break;
+                    }    
+                }
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
+                notifyWindow.ShowDialog();
+            }
         }
 
         public bool Check(ChangePasswordWindow changePasswordWindow)
         {
-            if (changePasswordWindow == null) return false;
-            //List<USER> users = signUpFormViewModel?.db?.DB?.USERs?.ToList();
-            //foreach (USER user in users)
-            //{
-            //    if (user.USERNAME == mw.txbTenDangNhap.Text)
-            //    {
-            //        NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại");
-            //        notifyWindow.ShowDialog();
-            //        mw.txbTenDangNhap.Focus();
-            //        return false;
-            //    }
-            //}
             if (string.IsNullOrWhiteSpace(changePasswordWindow.txbPasswordCurent.Password))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mật khẩu hiện tại");

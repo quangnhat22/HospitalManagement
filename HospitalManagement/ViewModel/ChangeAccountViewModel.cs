@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Command;
+using HospitalManagement.Command.AccountCommand;
 using HospitalManagement.Model;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace HospitalManagement.ViewModel
 
         public ICommand SaveChangeAccount { get; set; }
         public ICommand OpenChangePasswordWindow { get; set; }
-        
+        public ICommand ReturnAccountWindow { get; set; }
 
         public ChangeAccountViewModel()
         {
@@ -54,7 +55,8 @@ namespace HospitalManagement.ViewModel
             }
             Email = MainWindowViewModel.User.EMAIL;
             OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
-            //SaveChangeAccount = new SaveChangeAccountCommand(); 
+            SaveChangeAccount = new SaveChangeAccountCommand();
+            ReturnAccountWindow = new ReturnAccountWindowCommand();
         }
     }
 }
