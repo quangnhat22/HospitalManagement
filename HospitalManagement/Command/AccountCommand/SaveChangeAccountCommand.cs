@@ -30,11 +30,13 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            ChangeAccountWindow changeAccountWindow = parameter as ChangeAccountWindow;
+            Check(changeAccountWindow);
         }
         public bool Check(ChangeAccountWindow cw)
         {
             if (cw == null) return false;
+            //if(string.)
             //if (string.IsNullOrWhiteSpace(cw.txbNewPassword.Text) && string.IsNullOrWhiteSpace(cw.txbNewRepassword.Text))
             //{
             //    if(string.IsNullOrWhiteSpace(cw.txbLastName.Text))

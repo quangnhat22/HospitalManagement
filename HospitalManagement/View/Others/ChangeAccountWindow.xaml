@@ -273,7 +273,8 @@
                                     VerticalAlignment="Top" 
                                     Margin="0,0,10,0">
                                 </TextBlock>
-                                <Button Command="{Binding OpenChangePasswordWindow}" 
+                                <Button 
+                                    Command="{Binding OpenChangePasswordWindow}" 
                                     Grid.Column="1" Margin="0,5,0,5"
                                     Height="40" 
                                     Width="200" 
