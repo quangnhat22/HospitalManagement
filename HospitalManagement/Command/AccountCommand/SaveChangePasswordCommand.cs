@@ -30,13 +30,13 @@ namespace HospitalManagement.Command.AccountCommand
             ChangePasswordWindow changePasswordWindow = parameter as ChangePasswordWindow;  
             if(Check(changePasswordWindow))
             {
-                List<USER> users = DataProvider.Ins.DB.USERs.ToList();
+                List<USER> users = DataProvider.Ins?.DB?.USERs?.ToList();
                 foreach (USER user in users)
                 {
                     if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
                     {
                         user.PASSWORD = Encryptor.Hash(changePasswordWindow.txbNewPassword.Password);
-                        DataProvider.Ins.DB.SaveChanges();
+                        DataProvider.Ins?.DB?.SaveChanges();
                         break;
                     }    
                 }

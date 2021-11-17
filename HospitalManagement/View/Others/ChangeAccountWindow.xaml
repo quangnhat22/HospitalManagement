@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:HospitalManagement.View.Others"
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
+        x:Name="changeAccountWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -218,7 +219,13 @@
                                     <ColumnDefinition Width="130"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Giới tính:" VerticalAlignment="Center" Foreground="#35a0fe" FontSize="20" HorizontalAlignment="Right" Margin="0,0,10,0">
+                                <TextBlock 
+                                    Text="Giới tính:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    Margin="0,0,10,0">
                                 </TextBlock>
                                 <ComboBox 
                                     x:Name="cbSex"
@@ -229,8 +236,10 @@
                                     FontFamily="Inter" 
                                     FontSize="20"
                                     materialDesign:HintAssist.Hint="Chọn giới tính"  
-                                    Text="{Binding GioiTinh,  Converter={StaticResource BooleanToSexConverter}}"
-                                    IsEditable="True" Grid.ColumnSpan="2">
+                                    Text="{Binding GioiTinh,  
+                                            Converter={StaticResource BooleanToSexConverter}}"
+                                    IsEditable="True"
+                                    Grid.ColumnSpan="2">
                                     <ComboBoxItem
                             Content="Nam" />
                                     <ComboBoxItem
@@ -296,16 +305,27 @@
                     <Button
                         Height="60" 
                         Width="150" 
-                        Style="{StaticResource MaterialDesignRaisedButton}"                    
+                        Style="{StaticResource MaterialDesignRaisedButton}"  
+                        Command="{Binding SaveChangeAccount}"
+                        CommandParameter="{Binding ElementName=changeAccountWindow}"
                         materialDesign:ButtonAssist.CornerRadius="10" 
                         ToolTip="MaterialDesignRaisedButton with Round Corners" 
                         Content="Xác nhận" 
                         FontSize="20" 
                         VerticalAlignment="Top" 
                         Margin="557,0,285,0" 
-                        Click="Button_Click_1"/>
-                    <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Hủy" FontSize="20" VerticalAlignment="Top" Margin="321,0,521,0" Click="Button_Click"/>
+                        />
+                    <Button 
+                        Height="60" 
+                        Width="150" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"                    
+                        materialDesign:ButtonAssist.CornerRadius="10" 
+                        ToolTip="MaterialDesignRaisedButton with Round Corners" 
+                        Content="Hủy" 
+                        FontSize="20" 
+                        VerticalAlignment="Top" 
+                        Margin="321,0,521,0" 
+                        Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Grid>

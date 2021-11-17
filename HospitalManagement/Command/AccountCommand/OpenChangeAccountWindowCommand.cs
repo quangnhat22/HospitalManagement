@@ -25,9 +25,10 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            Window window = parameter as Window;
+            AccountWindow window = parameter as AccountWindow;
             ChangeAccountWindow account = new ChangeAccountWindow();
             Application.Current.MainWindow = account;
+            window.Close();
             account.Show();
         }
     }

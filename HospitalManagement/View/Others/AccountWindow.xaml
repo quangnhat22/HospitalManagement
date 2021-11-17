@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:HospitalManagement.View.Others"
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
+        x:Name="accountWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -217,6 +218,7 @@
                         />
                     <Button 
                         Command="{Binding OpenChangeAccount}" 
+                        CommandParameter="{Binding ElementName=accountWindow}"
                         Height="60" 
                         Width="150" 
                         Style="{StaticResource MaterialDesignRaisedButton}"                     

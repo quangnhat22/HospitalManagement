@@ -54,7 +54,7 @@ namespace HospitalManagement.ViewModel
             }
             Email = MainWindowViewModel.User.EMAIL;
             OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
-            //SaveChangeAccount = new SaveChangeAccountCommand(); 
+            SaveChangeAccount = new SaveChangeAccountCommand(); 
         }
     }
 }
