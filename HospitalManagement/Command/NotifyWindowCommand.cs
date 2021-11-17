@@ -29,7 +29,6 @@ namespace HospitalManagement.Command
         {
             NotifyWindow w = parameter as NotifyWindow;
             w.txtMessage.Text = w.Title.ToString();
-            
             if (w.Tag.ToString() == "Success")
                 SetProperties(w, "#2FDD92", "CheckboxMarkedCircleOutline");
             else

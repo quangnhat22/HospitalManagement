@@ -20,12 +20,14 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class NotifyWindow : Window
     {
-        public NotifyWindow(string state, string Message = "")
+        public NotifyWindow(string state, string Message = "", int width = 300, int height=200)
         {
             InitializeComponent();
             this.DataContext = new NotifyWindowViewModel();
             this.Tag = state;
             this.Title = Message;
+            this.Height = height;
+            this.Width = width;
         }
         private void Window_Deactivated(object sender, EventArgs e)
         {
