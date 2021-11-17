@@ -97,6 +97,7 @@
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitPieChartCommand.cs" />
+    <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
     <Compile Include="Command\LoginCommand\ForgotPasswordValidationCommand.cs" />

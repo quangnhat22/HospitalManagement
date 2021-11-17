@@ -15,8 +15,15 @@ namespace HospitalManagement.ViewModel
 {
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
-
-        public int CheckedCount;
+        private int checkedCount;
+        public int CheckedCount { 
+            get => checkedCount; 
+            set 
+            {
+                checkedCount = value;
+                OnPropertyChanged("CheckedCount");
+            }
+        }
         private static ObservableCollection<SelectableItem<BENHNHAN>> patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
 
         private List<String> filterList = new List<string> { "CMND", 
