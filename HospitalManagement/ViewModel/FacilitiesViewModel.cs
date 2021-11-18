@@ -16,7 +16,6 @@ namespace HospitalManagement.ViewModel
 {
     class FacilitiesViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public int CheckedCount;
         private static ObservableCollection<SelectableItem<VATTU>> facilities = SelectableItem<VATTU>.GetSelectableItems(DataProvider.Ins.DB.VATTUs.ToList());
 
         public ObservableCollection<SelectableItem<VATTU>> Facilities
@@ -55,7 +54,6 @@ namespace HospitalManagement.ViewModel
                 SelectedFilter = FilterList[0];
             }
 
-            CheckedCount = 0;
             IsCheckedAll = false;
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
@@ -68,16 +66,13 @@ namespace HospitalManagement.ViewModel
             SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
                 IsCheckedAll = null;
-                if (p.IsChecked == true)
-                    CheckedCount++;
-                else
-                    CheckedCount--;
+                IsCheckedAll = null;
 
-                if (CheckedCount == Facilities.Count)
+                if (Facilities.Where(f => f.IsSelected).Count() == facilities.Count)
                     IsCheckedAll = true;
                 else
-                    if (CheckedCount == 0)
-                    IsCheckedAll = false;
+                    if (Facilities.Where(f => f.IsSelected).Count() == 0)
+                        IsCheckedAll = false;
             });
         }
     }
