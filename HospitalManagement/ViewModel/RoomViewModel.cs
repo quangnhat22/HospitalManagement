@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using HospitalManagement.Model;
 using HospitalManagement.View.Room;
+using HospitalManagement.Command;
+using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel
 {
@@ -14,6 +16,7 @@ namespace HospitalManagement.ViewModel
         private string floorNumber;
         private static List<BENHNHAN> patients;
         private static List<PHONG> rooms;
+        public ICommand ShowPatientsInRoom { get; set; }
         public string FloorNumber
         {
             get { return floorNumber; }
@@ -29,19 +32,6 @@ namespace HospitalManagement.ViewModel
             get { return rooms; }
             set { rooms = value; OnPropertyChanged("Rooms"); }
         }
-        //public class Room
-        //{
-        //    public int soluong { get; set; }
-        //    public int soluongmax { get; set; }
-        //    public string ten { get; set; }
-        //}
-
-        //private List<Patient> patientList = new List<Patient>();
-        //public List<Patient> PatientList
-        //{
-        //    get { return patientList; }
-        //    set { patientList = value; OnPropertyChanged("PatientList"); }
-        //}
 
 
         public RoomViewModel(string Floor)
@@ -79,20 +69,7 @@ namespace HospitalManagement.ViewModel
                     FloorNumber = "6";
                     break;
             }
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
         }
     }
 }
