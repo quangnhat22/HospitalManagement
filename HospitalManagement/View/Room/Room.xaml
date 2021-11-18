@@ -62,12 +62,31 @@
                                       Height="50" 
                                       HorizontalAlignment="Left" 
                                       Margin="20">
-                                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                    <Grid>
+                                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                                          Height="50"
                                          Width="50"
+                                         Value="1" 
+                                         Maximum="1" 
+                                         Background="{x:Null}"
+                                         Foreground="#EEEEEE"/>
+                                        
+                                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                         Height="50"
+                                         Width="50"
+                                         Name="patientcount"
                                          Value="{Binding COUNT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                          Maximum="{Binding SUCCHUA}" 
-                                         Background="{x:Null}" Foreground="#2AE2BE"/>
+                                         Background="{x:Null}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Loaded">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.RoomProgressBarCommand}"
+                                                         CommandParameter="{Binding ElementName=patientcount}"  />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ProgressBar>
+                                    </Grid>
+                                    
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0}/{1}">
