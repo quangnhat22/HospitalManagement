@@ -142,7 +142,7 @@
                       Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
                       RowDetailsVisibilityMode="Collapsed" 
-                      SelectionUnit="Cell">
+                      SelectionUnit="FullRow">
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0"/>
@@ -198,13 +198,12 @@
                                             Width="320" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseDown">
-                                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientInformation}"                
-                                                                   CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedItem}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
                                         <TextBlock>
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftDoubleClick" 
+                                                              Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInformationInRoomCommand}" 
+                                                              CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedIndex}"/>
+                                            </TextBlock.InputBindings>    
                                             <StackPanel Orientation="Horizontal">
                                                 <Border CornerRadius="1" 
                                                         Width="2" 
@@ -240,7 +239,6 @@
                                             </StackPanel>
                                         </TextBlock>
                                     </Border>
-                                        
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
