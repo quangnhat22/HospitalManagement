@@ -14,12 +14,6 @@ namespace HospitalManagement.Command
 {
     class ShowPatientInfomationCommand : ICommand
     {
-        private PatientViewModel patientViewModel;
-
-        public ShowPatientInfomationCommand(PatientViewModel patientViewModel)
-        {
-            this.patientViewModel = patientViewModel;
-        }
 
         public event EventHandler CanExecuteChanged
         {

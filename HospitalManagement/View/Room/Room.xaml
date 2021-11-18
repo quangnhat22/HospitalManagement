@@ -129,6 +129,7 @@
                        Text="{Binding CurrentRoom}"/>
 
             <DataGrid Grid.Row="1"  
+                      x:Name="dtgPatients"
                       ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       GridLinesVisibility="None"
@@ -136,7 +137,7 @@
                       CanUserResizeRows="False" 
                       CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
-                      CanUserSortColumns="False" 
+                      CanUserSortColumns="False"  
                       CanUserAddRows="False"
                       Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
@@ -197,6 +198,12 @@
                                             Width="320" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDown">
+                                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientInformation}"                
+                                                                   CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                         <TextBlock>
                                             <StackPanel Orientation="Horizontal">
                                                 <Border CornerRadius="1" 

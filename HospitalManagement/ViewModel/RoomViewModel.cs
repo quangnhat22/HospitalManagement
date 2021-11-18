@@ -19,6 +19,7 @@ namespace HospitalManagement.ViewModel
         private static List<BENHNHAN> roomPatients;
         private static List<PHONG> rooms;
         public ICommand ShowPatientsInRoom { get; set; }
+        public ICommand ShowPatientInformation { get; set; }
         public string FloorNumber
         {
             get { return floorNumber; }
@@ -94,6 +95,7 @@ namespace HospitalManagement.ViewModel
                     break;
             }
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
+            ShowPatientInformation = new ShowPatientInfomationCommand();
         }
     }
 }

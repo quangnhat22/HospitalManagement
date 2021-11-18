@@ -71,7 +71,7 @@ namespace HospitalManagement.ViewModel
             SearchBox = String.Empty;
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
-            ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
+            ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
 
             IsCheckedAll = false;
