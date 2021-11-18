@@ -11,24 +11,30 @@ namespace HospitalManagement.ViewModel
 {
     class RoomViewModel : BaseViewModel
     {
-        public static List<BENHNHAN> patients;
+        private string floorNumber;
+        private static List<BENHNHAN> patients;
+        private static List<PHONG> rooms;
+        public string FloorNumber
+        {
+            get { return floorNumber; }
+            set { floorNumber = value; OnPropertyChanged("FloorNumber"); }
+        }
         public List<BENHNHAN> Patients
         {
             get { return patients; }
             set { patients = value; OnPropertyChanged("Patients"); }
         }
-        //public class Patient
-        //{
-        //    public string ten { get; set; }
-        //    public string tinhtrang { get; set; }
-        //}
-
-        public class Room
+        public List<PHONG> Rooms
         {
-            public int soluong { get; set; }
-            public int soluongmax { get; set; }
-            public string ten { get; set; }
+            get { return rooms; }
+            set { rooms = value; OnPropertyChanged("Rooms"); }
         }
+        //public class Room
+        //{
+        //    public int soluong { get; set; }
+        //    public int soluongmax { get; set; }
+        //    public string ten { get; set; }
+        //}
 
         //private List<Patient> patientList = new List<Patient>();
         //public List<Patient> PatientList
@@ -37,12 +43,6 @@ namespace HospitalManagement.ViewModel
         //    set { patientList = value; OnPropertyChanged("PatientList"); }
         //}
 
-        private List<Room> roomList = new List<Room>();
-        public List<Room> RoomList
-        {
-            get { return roomList; }
-            set { roomList = value; OnPropertyChanged("RoomList"); }
-        }
 
         public RoomViewModel(string Floor)
         {
@@ -50,21 +50,33 @@ namespace HospitalManagement.ViewModel
             {
                 case "Floor1":
                     patients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 1).ToList();
+                    FloorNumber = "1";
                     break;
                 case "Floor2":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 2).ToList();
+                    FloorNumber = "2";
                     break;
                 case "Floor3":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 3).ToList();
+                    FloorNumber = "3";
                     break;
                 case "Floor4":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 4).ToList();
+                    FloorNumber = "4";
                     break;
                 case "Floor5":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 5).ToList();
+                    FloorNumber = "5";
                     break;
                 case "Floor6":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 6).ToList();
+                    FloorNumber = "6";
                     break;
             }
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
@@ -75,12 +87,12 @@ namespace HospitalManagement.ViewModel
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
             //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
+            //roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
         }
     }
 }

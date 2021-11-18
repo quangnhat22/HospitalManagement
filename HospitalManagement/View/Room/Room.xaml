@@ -9,9 +9,9 @@
     <Grid Background="#F2F7FD">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding RoomList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="White" BorderBrush="White">
+        <ListBox ItemsSource="{Binding Rooms}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="White" BorderBrush="White">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -49,15 +49,26 @@
                                     <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                                          Height="50"
                                          Width="50"
-                                         Value="{Binding soluong}" 
-                                         Maximum="{Binding soluongmax}" 
+                                         Value="4" 
+                                         Maximum="{Binding SUCCHUA}" 
                                          Background="{x:Null}" Foreground="#2AE2BE"/>
                                     <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
-                                <TextBlock Grid.Row="1" 
-                                           Text="Phòng A304 - A18" 
-                                           FontWeight="Bold" FontSize="20" 
-                                           VerticalAlignment="Center"/>
+                                <WrapPanel VerticalAlignment="Center">
+                                    <TextBlock  
+                                           Text="Phòng " 
+                                           FontWeight="Bold" FontSize="20" />
+                                    <TextBlock  
+                                           FontWeight="Bold" FontSize="20" >
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}.{1}">
+                                                <Binding Path="TANG.SOTANG" />
+                                                <Binding Path="SOPHONG" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </WrapPanel>
+
                             </StackPanel>
                             <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
                             <StackPanel Grid.Row="2" 
@@ -90,21 +101,26 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0"
-                       Text="Phòng 304 - A18"
-                       FontSize="24"
-                       FontWeight="Bold"
-                       Margin="30"/>
+            <WrapPanel Margin="25"
+                       Grid.Row="0">
+                <TextBlock Text="Tầng "
+                           FontSize="24"
+                           FontWeight="Bold"/>
+                <TextBlock FontSize="24"
+                           FontWeight="Bold"
+                           Text="{Binding FloorNumber}"/>
+            </WrapPanel>
+            
             <DataGrid Grid.Row="1"  
                       ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
-                      GridLinesVisibility="None" 
+                      GridLinesVisibility="None"
+                      HorizontalScrollBarVisibility="Disabled"
                       CanUserResizeRows="False" 
                       CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
@@ -167,7 +183,7 @@
                                     
                                     <Border Margin="15 0 0 0" 
                                             CornerRadius="10" 
-                                            Width="300" 
+                                            Width="260" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
                                         <TextBlock>
