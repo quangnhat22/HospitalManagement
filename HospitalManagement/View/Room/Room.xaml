@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:HospitalManagement.View.Room"
         mc:Ignorable="d"
         Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
+    </Window.InputBindings>
     <Grid Background="#F2F7FD">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
