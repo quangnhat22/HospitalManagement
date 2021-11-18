@@ -76,8 +76,8 @@ namespace HospitalManagement.Command
             windowThread.SetApartmentState(ApartmentState.STA);
             windowThread.IsBackground = true;
             windowThread.Start();
-            Application.Current.MainWindow.Show();
             MainWindowViewModel.User = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
+            Application.Current.MainWindow.Show();
         }
 
         private bool CheckAuthentication(string username, string password)

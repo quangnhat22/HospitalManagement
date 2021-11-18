@@ -329,9 +329,11 @@
                                         Padding="3,0,0,0" 
                                         Margin="0">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" 
-                                           CommandParameter="{Binding ElementName=wdHome}"/>
+                                            <i:EventTrigger 
+                                                EventName="SelectionChanged">
+                                                <i:InvokeCommandAction 
+                                                    Command="{Binding SelectionChangedCommand}" 
+                                                    CommandParameter="{Binding ElementName=dab}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                         <ComboBoxItem Content="Theo tháng"/>
@@ -355,8 +357,9 @@
                                         Margin="60,0,0,0" >
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding InitColumnChartCommand}" 
-                                           CommandParameter="{Binding ElementName=wdHome}"/>
+                                                <i:InvokeCommandAction 
+                                                    Command="{Binding InitColumnChartCommand}" 
+                                                    CommandParameter="{Binding ElementName=dab}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </ComboBox>
@@ -366,7 +369,7 @@
                                         Series="{Binding SeriesCollection}" 
                                         LegendLocation="Bottom"
                                         Width="780" 
-                                        Height="360" 
+                                        Height="339" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Top"
                                         Margin="0,100,0,0" >
@@ -391,8 +394,9 @@
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger 
                                             EventName="Initialized">
-                                            <i:InvokeCommandAction Command="{Binding InitColumnChartCommand}" 
-                                                CommandParameter="{Binding ElementName=wdHome}"/>
+                                            <i:InvokeCommandAction 
+                                                Command="{Binding InitColumnChartCommand}" 
+                                                CommandParameter="{Binding ElementName=dab}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </lvc:CartesianChart>
@@ -434,16 +438,16 @@
                                     Margin="30,15,0,0"
                                     SelectedIndex="{Binding SelectedIndex}"
                                     VerticalAlignment="Top">
-                                    <i:Interaction.Triggers>
+                                    <!--<i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
                                             <i:InvokeCommandAction Command="{Binding InitPieChartCommand}" 
                                                 CommandParameter="{Binding ElementName=dab}"/>
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers>
+                                    </i:Interaction.Triggers>-->
                                     <ComboBoxItem Content="Hôm nay"/>
                                     <ComboBoxItem Content="Tháng nay"/>
                                 </ComboBox>
-                                <lvc:PieChart 
+                                <!--<lvc:PieChart 
                                     x:Name="lvcPieChart1"
                                     Series="{Binding PieSeriesCollection}"
                                     LegendLocation="None"  
@@ -454,10 +458,11 @@
                                     Height="340" 
                                     Margin="0,35,0,0" 
                                     HoverPushOut="10"
-                                    FontSize="16"/>
+                                    FontSize="16">
+                                </lvc:PieChart>-->
                             </StackPanel>
                         </Grid>
-                        
+
                     </materialDesign:Card>
                 </Grid>
             </Grid>
