@@ -129,6 +129,7 @@
     <Compile Include="Command\NurseListCommand\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\PatientListCommand\ShowPatientInfomationCommand.cs" />
     <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
+    <Compile Include="Command\ShowPatientsInformationInRoomCommand.cs" />
     <Compile Include="Command\ShowPatientsInRoomCommand.cs" />
     <Compile Include="Model\BACSI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
