@@ -8,16 +8,48 @@ using HospitalManagement.Model;
 using HospitalManagement.View.Room;
 using HospitalManagement.Command;
 using System.Windows.Input;
+using System.Windows;
+using System.ComponentModel;
 
 namespace HospitalManagement.ViewModel
 {
-    class RoomViewModel : BaseViewModel
-    {
+    class RoomViewModel : INotifyPropertyChanged
+    { 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
         private string floorNumber;
         private string currentRoom;
+
+        public class Phong : PHONG, INotifyPropertyChanged
+        {
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            public virtual void OnPropertyChanged(string name)
+            {
+                if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+            private int count;
+
+            public int COUNT
+            {
+                get { return count; }
+                set { count = value; OnPropertyChanged("COUNT"); }
+            }
+            public Phong()
+            {
+                count = 0;
+            }
+        }
+
         private static List<BENHNHAN> patients;
         private static List<BENHNHAN> roomPatients;
         private static List<PHONG> rooms;
+        private static List<Phong> roomsExtended;
         public ICommand ShowPatientsInRoom { get; set; }
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
 
@@ -42,10 +74,10 @@ namespace HospitalManagement.ViewModel
             set { roomPatients = value; OnPropertyChanged("RoomPatients"); }
         }
 
-        public List<PHONG> Rooms
+        public List<Phong> RoomsExtended
         {
-            get { return rooms; }
-            set { rooms = value; OnPropertyChanged("Rooms"); }
+            get { return roomsExtended; }
+            set { roomsExtended = value; OnPropertyChanged("RoomsExtended"); }
         }
 
         public RoomViewModel(string Floor)
@@ -97,6 +129,14 @@ namespace HospitalManagement.ViewModel
             }
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
+            //roomextend = rooms
+            //  .Select(x => new Phong() { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU })
+            //  .ToList();
+
+            roomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU});
+
+            foreach (var patient in patients)
+                roomsExtended[(int)patient.PHONG.SOPHONG - 1].COUNT++;
         }
     }
 }
