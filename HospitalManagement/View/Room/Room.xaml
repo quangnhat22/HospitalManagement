@@ -5,13 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Room"
         mc:Ignorable="d"
-        Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
-    <Grid Background="#F2F7FD">
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen"
+        Name="RoomForm">
+    <Window.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
+    </Window.InputBindings>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding RoomList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="White" BorderBrush="White">
+        <ListBox ItemsSource="{Binding Rooms}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 Background="White" 
+                 BorderBrush="White"
+                 Margin="0 0 0 20">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -30,10 +40,16 @@
                             Background="White" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
-                            Margin="20" Cursor="Hand">
+                            Margin="30 30 0 0" Cursor="Hand">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
+                                                         CommandParameter="{Binding SOPHONG}"  />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
+                              RenderingBias="Performance" ShadowDepth="2" Color="#EEEEEE"/>
                         </Border.Effect>
                         <Grid Background="Transparent" Width="300">
                             <Grid.RowDefinitions>
@@ -49,15 +65,26 @@
                                     <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                                          Height="50"
                                          Width="50"
-                                         Value="{Binding soluong}" 
-                                         Maximum="{Binding soluongmax}" 
+                                         Value="4" 
+                                         Maximum="{Binding SUCCHUA}" 
                                          Background="{x:Null}" Foreground="#2AE2BE"/>
                                     <TextBlock Text="6/8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
-                                <TextBlock Grid.Row="1" 
-                                           Text="Phòng A304 - A18" 
-                                           FontWeight="Bold" FontSize="20" 
-                                           VerticalAlignment="Center"/>
+                                <WrapPanel VerticalAlignment="Center">
+                                    <TextBlock  
+                                           Text="Phòng " 
+                                           FontWeight="Bold" FontSize="20" />
+                                    <TextBlock  
+                                           FontWeight="Bold" FontSize="20" >
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}.{1}">
+                                                <Binding Path="TANG.SOTANG" />
+                                                <Binding Path="SOPHONG" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </WrapPanel>
+
                             </StackPanel>
                             <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
                             <StackPanel Grid.Row="2" 
@@ -90,25 +117,27 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0"
-                       Text="Phòng 304 - A18"
-                       FontSize="24"
+            <TextBlock FontSize="24"
                        FontWeight="Bold"
-                       Margin="30"/>
+                       Margin="25"
+                       Grid.Row="0"
+                       Text="{Binding CurrentRoom}"/>
+
             <DataGrid Grid.Row="1"  
-                      ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      x:Name="dtgPatients"
+                      ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
-                      GridLinesVisibility="None" 
+                      GridLinesVisibility="None"
+                      HorizontalScrollBarVisibility="Disabled"
                       CanUserResizeRows="False" 
                       CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
-                      CanUserSortColumns="False" 
+                      CanUserSortColumns="False"  
                       CanUserAddRows="False"
                       Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
@@ -164,12 +193,17 @@
                                             </Style.Triggers>
                                         </Style>
                                     </ControlTemplate.Resources>
-                                    
                                     <Border Margin="15 0 0 0" 
                                             CornerRadius="10" 
-                                            Width="300" 
+                                            Width="320" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDown">
+                                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientInformation}"                
+                                                                   CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                         <TextBlock>
                                             <StackPanel Orientation="Horizontal">
                                                 <Border CornerRadius="1" 

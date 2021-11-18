@@ -6,42 +6,45 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using HospitalManagement.Model;
 using HospitalManagement.View.Room;
+using HospitalManagement.Command;
+using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel
 {
     class RoomViewModel : BaseViewModel
     {
-        public static List<BENHNHAN> patients;
+        private string floorNumber;
+        private string currentRoom;
+        private static List<BENHNHAN> patients;
+        private static List<BENHNHAN> roomPatients;
+        private static List<PHONG> rooms;
+        public ICommand ShowPatientsInRoom { get; set; }
+        public ICommand ShowPatientInformation { get; set; }
+        public string FloorNumber
+        {
+            get { return floorNumber; }
+            set { floorNumber = value; OnPropertyChanged("FloorNumber"); }
+        }
+        public string CurrentRoom
+        {
+            get { return currentRoom; }
+            set { currentRoom = value; OnPropertyChanged("CurrentRoom"); }
+        }
         public List<BENHNHAN> Patients
         {
             get { return patients; }
             set { patients = value; OnPropertyChanged("Patients"); }
         }
-        //public class Patient
-        //{
-        //    public string ten { get; set; }
-        //    public string tinhtrang { get; set; }
-        //}
-
-        public class Room
+        public List<BENHNHAN> RoomPatients
         {
-            public int soluong { get; set; }
-            public int soluongmax { get; set; }
-            public string ten { get; set; }
+            get { return roomPatients; }
+            set { roomPatients = value; OnPropertyChanged("RoomPatients"); }
         }
 
-        //private List<Patient> patientList = new List<Patient>();
-        //public List<Patient> PatientList
-        //{
-        //    get { return patientList; }
-        //    set { patientList = value; OnPropertyChanged("PatientList"); }
-        //}
-
-        private List<Room> roomList = new List<Room>();
-        public List<Room> RoomList
+        public List<PHONG> Rooms
         {
-            get { return roomList; }
-            set { roomList = value; OnPropertyChanged("RoomList"); }
+            get { return rooms; }
+            set { rooms = value; OnPropertyChanged("Rooms"); }
         }
 
         public RoomViewModel(string Floor)
@@ -50,37 +53,49 @@ namespace HospitalManagement.ViewModel
             {
                 case "Floor1":
                     patients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
+                    roomPatients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 1).ToList();
+                    currentRoom = "Tầng 1";
+                    floorNumber = "1";
                     break;
                 case "Floor2":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
+                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 2).ToList();
+                    currentRoom = "Tầng 2";
+                    floorNumber = "2";
                     break;
                 case "Floor3":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
+                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 3).ToList();
+                    currentRoom = "Tầng 3";
+                    floorNumber = "3";
                     break;
                 case "Floor4":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
+                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 4).ToList();
+                    currentRoom = "Tầng 4";
+                    floorNumber = "4";
                     break;
                 case "Floor5":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
+                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 5).ToList();
+                    currentRoom = "Tầng 5";
+                    floorNumber = "5";
                     break;
                 case "Floor6":
                     patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
+                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
+                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 6).ToList();
+                    currentRoom = "Tầng 6";
+                    floorNumber = "6";
                     break;
             }
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Xấu" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            //patientList.Add(new Patient() { ten = "Do Phu Quang", tinhtrang = "Tốt" });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 8, soluongmax = 8 });
-            roomList.Add(new Room() { ten = "Phòng 304 - A18", soluong = 6, soluongmax = 8 });
+            ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
+            ShowPatientInformation = new ShowPatientInfomationCommand();
         }
     }
 }

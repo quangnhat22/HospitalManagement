@@ -81,9 +81,11 @@
                         Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
                                                                                      Path=DataContext.DeletePatientCommand}">
                     <Button.Style>
-                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightButton}">
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
                             <Setter Property="Background" Value="#dc3545"></Setter>
                             <Setter Property="Foreground" Value="#f1f1f1"></Setter>
+                            <Setter Property="BorderBrush" Value="#dc3545"></Setter>
+                            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="5"></Setter>
                         </Style>
                     </Button.Style>
                 </Button>

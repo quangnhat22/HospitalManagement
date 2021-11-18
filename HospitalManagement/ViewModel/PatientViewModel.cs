@@ -15,15 +15,6 @@ namespace HospitalManagement.ViewModel
 {
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        private int checkedCount;
-        public int CheckedCount { 
-            get => checkedCount; 
-            set 
-            {
-                checkedCount = value;
-                OnPropertyChanged("CheckedCount");
-            }
-        }
         private static ObservableCollection<SelectableItem<BENHNHAN>> patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
 
         private List<String> filterList = new List<string> { "CMND", 
@@ -80,10 +71,9 @@ namespace HospitalManagement.ViewModel
             SearchBox = String.Empty;
             OpenPatientForm = new OpenPatientFormCommand();
             SearchPatientCommand = new SearchPatientCommand(this);
-            ShowPatientInfomationCommand = new ShowPatientInfomationCommand(this);
+            ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
 
-            CheckedCount = 0;
             IsCheckedAll = false;
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
@@ -96,16 +86,12 @@ namespace HospitalManagement.ViewModel
             SingleCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
                 IsCheckedAll = null;
-                if (p.IsChecked == true)
-                    CheckedCount++;
-                else
-                    CheckedCount--;
 
-                if (CheckedCount == patients.Count)
+                if (Patients.Where(patient => patient.IsSelected).Count() == patients.Count)
                     IsCheckedAll = true;
                 else
-                    if (CheckedCount == 0)
-                    IsCheckedAll = false;
+                    if (Patients.Where(patient => patient.IsSelected).Count() == 0)
+                        IsCheckedAll = false;
             });
         }
     }
