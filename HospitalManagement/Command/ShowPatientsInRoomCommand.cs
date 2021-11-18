@@ -35,6 +35,7 @@ namespace HospitalManagement.Command
         {
             int sp = (int)parameter;
             roomViewModel.RoomPatients = roomViewModel.Patients.Where(p => p.PHONG.SOPHONG == sp).ToList();
+            roomViewModel.CurrentRoom = "Phòng " + roomViewModel.FloorNumber + "." + sp.ToString();
         }
     }
 }

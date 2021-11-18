@@ -122,16 +122,12 @@
                 <RowDefinition Height="90"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <WrapPanel Margin="25"
-                       Grid.Row="0">
-                <TextBlock Text="Tầng "
-                           FontSize="24"
-                           FontWeight="Bold"/>
-                <TextBlock FontSize="24"
-                           FontWeight="Bold"
-                           Text="{Binding FloorNumber}"/>
-            </WrapPanel>
-            
+            <TextBlock FontSize="24"
+                       FontWeight="Bold"
+                       Margin="25"
+                       Grid.Row="0"
+                       Text="{Binding CurrentRoom}"/>
+
             <DataGrid Grid.Row="1"  
                       ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
