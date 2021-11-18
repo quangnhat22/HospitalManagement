@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Room"
         mc:Ignorable="d"
-        Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen"
+        Name="RoomForm">
     <Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
     </Window.InputBindings>
@@ -34,6 +36,12 @@
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
                             Margin="20" Cursor="Hand">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
+                                                         CommandParameter="{Binding SOPHONG}"  />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Direction="-90"
                               RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
@@ -120,7 +128,7 @@
             </WrapPanel>
             
             <DataGrid Grid.Row="1"  
-                      ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       GridLinesVisibility="None"
                       HorizontalScrollBarVisibility="Disabled"

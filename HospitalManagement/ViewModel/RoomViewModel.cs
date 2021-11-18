@@ -15,6 +15,7 @@ namespace HospitalManagement.ViewModel
     {
         private string floorNumber;
         private static List<BENHNHAN> patients;
+        private static List<BENHNHAN> roomPatients;
         private static List<PHONG> rooms;
         public ICommand ShowPatientsInRoom { get; set; }
         public string FloorNumber
@@ -27,12 +28,17 @@ namespace HospitalManagement.ViewModel
             get { return patients; }
             set { patients = value; OnPropertyChanged("Patients"); }
         }
+        public List<BENHNHAN> RoomPatients
+        {
+            get { return roomPatients; }
+            set { roomPatients = value; OnPropertyChanged("RoomPatients"); }
+        }
+
         public List<PHONG> Rooms
         {
             get { return rooms; }
             set { rooms = value; OnPropertyChanged("Rooms"); }
         }
-
 
         public RoomViewModel(string Floor)
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -32,9 +33,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            SelectableItem<PHONG> selectableItem = parameter as SelectableItem<PHONG>;
-            PHONG ph = selectableItem.Value as PHONG;
-            roomViewModel.Patients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.SOPHONG==ph.SOPHONG).ToList();
+            int sp = (int)parameter;
+            roomViewModel.RoomPatients = roomViewModel.Patients.Where(p => p.PHONG.SOPHONG == sp).ToList();
         }
     }
 }
