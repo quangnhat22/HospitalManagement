@@ -52,6 +52,7 @@ namespace HospitalManagement.ViewModel
         private static List<Phong> roomsExtended;
         public ICommand ShowPatientsInRoom { get; set; }
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
+        public ICommand RoomProgressBarCommand { get; set; }
 
         public string FloorNumber
         {
@@ -129,6 +130,7 @@ namespace HospitalManagement.ViewModel
             }
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
+            RoomProgressBarCommand = new RoomProgressBarCommand();
             //roomextend = rooms
             //  .Select(x => new Phong() { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU })
             //  .ToList();

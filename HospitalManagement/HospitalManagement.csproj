@@ -125,6 +125,7 @@
     <Compile Include="Command\PatientListCommand\SearchPatientCommand.cs" />
     <Compile Include="Command\ReportFormCommand\SendEmailReportCommand.cs" />
     <Compile Include="Command\DoctorListCommand\ShowDoctorInfomationCommand.cs" />
+    <Compile Include="Command\RoomProgressBarCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Command\NurseListCommand\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\PatientListCommand\ShowPatientInfomationCommand.cs" />
