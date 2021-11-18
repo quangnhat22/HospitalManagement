@@ -24,7 +24,7 @@ namespace HospitalManagement.View
         public DashBoard()
         {
             InitializeComponent();
-            this.DataContext = new DashBoardViewModel();
+            this.DataContext = new DashBoardViewModel(this);
         }
     }
 }

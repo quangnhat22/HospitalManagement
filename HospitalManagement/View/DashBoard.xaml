@@ -432,6 +432,7 @@
                                     VerticalContentAlignment="Center" 
                                     Padding="3,0,0,0" 
                                     Margin="30,15,0,0"
+                                    SelectedIndex="{Binding SelectedIndex}"
                                     VerticalAlignment="Top">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">

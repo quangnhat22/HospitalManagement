@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Command.DashBoardCommand;
 using HospitalManagement.Model;
+using HospitalManagement.View;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace HospitalManagement.ViewModel
         private int staffCount;
         private int patientCount;
         private int bedCount;
+        private DashBoard dab;
 
         public int StaffCount { get => staffCount; set => staffCount = value; }
         public int PatientCount { get => patientCount; set => patientCount = value; }
         public int BedCount { get => bedCount; set => bedCount = value; }
 
+        public int SelectedIndex { get; set; }
         //Pie chart
         private SeriesCollection pieSeriesCollection;
         public SeriesCollection PieSeriesCollection { get => pieSeriesCollection; set { pieSeriesCollection = value; OnPropertyChanged(); } }
@@ -50,14 +53,19 @@ namespace HospitalManagement.ViewModel
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
 
-        public DashBoardViewModel()
+        public DashBoardViewModel(DashBoard dab = null)
         {
+            this.dab = dab;
             InitColumnChartCommand = new InitColumnChartCommand(this);
             InitPieChartCommand = new InitPieChartCommand(this);
+            SelectedIndex = 0;
+            //if (dab != null)
+            //{
+            //    InitPieChartCommand.Execute(dab);
+            //}
             StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count();
             PatientCount = DataProvider.Ins.DB.BENHNHANs.Count();
             BedCount = DataProvider.Ins.DB.PHONGs.Count() * 6;
-
         }
 
         
