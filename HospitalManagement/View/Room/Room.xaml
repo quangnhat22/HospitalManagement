@@ -11,12 +11,17 @@
     <Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
     </Window.InputBindings>
-    <Grid Background="#F2F7FD">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Rooms}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="White" BorderBrush="White">
+        <ListBox ItemsSource="{Binding Rooms}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 Background="White" 
+                 BorderBrush="White"
+                 Margin="0 0 0 20">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -35,7 +40,7 @@
                             Background="White" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center"
-                            Margin="20" Cursor="Hand">
+                            Margin="30 30 0 0" Cursor="Hand">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDown">
                                 <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
@@ -44,7 +49,7 @@
                         </i:Interaction.Triggers>
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="20" Direction="-90"
-                              RenderingBias="Quality" ShadowDepth="2" Color="#EEEEEE"/>
+                              RenderingBias="Performance" ShadowDepth="2" Color="#EEEEEE"/>
                         </Border.Effect>
                         <Grid Background="Transparent" Width="300">
                             <Grid.RowDefinitions>
@@ -191,10 +196,9 @@
                                             </Style.Triggers>
                                         </Style>
                                     </ControlTemplate.Resources>
-                                    
                                     <Border Margin="15 0 0 0" 
                                             CornerRadius="10" 
-                                            Width="260" 
+                                            Width="320" 
                                             HorizontalAlignment="Center" 
                                             Style="{StaticResource SelectedPatientStyle}">
                                         <TextBlock>
