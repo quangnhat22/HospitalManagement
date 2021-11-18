@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel;
+﻿using HospitalManagement.View.EmptyView;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,23 +37,23 @@ namespace HospitalManagement.Command
                 string tag = listViewItem.Tag.ToString();
                 if (tag == "Home")
                 {
-                    mainWindowViewModel.SelectedViewModel = new DashBoardViewModel();
+                    mainWindowViewModel.SelectedViewModel = new SwitchDashboardViewModel();
                 }
                 if (tag == "Staff")
                 {
-                    mainWindowViewModel.SelectedViewModel = new StaffViewModel();
+                    mainWindowViewModel.SelectedViewModel = new SwitchStaffViewModel();
                 }
                 if (tag == "Patient")
                 {
-                    mainWindowViewModel.SelectedViewModel = new PatientViewModel();
+                    mainWindowViewModel.SelectedViewModel = new SwitchPatientViewModel();
                 }
                 if (tag == "Facilities")
                 {
-                    mainWindowViewModel.SelectedViewModel = new FacilitiesViewModel();
+                    mainWindowViewModel.SelectedViewModel = new SwitchFacilitiesViewModel();
                 }
                 if (tag == "Rooms")
                 {
-                    mainWindowViewModel.SelectedViewModel = new RoomUsercontrolViewModel();
+                    mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
                 }
             }
         }

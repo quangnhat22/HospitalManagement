@@ -4,20 +4,21 @@
                     xmlns:view="clr-namespace:HospitalManagement.View"
                     xmlns:viewroom="clr-namespace:HospitalManagement.View.Room"
                     xmlns:viewstaff="clr-namespace:HospitalManagement.View.Staff"
+                    xmlns:switchview="clr-namespace:HospitalManagement.View.EmptyView"
                     xmlns:viewdoctor="c">
-    <DataTemplate DataType="{x:Type viewmodel:DashBoardViewModel}">
+    <DataTemplate DataType="{x:Type switchview:SwitchDashboardViewModel}">
         <view:DashBoard></view:DashBoard>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:PatientViewModel}">
+    <DataTemplate DataType="{x:Type switchview:SwitchPatientViewModel}">
         <view:Patient></view:Patient>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:FacilitiesViewModel}">
+    <DataTemplate DataType="{x:Type switchview:SwitchFacilitiesViewModel}">
         <view:Facilities></view:Facilities>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:RoomUsercontrolViewModel}">
+    <DataTemplate DataType="{x:Type switchview:SwitchRoomViewModel}">
         <viewroom:RoomUsercontrol></viewroom:RoomUsercontrol>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewmodel:StaffViewModel}">
+    <DataTemplate DataType="{x:Type switchview:SwitchStaffViewModel}">
         <viewstaff:StaffUsercontrol></viewstaff:StaffUsercontrol>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">

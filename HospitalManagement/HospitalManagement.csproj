@@ -203,6 +203,11 @@
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchDashboardViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchFacilitiesViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchPatientViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchRoomViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
     </Compile>

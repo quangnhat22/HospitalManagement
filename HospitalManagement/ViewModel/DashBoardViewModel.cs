@@ -59,10 +59,10 @@ namespace HospitalManagement.ViewModel
             InitColumnChartCommand = new InitColumnChartCommand(this);
             InitPieChartCommand = new InitPieChartCommand(this);
             SelectedIndex = 0;
-            //if (dab != null)
-            //{
-            //    InitPieChartCommand.Execute(dab);
-            //}
+            if (dab != null)
+            {
+                InitPieChartCommand.Execute(dab);
+            }
             StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count();
             PatientCount = DataProvider.Ins.DB.BENHNHANs.Count();
             BedCount = DataProvider.Ins.DB.PHONGs.Count() * 6;

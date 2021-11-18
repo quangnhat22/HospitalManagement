@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Command;
 using HospitalManagement.Model;
+using HospitalManagement.View.EmptyView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace HospitalManagement.ViewModel
 {
     class MainWindowViewModel : BaseViewModel
     {
-        private BaseViewModel _selectedViewModel = new DashBoardViewModel();
+        private BaseViewModel _selectedViewModel = new SwitchDashboardViewModel();
 
         static public USER User;
 
@@ -25,36 +26,11 @@ namespace HospitalManagement.ViewModel
             }
         }
 
-        public ICommand SelectViewCommand
-        {
-            get;
-            set;
-        }
-
-        public ICommand ShowAboutCommand
-        {
-            get;
-            set;
-        }
-
-        public ICommand LogoutCommand
-        { 
-            get;
-            set; 
-        }
-
-        public ICommand OpenReportForm
-        {
-            get;
-            set;
-        }
-
-        public ICommand OpenAccountSetting
-        {          
-            get;
-            set;
-        }
-
+        public ICommand SelectViewCommand { get; set; }
+        public ICommand ShowAboutCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
+        public ICommand OpenReportForm { get; set; }
+        public ICommand OpenAccountSetting { get; set; }
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
