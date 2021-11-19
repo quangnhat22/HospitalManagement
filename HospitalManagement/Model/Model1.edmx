@@ -70,6 +70,16 @@
           <Property Name="IDVATTU" Type="int" Nullable="false" />
           <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="TANG">
           <Key>
             <PropertyRef Name="ID" />
@@ -77,6 +87,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SOTANG" Type="int" />
           <Property Name="SLPHONG" Type="int" />
+          <Property Name="IDTOA" Type="int" />
         </EntityType>
         <EntityType Name="TO">
           <Key>
@@ -84,6 +95,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="int" Nullable="false" />
+          <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SLTANG" Type="int" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -212,6 +231,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Role="TOA" Type="Self.TOA" Multiplicity="0..1" />
+          <End Role="TANG" Type="Self.TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TO_IDTANG_FK">
           <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
           <End Role="TO" Type="Self.TO" Multiplicity="*" />
@@ -242,8 +273,10 @@
           <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
@@ -274,6 +307,10 @@
           <AssociationSet Name="SUDUNG_IDVATTU_FK" Association="Self.SUDUNG_IDVATTU_FK">
             <End Role="VATTU" EntitySet="VATTU" />
             <End Role="SUDUNG" EntitySet="SUDUNG" />
+          </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="Self.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOA" />
+            <End Role="TANG" EntitySet="TANG" />
           </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANG" />
@@ -322,8 +359,10 @@
           <EntitySet Name="BACSIs" EntityType="QUANLYBENHVIENModel.BACSI" />
           <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
+          <EntitySet Name="sysdiagrams" EntityType="QUANLYBENHVIENModel.sysdiagram" />
           <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
+          <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
           <EntitySet Name="USERs" EntityType="QUANLYBENHVIENModel.USER" />
           <EntitySet Name="VATTUs" EntityType="QUANLYBENHVIENModel.VATTU" />
           <EntitySet Name="YTAs" EntityType="QUANLYBENHVIENModel.YTA" />
@@ -338,6 +377,10 @@
           <AssociationSet Name="PHONG_IDTANG_FK" Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
             <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="QUANLYBENHVIENModel.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOAs" />
+            <End Role="TANG" EntitySet="TANGs" />
           </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="QUANLYBENHVIENModel.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
@@ -421,6 +464,16 @@
           <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="TANG">
           <Key>
             <PropertyRef Name="ID" />
@@ -428,7 +481,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SOTANG" Type="Int32" />
           <Property Name="SLPHONG" Type="Int32" />
+          <Property Name="IDTOA" Type="Int32" />
           <NavigationProperty Name="PHONGs" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="TANG" ToRole="PHONG" />
+          <NavigationProperty Name="TOA" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TANG" ToRole="TOA" />
           <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TANG" ToRole="TO" />
         </EntityType>
         <EntityType Name="TO">
@@ -441,6 +496,15 @@
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
           <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
           <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.CHIDINH" FromRole="TO" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="Int32" Nullable="false" />
+          <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SLTANG" Type="Int32" />
+          <NavigationProperty Name="TANGs" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TOA" ToRole="TANG" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -521,6 +585,18 @@
             </Principal>
             <Dependent Role="PHONG">
               <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Type="QUANLYBENHVIENModel.TOA" Role="TOA" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TANG" Role="TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -614,9 +690,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TANGs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TANG">
               <MappingFragment StoreEntitySet="TANG">
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
                 <ScalarProperty Name="SLPHONG" ColumnName="SLPHONG" />
                 <ScalarProperty Name="SOTANG" ColumnName="SOTANG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -628,6 +716,15 @@
               <MappingFragment StoreEntitySet="TO">
                 <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOAs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TOA">
+              <MappingFragment StoreEntitySet="TOA">
+                <ScalarProperty Name="SLTANG" ColumnName="SLTANG" />
+                <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
