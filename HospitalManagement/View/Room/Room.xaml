@@ -160,6 +160,7 @@
                       AutoGenerateColumns="False" 
                       GridLinesVisibility="None"
                       HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Hidden"
                       CanUserResizeRows="False" 
                       CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
@@ -168,7 +169,21 @@
                       Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
                       RowDetailsVisibilityMode="Collapsed" 
-                      SelectionUnit="Cell">
+                      SelectionUnit="FullRow">
+                <DataGrid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="{x:Null}" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ResourceDictionary>
+                </DataGrid.Resources>
                 <DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0"/>
