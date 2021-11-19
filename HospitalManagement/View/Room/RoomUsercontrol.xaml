@@ -16,10 +16,6 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1087*"/>
-            <ColumnDefinition Width="294*"/>
-        </Grid.ColumnDefinitions>-->
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Uniform"/>
         </Grid.Background>

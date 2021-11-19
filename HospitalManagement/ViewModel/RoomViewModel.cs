@@ -13,15 +13,8 @@ using System.ComponentModel;
 
 namespace HospitalManagement.ViewModel
 {
-    class RoomViewModel : INotifyPropertyChanged
+    class RoomViewModel : BaseViewModel
     { 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-
         private string floorNumber;
         private string currentRoom;
 
@@ -131,14 +124,8 @@ namespace HospitalManagement.ViewModel
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
             RoomProgressBarCommand = new RoomProgressBarCommand();
-            //roomextend = rooms
-            //  .Select(x => new Phong() { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU })
-            //  .ToList();
 
-            roomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU});
-
-            foreach (var patient in patients)
-                roomsExtended[(int)patient.PHONG.SOPHONG - 1].COUNT++;
+            roomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT=x.BENHNHANs.Count});
         }
     }
 }
