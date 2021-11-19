@@ -86,6 +86,9 @@
     <Compile Include="TO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="TOA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="USER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

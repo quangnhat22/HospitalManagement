@@ -12,24 +12,19 @@ namespace Seeds
     using System;
     using System.Collections.Generic;
     
-    public partial class TANG
+    public partial class TOA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TANG()
+        public TOA()
         {
-            this.PHONGs = new HashSet<PHONG>();
-            this.TOes = new HashSet<TO>();
+            this.TANGs = new HashSet<TANG>();
         }
     
-        public int ID { get; set; }
-        public Nullable<int> SOTANG { get; set; }
-        public Nullable<int> SLPHONG { get; set; }
-        public Nullable<int> IDTOA { get; set; }
+        public int IDTOA { get; set; }
+        public string DISPLAYNAME { get; set; }
+        public Nullable<int> SLTANG { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHONG> PHONGs { get; set; }
-        public virtual TOA TOA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO> TOes { get; set; }
+        public virtual ICollection<TANG> TANGs { get; set; }
     }
 }

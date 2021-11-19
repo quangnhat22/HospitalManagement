@@ -30,6 +30,7 @@ namespace Seeds
         public virtual DbSet<PHONG> PHONGs { get; set; }
         public virtual DbSet<TANG> TANGs { get; set; }
         public virtual DbSet<TO> TOes { get; set; }
+        public virtual DbSet<TOA> TOAs { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<VATTU> VATTUs { get; set; }
         public virtual DbSet<YTA> YTAs { get; set; }

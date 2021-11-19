@@ -77,6 +77,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SOTANG" Type="int" />
           <Property Name="SLPHONG" Type="int" />
+          <Property Name="IDTOA" Type="int" />
         </EntityType>
         <EntityType Name="TO">
           <Key>
@@ -84,6 +85,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SLTANG" Type="int" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -212,6 +221,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Role="TOA" Type="Self.TOA" Multiplicity="0..1" />
+          <End Role="TANG" Type="Self.TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TO_IDTANG_FK">
           <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
           <End Role="TO" Type="Self.TO" Multiplicity="*" />
@@ -244,6 +265,7 @@
           <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
@@ -275,6 +297,10 @@
             <End Role="VATTU" EntitySet="VATTU" />
             <End Role="SUDUNG" EntitySet="SUDUNG" />
           </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="Self.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOA" />
+            <End Role="TANG" EntitySet="TANG" />
+          </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANG" />
             <End Role="TO" EntitySet="TO" />
@@ -294,6 +320,7 @@
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
           <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
+          <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
           <EntitySet Name="USERs" EntityType="QUANLYBENHVIENModel.USER" />
           <EntitySet Name="VATTUs" EntityType="QUANLYBENHVIENModel.VATTU" />
           <EntitySet Name="YTAs" EntityType="QUANLYBENHVIENModel.YTA" />
@@ -308,6 +335,10 @@
           <AssociationSet Name="PHONG_IDTANG_FK" Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
             <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="QUANLYBENHVIENModel.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOAs" />
+            <End Role="TANG" EntitySet="TANGs" />
           </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="QUANLYBENHVIENModel.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
@@ -387,7 +418,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SOTANG" Type="Int32" />
           <Property Name="SLPHONG" Type="Int32" />
+          <Property Name="IDTOA" Type="Int32" />
           <NavigationProperty Name="PHONGs" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="TANG" ToRole="PHONG" />
+          <NavigationProperty Name="TOA" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TANG" ToRole="TOA" />
           <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TANG" ToRole="TO" />
         </EntityType>
         <EntityType Name="TO">
@@ -400,6 +433,15 @@
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
           <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
           <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.CHIDINH" FromRole="TO" ToRole="VATTU" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SLTANG" Type="Int32" />
+          <NavigationProperty Name="TANGs" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TOA" ToRole="TANG" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -480,6 +522,18 @@
             </Principal>
             <Dependent Role="PHONG">
               <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Type="QUANLYBENHVIENModel.TOA" Role="TOA" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TANG" Role="TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -576,6 +630,7 @@
           <EntitySetMapping Name="TANGs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TANG">
               <MappingFragment StoreEntitySet="TANG">
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
                 <ScalarProperty Name="SLPHONG" ColumnName="SLPHONG" />
                 <ScalarProperty Name="SOTANG" ColumnName="SOTANG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -587,6 +642,15 @@
               <MappingFragment StoreEntitySet="TO">
                 <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOAs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TOA">
+              <MappingFragment StoreEntitySet="TOA">
+                <ScalarProperty Name="SLTANG" ColumnName="SLTANG" />
+                <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
