@@ -13,10 +13,15 @@ namespace HospitalManagement.Command
 {
     public class OpenRoomWindowCommand : ICommand
     {
+        private int currentBuilding;
         public event EventHandler CanExecuteChanged
         {
             add { }
             remove { }
+        }
+        public OpenRoomWindowCommand(int currentBuilding)
+        {
+            this.currentBuilding = currentBuilding;
         }
         public bool CanExecute(object parameter)
         {
@@ -25,8 +30,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            Button button = parameter as Button;
-            var roomWindow = new Room(button.Name);
+            int? Floor = parameter as int?;
+            var roomWindow = new Room(currentBuilding, Floor);
             Application.Current.MainWindow = roomWindow;
             roomWindow.Show();
         }

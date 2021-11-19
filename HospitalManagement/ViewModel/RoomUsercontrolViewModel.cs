@@ -15,11 +15,11 @@ namespace HospitalManagement.ViewModel
         public ICommand OpenRoomWindow { get; set; }
         public ICommand ChangeBuildingCommand { get; set; }
         public ICommand DisableButtonCommand { get; set; }
-        
+
 
         private int currentBuilding;
         private static List<TOA> buildings;
-        private static List<TANG> floors=DataProvider.Ins.DB.TANGs.Where(p=>p.TOA.IDTOA==1).ToList();
+        private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
         public int CurrentBuilding
         {
             get { return currentBuilding; }
@@ -41,7 +41,7 @@ namespace HospitalManagement.ViewModel
         {
             currentBuilding = 1;
             Buildings = DataProvider.Ins.DB.TOAs.ToList();
-            OpenRoomWindow = new OpenRoomWindowCommand();
+            OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
             DisableButtonCommand = new DisableButtonCommand();
         }

@@ -15,7 +15,7 @@ namespace HospitalManagement.ViewModel
 {
     class RoomViewModel : BaseViewModel
     { 
-        private string floorNumber;
+        private int floorNumber;
         private string currentRoom;
 
         public class Phong : PHONG, INotifyPropertyChanged
@@ -47,7 +47,7 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
         public ICommand RoomProgressBarCommand { get; set; }
 
-        public string FloorNumber
+        public int FloorNumber
         {
             get { return floorNumber; }
             set { floorNumber = value; OnPropertyChanged("FloorNumber"); }
@@ -74,53 +74,13 @@ namespace HospitalManagement.ViewModel
             set { roomsExtended = value; OnPropertyChanged("RoomsExtended"); }
         }
 
-        public RoomViewModel(string Floor)
+        public RoomViewModel(int currentBuilding, int? Floor)
         {
-            switch (Floor)
-            {
-                case "Floor1":
-                    patients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
-                    roomPatients= DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 1).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 1).ToList();
-                    currentRoom = "Tầng 1";
-                    floorNumber = "1";
-                    break;
-                case "Floor2":
-                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
-                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 2).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 2).ToList();
-                    currentRoom = "Tầng 2";
-                    floorNumber = "2";
-                    break;
-                case "Floor3":
-                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
-                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 3).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 3).ToList();
-                    currentRoom = "Tầng 3";
-                    floorNumber = "3";
-                    break;
-                case "Floor4":
-                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
-                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 4).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 4).ToList();
-                    currentRoom = "Tầng 4";
-                    floorNumber = "4";
-                    break;
-                case "Floor5":
-                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
-                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 5).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 5).ToList();
-                    currentRoom = "Tầng 5";
-                    floorNumber = "5";
-                    break;
-                case "Floor6":
-                    patients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
-                    roomPatients = DataProvider.Ins.DB.BENHNHANs.Where(p => p.PHONG.TANG.SOTANG == 6).ToList();
-                    rooms = DataProvider.Ins.DB.PHONGs.Where(p => p.TANG.SOTANG == 6).ToList();
-                    currentRoom = "Tầng 6";
-                    floorNumber = "6";
-                    break;
-            }
+            patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.PHONG.TANG.TOA.IDTOA == currentBuilding && p.PHONG.TANG.SOTANG == Floor)).ToList();
+            roomPatients = patients;
+            rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == currentBuilding && p.TANG.SOTANG == Floor)).ToList();
+            currentRoom = "Tầng "+Floor.ToString();
+            floorNumber =(int) Floor;
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
             RoomProgressBarCommand = new RoomProgressBarCommand();

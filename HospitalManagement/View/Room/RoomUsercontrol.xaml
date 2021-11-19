@@ -16,6 +16,9 @@
              x:Name="roomUC"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="760" d:DesignWidth="1387">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Uniform"/>
@@ -71,13 +74,17 @@
                 <DataTemplate>
                     <StackPanel Width="380">
                         <Grid Height="10" 
-                        Background="#FFE0EBFD"/>
+                              Background="#FFE0EBFD"/>
                         <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                        ToolTip="MaterialDesignOutlinedButton"
-                        Command="{Binding OpenRoomWindow}"
-                        CommandParameter="{Binding ElementName=Floor6}"
-                        Height="60"
-                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5">
+                                ToolTip="MaterialDesignOutlinedButton"
+                                Height="50"
+                                Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding ElementName=roomUC, Path=DataContext.OpenRoomWindow}"
+                                                         CommandParameter="{Binding SOTANG}"  />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <WrapPanel>
                                 <TextBlock Text="TẦNG "/>
                                 <TextBlock>

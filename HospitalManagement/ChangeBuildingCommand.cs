@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HospitalManagement.Model;
 using HospitalManagement.ViewModel;
 
 namespace HospitalManagement
@@ -38,12 +39,20 @@ namespace HospitalManagement
             if (btn.Name == "btnLeft")
             {
                 if (currentBuilding > 1)
+                {
                     currentBuilding--;
+                    roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                }
+                    
             }
             else
             {
                 if (currentBuilding < roomUsercontrolViewModel.Buildings.Count)
+                {
                     currentBuilding++;
+                    roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                }
+                    
             }
             roomUsercontrolViewModel.CurrentBuilding = currentBuilding;
         }
