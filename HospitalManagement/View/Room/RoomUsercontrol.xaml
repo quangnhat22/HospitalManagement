@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View.Room"
              mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
@@ -19,6 +20,34 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Uniform"/>
         </Grid.Background>
+        <StackPanel Orientation="Horizontal" Panel.ZIndex="2"
+                    Margin="1092,42,42.2,580" 
+                    x:Name="stk">
+            <TextBlock x:Name="txtCurrent" Text="{Binding CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}">
+                <!--<i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TargetUpdated">
+                                <i:InvokeCommandAction Command="{Binding DisableButtonCommand}"
+                                                         CommandParameter="{Binding RelativeSource=
+        {RelativeSource FindAncestor, AncestorType={x:Type StackPanel}}}"  />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>-->
+            </TextBlock>
+            <Button x:Name="btnLeft"
+                    Height="50" 
+                    Width="80"
+                    Margin="0 0 10 0"
+                    Command="{Binding ChangeBuildingCommand}"
+                    CommandParameter="{Binding ElementName=btnLeft}">
+                <materialDesign:PackIcon Kind="ChevronLeft" Width="40" Height="40"/>
+            </Button>
+            <Button x:Name="btnRight"
+                    Height="50"
+                    Width="80"
+                    Command="{Binding ChangeBuildingCommand}"
+                    CommandParameter="{Binding ElementName=btnRight}">
+                <materialDesign:PackIcon Kind="ChevronRight" Width="40" Height="40"/>
+            </Button>
+        </StackPanel>
         <StackPanel Background="#7FFFFFFF"
                     Margin="540,0,470,205"
                     VerticalAlignment="Bottom"

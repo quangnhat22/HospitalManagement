@@ -93,11 +93,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChangeBuildingCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DisableButtonCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
