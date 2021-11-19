@@ -16,20 +16,25 @@ namespace HospitalManagement.ViewModel
         public ICommand ChangeBuildingCommand { get; set; }
         public ICommand DisableButtonCommand { get; set; }
         
-        public string Tag { get; }
 
         private int currentBuilding;
+        private static List<TOA> buildings;
+        private static List<TANG> floors=DataProvider.Ins.DB.TANGs.Where(p=>p.TOA.IDTOA==1).ToList();
         public int CurrentBuilding
         {
             get { return currentBuilding; }
             set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
         }
-
-        private static List<TOA> buildings;
+        
         public List<TOA> Buildings
         {
             get { return buildings; }
             set { buildings = value; OnPropertyChanged("Buildings"); }
+        }
+        public List<TANG> Floors
+        {
+            get { return floors; }
+            set { floors = value; OnPropertyChanged("Floors"); }
         }
 
         public RoomUsercontrolViewModel()

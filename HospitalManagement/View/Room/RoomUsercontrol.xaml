@@ -48,7 +48,55 @@
                 <materialDesign:PackIcon Kind="ChevronRight" Width="40" Height="40"/>
             </Button>
         </StackPanel>
-        <StackPanel Background="#7FFFFFFF"
+
+        <ListBox ItemsSource="{Binding Floors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 Background="#7FFFFFFF"
+                 Margin="540,0,470,205"
+                 VerticalAlignment="Bottom">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Width="380">
+                        <Grid Height="10" 
+                        Background="#FFE0EBFD"/>
+                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                        ToolTip="MaterialDesignOutlinedButton"
+                        Command="{Binding OpenRoomWindow}"
+                        CommandParameter="{Binding ElementName=Floor6}"
+                        Height="60"
+                        Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5">
+                            <WrapPanel>
+                                <TextBlock Text="TẦNG "/>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <Binding Path="SOTANG"/>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </WrapPanel>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <!--<StackPanel Background="#7FFFFFFF"
                     Margin="540,0,470,205"
                     VerticalAlignment="Bottom"
                     Orientation="Vertical">
@@ -125,6 +173,6 @@
                         Command="{Binding OpenRoomWindow}"
                         CommandParameter="{Binding ElementName=Floor1}"/>
             </StackPanel>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>
