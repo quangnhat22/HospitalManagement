@@ -99,7 +99,6 @@
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
-    <Compile Include="Command\DisableButtonCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
