@@ -79,8 +79,9 @@ namespace HospitalManagement.ViewModel
             patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.PHONG.TANG.TOA.IDTOA == currentBuilding && p.PHONG.TANG.SOTANG == Floor)).ToList();
             roomPatients = patients;
             rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == currentBuilding && p.TANG.SOTANG == Floor)).ToList();
-            currentRoom = "Tầng "+Floor.ToString();
+            currentRoom = "Tầng " + Floor.ToString();
             floorNumber =(int) Floor;
+
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
             RoomProgressBarCommand = new RoomProgressBarCommand();

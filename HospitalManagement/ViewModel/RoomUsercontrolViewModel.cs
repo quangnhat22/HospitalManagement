@@ -16,10 +16,10 @@ namespace HospitalManagement.ViewModel
         public ICommand ChangeBuildingCommand { get; set; }
         public ICommand DisableButtonCommand { get; set; }
 
-
         private int currentBuilding;
         private static List<TOA> buildings;
         private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
+        
         public int CurrentBuilding
         {
             get { return currentBuilding; }
@@ -33,7 +33,7 @@ namespace HospitalManagement.ViewModel
         }
         public List<TANG> Floors
         {
-            get { return floors; }
+            get { floors.Reverse(); return floors; }
             set { floors = value; OnPropertyChanged("Floors"); }
         }
 
