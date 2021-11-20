@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HospitalManagement.Command;
 using HospitalManagement.Model;
 using HospitalManagement.ViewModel;
 
@@ -42,6 +43,7 @@ namespace HospitalManagement
                 {
                     currentBuilding--;
                     roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                    roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
                     
             }
@@ -51,6 +53,7 @@ namespace HospitalManagement
                 {
                     currentBuilding++;
                     roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                    roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
                     
             }
