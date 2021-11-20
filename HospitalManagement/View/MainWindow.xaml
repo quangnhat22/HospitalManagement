@@ -184,6 +184,13 @@
                                 <TextBlock Text="Phòng" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
+                        <ListViewItem Height="60"
+                                      Tag="Teams">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Tổ" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
                     </ListView>
                 </Grid>
                 <Grid Grid.Row="2">

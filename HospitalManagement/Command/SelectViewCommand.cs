@@ -55,6 +55,10 @@ namespace HospitalManagement.Command
                 {
                     mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
                 }
+                if (tag == "Teams")
+                {
+                    mainWindowViewModel.SelectedViewModel = new SwitchTeamViewModel();
+                }
             }
         }
     }

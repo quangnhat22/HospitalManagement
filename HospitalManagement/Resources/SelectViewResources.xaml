@@ -5,6 +5,7 @@
                     xmlns:viewroom="clr-namespace:HospitalManagement.View.Room"
                     xmlns:viewstaff="clr-namespace:HospitalManagement.View.Staff"
                     xmlns:switchview="clr-namespace:HospitalManagement.View.EmptyView"
+                    xmlns:viewteam="clr-namespace:HospitalManagement.View.Team"
                     xmlns:viewdoctor="c">
     <DataTemplate DataType="{x:Type switchview:SwitchDashboardViewModel}">
         <view:DashBoard></view:DashBoard>
@@ -26,5 +27,8 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:NurseViewModel}">
         <viewstaff:NurseUsercontrol></viewstaff:NurseUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchTeamViewModel}">
+        <viewteam:TeamUsercontrol/>
     </DataTemplate>
 </ResourceDictionary>

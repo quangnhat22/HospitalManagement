@@ -218,6 +218,7 @@
     <Compile Include="View\EmptyView\SwitchPatientViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchRoomViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchStaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
     </Compile>
@@ -289,6 +290,9 @@
     </Compile>
     <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
       <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Team\TeamUsercontrol.xaml.cs">
+      <DependentUpon>TeamUsercontrol.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Facilities\FacilitiesForm.xaml">
       <SubType>Designer</SubType>
@@ -408,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Staff\StaffUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Team\TeamUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
