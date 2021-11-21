@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using HospitalManagement.View;
 using HospitalManagement.Model;
-using System.Windows;
+using HospitalManagement.Utils;
+using HospitalManagement.View;
+using HospitalManagement.ViewModel;
+
 
 namespace HospitalManagement.Command
 {
@@ -25,8 +27,9 @@ namespace HospitalManagement.Command
         }
 
         public void Execute(object parameter)
-        {
-            BACSI bs = parameter as BACSI;
+        {           
+            SelectableItem<BACSI> selectableItem = parameter as SelectableItem<BACSI>;
+            BACSI bs = selectableItem.Value as BACSI;
             DoctorInformationForm doctorInformationForm = new DoctorInformationForm(bs);
             doctorInformationForm.Show();
         }

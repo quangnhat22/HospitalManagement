@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Model;
+using System.ComponentModel;
 using HospitalManagement.Command;
+using HospitalManagement.Utils;
+using System.Collections.ObjectModel;
 
 namespace HospitalManagement.ViewModel
 {
     class DoctorViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        public static List<BACSI> doctors = DataProvider.Ins.DB.BACSIs.ToList();
-        public List<BACSI> Doctors
+        private static ObservableCollection<SelectableItem<BACSI>> doctors = SelectableItem<BACSI>.GetSelectableItems(DataProvider.Ins.DB.BACSIs.ToList());
+        public ObservableCollection<SelectableItem<BACSI>> Doctors
         {
             get { return doctors; }
             set { doctors = value; OnPropertyChanged("Doctors"); }
@@ -45,7 +47,6 @@ namespace HospitalManagement.ViewModel
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowDoctorInfomationCommand { get; set; }
-
         public DoctorViewModel()
         {
             //for (int i = 0; i < 200; i++)
@@ -125,7 +126,6 @@ namespace HospitalManagement.ViewModel
             //}
             //CheckedCount = 0;
             //IsCheckedAll = false;
-
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
 
             //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
@@ -149,7 +149,6 @@ namespace HospitalManagement.ViewModel
             //        if (CheckedCount == 0)
             //        IsCheckedAll = false;
             //});
-
             OpenDoctorForm = new OpenDoctorFormCommand();
         }
     }
