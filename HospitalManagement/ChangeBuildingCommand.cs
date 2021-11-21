@@ -45,7 +45,6 @@ namespace HospitalManagement
                     roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
-                    
             }
             else
             {
@@ -55,9 +54,18 @@ namespace HospitalManagement
                     roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
-                    
             }
             roomUsercontrolViewModel.CurrentBuilding = currentBuilding;
+            if (currentBuilding == 1)
+                roomUsercontrolViewModel.CanMoveBackward = false;
+            else
+                if (currentBuilding == roomUsercontrolViewModel.Buildings.Count)
+                roomUsercontrolViewModel.CanMoveForward = false;
+            else
+            {
+                roomUsercontrolViewModel.CanMoveForward = true;
+                roomUsercontrolViewModel.CanMoveBackward = true;
+            }
         }
     }
 }
