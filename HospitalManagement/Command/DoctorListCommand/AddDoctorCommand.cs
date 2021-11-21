@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.ViewModel;
 using System;
@@ -13,11 +14,11 @@ namespace HospitalManagement.Command
     class AddDoctorCommand : ICommand
     {
         private DoctorFormViewModel doctorFormViewModel;
-
         public AddDoctorCommand(DoctorFormViewModel doctorFormViewModel)
         {
             this.doctorFormViewModel = doctorFormViewModel;
         }
+
 
         public event EventHandler CanExecuteChanged
         {
@@ -50,8 +51,9 @@ namespace HospitalManagement.Command
                 IDTO = Convert.ToInt32(doctorForm.txtIDTO.Text),
                 GHICHU = doctorForm.txtGhiChu.Text,
             };
-            doctorFormViewModel?.db?.DB?.BACSIs.Add(doctorInput);
-            doctorFormViewModel?.db?.DB?.SaveChanges();
+            DataProvider.Ins.DB.BACSIs.Add(doctorInput);
+            DataProvider.Ins.DB.SaveChanges();
         }
+
     }
 }

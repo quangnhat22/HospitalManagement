@@ -77,41 +77,41 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <materialDesign:DataGridTextColumn Binding="{Binding CMND_CCCD}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.CMND_CCCD}"
                                                     Header="CMND"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding HO}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.HO}"
                                                     Header="Họ"
                                                     Width="100"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                    <materialDesign:DataGridTextColumn Binding="{Binding TEN}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.TEN}"
                                                    Header="Tên"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
                                                    Header="Giới tính"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sinh"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding CHUYENKHOA}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.CHUYENKHOA}"
                                                    Header="Chuyên khoa"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding VAITRO}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.VAITRO}"
                                                    Header="Vai trò"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding IDTO}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.IDTO}"
                                                    Header="Tổ"
                                                    Width="80"
                                                    ElementStyle="{StaticResource ElementStyle}"
@@ -127,7 +127,8 @@
                                     VerticalAlignment="Center">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=DataContext.ShowDoctorInfomationCommand}"
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                            Path=DataContext.ShowDoctorInfomationCommand}"
                                                                CommandParameter="{Binding ElementName=dtgDoctorList, Path=SelectedItem}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>

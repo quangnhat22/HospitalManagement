@@ -16,7 +16,6 @@ namespace HospitalManagement.ViewModel
     class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private static ObservableCollection<SelectableItem<BENHNHAN>> patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
-
         private List<String> filterList = new List<string> { "CMND", 
                                                             "Họ", 
                                                             "Tên"
