@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Command.DashBoardCommand;
 using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.View;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -34,25 +35,6 @@ namespace HospitalManagement.ViewModel
         private SeriesCollection seriesCollection;
         public SeriesCollection SeriesCollection { get => seriesCollection; set { seriesCollection = value; OnPropertyChanged(); } }
 
-        //Column Chart
-        //private ObservableCollection<string> itemSourceTime = new ObservableCollection<string>();
-        //public ObservableCollection<string> ItemSourceTime { get => itemSourceTime; set { itemSourceTime = value; OnPropertyChanged(); } }
-
-        //private SeriesCollection seriesCollection;
-        //public SeriesCollection SeriesCollection { get => seriesCollection; set { seriesCollection = value; OnPropertyChanged(); } }
-
-        //private Func<double, string> formatter;
-        //public Func<double, string> Formatter { get => formatter; set { formatter = value; OnPropertyChanged(); } }
-
-        //private string axisYTitle;
-        //public string AxisYTitle { get => axisYTitle; set { axisYTitle = value; OnPropertyChanged(); } }
-
-        //private string axisXTitle;
-        //public string AxisXTitle { get => axisXTitle; set { axisXTitle = value; OnPropertyChanged(); } }
-
-        //private string[] labels;
-        //public string[] Labels { get => labels; set { labels = value; OnPropertyChanged(); } }
-
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
 
@@ -67,31 +49,67 @@ namespace HospitalManagement.ViewModel
             StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count();
             PatientCount = DataProvider.Ins.DB.BENHNHANs.Count();
             BedCount = DataProvider.Ins.DB.PHONGs.Count() * 6;
-           
+
             #region "Initial Stacked Column Chart"
 
+            //danh sach F0 o cac toa
+            
+            //List<TOA> listToa = DataProvider.Ins.DB.TOAs.ToList();
+            //ChartValues<int> NangList = new ChartValues<int>();
+            //ChartValues<int> TrungBinhList = new ChartValues<int>();
+            //ChartValues<int> NheList = new ChartValues<int>();
+
+            //foreach (TOA toa in listToa)
+            //{
+            //    int soLuongBN_Nang = 0;
+            //    int soLuongBN_TB = 0;
+            //    int soLuongBN_Nhe = 0;
+            //    List<TANG> listTang = toa.TANGs.ToList();
+            //    foreach(TANG tang in listTang)
+            //    {
+            //        List<PHONG> listPhong = tang.PHONGs.ToList();
+            //        foreach(PHONG phong in listPhong)
+            //        {
+            //            List<BENHNHAN> listBN = phong.BENHNHANs.ToList();   
+            //            foreach(BENHNHAN bn in listBN)
+            //            {
+            //                if(bn.TINHTRANG == "Triệu chứng trở nặng")
+            //                    soLuongBN_Nang++;
+            //                else if(bn.TINHTRANG =="Có triệu chứng")
+            //                    soLuongBN_TB++;
+            //                else 
+            //                    soLuongBN_Nhe++;
+            //            }
+            //        }
+            //    }
+            //    NangList.Add(soLuongBN_Nang);
+            //    TrungBinhList.Add(soLuongBN_TB);
+            //    NheList.Add(soLuongBN_Nhe);
+            //}
+            ToaTK toaTK = new ToaTK();
+            toaTK.thongKeBenhNhanTheoToa();
+           
             SeriesCollection = new SeriesCollection
             {
                 new StackedColumnSeries
                 {
-                    Values = new ChartValues<double> {4, 5, 6, 8},
+                    Values = ToaTK.NangList,
                     StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
                     DataLabels = true
                 },
                 new StackedColumnSeries
                 {
-                    Values = new ChartValues<double> {2, 5, 6, 7},
+                    Values = ToaTK.TrungBinhList,
                     StackMode = StackMode.Values,
                     DataLabels = true
                 },
                 new StackedColumnSeries
                 {
-                    Values = new ChartValues<double> {2, 4, 9, 12},
+                    Values = ToaTK.NheList,
                     StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
                     DataLabels = true
                 },
             };
-
             #endregion
         }
 
