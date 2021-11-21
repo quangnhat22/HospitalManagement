@@ -107,6 +107,7 @@
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />
     <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
+    <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
     <Compile Include="Command\LoginCommand\ForgotPasswordValidationCommand.cs" />
     <Compile Include="Command\LoginCommand\LoginWindowCommand.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="ViewModel\NurseFormViewModel.cs" />
     <Compile Include="ViewModel\NurseInformationViewModel.cs" />
     <Compile Include="ViewModel\NurseViewModel.cs" />
+    <Compile Include="ViewModel\PatientFormViewModel.cs" />
     <Compile Include="ViewModel\PatientInformationViewModel.cs" />
     <Compile Include="ViewModel\PatientViewModel.cs" />
     <Compile Include="ViewModel\RecoverAccountViewModel.cs" />
