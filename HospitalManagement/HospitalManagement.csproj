@@ -99,6 +99,7 @@
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
+    <Compile Include="ViewModel\DoctorFormViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
     <Compile Include="ViewModel\FacilitiesViewModel.cs" />
