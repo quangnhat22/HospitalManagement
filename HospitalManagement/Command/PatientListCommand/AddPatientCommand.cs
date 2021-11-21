@@ -60,6 +60,7 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.BENHNHANs.Add(patientInput);
                 DataProvider.Ins.DB.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Thêm thành công!");
+                notifyWindow.Show();
             }
 
         }
@@ -186,48 +187,43 @@ namespace HospitalManagement.Command
                 }
             }
             //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
-            foreach (BACSI doctor in doctors)
+            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.CMND_CCCD == pf.txbCMND_CCCD.Text))
             {
-                if (doctor.CMND_CCCD == pf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    pf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                pf.txbCMND_CCCD.Focus();
+                return false;
             }
-            foreach (YTA nurse in nurses)
+            if (DataProvider.Ins.DB.BACSIs.Any(x => x.CMND_CCCD == pf.txbCMND_CCCD.Text))
             {
-                if (nurse.CMND_CCCD == pf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    pf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                pf.txbCMND_CCCD.Focus();
+                return false;
             }
-            foreach (BENHNHAN patient in patients)
+            if (DataProvider.Ins.DB.YTAs.Any(x => x.CMND_CCCD == pf.txbCMND_CCCD.Text))
             {
-                if (patient.CMND_CCCD == pf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    pf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                pf.txbCMND_CCCD.Focus();
+                return false;
             }
             //Kiem tra phong
-            int temp = 0;
-            foreach (PHONG room in rooms)
+            try
             {
-                if (room.ID == Convert.ToInt32(pf.txbIDPhong.Text))
+                int idPhong = int.Parse(pf.txbIDPhong.Text);
+                var checkTO = DataProvider.Ins.DB.PHONGs.Any(x => x.ID == idPhong);
+                if (checkTO == false)
                 {
-                    temp = temp + 1;
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Phòng không tồn tại");
+                    notifyWindow.ShowDialog();
+                    pf.txbIDPhong.Focus();
+                    return false;
                 }
             }
-            if (temp == 0)
+            catch (FormatException)
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Phòng không tồn tại");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Phòng là một số nguyên dương");
                 notifyWindow.ShowDialog();
                 pf.txbIDPhong.Focus();
                 return false;
