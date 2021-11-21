@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -58,6 +59,7 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.YTAs.Add(nurseInput);
                 DataProvider.Ins.DB.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Thêm thành công!");
+                notifyWindow.Show();   
             }
 
         }
@@ -164,48 +166,43 @@ namespace HospitalManagement.Command
                 return false;
             }
             //Kiem tra cmnnd//
-            foreach (BACSI doctor in doctors)
+            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.CMND_CCCD == nf.txbCMND_CCCD.Text))
             {
-                if (doctor.CMND_CCCD == nf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    nf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                nf.txbCMND_CCCD.Focus();
+                return false;
             }
-            foreach (YTA nurse in nurses)
+            if (DataProvider.Ins.DB.BACSIs.Any(x => x.CMND_CCCD == nf.txbCMND_CCCD.Text))
             {
-                if (nurse.CMND_CCCD == nf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    nf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                nf.txbCMND_CCCD.Focus();
+                return false;
             }
-            foreach (BENHNHAN patient in patients)
+            if (DataProvider.Ins.DB.YTAs.Any(x => x.CMND_CCCD == nf.txbCMND_CCCD.Text))
             {
-                if (patient.CMND_CCCD == nf.txbCMND_CCCD.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
-                    notifyWindow.ShowDialog();
-                    nf.txbCMND_CCCD.Focus();
-                    return false;
-                }
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
+                notifyWindow.ShowDialog();
+                nf.txbCMND_CCCD.Focus();
+                return false;
             }
             //Kiểm tra IDTO//
-            int temp = 0;
-            foreach (TO to in toes)
+            try
             {
-                if (to.ID == Convert.ToInt32(nf.txbIDTO.Text))
+                int idTo = int.Parse(nf.txbIDTO.Text);
+                var checkTO = DataProvider.Ins.DB.TOes.Any(x => x.ID == idTo);
+                if (checkTO == false)
                 {
-                    temp = temp + 1;
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
+                    notifyWindow.ShowDialog();
+                    nf.txbIDTO.Focus();
+                    return false;
                 }
             }
-            if (temp == 0)
+            catch (FormatException)
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Tổ là một số nguyên dương");
                 notifyWindow.ShowDialog();
                 nf.txbIDTO.Focus();
                 return false;
