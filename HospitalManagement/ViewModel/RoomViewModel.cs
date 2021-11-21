@@ -10,12 +10,14 @@ using HospitalManagement.Command;
 using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
+using GongSolutions.Wpf.DragDrop;
 
 namespace HospitalManagement.ViewModel
 {
-    class RoomViewModel : BaseViewModel
+    class RoomViewModel : BaseViewModel, IDropTarget
     { 
-        private int floorNumber;
+        private int? floorNumber;
+        private int currentBuilding;
         private string currentRoom;
 
         public class Phong : PHONG, INotifyPropertyChanged
@@ -47,7 +49,7 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
         public ICommand RoomProgressBarCommand { get; set; }
 
-        public int FloorNumber
+        public int? FloorNumber
         {
             get { return floorNumber; }
             set { floorNumber = value; OnPropertyChanged("FloorNumber"); }
@@ -74,6 +76,8 @@ namespace HospitalManagement.ViewModel
             set { roomsExtended = value; OnPropertyChanged("RoomsExtended"); }
         }
 
+        public int CurrentBuilding { get => currentBuilding; set => currentBuilding = value; }
+
         public RoomViewModel(int currentBuilding, int? Floor)
         {
             patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.PHONG.TANG.TOA.IDTOA == currentBuilding && p.PHONG.TANG.SOTANG == Floor)).ToList();
@@ -81,12 +85,38 @@ namespace HospitalManagement.ViewModel
             rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == currentBuilding && p.TANG.SOTANG == Floor)).ToList();
             currentRoom = "Tầng " + Floor.ToString();
             floorNumber =(int) Floor;
+            this.currentBuilding = currentBuilding;
 
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
             RoomProgressBarCommand = new RoomProgressBarCommand();
 
             roomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT=x.BENHNHANs.Count});
+        }
+
+        void IDropTarget.DragOver(IDropInfo dropInfo)
+        {
+            if (dropInfo.Data is BENHNHAN && dropInfo.TargetItem is Phong)
+            {
+                dropInfo.Effects = DragDropEffects.Move;
+            }
+        }
+
+        void IDropTarget.Drop(IDropInfo dropInfo)
+        {
+            Phong p = (Phong)dropInfo.TargetItem;
+            BENHNHAN benhnhan = (BENHNHAN)dropInfo.Data;
+            PHONG oldp = benhnhan.PHONG;
+            benhnhan.IDPHONG = p.ID;
+            DataProvider.Ins.DB.SaveChanges();
+            UpdateView();
+            ShowPatientsInRoom.Execute(oldp.SOPHONG);
+        }
+
+        private void UpdateView()
+        {
+            rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == CurrentBuilding && p.TANG.SOTANG == floorNumber)).ToList();
+            RoomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT = x.BENHNHANs.Count });
         }
     }
 }

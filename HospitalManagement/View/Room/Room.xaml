@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Room"
         mc:Ignorable="d"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen"
         Name="RoomForm">
@@ -21,7 +22,9 @@
                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                  Background="White" 
                  BorderBrush="White"
-                 Margin="0 0 0 20">
+                 Margin="0 0 0 20"
+                 dd:DragDrop.IsDropTarget="True"
+                 dd:DragDrop.DropHandler="{Binding}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -169,7 +172,9 @@
                       Padding="0 0 0 20"
                       VirtualizingPanel.ScrollUnit="Pixel" 
                       RowDetailsVisibilityMode="Collapsed" 
-                      SelectionUnit="FullRow">
+                      SelectionUnit="FullRow"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True">
                 <DataGrid.Resources>
                     <ResourceDictionary>
                         <Style TargetType="{x:Type DataGridRow}">
