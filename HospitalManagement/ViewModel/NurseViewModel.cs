@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Model;
+using System.ComponentModel;
 using HospitalManagement.Command;
+using HospitalManagement.Utils;
+using System.Collections.ObjectModel;
+
 
 namespace HospitalManagement.ViewModel
 {
     class NurseViewModel : BaseViewModel, INotifyPropertyChanged
     {
         //public int CheckedCount;
-        public List<YTA> nurses = DataProvider.Ins.DB.YTAs.ToList();
+        private static ObservableCollection<SelectableItem<YTA>> nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
+        public ObservableCollection<SelectableItem<YTA>> Nurses
+        {
+            get { return nurses; }
+            set { nurses = value; OnPropertyChanged("Doctors"); }
+        }
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,11 +31,7 @@ namespace HospitalManagement.ViewModel
         //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         //}
 
-        public List<YTA> Nurses
-        {
-            get { return nurses; }
-            set { nurses = value; OnPropertyChanged("Nurses"); }
-        }
+        
 
         //private bool? isCheckedAll;
 

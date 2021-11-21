@@ -1,6 +1,7 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
 using HospitalManagement.View;
+using HospitalManagement.View.Staff;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ using System.Windows.Input;
 
 namespace HospitalManagement.Command
 {
-    class AddDoctorCommand : ICommand
+    class AddNurseCommand : ICommand
     {
-        private DoctorFormViewModel doctorFormViewModel;
-        public AddDoctorCommand(DoctorFormViewModel doctorFormViewModel)
+        private NurseFormViewModel nurseFormViewModel;
+        public AddNurseCommand(NurseFormViewModel nurseFormViewModel)
         {
-            this.doctorFormViewModel = doctorFormViewModel;
+            this.nurseFormViewModel = nurseFormViewModel;
         }
 
 
@@ -33,139 +34,139 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            DoctorForm doctorForm = parameter as DoctorForm;
-            
-            if(Check(doctorForm))
+            NurseForm nurseForm = parameter as NurseForm;
+
+            if (Check(nurseForm))
             {
-                string gioiTinh = doctorForm.cbxGioiTinh.SelectedValue as string;
-                var doctorInput = new BACSI
+                string gioiTinh = nurseForm.cbxGioiTinh.SelectedValue as string;
+                var nurseInput = new YTA
                 {
-                    HO = doctorForm.txbHo.Text,
-                    TEN = doctorForm.txbTen.Text,
-                    SDT = doctorForm.txbSDT.Text,
-                    EMAIL = doctorForm.txbEmail.Text,
-                    DIACHI = doctorForm.txbDiaChi.Text,
-                    NGSINH = doctorForm.txbNGSinh.DisplayDate,
+                    HO = nurseForm.txbHo.Text,
+                    TEN = nurseForm.txbTen.Text,
+                    SDT = nurseForm.txbSDT.Text,
+                    EMAIL = nurseForm.txbEmail.Text,
+                    DIACHI = nurseForm.txbDiaChi.Text,
+                    NGSINH = nurseForm.txbNGSinh.DisplayDate,
                     GIOITINH = (gioiTinh == "Nam"),
-                    QUOCTICH = doctorForm.txbQuocTich.Text,
-                    CMND_CCCD = doctorForm.txbCMND_CCCD.Text,
-                    CHUYENKHOA = doctorForm.txbChuyenKhoa.Text,
-                    VAITRO = doctorForm.txbVaiTro.Text,
-                    IDTO = Convert.ToInt32(doctorForm.txbIDTO.Text),
-                    GHICHU = doctorForm.txbGhiChu.Text,
+                    QUOCTICH = nurseForm.txbQuocTich.Text,
+                    CMND_CCCD = nurseForm.txbCMND_CCCD.Text,
+                    CHUYENKHOA = nurseForm.txbChuyenKhoa.Text,
+                    VAITRO = nurseForm.txbVaiTro.Text,
+                    IDTO = Convert.ToInt32(nurseForm.txbIDTO.Text),
+                    GHICHU = nurseForm.txbGhiChu.Text,
                 };
-                DataProvider.Ins.DB.BACSIs.Add(doctorInput);
+                DataProvider.Ins.DB.YTAs.Add(nurseInput);
                 DataProvider.Ins.DB.SaveChanges();
-            }          
-            
+            }
+
         }
-        public bool Check(DoctorForm df)
+        public bool Check(NurseForm nf)
         {
-            if (df == null) return false;
-            List<BACSI> doctors = doctorFormViewModel?.db?.DB?.BACSIs?.ToList();
-            
-            if (string.IsNullOrWhiteSpace(df.txbHo.Text))
+            if (nf == null) return false;
+            List<YTA> nurses = nurseFormViewModel?.db?.DB?.YTAs?.ToList();
+
+            if (string.IsNullOrWhiteSpace(nf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
                 notifyWindow.ShowDialog();
-                df.txbHo.Focus();
+                nf.txbHo.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbTen.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
-                df.txbTen.Focus();
+                nf.txbTen.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbSDT.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
                 notifyWindow.ShowDialog();
-                df.txbSDT.Focus();
+                nf.txbSDT.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(df.txbEmail.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
                 notifyWindow.ShowDialog();
-                df.txbEmail.Focus();
+                nf.txbEmail.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbDiaChi.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
                 notifyWindow.ShowDialog();
-                df.txbDiaChi.Focus();
+                nf.txbDiaChi.Focus();
                 return false;
-            }            
+            }
 
-            if (string.IsNullOrWhiteSpace(df.txbNGSinh.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
-                df.txbNGSinh.Focus();
+                nf.txbNGSinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.cbxGioiTinh.Text.ToString()))
+            if (string.IsNullOrWhiteSpace(nf.cbxGioiTinh.Text.ToString()))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
                 notifyWindow.ShowDialog();
-                df.cbxGioiTinh.Focus();
+                nf.cbxGioiTinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbQuocTich.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbQuocTich.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập quốc tịch");
                 notifyWindow.ShowDialog();
-                df.txbQuocTich.Focus();
+                nf.txbQuocTich.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbCMND_CCCD.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbCMND_CCCD.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND_CCCD");
                 notifyWindow.ShowDialog();
-                df.txbCMND_CCCD.Focus();
+                nf.txbCMND_CCCD.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbChuyenKhoa.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbChuyenKhoa.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập chuyên Khoa");
                 notifyWindow.ShowDialog();
-                df.txbChuyenKhoa.Focus();
+                nf.txbChuyenKhoa.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbVaiTro.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbVaiTro.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
                 notifyWindow.ShowDialog();
-                df.txbVaiTro.Focus();
+                nf.txbVaiTro.Focus();
                 return false;
             }
             //Kiểm tra IDTO//
-            if (string.IsNullOrWhiteSpace(df.txbIDTO.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbIDTO.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
                 notifyWindow.ShowDialog();
-                df.txbVaiTro.Focus();
+                nf.txbVaiTro.Focus();
                 return false;
             }
 
-            foreach (BACSI doctor in doctors)
+            foreach (YTA Nurse in nurses)
             {
-                if (doctor.CMND_CCCD == df.txbCMND_CCCD.Text)
+                if (Nurse.CMND_CCCD == nf.txbCMND_CCCD.Text)
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
                     notifyWindow.ShowDialog();
-                    df.txbCMND_CCCD.Focus();
+                    nf.txbCMND_CCCD.Focus();
                     return false;
                 }
             }
@@ -173,5 +174,4 @@ namespace HospitalManagement.Command
             return true;
         }
     }
-    
 }

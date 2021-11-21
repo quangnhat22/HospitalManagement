@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.View;
 using HospitalManagement.View.Staff;
+using HospitalManagement.Utils;
 
 namespace HospitalManagement.Command
 {
@@ -26,7 +27,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            YTA yt = parameter as YTA;
+            SelectableItem<YTA> selectableItem = parameter as SelectableItem<YTA>;
+            YTA yt = selectableItem.Value as YTA;
             NurseInformationForm nurseInformationForm = new NurseInformationForm(yt);
             nurseInformationForm.Show();
         }

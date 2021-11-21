@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace HospitalManagement.View.Staff
         public NurseForm()
         {
             InitializeComponent();
+            this.DataContext = new NurseFormViewModel();
         }
     }
 }
