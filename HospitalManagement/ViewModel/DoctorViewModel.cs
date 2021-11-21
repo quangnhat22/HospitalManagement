@@ -47,8 +47,6 @@ namespace HospitalManagement.ViewModel
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowDoctorInfomationCommand { get; set; }
-        public ICommand AddDoctorComand { get; set; }
-
         public DoctorViewModel()
         {
             //for (int i = 0; i < 200; i++)
@@ -128,7 +126,6 @@ namespace HospitalManagement.ViewModel
             //}
             //CheckedCount = 0;
             //IsCheckedAll = false;
-            AddDoctorComand = new AddDoctorCommand(this);
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
 
             //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
@@ -152,7 +149,6 @@ namespace HospitalManagement.ViewModel
             //        if (CheckedCount == 0)
             //        IsCheckedAll = false;
             //});
-
             OpenDoctorForm = new OpenDoctorFormCommand();
         }
     }
