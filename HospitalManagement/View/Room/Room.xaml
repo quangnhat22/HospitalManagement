@@ -174,7 +174,8 @@
                       RowDetailsVisibilityMode="Collapsed" 
                       SelectionUnit="FullRow"
                       dd:DragDrop.IsDragSource="True"
-                      dd:DragDrop.IsDropTarget="True">
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True">
                 <DataGrid.Resources>
                     <ResourceDictionary>
                         <Style TargetType="{x:Type DataGridRow}">
