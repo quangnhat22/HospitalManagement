@@ -36,50 +36,95 @@ namespace HospitalManagement.Utils
             //                 idToa = toaGroup.Key,
             //                 toaItem = toaGroup.ToList(),
             //             };
-            var connectionToaTang = from toa in DataProvider.Ins.DB.TOAs
-                                    join tang in DataProvider.Ins.DB.TANGs on toa.IDTOA equals tang.IDTOA
-                                    select new
-                                    {
-                                        idToa = toa.IDTOA,
-                                        idTang = tang.ID
-                                    };
-            var connectionTangPhong = from tang in connectionToaTang
-                                      join phong in DataProvider.Ins.DB.PHONGs on tang.idTang equals phong.IDTANG
-                                      select new
-                                      {
-                                          idToa = tang.idToa,
-                                          idPhong = phong.ID
-                                      };
-            var result = from phong in connectionTangPhong
-                                          join benhNhan in DataProvider.Ins.DB.BENHNHANs on phong.idPhong equals benhNhan.IDPHONG
-                                          group benhNhan by phong.idToa into listBenhNhan
-                                          select new
-                                          {
-                                              idToa = listBenhNhan.Key,
-                                              benhNhans = listBenhNhan.ToList()
-                                          };
+            //var connectionToaTang = from toa in DataProvider.Ins.DB.TOAs
+            //                        join tang in DataProvider.Ins.DB.TANGs on toa.IDTOA equals tang.IDTOA
+            //                        select new
+            //                        {
+            //                            idToa = toa.IDTOA,
+            //                            idTang = tang.ID
+            //                        };
+            //var connectionTangPhong = from tang in connectionToaTang
+            //                          join phong in DataProvider.Ins.DB.PHONGs on tang.idTang equals phong.IDTANG
+            //                          select new
+            //                          {
+            //                              idToa = tang.idToa,
+            //                              idPhong = phong.ID
+            //                          };
+            //var result = from phong in connectionTangPhong
+            //                              join benhNhan in DataProvider.Ins.DB.BENHNHANs on phong.idPhong equals benhNhan.IDPHONG
+            //                              group benhNhan by phong.idToa into listBenhNhan
+            //                              select new
+            //                              {
+            //                                  idToa = listBenhNhan.Key,
+            //                                  benhNhans = listBenhNhan.ToList()
+            //                              };
 
-            result.ToList().ForEach(to =>
+            //result.ToList().ForEach(to =>
+            //{
+            //    int soLuongBN_Nang = 0;
+            //    int soLuongBN_TB = 0;
+            //    int soLuongBN_Nhe = 0;
+            //    to.benhNhans.ForEach(x =>
+            //    {
+            //        if (x.TINHTRANG == "Triệu chứng trở nặng")
+            //            soLuongBN_Nang++;
+            //        else if (x.TINHTRANG == "Có triệu chứng")
+            //            soLuongBN_TB++;
+            //        else
+            //            soLuongBN_Nhe++;
+            //    });
+            //    NangList.Add(soLuongBN_Nang);
+            //    TrungBinhList.Add(soLuongBN_TB);
+            //    NheList.Add(soLuongBN_Nhe);
+            //    soLuongBN_Nang = 0;
+            //    soLuongBN_TB = 0;
+            //    soLuongBN_Nhe = 0;
+            //});
+            
+            foreach(TOA toa in DataProvider.Ins.DB.TOAs)
             {
-                int soLuongBN_Nang = 0;
-                int soLuongBN_TB = 0;
-                int soLuongBN_Nhe = 0;
-                to.benhNhans.ForEach(x =>
+                CategorizedPatientBuilding categorizedPatientBuilding = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa);
+                NangList.Add(categorizedPatientBuilding.Nang);
+                TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
+                NheList.Add(categorizedPatientBuilding.Nhe);
+            }
+        }
+
+        class CategorizedPatientBuilding
+        {
+            private int nang;
+            private int trungbinh;
+            private int nhe;
+            private TOA toa;
+
+            public static CategorizedPatientBuilding CategorizedPatientBuildingFactory(TOA toa)
+            {
+                CategorizedPatientBuilding categorizedPatientBuilding = new CategorizedPatientBuilding();
+                categorizedPatientBuilding.toa = toa;
+                List<BENHNHAN> benhnhan = new List<BENHNHAN>();
+                foreach(TANG tang in categorizedPatientBuilding.toa.TANGs)
+                {
+                    foreach(PHONG phong in tang.PHONGs)
+                    {
+                        benhnhan.AddRange(phong.BENHNHANs);
+                    }
+                }
+                foreach(BENHNHAN x in benhnhan)
                 {
                     if (x.TINHTRANG == "Triệu chứng trở nặng")
-                        soLuongBN_Nang++;
+                        categorizedPatientBuilding.nang++;
                     else if (x.TINHTRANG == "Có triệu chứng")
-                        soLuongBN_TB++;
+                        categorizedPatientBuilding.trungbinh++;
                     else
-                        soLuongBN_Nhe++;
-                });
-                NangList.Add(soLuongBN_Nang);
-                TrungBinhList.Add(soLuongBN_TB);
-                NheList.Add(soLuongBN_Nhe);
-                soLuongBN_Nang = 0;
-                soLuongBN_TB = 0;
-                soLuongBN_Nhe = 0;
-            });
+                        categorizedPatientBuilding.nhe++;
+                }
+                return categorizedPatientBuilding;
+            }
+
+            public int Nang { get => nang; set => nang = value; }
+            public int Trungbinh { get => trungbinh; set => trungbinh = value; }
+            public int Nhe { get => nhe; set => nhe = value; }
+            public TOA Toa { get => toa; set => toa = value; }
         }
     }
 }
