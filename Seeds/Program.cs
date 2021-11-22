@@ -66,11 +66,12 @@ namespace Seeds
             Console.WriteLine("Delete YTA successful");
             // Delete BACSI
             List<BACSI> bacsilist = dataProvider.DB.BACSIs.ToList();
-            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
-            foreach(BACSI bacsi in bacsilist)
+            foreach (BACSI bacsi in bacsilist)
             {
                 bacsi.LATRUONGTO.Clear();
+                bacsi.TO = null;
             }
+            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
             dataProvider.DB.SaveChanges();
             Console.WriteLine("Delete BACSI successful");
             // Delete TO
@@ -269,7 +270,7 @@ namespace Seeds
             }
             dataProvider.DB.SaveChanges();
         }
-        private static void SeedsVATTU()
+        private async static void SeedsVATTU()
         {
             List<string> thuocList = new List<string>() { "Paracetamol",  "Oresol", "Vitamin",
                                                           "Natri clorit", "Dexamethason", "Prednisolon",
@@ -279,41 +280,47 @@ namespace Seeds
                                                            "Hệ thống Oxy", "Máy theo dõi bệnh nhân"};
             List<TO> ts = dataProvider.DB.TOes.ToList();
             List<BENHNHAN> bs = dataProvider.DB.BENHNHANs.ToList();
+            List<Task<VATTU>> tasks = new List<Task<VATTU>>();
             for (int i = 0; i < 100; i++)
             {
-                VATTU vt = new VATTU();
-                if (random.Next(2) == 0) // Thuoc
+                var task = Task.Run(() =>
                 {
-                    vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
-                    vt.LOAIVATTU = "Thuốc";
-                    vt.DVTINH = "Viên";
-                    vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
-                    vt.SLUONG = random.Next(500, 5000);
-                    vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
-                }
-                else
-                {
-                    vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
-                    vt.LOAIVATTU = "Thiết bị";
-                    vt.DVTINH = "Máy";
-                    vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
-                    vt.SLUONG = random.Next(50, 500);
-                }
-                foreach(TO to in ts)
-                {
-                    if(random.Next(2) == 0)
+                    VATTU vt = new VATTU();
+                    if (random.Next(2) == 0) // Thuoc
                     {
-                        vt.TOes.Add(to);
+                        vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
+                        vt.LOAIVATTU = "Thuốc";
+                        vt.DVTINH = "Viên";
+                        vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
+                        vt.SLUONG = random.Next(500, 5000);
+                        vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
                     }
-                }
+                    else
+                    {
+                        vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
+                        vt.LOAIVATTU = "Thiết bị";
+                        vt.DVTINH = "Máy";
+                        vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
+                        vt.SLUONG = random.Next(50, 500);
+                    }
+                    foreach (TO to in ts)
+                    {
+                        if (random.Next(2) == 0)
+                        {
+                            vt.TOes.Add(to);
+                        }
+                    }
 
-                foreach(BENHNHAN bn in bs)
-                {
-                    vt.BENHNHANs.Add(bn);
-                }
-                dataProvider.DB.VATTUs.Add(vt);
+                    foreach (BENHNHAN bn in bs)
+                    {
+                        vt.BENHNHANs.Add(bn);
+                    }
+                    return vt;
+                });
+                tasks.Add(task);
             }
-            dataProvider.DB.SaveChanges();
+            var vtList = await Task.WhenAll(tasks);
+            dataProvider.DB.VATTUs.AddRange(vtList);
         }
         #endregion
     }
