@@ -57,6 +57,7 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.BACSIs.Add(doctorInput);
                 DataProvider.Ins.DB.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Thêm thành công!");
+                notifyWindow.ShowDialog();
             }          
             
         }
