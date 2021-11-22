@@ -24,10 +24,14 @@ namespace Seeds
     
         public int ID { get; set; }
         public Nullable<int> IDTANG { get; set; }
+        public string IDTOTRUONG { get; set; }
+        public Nullable<int> IDUSER { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BACSI> BACSIs { get; set; }
+        public virtual BACSI TOTRUONG { get; set; }
         public virtual TANG TANG { get; set; }
+        public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YTA> YTAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

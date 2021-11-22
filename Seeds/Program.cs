@@ -26,8 +26,6 @@ namespace Seeds
 
         private static void SeedsDatabase()
         {
-            SeedsUSERs();
-            Console.WriteLine("Seeds User successful");
             SeedsTOA();
             Console.WriteLine("Seeds TOA successful");
             SeedsTANG();
@@ -45,16 +43,12 @@ namespace Seeds
             SeedsVATTU();
             Console.WriteLine("Seeds VATTU successful");
             Console.WriteLine("Seeds successful");
+            SeedsUSERs();
+            Console.WriteLine("Seeds User successful");
         }
 
         private static void CleanDatabase()
         {
-            // Delete User
-            List<USER> users = dataProvider.DB.USERs.ToList();
-            dataProvider.DB.USERs.RemoveRange(users);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
-            dataProvider.DB.SaveChanges();
-            Console.WriteLine("Delete User successful");
             // Delete VATTU
             List<VATTU> vtList = dataProvider.DB.VATTUs.ToList();
             foreach (VATTU vattu in vtList)
@@ -73,6 +67,10 @@ namespace Seeds
             // Delete BACSI
             List<BACSI> bacsilist = dataProvider.DB.BACSIs.ToList();
             dataProvider.DB.BACSIs.RemoveRange(bacsilist);
+            foreach(BACSI bacsi in bacsilist)
+            {
+                bacsi.LATRUONGTO.Clear();
+            }
             dataProvider.DB.SaveChanges();
             Console.WriteLine("Delete BACSI successful");
             // Delete TO
@@ -99,6 +97,18 @@ namespace Seeds
             dataProvider.DB.TOAs.RemoveRange(toaList);
             dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TOA', RESEED, 0)");
             Console.WriteLine("Delete TOA successful");
+            //Delete Admin
+            List<ADMIN> admins = dataProvider.DB.ADMINs.ToList();
+            dataProvider.DB.ADMINs.RemoveRange(admins);
+            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            dataProvider.DB.SaveChanges();
+            Console.WriteLine("Delete admin successful");
+            // Delete User
+            List<USER> users = dataProvider.DB.USERs.ToList();
+            dataProvider.DB.USERs.RemoveRange(users);
+            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            dataProvider.DB.SaveChanges();
+            Console.WriteLine("Delete User successful");
         }
 
         #region seeds medthod
@@ -187,6 +197,10 @@ namespace Seeds
                     bacsi.DIACHI = RandomInformation.GenerateAddress();
                     bacsi.GIOITINH = RandomInformation.GenerateGioiTinh();
                     bacsi.TO = to;
+                    if (i == 0)
+                    {
+                        bacsi.LATRUONGTO.Add(to);
+                    }
                     dataProvider.DB.BACSIs.Add(bacsi);
                 }
             }
@@ -194,25 +208,15 @@ namespace Seeds
         }
         private static void SeedsUSERs()
         {
-
-            List<String> Password = new List<string> { "password", "1234567890", "qwerty", "idontknow" };
             USER admin = new USER();
             admin.USERNAME = "admin";
             admin.PASSWORD = Encryptor.Hash("1");
-            dataProvider.DB.USERs.Add(admin);
-            for (int i = 0; i < 4; i++)
-            {
-                USER user = new USER();
-                user.HO = RandomInformation.GenerateHo();
-                user.TEN = RandomInformation.GenerateTen();
-                user.USERNAME = RandomInformation.GenerateUsername(user.HO, user.TEN); //Unique reason
-                user.EMAIL = user.USERNAME + "@gmail.com";
-                user.PASSWORD = Encryptor.Hash(Password[i]);
-                user.NGSINH = (new RandomDateTime(1970, 1995))?.Next();
-                user.GIOITINH = random.Next(2) == 0;
-                dataProvider.DB.USERs.Add(user);
-            }
-            dataProvider.DB.SaveChanges();
+            admin.ROLE = "admin";
+            USER staff = new USER();
+            staff.USERNAME = "staff";
+            staff.PASSWORD = Encryptor.Hash("1");
+            staff.ROLE = "staff";
+            DataProvider.Ins.DB.USERs.AddRange(new List<USER>{ admin, staff});
         }
         private static void SeedsPHONG()
         {
