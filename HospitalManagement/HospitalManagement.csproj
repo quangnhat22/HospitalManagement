@@ -100,6 +100,9 @@
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
+    <Compile Include="Command\AccountListCommand\AccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
@@ -198,8 +201,10 @@
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="Utils\SelectableItem.cs" />
+    <Compile Include="Utils\StaffAccount.cs" />
     <Compile Include="Utils\ToaTK.cs" />
     <Compile Include="Utils\VietnameseSign.cs" />
+    <Compile Include="ViewModel\AccountListViewModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
