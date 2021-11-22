@@ -27,6 +27,7 @@ namespace HospitalManagement.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<BACSI> BACSIs { get; set; }
         public virtual DbSet<BENHNHAN> BENHNHANs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }

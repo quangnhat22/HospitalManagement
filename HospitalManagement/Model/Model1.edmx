@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="QUANLYBENHVIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDUSER" Type="int" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+        </EntityType>
         <EntityType Name="BACSI">
           <Key>
             <PropertyRef Name="CMND_CCCD" />
@@ -95,12 +107,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDTANG" Type="int" />
+          <Property Name="IDTOTRUONG" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDUSER" Type="int" />
         </EntityType>
         <EntityType Name="TOA">
           <Key>
             <PropertyRef Name="IDTOA" />
           </Key>
-          <Property Name="IDTOA" Type="int" Nullable="false" />
+          <Property Name="IDTOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
           <Property Name="SLTANG" Type="int" />
         </EntityType>
@@ -109,13 +123,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HO" Type="nvarchar" MaxLength="100" />
-          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
           <Property Name="USERNAME" Type="nvarchar" MaxLength="100" />
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="32" />
-          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
-          <Property Name="NGSINH" Type="smalldatetime" />
-          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="VATTU">
           <Key>
@@ -147,6 +157,18 @@
           <Property Name="GHICHU" Type="nvarchar(max)" />
           <Property Name="IDTO" Type="int" />
         </EntityType>
+        <Association Name="ADMIN_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="BACSI_IDTO_FK">
           <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
           <End Role="BACSI" Type="Self.BACSI" Multiplicity="*" />
@@ -243,6 +265,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TO_BACSI_FK">
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="0..1" />
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BACSI">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTOTRUONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TO_IDTANG_FK">
           <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
           <End Role="TO" Type="Self.TO" Multiplicity="*" />
@@ -252,6 +286,18 @@
             </Principal>
             <Dependent Role="TO">
               <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDUSER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -268,6 +314,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QUANLYBENHVIENModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BACSI" EntityType="Self.BACSI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BENHNHAN" EntityType="Self.BENHNHAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
@@ -280,6 +327,10 @@
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ADMIN_USER_FK" Association="Self.ADMIN_USER_FK">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
           <AssociationSet Name="BACSI_IDTO_FK" Association="Self.BACSI_IDTO_FK">
             <End Role="TO" EntitySet="TO" />
             <End Role="BACSI" EntitySet="BACSI" />
@@ -312,8 +363,16 @@
             <End Role="TOA" EntitySet="TOA" />
             <End Role="TANG" EntitySet="TANG" />
           </AssociationSet>
+          <AssociationSet Name="TO_BACSI_FK" Association="Self.TO_BACSI_FK">
+            <End Role="BACSI" EntitySet="BACSI" />
+            <End Role="TO" EntitySet="TO" />
+          </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANG" />
+            <End Role="TO" EntitySet="TO" />
+          </AssociationSet>
+          <AssociationSet Name="TO_USER_FK" Association="Self.TO_USER_FK">
+            <End Role="USER" EntitySet="USER" />
             <End Role="TO" EntitySet="TO" />
           </AssociationSet>
           <AssociationSet Name="YTA_IDTO_FK" Association="Self.YTA_IDTO_FK">
@@ -356,6 +415,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="ADMINs" EntityType="QUANLYBENHVIENModel.ADMIN" />
           <EntitySet Name="BACSIs" EntityType="QUANLYBENHVIENModel.BACSI" />
           <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
@@ -366,9 +426,17 @@
           <EntitySet Name="USERs" EntityType="QUANLYBENHVIENModel.USER" />
           <EntitySet Name="VATTUs" EntityType="QUANLYBENHVIENModel.VATTU" />
           <EntitySet Name="YTAs" EntityType="QUANLYBENHVIENModel.YTA" />
+          <AssociationSet Name="ADMIN_USER_FK" Association="QUANLYBENHVIENModel.ADMIN_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="ADMIN" EntitySet="ADMINs" />
+          </AssociationSet>
           <AssociationSet Name="BACSI_IDTO_FK" Association="QUANLYBENHVIENModel.BACSI_IDTO_FK">
             <End Role="TO" EntitySet="TOes" />
             <End Role="BACSI" EntitySet="BACSIs" />
+          </AssociationSet>
+          <AssociationSet Name="TO_BACSI_FK" Association="QUANLYBENHVIENModel.TO_BACSI_FK">
+            <End Role="BACSI" EntitySet="BACSIs" />
+            <End Role="TO" EntitySet="TOes" />
           </AssociationSet>
           <AssociationSet Name="BENHNHAN_IDPHONG_FK" Association="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK">
             <End Role="PHONG" EntitySet="PHONGs" />
@@ -384,6 +452,10 @@
           </AssociationSet>
           <AssociationSet Name="TO_IDTANG_FK" Association="QUANLYBENHVIENModel.TO_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
+            <End Role="TO" EntitySet="TOes" />
+          </AssociationSet>
+          <AssociationSet Name="TO_USER_FK" Association="QUANLYBENHVIENModel.TO_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
             <End Role="TO" EntitySet="TOes" />
           </AssociationSet>
           <AssociationSet Name="YTA_IDTO_FK" Association="QUANLYBENHVIENModel.YTA_IDTO_FK">
@@ -410,6 +482,19 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDUSER" Type="Int32" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="ADMIN" ToRole="USER" />
+        </EntityType>
         <EntityType Name="BACSI">
           <Key>
             <PropertyRef Name="CMND_CCCD" />
@@ -428,6 +513,7 @@
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
+          <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
         </EntityType>
         <EntityType Name="BENHNHAN">
           <Key>
@@ -492,8 +578,12 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDTANG" Type="Int32" />
+          <Property Name="IDTOTRUONG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDUSER" Type="Int32" />
           <NavigationProperty Name="BACSIs" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="TO" ToRole="BACSI" />
+          <NavigationProperty Name="BACSI" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="TO" ToRole="BACSI" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="TO" ToRole="USER" />
           <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
           <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.CHIDINH" FromRole="TO" ToRole="VATTU" />
         </EntityType>
@@ -501,7 +591,7 @@
           <Key>
             <PropertyRef Name="IDTOA" />
           </Key>
-          <Property Name="IDTOA" Type="Int32" Nullable="false" />
+          <Property Name="IDTOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SLTANG" Type="Int32" />
           <NavigationProperty Name="TANGs" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TOA" ToRole="TANG" />
@@ -511,13 +601,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PASSWORD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NGSINH" Type="DateTime" Precision="0" />
-          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="ROLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ADMINs" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="USER" ToRole="ADMIN" />
+          <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="USER" ToRole="TO" />
         </EntityType>
         <EntityType Name="VATTU">
           <Key>
@@ -552,6 +640,18 @@
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="YTA" ToRole="TO" />
         </EntityType>
+        <Association Name="ADMIN_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.ADMIN" Role="ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="BACSI_IDTO_FK">
           <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="0..1" />
           <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="*" />
@@ -561,6 +661,18 @@
             </Principal>
             <Dependent Role="BACSI">
               <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_BACSI_FK">
+          <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BACSI">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTOTRUONG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -612,6 +724,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TO_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="YTA_IDTO_FK">
           <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="0..1" />
           <End Type="QUANLYBENHVIENModel.YTA" Role="YTA" Multiplicity="*" />
@@ -638,6 +762,19 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QUANLYBENHVIENModelStoreContainer" CdmEntityContainer="QUANLYBENHVIENEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BACSIs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BACSI">
               <MappingFragment StoreEntitySet="BACSI">
@@ -714,6 +851,8 @@
           <EntitySetMapping Name="TOes">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TO">
               <MappingFragment StoreEntitySet="TO">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="IDTOTRUONG" ColumnName="IDTOTRUONG" />
                 <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -731,13 +870,9 @@
           <EntitySetMapping Name="USERs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.USER">
               <MappingFragment StoreEntitySet="USER">
-                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
-                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="TEN" ColumnName="TEN" />
-                <ScalarProperty Name="HO" ColumnName="HO" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

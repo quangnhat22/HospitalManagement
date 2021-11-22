@@ -14,6 +14,12 @@ namespace HospitalManagement.Model
     
     public partial class BACSI
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BACSI()
+        {
+            this.TOes = new HashSet<TO>();
+        }
+    
         public string CMND_CCCD { get; set; }
         public string HO { get; set; }
         public string TEN { get; set; }
@@ -29,5 +35,7 @@ namespace HospitalManagement.Model
         public Nullable<int> IDTO { get; set; }
     
         public virtual TO TO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TO> TOes { get; set; }
     }
 }

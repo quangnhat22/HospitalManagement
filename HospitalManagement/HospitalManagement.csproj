@@ -138,6 +138,9 @@
     <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
     <Compile Include="Command\ShowPatientsInformationInRoomCommand.cs" />
     <Compile Include="Command\ShowPatientsInRoomCommand.cs" />
+    <Compile Include="Model\ADMIN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\BACSI.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
