@@ -31,6 +31,7 @@ namespace HospitalManagement.Command
             LoginWindow loginWindow = new LoginWindow();
             MainWindowViewModel.User = null;
             Application.Current.MainWindow = loginWindow;
+            loginWindow.Show();
             mainWindow.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>
             {
@@ -41,7 +42,6 @@ namespace HospitalManagement.Command
             windowThread.SetApartmentState(ApartmentState.STA);
             windowThread.IsBackground = true;
             windowThread.Start();
-            loginWindow.Show();
         }
     }
 }
