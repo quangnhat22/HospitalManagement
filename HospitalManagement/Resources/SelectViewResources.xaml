@@ -6,6 +6,7 @@
                     xmlns:viewstaff="clr-namespace:HospitalManagement.View.Staff"
                     xmlns:switchview="clr-namespace:HospitalManagement.View.EmptyView"
                     xmlns:viewteam="clr-namespace:HospitalManagement.View.Team"
+                    xmlns:viewaddstaff="clr-namespace:HospitalManagement.View.AddStaff"
                     xmlns:viewdoctor="c">
     <DataTemplate DataType="{x:Type switchview:SwitchDashboardViewModel}">
         <view:DashBoard></view:DashBoard>
@@ -22,13 +23,17 @@
     <DataTemplate DataType="{x:Type switchview:SwitchStaffViewModel}">
         <viewstaff:StaffUsercontrol></viewstaff:StaffUsercontrol>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchTeamViewModel}">
+        <viewteam:TeamUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchAddStaffViewModel}">
+        <viewaddstaff:AddStaffUserControl/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
         <viewstaff:DoctorUsercontrol></viewstaff:DoctorUsercontrol>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:NurseViewModel}">
         <viewstaff:NurseUsercontrol></viewstaff:NurseUsercontrol>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type switchview:SwitchTeamViewModel}">
-        <viewteam:TeamUsercontrol/>
-    </DataTemplate>
+    
 </ResourceDictionary>
