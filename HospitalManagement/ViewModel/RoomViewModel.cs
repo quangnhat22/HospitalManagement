@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows;
 using System.ComponentModel;
 using GongSolutions.Wpf.DragDrop;
+using GongSolutions.Wpf.DragDrop.Utilities;
+using System.Collections;
 
 namespace HospitalManagement.ViewModel
 {
@@ -41,10 +43,10 @@ namespace HospitalManagement.ViewModel
             }
         }
 
-        private static List<BENHNHAN> patients;
-        private static List<BENHNHAN> roomPatients;
-        private static List<PHONG> rooms;
-        private static List<Phong> roomsExtended;
+        private List<BENHNHAN> patients;
+        private List<BENHNHAN> roomPatients;
+        private List<PHONG> rooms;
+        private List<Phong> roomsExtended;
         public ICommand ShowPatientsInRoom { get; set; }
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
         public ICommand RoomProgressBarCommand { get; set; }
@@ -96,24 +98,50 @@ namespace HospitalManagement.ViewModel
 
         void IDropTarget.DragOver(IDropInfo dropInfo)
         {
-            if (dropInfo.Data is BENHNHAN && dropInfo.TargetItem is Phong)
+            if (dropInfo.Data is BENHNHAN && (dropInfo.TargetItem is Phong))
             {
                 dropInfo.Effects = DragDropEffects.Move;
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
             }
         }
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
-            Phong p = (Phong)dropInfo.TargetItem;
-            BENHNHAN benhnhan = (BENHNHAN)dropInfo.Data;
-            PHONG oldp = benhnhan.PHONG;
-            benhnhan.IDPHONG = p.ID;
-            DataProvider.Ins.DB.SaveChanges();
-            UpdateView();
-            ShowPatientsInRoom.Execute(oldp.SOPHONG);
+            if(dropInfo.TargetItem is Phong)
+            {
+                Phong p = (Phong)dropInfo.TargetItem;
+                BENHNHAN benhnhan = (BENHNHAN)dropInfo.Data;
+                PHONG oldp = benhnhan.PHONG;
+                benhnhan.IDPHONG = p.ID;
+                DataProvider.Ins.DB.SaveChanges();
+                UpdateView();
+                if (CheckSameDataContext(dropInfo))
+                {
+                    ShowPatientsInRoom.Execute(oldp.ID);
+                }
+                else
+                {
+                    ShowPatientsInRoom.Execute(p.ID);
+                    DataGrid dataGrid = dropInfo.DragInfo.VisualSource as DataGrid;
+                    RoomViewModel oldRoomViewModel = dataGrid.DataContext as RoomViewModel;
+                    oldRoomViewModel.UpdateView();
+                    oldRoomViewModel.ShowPatientsInRoom.Execute(oldp.ID);
+                }
+            }
+            else if (dropInfo.TargetItem is BENHNHAN)
+            {
+
+            }
         }
 
-        private void UpdateView()
+        private bool CheckSameDataContext(IDropInfo dropInfo)
+        {
+            DataGrid dataGrid = dropInfo.DragInfo.VisualSource as DataGrid;
+            RoomViewModel oldRoomViewModel = dataGrid.DataContext as RoomViewModel;
+            return oldRoomViewModel.Equals(this);
+        }
+
+        public void UpdateView()
         {
             rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == CurrentBuilding && p.TANG.SOTANG == floorNumber)).ToList();
             RoomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT = x.BENHNHANs.Count });

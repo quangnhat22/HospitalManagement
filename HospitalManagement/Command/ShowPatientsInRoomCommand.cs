@@ -33,9 +33,10 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            int sp = (int)parameter;
-            roomViewModel.RoomPatients = roomViewModel.Patients.Where(p => p.PHONG.SOPHONG == sp).ToList();
-            roomViewModel.CurrentRoom = "Phòng " + roomViewModel.FloorNumber.ToString() + "." + sp.ToString();
+            int id = (int)parameter;
+            PHONG phong = DataProvider.Ins.DB.PHONGs.Where(p => p.ID == id).First();
+            roomViewModel.RoomPatients = phong.BENHNHANs.ToList();
+            roomViewModel.CurrentRoom = "Phòng " + phong.TANG.SOTANG.ToString() + "." + phong.SOPHONG.ToString();
         }
     }
 }

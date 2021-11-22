@@ -47,7 +47,7 @@
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDown">
                                 <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
-                                                         CommandParameter="{Binding SOPHONG}"  />
+                                                         CommandParameter="{Binding ID}"  />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <Border.Effect>
