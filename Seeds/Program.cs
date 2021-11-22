@@ -66,11 +66,11 @@ namespace Seeds
             Console.WriteLine("Delete YTA successful");
             // Delete BACSI
             List<BACSI> bacsilist = dataProvider.DB.BACSIs.ToList();
-            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
-            foreach(BACSI bacsi in bacsilist)
+            foreach (BACSI bacsi in bacsilist)
             {
                 bacsi.LATRUONGTO.Clear();
             }
+            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
             dataProvider.DB.SaveChanges();
             Console.WriteLine("Delete BACSI successful");
             // Delete TO
