@@ -80,10 +80,15 @@ namespace HospitalManagement.Utils
             //    soLuongBN_TB = 0;
             //    soLuongBN_Nhe = 0;
             //});
-            
-            foreach(TOA toa in DataProvider.Ins.DB.TOAs)
+            List<Task<CategorizedPatientBuilding>> categorizedPatientBuildingTasks = new List<Task<CategorizedPatientBuilding>>();
+            foreach (TOA toa in DataProvider.Ins.DB.TOAs)
             {
-                CategorizedPatientBuilding categorizedPatientBuilding = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa);
+                var categorizedPatientBuildingTask = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa);
+                categorizedPatientBuildingTasks.Add(categorizedPatientBuildingTask);
+            }
+            CategorizedPatientBuilding[] categorizedPatientBuildings = await Task.WhenAll(categorizedPatientBuildingTasks);
+            foreach (CategorizedPatientBuilding categorizedPatientBuilding in categorizedPatientBuildings)
+            {
                 NangList.Add(categorizedPatientBuilding.Nang);
                 TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
                 NheList.Add(categorizedPatientBuilding.Nhe);
@@ -97,19 +102,19 @@ namespace HospitalManagement.Utils
             private int nhe;
             private TOA toa;
 
-            public static CategorizedPatientBuilding CategorizedPatientBuildingFactory(TOA toa)
+            public async static Task<CategorizedPatientBuilding> CategorizedPatientBuildingFactory(TOA toa)
             {
                 CategorizedPatientBuilding categorizedPatientBuilding = new CategorizedPatientBuilding();
                 categorizedPatientBuilding.toa = toa;
                 List<BENHNHAN> benhnhan = new List<BENHNHAN>();
-                foreach(TANG tang in categorizedPatientBuilding.toa.TANGs)
+                foreach (TANG tang in categorizedPatientBuilding.toa.TANGs)
                 {
-                    foreach(PHONG phong in tang.PHONGs)
+                    foreach (PHONG phong in tang.PHONGs)
                     {
                         benhnhan.AddRange(phong.BENHNHANs);
                     }
                 }
-                foreach(BENHNHAN x in benhnhan)
+                foreach (BENHNHAN x in benhnhan)
                 {
                     if (x.TINHTRANG == "Triệu chứng trở nặng")
                         categorizedPatientBuilding.nang++;
