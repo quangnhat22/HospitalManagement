@@ -33,30 +33,30 @@ namespace HospitalManagement.ViewModel
 
         public ChangeAccountViewModel()
         {
-            db = new DataProvider();
-            Ho = MainWindowViewModel.User.HO;
-            Ten = MainWindowViewModel.User.TEN;
+            //db = new DataProvider();
+            //Ho = MainWindowViewModel.User.HO;
+            //Ten = MainWindowViewModel.User.TEN;
 
-            if (MainWindowViewModel.User.NGSINH.HasValue)
-            {
-                DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
-                NgaySinh = ngsinh.ToString("dd/MM/yyyy");
-            }
+            //if (MainWindowViewModel.User.NGSINH.HasValue)
+            //{
+            //    DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
+            //    NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+            //}
 
-            if (MainWindowViewModel.User.NGSINH.HasValue)
-            {
-                DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
-                NgaySinhDatePicker = ngsinh.ToString("MM/dd/yyyy");
-            }
+            //if (MainWindowViewModel.User.NGSINH.HasValue)
+            //{
+            //    DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
+            //    NgaySinhDatePicker = ngsinh.ToString("MM/dd/yyyy");
+            //}
 
-            if (MainWindowViewModel.User.GIOITINH.HasValue)
-            {
-                GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
-            }
-            Email = MainWindowViewModel.User.EMAIL;
-            OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
-            SaveChangeAccount = new SaveChangeAccountCommand();
-            ReturnAccountWindow = new ReturnAccountWindowCommand();
+            //if (MainWindowViewModel.User.GIOITINH.HasValue)
+            //{
+            //    GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
+            //}
+            //Email = MainWindowViewModel.User.EMAIL;
+            //OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
+            //SaveChangeAccount = new SaveChangeAccountCommand();
+            //ReturnAccountWindow = new ReturnAccountWindowCommand();
         }
     }
 }

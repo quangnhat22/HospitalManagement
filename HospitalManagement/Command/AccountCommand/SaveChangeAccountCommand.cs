@@ -33,11 +33,11 @@ namespace HospitalManagement.Command
                 {
                     if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
                     {
-                        user.HO = cw.txbLastName.Text;
-                        user.TEN = cw.txbFistName.Text;
-                        user.EMAIL = cw.txbEmail.Text;
-                        user.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                        user.GIOITINH = (cw.cbSex.Text != "Nam");
+                        //user.HO = cw.txbLastName.Text;
+                        //user.TEN = cw.txbFistName.Text;
+                        //user.EMAIL = cw.txbEmail.Text;
+                        //user.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                        //user.GIOITINH = (cw.cbSex.Text != "Nam");
                         DataProvider.Ins?.DB?.SaveChanges();
                         break;
                     }

@@ -217,6 +217,7 @@ namespace Seeds
             staff.PASSWORD = Encryptor.Hash("1");
             staff.ROLE = "staff";
             DataProvider.Ins.DB.USERs.AddRange(new List<USER>{ admin, staff});
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsPHONG()
         {

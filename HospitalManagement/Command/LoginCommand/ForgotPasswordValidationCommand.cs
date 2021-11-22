@@ -84,7 +84,7 @@ namespace HospitalManagement.Command
                 mw.tbUsername.Focus();
                 return false;
             }
-            var users = forgotPasswordFormViewModel?.db?.DB?.USERs.Where(x => x.USERNAME == mw.tbUsername.Text && x.EMAIL == mw.tbMailAddress.Text);
+            var users = forgotPasswordFormViewModel?.db?.DB?.USERs.Where(x => x.USERNAME == mw.tbUsername.Text && x.ADMINs.First().EMAIL == mw.tbMailAddress.Text);
             if (users == null || users.Count() == 0)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng kiểm tra lại thông tin nhập!");

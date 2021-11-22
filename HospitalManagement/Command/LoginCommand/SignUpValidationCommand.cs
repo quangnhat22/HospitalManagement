@@ -39,17 +39,19 @@ namespace HospitalManagement.Command
             if (Check(signUpWindow))
             {
                 string gioiTinh = signUpWindow.txbGioiTinh.SelectedValue as string;
-                var userInput = new USER
+                var userInput = new ADMIN
                 {
                     HO = signUpWindow.txbHo.Text ,
                     TEN = signUpWindow.txbTen.Text,
-                    USERNAME = signUpWindow.txbTenDangNhap.Text,
-                    PASSWORD = Encryptor.Hash(signUpWindow.txbMatKhau.Password),
                     EMAIL = signUpWindow.txbEmail.Text,
                     NGSINH = signUpWindow.txbNgaySinh.DisplayDate,
                     GIOITINH = (gioiTinh == "Nam"),
                 };
-                signUpFormViewModel?.db?.DB?.USERs?.Add(userInput);
+                userInput.USER = new USER();
+                userInput.USER.USERNAME = signUpWindow.txbTenDangNhap.Text;
+                userInput.USER.PASSWORD = Encryptor.Hash(signUpWindow.txbMatKhau.Password);
+                signUpFormViewModel?.db?.DB?.ADMINs?.Add(userInput);
+                DataProvider.Ins.DB.USERs.Add(userInput.USER);
                 signUpFormViewModel?.db?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký thành công!");
                 notifyWindow.ShowDialog();

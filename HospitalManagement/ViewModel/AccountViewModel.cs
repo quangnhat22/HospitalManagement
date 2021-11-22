@@ -29,22 +29,22 @@ namespace HospitalManagement.ViewModel
         
         public AccountViewModel()
         {
-            OpenChangeAccount = new OpenChangeAccoutWindowCommand();
+            //OpenChangeAccount = new OpenChangeAccoutWindowCommand();
             
-            HoTen = MainWindowViewModel.User.HO + " " + MainWindowViewModel.User.TEN;
-            TenDangNhap = MainWindowViewModel.User.USERNAME;
+            //HoTen = MainWindowViewModel.User.HO + " " + MainWindowViewModel.User.TEN;
+            //TenDangNhap = MainWindowViewModel.User.USERNAME;
 
-            if(MainWindowViewModel.User.NGSINH.HasValue)
-            {
-                DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
-                NgaySinh = ngsinh.ToString("dd/MM/yyyy");
-            }
+            //if(MainWindowViewModel.User.NGSINH.HasValue)
+            //{
+            //    DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
+            //    NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+            //}
 
-            if (MainWindowViewModel.User.GIOITINH.HasValue)
-            {
-                GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
-            }
-            Email = MainWindowViewModel.User.EMAIL;
+            //if (MainWindowViewModel.User.GIOITINH.HasValue)
+            //{
+            //    GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
+            //}
+            //Email = MainWindowViewModel.User.EMAIL;
         }
     }
 }
