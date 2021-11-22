@@ -66,11 +66,7 @@ namespace HospitalManagement.Command
         public bool Check(NurseForm nf)
         {
             if (nf == null) return false;
-            List<BACSI> doctors = DataProvider.Ins.DB?.BACSIs?.ToList();
-            List<YTA> nurses = DataProvider.Ins.DB?.YTAs?.ToList();
-            List<BENHNHAN> patients = DataProvider.Ins.DB?.BENHNHANs?.ToList();
-            List<TO> toes = DataProvider.Ins.DB?.TOes?.ToList();
-
+           
             if (string.IsNullOrWhiteSpace(nf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");

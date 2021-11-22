@@ -66,12 +66,7 @@ namespace HospitalManagement.Command
         }
         public bool Check(PatientForm pf)
         {
-            if (pf == null) return false;
-            List<BACSI> doctors = DataProvider.Ins.DB?.BACSIs?.ToList();
-            List<YTA> nurses = DataProvider.Ins.DB?.YTAs?.ToList();
-            List<BENHNHAN> patients = DataProvider.Ins.DB?.BENHNHANs?.ToList();
-            List<PHONG> rooms = DataProvider.Ins.DB?.PHONGs?.ToList();
-
+            if (pf == null) return false;            
             if (string.IsNullOrWhiteSpace(pf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
@@ -176,15 +171,13 @@ namespace HospitalManagement.Command
                 return false;
             }
             //Kiểm tra MaBN
-            foreach (BENHNHAN patient in patients)
-            {
-                if (patient.MABENHNHAN == pf.txbMaBN.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã bệnh nhân");
-                    notifyWindow.ShowDialog();
-                    pf.txbMaBN.Focus();
-                    return false;
-                }
+            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.MABENHNHAN == pf.txbMaBN.Text))
+            {           
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã bệnh nhân");
+                notifyWindow.ShowDialog();
+                pf.txbMaBN.Focus();
+                return false;
+                
             }
             //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
             if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.CMND_CCCD == pf.txbCMND_CCCD.Text))
@@ -212,8 +205,8 @@ namespace HospitalManagement.Command
             try
             {
                 int idPhong = int.Parse(pf.txbIDPhong.Text);
-                var checkTO = DataProvider.Ins.DB.PHONGs.Any(x => x.ID == idPhong);
-                if (checkTO == false)
+                var checkPHONG = DataProvider.Ins.DB.PHONGs.Any(x => x.ID == idPhong);
+                if (checkPHONG == false)
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Phòng không tồn tại");
                     notifyWindow.ShowDialog();
