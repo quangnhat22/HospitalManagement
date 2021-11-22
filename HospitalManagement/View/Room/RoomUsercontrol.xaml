@@ -23,34 +23,35 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Background.jpg" Stretch="Uniform"/>
         </Grid.Background>
-        <StackPanel Orientation="Horizontal" Panel.ZIndex="2"
-                    Margin="1092,42,42.2,580" >
-            <TextBlock x:Name="txtCurrent" Text="{Binding CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"/>
-            <Button x:Name="btnLeft"
-                    Height="50" 
-                    Width="80"
-                    Margin="0 0 10 0"
-                    IsEnabled="{Binding CanMoveBackward}"
-                    Command="{Binding ChangeBuildingCommand}"
-                    CommandParameter="{Binding ElementName=btnLeft}">
-                <materialDesign:PackIcon Kind="ChevronLeft" Width="40" Height="40"/>
-            </Button>
-            <Button x:Name="btnRight"
-                    Height="50"
-                    Width="80"
-                    IsEnabled="{Binding CanMoveForward}"
-                    Command="{Binding ChangeBuildingCommand}"
-                    CommandParameter="{Binding ElementName=btnRight}">
-                <materialDesign:PackIcon Kind="ChevronRight" Width="40" Height="40"/>
-            </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="420"/>
+            <RowDefinition Height="220"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="80 40 0 0">
+            <TextBlock Text="TOÀ " 
+                       Foreground="White"
+                       FontSize="30"
+                       FontWeight="Bold"/>
+            <TextBlock x:Name="txtCurrent" 
+                       Foreground="White"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Text="{Binding CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"/>
         </StackPanel>
-
-        <ListBox ItemsSource="{Binding Floors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <ListBox Grid.Row="1"
+                 ItemsSource="{Binding Floors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                 Background="#7FFFFFFF"
-                 Margin="540,0,470,205"
-                 VerticalAlignment="Bottom">
+                 Background="#7FFFFFFF" 
+                 MaxHeight="420"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Bottom"
+                 Margin="72 0 0 -5">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -96,5 +97,46 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 102 0">
+            <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                    ToolTip="Đến toà phía trước"
+                    x:Name="btnLeft"
+                    Height="45"
+                    Width="100"
+                    VerticalAlignment="Center"
+                    BorderBrush="White"
+                    Margin="0 0 -47 42"
+                    IsEnabled="{Binding CanMoveBackward}"
+                    Command="{Binding ChangeBuildingCommand}"
+                    CommandParameter="{Binding ElementName=btnLeft}">
+                <materialDesign:PackIcon Kind="ChevronLeft" 
+                                         Width="40" 
+                                         Height="40"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"/>
+            </Button>
+            <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                    ToolTip="Đến toà phía trước"
+                    x:Name="btnRight"
+                    Height="45"
+                    Width="100"
+                    VerticalAlignment="Top"
+                    Margin="-5 9 0 0"
+                    IsEnabled="{Binding CanMoveForward}"
+                    Command="{Binding ChangeBuildingCommand}"
+                    CommandParameter="{Binding ElementName=btnRight}"
+                    BorderBrush="White">
+                <materialDesign:PackIcon Kind="ChevronRight" 
+                                         Width="40" 
+                                         Height="40"
+                                         Foreground="White"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>
