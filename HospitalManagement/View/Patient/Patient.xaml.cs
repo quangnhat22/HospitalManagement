@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.Patient
+namespace HospitalManagement.View
 {
     /// <summary>
     /// Interaction logic for Patient.xaml

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.Patient
+namespace HospitalManagement.View
 {
     /// <summary>
     /// Interaction logic for ChangePatientInformationForm.xaml
