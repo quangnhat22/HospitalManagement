@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HospitalManagement.Utils
 {
-    public class StaffAccount
+    public partial class StaffAccount
     {
         private string cmnd_cccd;
         private string ho;
@@ -25,7 +25,6 @@ namespace HospitalManagement.Utils
         public string Email { get => email; set => email = value; }
         public string Sdt { get => sdt; set => sdt = value; }
         public string UserName { get => userName; set => userName = value; }
-        //public string Password { get => password; set => password = value; }
         public int GroupName { get => groupName; set => groupName = value; }
        
         public StaffAccount()
@@ -34,31 +33,39 @@ namespace HospitalManagement.Utils
         }
         public static void InitAccountList()
         {
-            var result = from toTruc in DataProvider.Ins.DB.TOes
-                         join bacSi in DataProvider.Ins.DB.BACSIs on toTruc.IDTOTRUONG equals bacSi.CMND_CCCD
-                         join user in DataProvider.Ins.DB.USERs on toTruc.IDUSER equals user.ID
-                         select new
-                         {
-                             CMND_CCCD = bacSi.CMND_CCCD,
-                             Ho = bacSi.HO,
-                             Ten = bacSi.TEN,
-                             Email = bacSi.EMAIL,
-                             SDT = bacSi.SDT,
-                             UserName = user.USERNAME,
-                             GroupName = toTruc.ID,
-                         };
-            result.ToList().ForEach(s =>
+            foreach(var to in DataProvider.Ins.DB.TOes.ToList())
             {
-                StaffAccount newAccount = new StaffAccount();
-                newAccount.Cmnd_cccd = s.CMND_CCCD;
-                newAccount.Ho = s.Ho;
-                newAccount.Ten = s.Ten;
-                newAccount.Email = s.Email;
-                newAccount.Sdt = s.SDT;
-                newAccount.UserName = s.UserName;
-                newAccount.GroupName = s.GroupName;
-                staffAccountsList.Add(newAccount);
-            });
+                foreach(var bacsi in to.BACSIs.ToList())
+                {
+                    string userName = bacsi.TO.USER.USERNAME.ToString();
+                    if (userName != "")
+                    {
+                        var inforUser = new StaffAccount();
+                        inforUser.Cmnd_cccd = bacsi.CMND_CCCD;
+                        inforUser.Ho = bacsi.HO;
+                        inforUser.Ten = bacsi.TEN;
+                        inforUser.Email = bacsi.EMAIL;
+                        inforUser.Sdt = bacsi.SDT;
+                        inforUser.UserName = userName;
+                        staffAccountsList.Add(inforUser);
+                    }
+                }
+                foreach (var yta in to.YTAs.ToList())
+                {
+                    string userName = yta.TO.USER.USERNAME.ToString();
+                    if (userName != "")
+                    {
+                        var inforUser = new StaffAccount();
+                        inforUser.Cmnd_cccd = yta.CMND_CCCD;
+                        inforUser.Ho = yta.HO;
+                        inforUser.Ten = yta.TEN;
+                        inforUser.Email = yta.EMAIL;
+                        inforUser.Sdt = yta.SDT;
+                        inforUser.UserName = userName;
+                        staffAccountsList.Add(inforUser);
+                    }
+                }
+            }
         }
     }
 }
