@@ -30,8 +30,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            int? Floor = parameter as int?;
-            var roomWindow = new Room(currentBuilding, Floor);
+            int idTang = (int)parameter;
+            var roomWindow = new Room(idTang);
             Application.Current.MainWindow = roomWindow;
             roomWindow.Show();
         }

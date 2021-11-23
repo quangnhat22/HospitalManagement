@@ -20,10 +20,10 @@ namespace HospitalManagement.View.Room
     /// </summary>
     public partial class Room : Window
     {
-        public Room(int currentBuilding, int? Floor)
+        public Room(int idTang)
         {
             InitializeComponent();
-            this.DataContext = new RoomViewModel(currentBuilding,Floor);
+            this.DataContext = new RoomViewModel(idTang);
         }
     }
 }
