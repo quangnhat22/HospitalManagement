@@ -9,57 +9,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using HospitalManagement.Command.TeamCommand;
 
 namespace HospitalManagement.ViewModel
 {
-    class TeamViewmodel : BaseViewModel, IDropTarget
-    {
-        // start
-        private ObservableCollection<DragableItem<BACSI>> to1;
-        private ObservableCollection<DragableItem<BACSI>> to2;
-
-        public TeamViewmodel()
-        {
-            to1 = DragableItem<BACSI>.GetDragableItems((DataProvider.Ins.DB.BACSIs.Where(p => p.TO.ID == 1).ToList()));
-            to2 = DragableItem<BACSI>.GetDragableItems((DataProvider.Ins.DB.BACSIs.Where(p => p.TO.ID == 2).ToList()));
-        }
-
-        public ObservableCollection<DragableItem<BACSI>> To1 { get => to1; set => to1 = value; }
-        public ObservableCollection<DragableItem<BACSI>> To2 { get => to2; set => to2 = value; }
-
-        void IDropTarget.DragOver(IDropInfo dropInfo)
-        {
-            DragableItem<BACSI> sourceItem = dropInfo.Data as DragableItem<BACSI>;
-            DragableItem<BACSI> targetItem = dropInfo.TargetItem as DragableItem<BACSI>;
-
-            if (sourceItem != null && targetItem != null)
-            {
-                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
-                dropInfo.Effects = DragDropEffects.Move;
-            }
-        }
-
-        void IDropTarget.Drop(IDropInfo dropInfo)
-        {
-            DragableItem<BACSI> sourceItem = dropInfo.Data as DragableItem<BACSI>;
-            DragableItem<BACSI> targetItem = dropInfo.TargetItem as DragableItem<BACSI>;
-            if (sourceItem.Value.IDTO == 1)
-            {
-                sourceItem.Value.IDTO = 2;
-                To1.Remove(sourceItem);
-                To2.Add(sourceItem);
-            }
-            else
-            {
-                sourceItem.Value.IDTO = 1;
-                To2.Remove(sourceItem);
-                To1.Add(sourceItem);
-            }
-            DataProvider.Ins.DB.SaveChanges();
-        }
-    }
-
-    public class DragableItem<T> : INotifyPropertyChanged
+    class TeamViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -68,20 +23,93 @@ namespace HospitalManagement.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public bool CanAcceptChildren { get; set; }
+        private ObservableCollection<CountedTeam> countedTeams;
+        private List<TOA> buildings;
+        private TOA toa;
 
-        public T Value { get; set; }
+        private int? teamNumber;
+        private string currentBuilding;
 
-        public static ObservableCollection<DragableItem<T>> GetDragableItems(List<T> ls)
+        public ICommand ChangeBuildingTeamCommand { get; set; }
+
+        public ObservableCollection<CountedTeam> CountedTeams
         {
-            ObservableCollection<DragableItem<T>> selectableItems = new ObservableCollection<DragableItem<T>>();
-            foreach (T t in ls)
+            get { return countedTeams; }
+            set
             {
-                DragableItem<T> selectableItem = new DragableItem<T>();
-                selectableItem.Value = t;
-                selectableItems.Add(selectableItem);
+                countedTeams = value;
+                OnPropertyChanged("CountedTeams");
             }
-            return selectableItems;
+        }
+
+        public List<TOA> Buildings
+        {
+            get { return buildings; }
+            set
+            {
+                buildings = value;
+                OnPropertyChanged("Buildings");
+            }
+        }
+
+        public string CurrentBuilding
+        {
+            get { return currentBuilding; }
+            set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
+        }
+
+        public int? TeamNumber
+        {
+            get { return teamNumber; }
+            set { teamNumber = value; OnPropertyChanged("TeamNumber"); }
+        }
+
+        public TOA Toa { get => toa; set => toa = value; }
+
+        public TeamViewmodel()
+        {
+            Buildings = DataProvider.Ins.DB.TOAs.ToList();
+            currentBuilding = buildings[0].DISPLAYNAME;
+            CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList());
+            ChangeBuildingTeamCommand = new ChangeBuildingTeamCommand(this);
+        }
+    }
+
+    public class CountedTeam : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private int count;
+        private TO value;
+
+        public int Count
+        {
+            get { return count; }
+            set { count = value; OnPropertyChanged("Count"); }
+        }
+
+        public TO Value { get => value; set => this.value = value; }
+
+        public CountedTeam(TO p)
+        {
+            Value = p;
+            Count = p.BACSIs.Count + p.YTAs.Count;
+        }
+
+        public static ObservableCollection<CountedTeam> GetCountedTeams(List<TO> ls)
+        {
+            ObservableCollection<CountedTeam> countedTeams = new ObservableCollection<CountedTeam>();
+            foreach (TO p in ls)
+            {
+                CountedTeam countedTeam = new CountedTeam(p);
+                countedTeams.Add(countedTeam);
+            }
+            return countedTeams;
         }
     }
 }

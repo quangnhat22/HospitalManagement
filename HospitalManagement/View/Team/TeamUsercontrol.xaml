@@ -5,38 +5,293 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View.Team"
              mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:dd="urn:gong-wpf-dragdrop"
-             d:DesignHeight="450" d:DesignWidth="800"
-             Style="{x:Null}">
-    <Grid Margin="20">
+             d:DesignHeight="760" d:DesignWidth="1387"
+             Style="{x:Null}"
+             x:Name="teamUC">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Margin="20" Background="AliceBlue">
-            <ListView ItemsSource="{Binding To1}"
+        <ListBox ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 Background="White" 
+                 BorderBrush="White"
+                 Margin="0 0 0 20"
+                 dd:DragDrop.IsDropTarget="True"
+                 dd:DragDrop.DropHandler="{Binding}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="20"  
+                            Background="White" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Margin="30 30 0 0" Cursor="Hand">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
+                                                         CommandParameter="{Binding ID}"  />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="20" Direction="-90"
+                              RenderingBias="Performance" ShadowDepth="2" Color="#EEEEEE"/>
+                        </Border.Effect>
+                        <Grid Background="Transparent" Width="300">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Grid Width="50" 
+                                      Height="50" 
+                                      HorizontalAlignment="Left" 
+                                      Margin="20">
+                                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                         Height="50"
+                                         Width="50"
+                                         Value="1" 
+                                         Maximum="1" 
+                                         Background="{x:Null}"
+                                         Foreground="#5F88FE"/>
+                                    <TextBlock HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center"
+                                               Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Grid>
+                                <WrapPanel VerticalAlignment="Center">
+                                    <TextBlock  
+                                           FontWeight="Bold" FontSize="20">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}Tổ {0} Tầng {1}">
+                                                <Binding Path="Value.ID" />
+                                                <Binding Path="Value.IDTANG" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </WrapPanel>
+
+                            </StackPanel>
+                            <Separator Grid.Row="1" Background="#E0EBFD" Margin="20 0 20 20" Height="2"/>
+                            <StackPanel Grid.Row="2" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Right" 
+                                Margin="0 0 20 20">
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/man.png"/>
+                                    </Border.Background>
+                                </Border>
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/profile.png"/>
+                                    </Border.Background>
+                                </Border>
+                                <Border CornerRadius="20" Height="40" Width="40" Margin="-10 0 0 0">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
+                                    </Border.Background>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--<TextBlock FontSize="24"
+                       FontWeight="Bold"
+                       Margin="25"
+                       Grid.Row="0"
+                       Text="{Binding CurrentRoom}"/>-->
+            <ComboBox Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                      ItemsSource="{Binding Buildings}"
+                      DisplayMemberPath="DISPLAYNAME"
+                      SelectedValuePath="DISPLAYNAME"
+                      SelectedValue="{Binding Path=CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Width="256"
+                      Height="50" 
+                      VerticalAlignment="Top"
+                      x:Name="cbBuilding">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ElementName=teamUC, Path=DataContext.ChangeBuildingTeamCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <DataGrid Grid.Row="1"  
+                      x:Name="dtgPatients"
+                      ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False" 
+                      GridLinesVisibility="None"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Hidden"
+                      CanUserResizeRows="False" 
+                      CanUserReorderColumns="False" 
+                      CanUserResizeColumns="False" 
+                      CanUserSortColumns="False"  
+                      CanUserAddRows="False"
+                      Padding="0 0 0 20"
+                      VirtualizingPanel.ScrollUnit="Pixel" 
+                      RowDetailsVisibilityMode="Collapsed" 
+                      SelectionUnit="FullRow"
                       dd:DragDrop.IsDragSource="True"
                       dd:DragDrop.IsDropTarget="True"
-                      dd:DragDrop.DropHandler="{Binding}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Value.CMND_CCCD}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        <Grid Grid.Column="1" Margin="20" Background="AliceBlue">
-            <ListView 
-                      ItemsSource="{Binding To2}"
-                      dd:DragDrop.IsDragSource="True"
-                      dd:DragDrop.IsDropTarget="True"
-                      dd:DragDrop.DropHandler="{Binding}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Value.CMND_CCCD}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                      dd:DragDrop.UseDefaultDragAdorner="True">
+                <DataGrid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="{x:Null}" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ResourceDictionary>
+                </DataGrid.Resources>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <ControlTemplate.Resources>
+                                        <!--Auto set color for vertical line-->
+                                        <Style TargetType="Border" x:Key="VerticalBorderStyle">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Không triệu chứng">
+                                                    <Setter Property="Background" Value="#2AE2BE"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Có triệu chứng">
+                                                    <Setter Property="Background" Value="#FEB721"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Triệu chứng trở nặng">
+                                                    <Setter Property="Background" Value="#FF7F7E"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        <!--Auto set color for selected patient-->
+                                        <Style TargetType="Border" x:Key="SelectedPatientStyle">
+                                            <Style.Triggers>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Không triệu chứng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#C9F9EB" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Có triệu chứng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#FFF3D9" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Triệu chứng trở nặng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#FFEAE9" />
+                                                </MultiDataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ControlTemplate.Resources>
+                                    <Border Margin="15 0 0 0" 
+                                            CornerRadius="10" 
+                                            Width="320" 
+                                            HorizontalAlignment="Center" 
+                                            Style="{StaticResource SelectedPatientStyle}">
+                                        <TextBlock>
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftDoubleClick" 
+                                                              Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInformationInRoomCommand}" 
+                                                              CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedIndex}"/>
+                                            </TextBlock.InputBindings>    
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border CornerRadius="1" 
+                                                        Width="2" 
+                                                        Margin="10" 
+                                                        Style="{StaticResource VerticalBorderStyle}"/>
+                                                <Border CornerRadius="25" 
+                                                        Height="50" 
+                                                        Width="50" 
+                                                        Margin="10 0 0 0">
+                                                    <Border.Background>
+                                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/patient.png"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center" Margin="20">
+                                                    <TextBlock Foreground="Black"
+                                                               FontSize="16"
+                                                               FontWeight="SemiBold">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                                <Binding Path="HO" />
+                                                                <Binding Path="TEN" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>       
+                                                    </TextBlock>
+                                                    
+                                                    <TextBlock Text="{Binding TINHTRANG}"
+                                                               x:Name="txtTinhTrang"
+                                                               FontSize="14"
+                                                               Foreground="Black"
+                                                               FontWeight="Regular"
+                                                               Margin="0 6 0 0"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </TextBlock>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Danh sách thành viên"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </UserControl>
