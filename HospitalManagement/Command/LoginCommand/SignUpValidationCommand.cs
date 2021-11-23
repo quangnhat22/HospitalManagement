@@ -94,9 +94,7 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();
                 mw.txbTenDangNhap.Focus();
                 return false;
-            }
-
-            
+            }       
 
             if (string.IsNullOrWhiteSpace(mw.txbEmail.Text))
             {
@@ -137,7 +135,6 @@ namespace HospitalManagement.Command
                 mw.txbNgaySinh.Focus();
                 return false;
             }
-
             return true;
         }
     }

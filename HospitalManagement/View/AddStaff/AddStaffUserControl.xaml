@@ -65,10 +65,10 @@
                     </Button.Style>
                 </Button>
                 <Button
-                x:Name="btnAddDoctor"
-                Command="{Binding OpenAddAccountListForm}"
-                CommandParameter="{Binding ElementName=addStaffUserControl}"
-                Content="Đăng ký tài khoản mới"
+                    x:Name="btnAddDoctor"
+                    Command="{Binding OpenAddAccountListForm}"
+                    CommandParameter="{Binding ElementName=addStaffUserControl}"
+                    Content="Đăng ký tài khoản mới"
                 
                 Width="200"/>
                 <Button Content="Xóa"

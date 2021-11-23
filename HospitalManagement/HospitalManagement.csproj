@@ -100,8 +100,9 @@
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
-    <Compile Include="Command\AccountListCommand\AccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\AddNewAccountCommand.cs" />
     <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\OpenAddNewAccountForm.cs" />
     <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Utils\VietnameseSign.cs" />
     <Compile Include="ViewModel\AccountListViewModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
+    <Compile Include="ViewModel\AddAccountVM\AddNewAccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
@@ -232,6 +234,9 @@
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
+    <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
+      <DependentUpon>AddNewAccountForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddStaff\AddStaffUserControl.xaml.cs">
       <DependentUpon>AddStaffUserControl.xaml</DependentUpon>
     </Compile>
@@ -334,6 +339,10 @@
     <Compile Include="View\Team\TeamUsercontrol.xaml.cs">
       <DependentUpon>TeamUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddStaff\AddNewAccountForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddStaff\AddStaffUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

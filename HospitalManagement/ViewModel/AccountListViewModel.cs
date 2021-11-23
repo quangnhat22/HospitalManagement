@@ -62,6 +62,7 @@ namespace HospitalManagement.ViewModel
         public AccountListViewModel ()
         {
             StaffAccount.InitAccountList();
+            OpenAddAccountListForm = new OpenAddNewAccountForm();
             //DeleteAccountListCommand = new DeleteAccountListCommand(this);
             //SearchAccountListCommand = new SearchAccountListCommand(this);
             if (FilterList.Count > 0)
