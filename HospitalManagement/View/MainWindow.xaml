@@ -171,7 +171,7 @@
                         <ListViewItem x:Name="Facilities"
                                       Height="60"
                                       Tag="Facilities"
-                                      Visibility="Visible">
+                                      Visibility="{Binding AdminRolesVisibility}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Toolbox" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Vật tư" VerticalAlignment="Center"  Margin="20 10"/>
@@ -185,17 +185,27 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
-                                      Tag="Teams">
+                                      Tag="Teams"
+                                      Visibility="{Binding AdminRolesVisibility}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Tổ" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
-                                      Tag="AddStaff">
+                                      Tag="AddStaff"
+                                      Visibility="{Binding AdminRolesVisibility}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountPlus" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Thêm nhân sự" VerticalAlignment="Center"  Margin="20 10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="60"
+                                      Tag="TeamTask"
+                                      Visibility="{Binding StaffRolesVisibility}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Subtasks" Height="25" Width="25" Margin="10"/>
+                                <TextBlock Text="Công việc" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>

@@ -100,6 +100,9 @@
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
+    <Compile Include="Command\AccountListCommand\AccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
@@ -198,8 +201,10 @@
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="Utils\SelectableItem.cs" />
+    <Compile Include="Utils\StaffAccount.cs" />
     <Compile Include="Utils\ToaTK.cs" />
     <Compile Include="Utils\VietnameseSign.cs" />
+    <Compile Include="ViewModel\AccountListViewModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
@@ -225,6 +230,7 @@
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddStaffUserControl.xaml.cs">
       <DependentUpon>AddStaffUserControl.xaml</DependentUpon>
@@ -235,6 +241,8 @@
     <Compile Include="View\EmptyView\SwitchPatientViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchRoomViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchStaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewRoomViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewTeamTaskViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
@@ -258,8 +266,23 @@
     <Compile Include="View\Others\ThankyouWindow.xaml.cs">
       <DependentUpon>ThankyouWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Patient\ChangePatientInformationForm.xaml.cs">
+      <DependentUpon>ChangePatientInformationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Room\Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleTeamTaskUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\ChangeDoctorInformationForm.xaml.cs">
+      <DependentUpon>ChangeDoctorInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\ChangeNurseInformationForm.xaml.cs">
+      <DependentUpon>ChangeNurseInformationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
@@ -343,7 +366,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Patient\ChangePatientInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Room\Room.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\ChangeDoctorInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\ChangeNurseInformationForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

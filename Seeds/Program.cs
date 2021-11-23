@@ -42,72 +42,72 @@ namespace Seeds
             Console.WriteLine("Seeds BENHNHAN successful");
             SeedsVATTU();
             Console.WriteLine("Seeds VATTU successful");
-            Console.WriteLine("Seeds successful");
             SeedsUSERs();
             Console.WriteLine("Seeds User successful");
+            Console.WriteLine("Seeds successful");
         }
 
         private static void CleanDatabase()
         {
             // Delete VATTU
-            List<VATTU> vtList = dataProvider.DB.VATTUs.ToList();
+            List<VATTU> vtList = DataProvider.Ins.DB.VATTUs.ToList();
             foreach (VATTU vattu in vtList)
             {
                 vattu.BENHNHANs.Clear();
                 vattu.TOes.Clear();
             }
-            dataProvider.DB.VATTUs.RemoveRange(vtList);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('VATTU', RESEED, 0)");
+            DataProvider.Ins.DB.VATTUs.RemoveRange(vtList);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('VATTU', RESEED, 0)");
             Console.WriteLine("Delete VATTU successful");
             // Detele YTA
-            List<YTA> ytalist = dataProvider.DB.YTAs.ToList();
-            dataProvider.DB.YTAs.RemoveRange(ytalist);
-            dataProvider.DB.SaveChanges();
+            List<YTA> ytalist = DataProvider.Ins.DB.YTAs.ToList();
+            DataProvider.Ins.DB.YTAs.RemoveRange(ytalist);
+            DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete YTA successful");
             // Delete BACSI
-            List<BACSI> bacsilist = dataProvider.DB.BACSIs.ToList();
-            dataProvider.DB.BACSIs.RemoveRange(bacsilist);
-            foreach(BACSI bacsi in bacsilist)
+            List<BACSI> bacsilist = DataProvider.Ins.DB.BACSIs.ToList();
+            foreach (BACSI bacsi in bacsilist)
             {
                 bacsi.LATRUONGTO.Clear();
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.BACSIs.RemoveRange(bacsilist);
+            DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete BACSI successful");
             // Delete TO
-            List<TO> toList = dataProvider.DB.TOes.ToList();
-            dataProvider.DB.TOes.RemoveRange(toList);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TO', RESEED, 0)");
+            List<TO> toList = DataProvider.Ins.DB.TOes.ToList();
+            DataProvider.Ins.DB.TOes.RemoveRange(toList);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TO', RESEED, 0)");
             Console.WriteLine("Delete TO successful");
             // Delete BENHNHAN
-            List<BENHNHAN> bnList = dataProvider.DB.BENHNHANs.ToList();
-            dataProvider.DB.BENHNHANs.RemoveRange(bnList);
+            List<BENHNHAN> bnList = DataProvider.Ins.DB.BENHNHANs.ToList();
+            DataProvider.Ins.DB.BENHNHANs.RemoveRange(bnList);
             Console.WriteLine("Delete BENHNHAN successful");
             // Delete PHONG
-            List<PHONG> phong = dataProvider.DB.PHONGs.ToList();
-            dataProvider.DB.PHONGs.RemoveRange(phong);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('PHONG', RESEED, 0)");
+            List<PHONG> phong = DataProvider.Ins.DB.PHONGs.ToList();
+            DataProvider.Ins.DB.PHONGs.RemoveRange(phong);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('PHONG', RESEED, 0)");
             Console.WriteLine("Delete PHONG successful");
             // Delete TANG
-            List<TANG> tangList = dataProvider.DB.TANGs.ToList();
-            dataProvider.DB.TANGs.RemoveRange(tangList);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TANG', RESEED, 0)");
+            List<TANG> tangList = DataProvider.Ins.DB.TANGs.ToList();
+            DataProvider.Ins.DB.TANGs.RemoveRange(tangList);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TANG', RESEED, 0)");
             Console.WriteLine("Delete TANG successful");
             // Delete TOA
-            List<TOA> toaList = dataProvider.DB.TOAs.ToList();
-            dataProvider.DB.TOAs.RemoveRange(toaList);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TOA', RESEED, 0)");
+            List<TOA> toaList = DataProvider.Ins.DB.TOAs.ToList();
+            DataProvider.Ins.DB.TOAs.RemoveRange(toaList);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('TOA', RESEED, 0)");
             Console.WriteLine("Delete TOA successful");
             //Delete Admin
-            List<ADMIN> admins = dataProvider.DB.ADMINs.ToList();
-            dataProvider.DB.ADMINs.RemoveRange(admins);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
-            dataProvider.DB.SaveChanges();
+            List<ADMIN> admins = DataProvider.Ins.DB.ADMINs.ToList();
+            DataProvider.Ins.DB.ADMINs.RemoveRange(admins);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete admin successful");
             // Delete User
-            List<USER> users = dataProvider.DB.USERs.ToList();
-            dataProvider.DB.USERs.RemoveRange(users);
-            dataProvider.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
-            dataProvider.DB.SaveChanges();
+            List<USER> users = DataProvider.Ins.DB.USERs.ToList();
+            DataProvider.Ins.DB.USERs.RemoveRange(users);
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
+            DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete User successful");
         }
 
@@ -115,7 +115,7 @@ namespace Seeds
         private static void SeedsTo()
         {
             
-            List<TANG> ts = dataProvider.DB.TANGs.ToList();
+            List<TANG> ts = DataProvider.Ins.DB.TANGs.ToList();
             
             foreach(TANG tang in ts)
             {
@@ -123,10 +123,10 @@ namespace Seeds
                 {
                     TO t = new TO();
                     t.TANG = tang;
-                    dataProvider.DB.TOes.Add(t);
+                    DataProvider.Ins.DB.TOes.Add(t);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
 
         private static void SeedsTOA()
@@ -142,7 +142,7 @@ namespace Seeds
         }
         private static void SeedsTANG()
         {
-            List<TOA> toaList = dataProvider.DB.TOAs.ToList();
+            List<TOA> toaList = DataProvider.Ins.DB.TOAs.ToList();
             foreach(TOA toa in toaList)
             {
                 for (int i = 0; i < toa.SLTANG; i++)
@@ -151,14 +151,14 @@ namespace Seeds
                     tang.SOTANG = i + 1;
                     tang.SLPHONG = 10;
                     tang.TOA = toa;
-                    dataProvider.DB.TANGs.Add(tang);
+                    DataProvider.Ins.DB.TANGs.Add(tang);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsYTA()
         {
-            List<TO> toList = dataProvider.DB.TOes.ToList();
+            List<TO> toList = DataProvider.Ins.DB.TOes.ToList();
             foreach(TO to in toList)
             {
                 for(int i = 0; i < 2; i++)
@@ -174,14 +174,14 @@ namespace Seeds
                     yta.DIACHI = RandomInformation.GenerateAddress();
                     yta.GIOITINH = RandomInformation.GenerateGioiTinh();
                     yta.TO = to;
-                    dataProvider.DB.YTAs.Add(yta);
+                    DataProvider.Ins.DB.YTAs.Add(yta);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsBACSI()
         {
-            List<TO> toList = dataProvider.DB.TOes.ToList();
+            List<TO> toList = DataProvider.Ins.DB.TOes.ToList();
             foreach (TO to in toList)
             {
                 for (int i = 0; i < 2; i++)
@@ -201,10 +201,10 @@ namespace Seeds
                     {
                         bacsi.LATRUONGTO.Add(to);
                     }
-                    dataProvider.DB.BACSIs.Add(bacsi);
+                    DataProvider.Ins.DB.BACSIs.Add(bacsi);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsUSERs()
         {
@@ -212,16 +212,23 @@ namespace Seeds
             admin.USERNAME = "admin";
             admin.PASSWORD = Encryptor.Hash("1");
             admin.ROLE = "admin";
-            USER staff = new USER();
-            staff.USERNAME = "staff";
-            staff.PASSWORD = Encryptor.Hash("1");
-            staff.ROLE = "staff";
-            DataProvider.Ins.DB.USERs.AddRange(new List<USER>{ admin, staff});
+            ADMIN adminInfo = new ADMIN();
+            adminInfo.USER = admin;
+            DataProvider.Ins.DB.USERs.Add(admin);
+            foreach(TO to in DataProvider.Ins.DB.TOes)
+            {
+                USER user = new USER();
+                to.USER = user;
+                to.USER.USERNAME = "staff" + to.ID;
+                to.USER.PASSWORD = Encryptor.Hash("1");
+                user.ROLE = "staff";
+                DataProvider.Ins.DB.USERs.Add(user);
+            }
             DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsPHONG()
         {
-            List<TANG> ts = dataProvider.DB.TANGs.ToList();
+            List<TANG> ts = DataProvider.Ins.DB.TANGs.ToList();
             
             foreach(TANG tang in ts)
             {
@@ -231,14 +238,14 @@ namespace Seeds
                     p.SOPHONG = i + 1;
                     p.SUCCHUA = random.Next(2, 5) * 2;
                     p.TANG = tang;
-                    dataProvider.DB.PHONGs.Add(p);
+                    DataProvider.Ins.DB.PHONGs.Add(p);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsBENHNHAN()
         {
-            List<PHONG> phongList = dataProvider.DB.PHONGs.ToList();
+            List<PHONG> phongList = DataProvider.Ins.DB.PHONGs.ToList();
             List<string> tinhTrang = new List<string>() {"Không triệu chứng", "Có triệu chứng", "Triệu chứng trở nặng" };
             List<string> benhNen = new List<string>() { "Cao huyết áp", "Viêm phổi", "Đau dạ dày", "Béo phì" };
             foreach (PHONG p in phongList)
@@ -264,10 +271,10 @@ namespace Seeds
                     bn.TINHTRANG = tinhTrang[random.Next(tinhTrang.Count)];
                     bn.BENHNEN = benhNen[random.Next(benhNen.Count)];
                     bn.PHONG = p;
-                    dataProvider.DB.BENHNHANs.Add(bn);
+                    DataProvider.Ins.DB.BENHNHANs.Add(bn);
                 }
             }
-            dataProvider.DB.SaveChanges();
+            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsVATTU()
         {
@@ -299,15 +306,15 @@ namespace Seeds
                     vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
                     vt.SLUONG = random.Next(50, 500);
                 }
-                foreach(TO to in ts)
+                foreach (TO to in ts)
                 {
-                    if(random.Next(2) == 0)
+                    if (random.Next(2) == 0)
                     {
                         vt.TOes.Add(to);
                     }
                 }
 
-                foreach(BENHNHAN bn in bs)
+                foreach (BENHNHAN bn in bs)
                 {
                     vt.BENHNHANs.Add(bn);
                 }

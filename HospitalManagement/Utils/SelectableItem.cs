@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HospitalManagement.Utils
 {
-    class SelectableItem<T> : INotifyPropertyChanged
+    public class SelectableItem<T> : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

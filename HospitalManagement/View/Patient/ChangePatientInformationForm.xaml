@@ -1,4 +1,4 @@
-﻿<Window x:Class="HospitalManagement.View.PatientForm"
+﻿<Window x:Class="HospitalManagement.View.ChangePatientInformationForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -35,7 +35,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox x:Name="txbHo" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập họ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox x:Name="txbHo" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                         <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
                             <Grid.RowDefinitions>
@@ -43,7 +43,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox x:Name="txbTen" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox x:Name="txbTen" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                         <Grid Width="280" HorizontalAlignment="Left" Margin="60,13,0,0">
                             <Grid.RowDefinitions>
@@ -51,7 +51,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Mã bệnh nhân" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox x:Name="txbMaBN" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="Nhập mã bệnh nhân" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox x:Name="txbMaBN" HorizontalAlignment="Left" Width="250" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -61,7 +61,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox x:Name="txbSDT" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox x:Name="txbSDT" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1"/>
                         </Grid>
                         <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
                             <Grid.RowDefinitions>
@@ -69,7 +69,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox x:Name="txbEmail" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox x:Name="txbEmail" HorizontalAlignment="Left" Width="400" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                     </StackPanel>
                     <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
@@ -78,7 +78,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                        <TextBox x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                     </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="400">
@@ -100,7 +100,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <DatePicker x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
                 <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -109,7 +109,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <ComboBox x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="Chọn giới tính"                       
+                                               
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Nam" />
@@ -123,7 +123,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbQuocTich" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập quốc tịch" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox x:Name="txbQuocTich" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -131,7 +131,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập CMND/CCCD" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="85" Orientation="Horizontal">
@@ -141,7 +141,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngày nhập viện" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker x:Name="txbNGNhapVien" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <DatePicker x:Name="txbNGNhapVien" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
                 <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -149,7 +149,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Bệnh nền" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbBenhNen" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="Nhập bệnh nền" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox x:Name="txbBenhNen" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -157,8 +157,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Tình trạng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox x:Name="cbxTinhTrang" Margin="0,0,0,5" Grid.Row="1" Width="250" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="Chọn tình trạng"                       
+                    <ComboBox x:Name="cbxTinhTrang" Margin="0,0,0,5" Grid.Row="1" Width="250" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                               
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Không triệu chứng" />
@@ -174,7 +173,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="ID phòng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbIDPhong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" materialDesign:HintAssist.Hint="Nhập ID phòng" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox x:Name="txbIDPhong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="150" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -182,7 +181,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Số giường" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbSoGiuong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" materialDesign:HintAssist.Hint="Nhập số giường" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox x:Name="txbSoGiuong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="190" Orientation="Horizontal">
@@ -199,8 +198,7 @@
                             Height="100"
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="Nhập ghi chú tại đây"
+                            VerticalScrollBarVisibility="Auto"                            
                             />
                     </StackPanel>
                 </Grid>
@@ -213,7 +211,7 @@
                     </Grid>
                 </Grid>
             </StackPanel>
-            
+
         </StackPanel>
     </Grid>
 </Window>

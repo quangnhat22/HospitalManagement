@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel
@@ -31,6 +32,10 @@ namespace HospitalManagement.ViewModel
         public ICommand LogoutCommand { get; set; }
         public ICommand OpenReportForm { get; set; }
         public ICommand OpenAccountSetting { get; set; }
+        
+        public Visibility AdminRolesVisibility { get; set; }
+        public Visibility StaffRolesVisibility { get; set; }
+
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
@@ -38,6 +43,16 @@ namespace HospitalManagement.ViewModel
             OpenReportForm = new OpenReportFormCommand();
             LogoutCommand = new LogoutCommand();
             OpenAccountSetting = new OpenAccountWindowCommand();
+            if (User.ROLE == "admin")
+            {
+                AdminRolesVisibility = Visibility.Visible;
+                StaffRolesVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AdminRolesVisibility = Visibility.Collapsed;
+                StaffRolesVisibility = Visibility.Visible;
+            }
         }
     }
 }

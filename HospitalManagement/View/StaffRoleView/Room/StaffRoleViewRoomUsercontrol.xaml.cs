@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.AddStaff
+namespace HospitalManagement.View.StaffRoleView.Room
 {
     /// <summary>
-    /// Interaction logic for AddStaffUserControl.xaml
+    /// Interaction logic for StaffRoleViewRoomUsercontrol.xaml
     /// </summary>
-    public partial class AddStaffUserControl : UserControl
+    public partial class StaffRoleViewRoomUsercontrol : UserControl
     {
-        public AddStaffUserControl()
+        public StaffRoleViewRoomUsercontrol()
         {
             InitializeComponent();
-            this.DataContext = new AccountListViewModel();
         }
     }
 }

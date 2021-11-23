@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.AddStaff
+namespace HospitalManagement.View.Staff
 {
     /// <summary>
-    /// Interaction logic for AddStaffUserControl.xaml
+    /// Interaction logic for ChaneNurseInformationForm.xaml
     /// </summary>
-    public partial class AddStaffUserControl : UserControl
+    public partial class ChangeNurseInformationForm : Window
     {
-        public AddStaffUserControl()
+        public ChangeNurseInformationForm()
         {
             InitializeComponent();
-            this.DataContext = new AccountListViewModel();
         }
     }
 }

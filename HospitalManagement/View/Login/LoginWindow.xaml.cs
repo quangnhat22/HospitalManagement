@@ -32,5 +32,14 @@ namespace HospitalManagement.View
             LoginWindowViewModel loginWindowViewModel = this.DataContext as LoginWindowViewModel;
             loginWindowViewModel.Password = txtPassword.Password;
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (Application.Current.MainWindow is null)
+            {
+                Application.Current.Shutdown();
+            }
+        }
     }
 }

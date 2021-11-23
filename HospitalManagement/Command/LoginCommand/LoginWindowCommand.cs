@@ -62,10 +62,11 @@ namespace HospitalManagement.Command
 
         private void LoginSuccessful()
         {
+            MainWindowViewModel.User = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
             Window window = Application.Current.MainWindow as Window;
             MainWindow mainWindow = new MainWindow();
-
             Application.Current.MainWindow = new MainWindow();
+            Application.Current.MainWindow.Show();
             window.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>
             {
@@ -76,8 +77,6 @@ namespace HospitalManagement.Command
             windowThread.SetApartmentState(ApartmentState.STA);
             windowThread.IsBackground = true;
             windowThread.Start();
-            MainWindowViewModel.User = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
-            Application.Current.MainWindow.Show();
         }
 
         private bool CheckAuthentication(string username, string password)

@@ -29,7 +29,7 @@ namespace HospitalManagement.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BACSI> BACSIs { get; set; }
-        public virtual BACSI BACSI { get; set; }
+        public virtual BACSI TOTRUONG { get; set; }
         public virtual TANG TANG { get; set; }
         public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
