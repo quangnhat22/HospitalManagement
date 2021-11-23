@@ -230,6 +230,7 @@
     <Compile Include="ViewModel\RoomViewModel.cs" />
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddStaffUserControl.xaml.cs">
       <DependentUpon>AddStaffUserControl.xaml</DependentUpon>
@@ -240,6 +241,8 @@
     <Compile Include="View\EmptyView\SwitchPatientViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchRoomViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchStaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewRoomViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewTeamTaskViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
@@ -265,6 +268,12 @@
     </Compile>
     <Compile Include="View\Room\Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleTeamTaskUsercontrol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\DoctorForm.xaml.cs">
       <DependentUpon>DoctorForm.xaml</DependentUpon>
@@ -349,6 +358,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Room\Room.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

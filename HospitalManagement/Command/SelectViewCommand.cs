@@ -53,7 +53,10 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Rooms")
                 {
-                    mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
+                    if (MainWindowViewModel.User.ROLE == "admin")
+                        mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
+                    else
+                        mainWindowViewModel.SelectedViewModel = new SwitchStaffViewRoomViewModel();
                 }
                 if (tag == "Teams")
                 {
@@ -62,6 +65,11 @@ namespace HospitalManagement.Command
                 if(tag == "AddStaff")
                 {
                     mainWindowViewModel.SelectedViewModel = new SwitchAddStaffViewModel();
+                }
+
+                if(tag== "TeamTask")
+                {
+                    mainWindowViewModel.SelectedViewModel = new SwitchStaffViewTeamTaskViewModel();
                 }
             }
         }
