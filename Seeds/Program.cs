@@ -269,7 +269,7 @@ namespace Seeds
             }
             DataProvider.Ins.DB.SaveChanges();
         }
-        private async static void SeedsVATTU()
+        private static void SeedsVATTU()
         {
             List<string> thuocList = new List<string>() { "Paracetamol",  "Oresol", "Vitamin",
                                                           "Natri clorit", "Dexamethason", "Prednisolon",
@@ -277,56 +277,43 @@ namespace Seeds
             List<string> thietbiList = new List<string> { "Kit xét nghiệm nhanh", "Máy thở",
                                                           "Hệ thống ECMO", "Máy phun khử khuẩn",
                                                            "Hệ thống Oxy", "Máy theo dõi bệnh nhân"};
-            List<TO> ts = DataProvider.Ins.DB.TOes.ToList();
-            
-            List<BENHNHAN> bs = DataProvider.Ins.DB.BENHNHANs.ToList();
+            List<TO> ts = dataProvider.DB.TOes.ToList();
+            List<BENHNHAN> bs = dataProvider.DB.BENHNHANs.ToList();
             for (int i = 0; i < 100; i++)
             {
                 VATTU vt = new VATTU();
-                DataProvider.Ins.DB.VATTUs.Add(vt);
-            }
-            DataProvider.Ins.DB.SaveChanges();
-
-            List<VATTU> vs = DataProvider.Ins.DB.VATTUs.ToList();
-            var taskList = new List<Task>();
-            foreach(VATTU vt in vs)
-            {
-                var task = Task.Run(() =>
+                if (random.Next(2) == 0) // Thuoc
                 {
-                    if (random.Next(2) == 0) // Thuoc
+                    vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
+                    vt.LOAIVATTU = "Thuốc";
+                    vt.DVTINH = "Viên";
+                    vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
+                    vt.SLUONG = random.Next(500, 5000);
+                    vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
+                }
+                else
+                {
+                    vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
+                    vt.LOAIVATTU = "Thiết bị";
+                    vt.DVTINH = "Máy";
+                    vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
+                    vt.SLUONG = random.Next(50, 500);
+                }
+                foreach (TO to in ts)
+                {
+                    if (random.Next(2) == 0)
                     {
-                        vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
-                        vt.LOAIVATTU = "Thuốc";
-                        vt.DVTINH = "Viên";
-                        vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
-                        vt.SLUONG = random.Next(500, 5000);
-                        vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
+                        vt.TOes.Add(to);
                     }
-                    else
-                    {
-                        vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
-                        vt.LOAIVATTU = "Thiết bị";
-                        vt.DVTINH = "Máy";
-                        vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
-                        vt.SLUONG = random.Next(50, 500);
-                    }
-                    foreach (TO to in ts)
-                    {
-                        if (random.Next(2) == 0)
-                        {
-                            vt.TOes.Add(to);
-                        }
-                    }
+                }
 
-                    foreach (BENHNHAN bn in bs)
-                    {
-                        vt.BENHNHANs.Add(bn);
-                    }
-                });
-                taskList.Add(task);
+                foreach (BENHNHAN bn in bs)
+                {
+                    vt.BENHNHANs.Add(bn);
+                }
+                dataProvider.DB.VATTUs.Add(vt);
             }
-            await Task.WhenAll(taskList);
-            await DataProvider.Ins.DB.SaveChangesAsync();
+            dataProvider.DB.SaveChanges();
         }
         #endregion
     }
