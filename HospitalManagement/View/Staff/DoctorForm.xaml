@@ -172,7 +172,7 @@
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto"
-                            materialDesign:HintAssist.Hint="This is a text area"
+                            materialDesign:HintAssist.Hint="Nhập ghi chú tại đây"
                             />
                     </StackPanel>
                 </Grid>
