@@ -34,7 +34,7 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             int index = (int)parameter;
-            BENHNHAN bn = roomViewModel.RoomPatients[index];
+            BENHNHAN bn = roomViewModel.Patients[index];
             PatientInformationForm patientInformationForm = new PatientInformationForm(bn);
             patientInformationForm.Show();
         }

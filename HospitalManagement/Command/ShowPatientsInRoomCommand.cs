@@ -3,6 +3,7 @@ using HospitalManagement.Utils;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,6 @@ namespace HospitalManagement.Command
     class ShowPatientsInRoomCommand : ICommand
     {
         private RoomViewModel roomViewModel;
-
         public ShowPatientsInRoomCommand(RoomViewModel roomViewModel)
         {
             this.roomViewModel = roomViewModel;
@@ -35,7 +35,7 @@ namespace HospitalManagement.Command
         {
             int id = (int)parameter;
             PHONG phong = DataProvider.Ins.DB.PHONGs.Where(p => p.ID == id).First();
-            roomViewModel.RoomPatients = phong.BENHNHANs.ToList();
+            roomViewModel.Patients = new ObservableCollection<BENHNHAN>(phong.BENHNHANs.ToList());
             roomViewModel.CurrentRoom = "Phòng " + phong.TANG.SOTANG.ToString() + "." + phong.SOPHONG.ToString();
         }
     }

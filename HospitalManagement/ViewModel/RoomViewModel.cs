@@ -13,92 +13,72 @@ using System.ComponentModel;
 using GongSolutions.Wpf.DragDrop;
 using GongSolutions.Wpf.DragDrop.Utilities;
 using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace HospitalManagement.ViewModel
 {
-    class RoomViewModel : BaseViewModel, IDropTarget
-    { 
-        private int? floorNumber;
-        private int currentBuilding;
-        private string currentRoom;
+    class RoomViewModel : INotifyPropertyChanged, IDropTarget
+    {
 
-        public class Phong : PHONG, INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            public virtual void OnPropertyChanged(string name)
-            {
-                if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-            private int count;
-
-            public int COUNT
-            {
-                get { return count; }
-                set { count = value; OnPropertyChanged("COUNT"); }
-            }
-            public Phong()
-            {
-                count = 0;
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private List<BENHNHAN> patients;
-        private List<BENHNHAN> roomPatients;
-        private List<PHONG> rooms;
-        private List<Phong> roomsExtended;
+        private ObservableCollection<BENHNHAN> patients;
+        private ObservableCollection<CountedRoom> countedRooms;
+        private TANG tang;
+        private string currentRoom;
+
+
         public ICommand ShowPatientsInRoom { get; set; }
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
         public ICommand RoomProgressBarCommand { get; set; }
 
-        public int? FloorNumber
-        {
-            get { return floorNumber; }
-            set { floorNumber = value; OnPropertyChanged("FloorNumber"); }
-        }
-        public string CurrentRoom
-        {
-            get { return currentRoom; }
-            set { currentRoom = value; OnPropertyChanged("CurrentRoom"); }
-        }
-        public List<BENHNHAN> Patients
+
+        public ObservableCollection<BENHNHAN> Patients
         {
             get { return patients; }
             set { patients = value; OnPropertyChanged("Patients"); }
         }
-        public List<BENHNHAN> RoomPatients
+
+        public ObservableCollection<CountedRoom> CountedRooms
         {
-            get { return roomPatients; }
-            set { roomPatients = value; OnPropertyChanged("RoomPatients"); }
+            get { return countedRooms; }
+            set { 
+                countedRooms = value; 
+                OnPropertyChanged("CountedRooms"); 
+            }
         }
 
-        public List<Phong> RoomsExtended
+        public string CurrentRoom
         {
-            get { return roomsExtended; }
-            set { roomsExtended = value; OnPropertyChanged("RoomsExtended"); }
+            get => currentRoom;
+            set
+            {
+                currentRoom = value;
+                OnPropertyChanged("CurrentRoom");
+            }
         }
+        public TANG Tang { get => tang; set => tang = value; }
+        
 
-        public int CurrentBuilding { get => currentBuilding; set => currentBuilding = value; }
-
-        public RoomViewModel(int currentBuilding, int? Floor)
+        public RoomViewModel(int idTang)
         {
-            patients = DataProvider.Ins.DB.BENHNHANs.Where(p => (p.PHONG.TANG.TOA.IDTOA == currentBuilding && p.PHONG.TANG.SOTANG == Floor)).ToList();
-            roomPatients = patients;
-            rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == currentBuilding && p.TANG.SOTANG == Floor)).ToList();
-            currentRoom = "Tầng " + Floor.ToString();
-            floorNumber =(int) Floor;
-            this.currentBuilding = currentBuilding;
-
             ShowPatientsInRoom = new ShowPatientsInRoomCommand(this);
             ShowPatientsInformationInRoomCommand = new ShowPatientsInformationInRoomCommand(this);
             RoomProgressBarCommand = new RoomProgressBarCommand();
-
-            roomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT=x.BENHNHANs.Count});
+            Tang = DataProvider.Ins.DB.TANGs.Find(idTang);
+            CountedRooms = CountedRoom.GetCountedRooms(Tang.PHONGs.ToList());
+            CurrentRoom = "Tầng " + Tang.SOTANG;
         }
 
         void IDropTarget.DragOver(IDropInfo dropInfo)
         {
-            if (dropInfo.Data is BENHNHAN && (dropInfo.TargetItem is Phong))
+            if (dropInfo.Data is BENHNHAN && (dropInfo.TargetItem is CountedRoom))
             {
                 dropInfo.Effects = DragDropEffects.Move;
                 dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
@@ -107,12 +87,12 @@ namespace HospitalManagement.ViewModel
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
-            if(dropInfo.TargetItem is Phong)
+            if (dropInfo.TargetItem is CountedRoom)
             {
-                Phong p = (Phong)dropInfo.TargetItem;
+                CountedRoom p = (CountedRoom)dropInfo.TargetItem;
                 BENHNHAN benhnhan = (BENHNHAN)dropInfo.Data;
                 PHONG oldp = benhnhan.PHONG;
-                benhnhan.IDPHONG = p.ID;
+                benhnhan.IDPHONG = p.Value.ID;
                 DataProvider.Ins.DB.SaveChanges();
                 UpdateView();
                 if (CheckSameDataContext(dropInfo))
@@ -121,7 +101,7 @@ namespace HospitalManagement.ViewModel
                 }
                 else
                 {
-                    ShowPatientsInRoom.Execute(p.ID);
+                    ShowPatientsInRoom.Execute(p.Value.ID);
                     DataGrid dataGrid = dropInfo.DragInfo.VisualSource as DataGrid;
                     RoomViewModel oldRoomViewModel = dataGrid.DataContext as RoomViewModel;
                     oldRoomViewModel.UpdateView();
@@ -130,7 +110,7 @@ namespace HospitalManagement.ViewModel
             }
             else if (dropInfo.TargetItem is BENHNHAN)
             {
-
+                ;
             }
         }
 
@@ -143,8 +123,46 @@ namespace HospitalManagement.ViewModel
 
         public void UpdateView()
         {
-            rooms = DataProvider.Ins.DB.PHONGs.Where(p => (p.TANG.TOA.IDTOA == CurrentBuilding && p.TANG.SOTANG == floorNumber)).ToList();
-            RoomsExtended = rooms.ConvertAll(x => new Phong { ID = x.ID, IDTANG = x.IDTANG, SOPHONG = x.SOPHONG, TANG = x.TANG, SUCCHUA = x.SUCCHUA, GHICHU = x.GHICHU, COUNT = x.BENHNHANs.Count });
+            CountedRooms = CountedRoom.GetCountedRooms(Tang.PHONGs.ToList());
+        }
+    }
+
+    public class CountedRoom : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        private int count;
+        private PHONG value;
+
+        public int Count
+        {
+            get { return count; }
+            set { count = value; OnPropertyChanged("Count"); }
+        }
+
+        public PHONG Value { get => value; set => this.value = value; }
+
+        public CountedRoom(PHONG p)
+        {
+            Value = p;
+            Count = p.BENHNHANs.Count;
+        }
+
+        public static ObservableCollection<CountedRoom> GetCountedRooms(List<PHONG> ls)
+        {
+            ObservableCollection<CountedRoom> countedRooms = new ObservableCollection<CountedRoom>();
+            foreach (PHONG p in ls)
+            {
+                CountedRoom countedRoom = new CountedRoom(p);
+                countedRooms.Add(countedRoom);
+            }
+            return countedRooms;
         }
     }
 }

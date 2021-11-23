@@ -75,7 +75,7 @@
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <i:InvokeCommandAction Command="{Binding ElementName=roomUC, Path=DataContext.OpenRoomWindow}"
-                                                         CommandParameter="{Binding SOTANG}"  />
+                                                         CommandParameter="{Binding ID}"  />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <WrapPanel>
