@@ -212,11 +212,18 @@ namespace Seeds
             admin.USERNAME = "admin";
             admin.PASSWORD = Encryptor.Hash("1");
             admin.ROLE = "admin";
-            USER staff = new USER();
-            staff.USERNAME = "staff";
-            staff.PASSWORD = Encryptor.Hash("1");
-            staff.ROLE = "staff";
-            DataProvider.Ins.DB.USERs.AddRange(new List<USER>{ admin, staff});
+            ADMIN adminInfo = new ADMIN();
+            adminInfo.USER = admin;
+            DataProvider.Ins.DB.USERs.Add(admin);
+            foreach(TO to in DataProvider.Ins.DB.TOes)
+            {
+                USER user = new USER();
+                to.USER = user;
+                to.USER.USERNAME = "staff" + to.ID;
+                to.USER.PASSWORD = Encryptor.Hash("1");
+                user.ROLE = "staff";
+                DataProvider.Ins.DB.USERs.Add(user);
+            }
             DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsPHONG()
