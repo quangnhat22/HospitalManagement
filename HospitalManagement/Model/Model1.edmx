@@ -513,7 +513,7 @@
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
-          <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
+          <NavigationProperty Name="LATOTRUONG" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
         </EntityType>
         <EntityType Name="BENHNHAN">
           <Key>
@@ -581,7 +581,7 @@
           <Property Name="IDTOTRUONG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IDUSER" Type="Int32" />
           <NavigationProperty Name="BACSIs" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="TO" ToRole="BACSI" />
-          <NavigationProperty Name="BACSI" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="TO" ToRole="BACSI" />
+          <NavigationProperty Name="TOTRUONG" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="TO" ToRole="BACSI" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
           <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="TO" ToRole="USER" />
           <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
