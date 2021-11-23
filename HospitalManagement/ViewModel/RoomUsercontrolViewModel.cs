@@ -48,7 +48,11 @@ namespace HospitalManagement.ViewModel
 
         public List<TANG> Floors
         {
-            get { floors.Reverse(); return floors; }
+            get 
+            { 
+                if(floors[floors.Count-1].SOTANG!=1) floors.Reverse();
+                return floors;
+            }
             set { floors = value; OnPropertyChanged("Floors"); }
         }
 
