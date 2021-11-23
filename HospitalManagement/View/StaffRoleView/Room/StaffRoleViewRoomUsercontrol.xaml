@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              xmlns:dd="urn:gong-wpf-dragdrop"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             d:DesignHeight="760" d:DesignWidth="1387">
+             d:DesignHeight="760" d:DesignWidth="1387"
+             Name="RoomForm">
     <!--<Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding ShowPatientsInRoomCommand}"/>
     </Window.InputBindings>-->
