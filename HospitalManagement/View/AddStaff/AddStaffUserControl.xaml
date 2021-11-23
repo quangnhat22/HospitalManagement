@@ -190,26 +190,6 @@
                                                    Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <!--<materialDesign:DataGridTextColumn Binding="{Binding Value.NGSX, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
-                                                   Header="Ngày sản xuất"
-                                                   Width="150"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Value.SLUONG}"
-                                                   Header="Số lượng"
-                                                   Width="100"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Value.DVTINH}"
-                                                   Header="Đơn vị tính"
-                                                   Width="130"
-                                                   ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GHICHU}"
-                                                   Header="Ghi chú"
-                                                   Width="330"
-                                                  ElementStyle="{StaticResource ElementStyle}"
-                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>-->
 
                 </DataGrid.Columns>
             </DataGrid>
