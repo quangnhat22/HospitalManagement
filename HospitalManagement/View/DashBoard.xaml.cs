@@ -26,5 +26,10 @@ namespace HospitalManagement.View
             InitializeComponent();
             this.DataContext = new DashBoardViewModel(this);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            datepicker.IsDropDownOpen = true;
+        }
     }
 }

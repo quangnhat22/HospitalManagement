@@ -106,6 +106,7 @@
     <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />

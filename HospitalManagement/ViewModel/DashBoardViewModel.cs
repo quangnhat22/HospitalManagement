@@ -22,6 +22,7 @@ namespace HospitalManagement.ViewModel
         private int patientCount;
         private int bedCount;
         private DashBoard dab;
+        private DateTime columnChartDate;
 
         //get information for card
         public int StaffCount { get => staffCount; set => staffCount = value; }
@@ -34,16 +35,20 @@ namespace HospitalManagement.ViewModel
         //Column Chart
         private SeriesCollection seriesCollection;
         public SeriesCollection SeriesCollection { get => seriesCollection; set { seriesCollection = value; OnPropertyChanged(); } }
-
+        private List<string> labels;
+        public List<string> Labels { get => labels; set => labels = value; }
+        public DateTime ColumnChartDate { get => columnChartDate; set => columnChartDate = value; }
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
-
+        public ICommand ReloadBuildingStatisticCommand { get; set; }
 
         public DashBoardViewModel(DashBoard dab)
         {
+            ColumnChartDate = System.DateTime.Now;
             this.dab = dab;
             //InitColumnChartCommand = new InitColumnChartCommand(this);
-            
+            ReloadBuildingStatisticCommand = new ReloadBuildingStatisticCommand(this);
+
             SelectedIndex = 0;
 
             StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count();
@@ -53,7 +58,8 @@ namespace HospitalManagement.ViewModel
             #region "Initial Stacked Column Chart"
             ToaTK toaTK = new ToaTK();
             toaTK.thongKeBenhNhanTheoToa();
-           
+
+            Labels = ToaTK.LabelList;
             SeriesCollection = new SeriesCollection
             {
                 new StackedColumnSeries

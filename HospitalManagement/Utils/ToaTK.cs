@@ -14,14 +14,16 @@ namespace HospitalManagement.Utils
         public static ChartValues<int> NangList;
         public static ChartValues<int> TrungBinhList;
         public static ChartValues<int> NheList;
+        public static List<string> LabelList;
         public ToaTK()
         {
             NangList = new ChartValues<int>();
             TrungBinhList = new ChartValues<int>();
             NheList = new ChartValues<int>();
+            LabelList = new List<string>();
         }
 
-        public async void thongKeBenhNhanTheoToa()
+        public async void thongKeBenhNhanTheoToa(DateTime? date = null)
         {
             //var result = from toa in DataProvider.Ins.DB.TOAs
             //             join tang in DataProvider.Ins.DB.TANGs on toa.IDTOA  equals tang.IDTOA into table1
@@ -83,7 +85,7 @@ namespace HospitalManagement.Utils
             List<Task<CategorizedPatientBuilding>> categorizedPatientBuildingTasks = new List<Task<CategorizedPatientBuilding>>();
             foreach (TOA toa in DataProvider.Ins.DB.TOAs)
             {
-                var categorizedPatientBuildingTask = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa);
+                var categorizedPatientBuildingTask = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa, date);
                 categorizedPatientBuildingTasks.Add(categorizedPatientBuildingTask);
             }
             CategorizedPatientBuilding[] categorizedPatientBuildings = await Task.WhenAll(categorizedPatientBuildingTasks);
@@ -92,6 +94,7 @@ namespace HospitalManagement.Utils
                 NangList.Add(categorizedPatientBuilding.Nang);
                 TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
                 NheList.Add(categorizedPatientBuilding.Nhe);
+                LabelList.Add(categorizedPatientBuilding.Toa.DISPLAYNAME);
             }
         }
 
@@ -102,8 +105,10 @@ namespace HospitalManagement.Utils
             private int nhe;
             private TOA toa;
 
-            public async static Task<CategorizedPatientBuilding> CategorizedPatientBuildingFactory(TOA toa)
+            public async static Task<CategorizedPatientBuilding> CategorizedPatientBuildingFactory(TOA toa, DateTime? date = null)
             {
+                if (date is null)
+                    date = System.DateTime.Now;
                 CategorizedPatientBuilding categorizedPatientBuilding = new CategorizedPatientBuilding();
                 categorizedPatientBuilding.toa = toa;
                 List<BENHNHAN> benhnhan = new List<BENHNHAN>();
@@ -116,12 +121,15 @@ namespace HospitalManagement.Utils
                 }
                 foreach (BENHNHAN x in benhnhan)
                 {
-                    if (x.TINHTRANG == "Triệu chứng trở nặng")
-                        categorizedPatientBuilding.nang++;
-                    else if (x.TINHTRANG == "Có triệu chứng")
-                        categorizedPatientBuilding.trungbinh++;
-                    else
-                        categorizedPatientBuilding.nhe++;
+                    if(x.NGNHAPVIEN < date)
+                    {
+                        if (x.TINHTRANG == "Triệu chứng trở nặng")
+                            categorizedPatientBuilding.nang++;
+                        else if (x.TINHTRANG == "Có triệu chứng")
+                            categorizedPatientBuilding.trungbinh++;
+                        else
+                            categorizedPatientBuilding.nhe++;
+                    }
                 }
                 return categorizedPatientBuilding;
             }
