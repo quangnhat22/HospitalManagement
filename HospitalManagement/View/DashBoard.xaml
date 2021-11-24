@@ -309,60 +309,50 @@
                                     <RowDefinition Height="1*"></RowDefinition>
                                     <RowDefinition Height="auto"></RowDefinition>
                                 </Grid.RowDefinitions>
+
+
                                 <StackPanel 
                                     Orientation="Horizontal"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Left" 
                                     Margin="60,20,0,0">
-                                    <ComboBox
-                                        x:Name="cboSelectPeriod"
-                                        materialDesign:ComboBoxAssist.ClassicMode="true"
-                                        FontSize="16"
-                                        FontWeight="Medium" 
-                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                        materialDesign:HintAssist.Hint="Chọn chu kỳ"
-                                        Width="160" 
-                                        Height="40" 
-                                        HorizontalAlignment="Left" 
-                                        HorizontalContentAlignment="Left"
-                                        VerticalContentAlignment="Center" 
-                                        Padding="3,0,0,0" 
-                                        Margin="0">
+                                    <DatePicker Width="90"
+                                                x:Name="datepicker"
+                                                SelectedDate="{Binding ColumnChartDate}">
+                                        <DatePicker.Resources>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Style>
+                                        </DatePicker.Resources>
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger 
-                                                EventName="SelectionChanged">
-                                                <i:InvokeCommandAction 
-                                                    Command="{Binding SelectionChangedCommand}" 
-                                                    CommandParameter="{Binding ElementName=dab}"/>
+                                            <i:EventTrigger EventName="SelectedDateChanged">
+                                                <i:InvokeCommandAction Command="{Binding ReloadBuildingStatisticCommand}"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                        <ComboBoxItem Content="Theo tháng"/>
-                                        <ComboBoxItem Content="Theo quý"/>
-                                        <ComboBoxItem Content="Theo năm"/>
-                                    </ComboBox>
-                                    <ComboBox
-                                        x:Name="cboSelectTime"
-                                        ItemsSource="{Binding ItemSourceTime, Mode=TwoWay}"
-                                        materialDesign:ComboBoxAssist.ClassicMode="true"
-                                        FontSize="16"
-                                        FontWeight="Medium" 
-                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                        materialDesign:HintAssist.Hint="Chọn"
-                                        Width="160" 
-                                        Height="40" 
-                                        HorizontalAlignment="Left" 
-                                        HorizontalContentAlignment="Left"
-                                        VerticalContentAlignment="Center" 
-                                        Padding="3,0,0,0" 
-                                        Margin="60,0,0,0" >
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction 
-                                                    Command="{Binding InitColumnChartCommand}" 
-                                                    CommandParameter="{Binding ElementName=dab}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                    </DatePicker>
+                                    <Button 
+                                            Click="Button_Click">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Grid Background="{TemplateBinding Background}">
+                                                                <ContentPresenter />
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <materialDesign:PackIcon HorizontalAlignment="Center"
+                                                                 VerticalAlignment="Center"
+                                                                 Kind="Calendar" 
+                                                                 Width="15" 
+                                                                 Height="auto"/>
+
+                                    </Button>
                                 </StackPanel>
                                 <lvc:CartesianChart 
                                         x:Name="lvcColumnChart" 
