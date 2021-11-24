@@ -23,7 +23,7 @@ namespace HospitalManagement.Utils
         private string chuyenKhoa;
         private string ghiChu;
         private int? idTo;
-
+        private string phanLoai;
         //account information
         private string userName;
 
@@ -42,6 +42,7 @@ namespace HospitalManagement.Utils
         public string GhiChu { get => ghiChu; set => ghiChu = value; }
         public int? IdTo { get => idTo; set => idTo = value; }
         public string UserName { get => userName; set => userName = value; }
+        public string PhanLoai { get => phanLoai; set => phanLoai = value; }
         #endregion
 
         public StaffInformation(BACSI bacsi)
@@ -60,6 +61,14 @@ namespace HospitalManagement.Utils
             this.GhiChu = bacsi.GHICHU;
             this.IdTo = bacsi.IDTO;
             this.userName = bacsi.TO.USER.USERNAME;
+            if(this.userName == null)
+            {
+                this.PhanLoai = "Bác Sĩ";
+            }
+            else
+            {
+                this.PhanLoai = "Tổ Trưởng";
+            }
         }
 
         public StaffInformation(YTA yta)
@@ -77,26 +86,23 @@ namespace HospitalManagement.Utils
             this.ChuyenKhoa = yta.CHUYENKHOA;
             this.GhiChu = yta.GHICHU;
             this.IdTo = yta.IDTO;
+            this.PhanLoai = "Y Tá";
         }
 
         public StaffInformation(ADMIN admin)
         {
-            //this.Cmnd_cccd = admin.CMND_CCCD;
-            //this.Ho = admin.HO;
-            //this.Ten = admin.TEN;
-            //this.Email = admin.EMAIL;
-            //this.Sdt = admin.SDT;
-            //this.QuocTich = admin.QUOCTICH;
-            //this.DiaChi = admin.DIACHI;
-            //this.NgSinh = yta.NGSINH;
-            //this.GioiTinh = yta.GIOITINH.Value;
-            //this.VaiTro = yta.VAITRO;
-            //this.ChuyenKhoa = yta.CHUYENKHOA;
-            //this.GhiChu = yta.GHICHU;
-            //this.IdTo = yta.IDTO;
+            this.Cmnd_cccd = admin.ID;
+            this.Ho = admin.HO;
+            this.Ten = admin.TEN;
+            this.Email = admin.EMAIL;
+            this.Sdt = admin.SDT;
+            this.QuocTich = admin.QUOCTICH;
+            this.DiaChi = admin.DIACHI;
+            this.NgSinh = admin.NGSINH;
+            this.GioiTinh = admin.GIOITINH.Value;
+            this.UserName = admin.USER.USERNAME;
+            this.PhanLoai = "admin";
         }
-
-
 
         public static List<StaffInformation> InitAccountList()
         {
@@ -108,6 +114,8 @@ namespace HospitalManagement.Utils
                 staffAccounts.AddRange(BacSiList);
                 staffAccounts.AddRange(YTaList);
             }
+            foreach(var admin in DataProvider.Ins.DB.ADMINs.ToList())
+                staffAccounts.Add(new StaffInformation(admin));
             return staffAccounts;
         }
     }

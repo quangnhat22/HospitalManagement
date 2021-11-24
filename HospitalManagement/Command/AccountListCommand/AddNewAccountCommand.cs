@@ -44,7 +44,6 @@ namespace HospitalManagement.Command.AccountListCommand
                 SendEmailAccount(addNewAccountForm, password);
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký mới thành công!");
                 notifyWindow.ShowDialog();
-
             }
         }
         public bool Check(AddNewAccountForm addNewAccountForm)
