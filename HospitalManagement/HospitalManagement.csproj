@@ -144,6 +144,8 @@
     <Compile Include="Command\ShowPatientsInformationInRoomCommand.cs" />
     <Compile Include="Command\ShowPatientsInRoomCommand.cs" />
     <Compile Include="Command\TeamCommand\ChangeBuildingTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

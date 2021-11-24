@@ -44,8 +44,8 @@
                             Margin="30 30 0 0" Cursor="Hand">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
-                                                         CommandParameter="{Binding ID}"  />
+                                <i:InvokeCommandAction Command="{Binding ElementName=teamUC, Path=DataContext.ShowMembersInTeamCommand}"
+                                                         CommandParameter="{Binding Value.ID}"  />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <Border.Effect>
@@ -80,7 +80,7 @@
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}Tổ {0} Tầng {1}">
                                                 <Binding Path="Value.ID" />
-                                                <Binding Path="Value.IDTANG" />
+                                                <Binding Path="Value.TANG.SOTANG" />
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
@@ -133,8 +133,8 @@
                       DisplayMemberPath="DISPLAYNAME"
                       SelectedValuePath="DISPLAYNAME"
                       SelectedValue="{Binding Path=CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Width="256"
                       Height="50" 
+                      Margin="0 30 30 0"
                       VerticalAlignment="Top"
                       x:Name="cbBuilding">
                 <i:Interaction.Triggers>
@@ -145,8 +145,8 @@
             </ComboBox>
 
             <DataGrid Grid.Row="1"  
-                      x:Name="dtgPatients"
-                      ItemsSource="{Binding RoomPatients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      x:Name="dtgMembers"
+                      ItemsSource="{Binding Members, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False" 
                       GridLinesVisibility="None"
                       HorizontalScrollBarVisibility="Disabled"
@@ -189,13 +189,13 @@
                                         <!--Auto set color for vertical line-->
                                         <Style TargetType="Border" x:Key="VerticalBorderStyle">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Không triệu chứng">
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtPhanLoai}" Value="Bác Sĩ">
                                                     <Setter Property="Background" Value="#2AE2BE"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Có triệu chứng">
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtPhanLoai}" Value="Y Tá">
                                                     <Setter Property="Background" Value="#FEB721"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Triệu chứng trở nặng">
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtPhanLoai}" Value="Tổ Trưởng">
                                                     <Setter Property="Background" Value="#FF7F7E"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -205,21 +205,21 @@
                                             <Style.Triggers>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Không triệu chứng" />
+                                                        <Condition Binding="{Binding ElementName=txtPhanLoai, Path=Text}" Value="Bác Sĩ" />
                                                         <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
                                                     </MultiDataTrigger.Conditions>
                                                     <Setter Property="Background" Value="#C9F9EB" />
                                                 </MultiDataTrigger>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Có triệu chứng" />
+                                                        <Condition Binding="{Binding ElementName=txtPhanLoai, Path=Text}" Value="Y Tá" />
                                                         <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
                                                     </MultiDataTrigger.Conditions>
                                                     <Setter Property="Background" Value="#FFF3D9" />
                                                 </MultiDataTrigger>
                                                 <MultiDataTrigger>
                                                     <MultiDataTrigger.Conditions>
-                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Triệu chứng trở nặng" />
+                                                        <Condition Binding="{Binding ElementName=txtPhanLoai, Path=Text}" Value="Tổ Trưởng" />
                                                         <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
                                                     </MultiDataTrigger.Conditions>
                                                     <Setter Property="Background" Value="#FFEAE9" />
@@ -235,8 +235,8 @@
                                         <TextBlock>
                                             <TextBlock.InputBindings>
                                                 <MouseBinding Gesture="LeftDoubleClick" 
-                                                              Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInformationInRoomCommand}" 
-                                                              CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedIndex}"/>
+                                                              Command="{Binding ElementName=teamUC, Path=DataContext.ShowMembersInformationInTeamCommand}" 
+                                                              CommandParameter="{Binding ElementName=dtgMembers, Path=SelectedIndex}"/>
                                             </TextBlock.InputBindings>    
                                             <StackPanel Orientation="Horizontal">
                                                 <Border CornerRadius="1" 
@@ -257,14 +257,14 @@
                                                                FontWeight="SemiBold">
                                                         <TextBlock.Text>
                                                             <MultiBinding StringFormat="{}{0} {1}">
-                                                                <Binding Path="HO" />
-                                                                <Binding Path="TEN" />
+                                                                <Binding Path="Ho" />
+                                                                <Binding Path="Ten" />
                                                             </MultiBinding>
                                                         </TextBlock.Text>       
                                                     </TextBlock>
                                                     
-                                                    <TextBlock Text="{Binding TINHTRANG}"
-                                                               x:Name="txtTinhTrang"
+                                                    <TextBlock Text="{Binding PhanLoai}"
+                                                               x:Name="txtPhanLoai"
                                                                FontSize="14"
                                                                Foreground="Black"
                                                                FontWeight="Regular"
@@ -281,9 +281,14 @@
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
-                            <TextBlock Text="Danh sách thành viên"
-                                       FontSize="20"
-                                       FontWeight="SemiBold"/>
+                            <TextBlock FontSize="20"
+                                       FontWeight="SemiBold">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Danh sách thành viên tổ {0}">
+                                        <Binding ElementName="teamUC" Path="DataContext.CurrentTeam" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
