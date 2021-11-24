@@ -14,11 +14,13 @@ namespace HospitalManagement.Utils
         public static ChartValues<int> NangList;
         public static ChartValues<int> TrungBinhList;
         public static ChartValues<int> NheList;
+        public static List<string> LabelList;
         public ToaTK()
         {
             NangList = new ChartValues<int>();
             TrungBinhList = new ChartValues<int>();
             NheList = new ChartValues<int>();
+            LabelList = new List<string>();
         }
 
         public async void thongKeBenhNhanTheoToa()
@@ -92,6 +94,7 @@ namespace HospitalManagement.Utils
                 NangList.Add(categorizedPatientBuilding.Nang);
                 TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
                 NheList.Add(categorizedPatientBuilding.Nhe);
+                LabelList.Add(categorizedPatientBuilding.Toa.DISPLAYNAME);
             }
         }
 

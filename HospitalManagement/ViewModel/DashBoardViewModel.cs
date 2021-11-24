@@ -34,10 +34,11 @@ namespace HospitalManagement.ViewModel
         //Column Chart
         private SeriesCollection seriesCollection;
         public SeriesCollection SeriesCollection { get => seriesCollection; set { seriesCollection = value; OnPropertyChanged(); } }
-
+        private List<string> labels;
+        public List<string> Labels { get => labels; set => labels = value; }
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
-
+        
 
         public DashBoardViewModel(DashBoard dab)
         {
@@ -53,7 +54,8 @@ namespace HospitalManagement.ViewModel
             #region "Initial Stacked Column Chart"
             ToaTK toaTK = new ToaTK();
             toaTK.thongKeBenhNhanTheoToa();
-           
+
+            Labels = ToaTK.LabelList;
             SeriesCollection = new SeriesCollection
             {
                 new StackedColumnSeries

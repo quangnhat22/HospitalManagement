@@ -376,8 +376,7 @@
                                     <lvc:CartesianChart.AxisX>
                                         <lvc:Axis 
                                             Title="{Binding AxisXTitle, Mode=TwoWay}" 
-                                            Labels="{Binding Labels, Mode=TwoWay}" 
-                                            Foreground="{DynamicResource Gray1}"
+                                            Labels="{Binding Labels}" 
                                             FontSize="14">
                                             <lvc:Axis.Separator>
                                                 <lvc:Separator Step="1"/>
@@ -388,7 +387,6 @@
                                         <lvc:Axis 
                                             Title="{Binding AxisYTitle, Mode=TwoWay}" 
                                             LabelFormatter="{Binding Formatter}"
-                                            Foreground="{DynamicResource Gray1}"
                                             FontSize="14"/>
                                     </lvc:CartesianChart.AxisY>
                                     <i:Interaction.Triggers>
