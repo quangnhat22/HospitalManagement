@@ -61,8 +61,8 @@ namespace HospitalManagement.ViewModel
         
         public AccountListViewModel ()
         {
-            StaffAccount.InitAccountList();
-            ObservableCollection<SelectableItem<StaffAccount>> Users = SelectableItem<StaffAccount>.GetSelectableItems(StaffAccount.staffAccountsList.ToList());
+            List<StaffAccount> staffAccounts = StaffAccount.InitAccountList();
+            Users = SelectableItem<StaffAccount>.GetSelectableItems(staffAccounts);
             OpenAddAccountListForm = new OpenAddNewAccountForm();
             //DeleteAccountListCommand = new DeleteAccountListCommand(this);
             //SearchAccountListCommand = new SearchAccountListCommand(this);
