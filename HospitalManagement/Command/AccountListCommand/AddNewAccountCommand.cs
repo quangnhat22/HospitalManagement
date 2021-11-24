@@ -31,14 +31,36 @@ namespace HospitalManagement.Command.AccountListCommand
             var addNewAccountForm = parameter as AddNewAccountForm;
             if(Check(addNewAccountForm))
             {
-                string roleAccount = addNewAccountForm.txbVaiTro.SelectedValue as string;
-                string password = CreatePassword(16);
+                string roleAccount = addNewAccountForm.txbVaiTro.SelectedValue.ToString();
+                string password = CreatePassword(10);
                 var userInput = new USER
                 {
-                    USERNAME = addNewAccountForm.txbTenDangNhap.Text,
+                    USERNAME = string.Empty,
                     PASSWORD = Encryptor.Hash(password),
-                    ROLE = roleAccount
+                    ROLE = roleAccount,
                 };
+                
+                if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
+                {
+                    userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
+                    var adminUser = new ADMIN
+                    {
+                        ID = addNewAccountForm.txbID.Text,
+                        IDUSER = userInput.ID,
+                        EMAIL = addNewAccountForm.txbEmail.Text,
+                    };
+                    DataProvider.Ins.DB.ADMINs.Add(adminUser);
+                }
+                if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
+                {
+                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                    userInput.USERNAME = CreateUsername(groupName);
+                    DataProvider.Ins.DB.TOes.ToList().ForEach(x =>
+                        {
+                            if (x.ID == int.Parse(groupName))
+                                x.IDUSER = userInput.ID;
+                        });
+                }
                 DataProvider.Ins.DB.USERs.Add(userInput);
                 DataProvider.Ins.DB.SaveChanges();
                 SendEmailAccount(addNewAccountForm, password);
@@ -50,17 +72,6 @@ namespace HospitalManagement.Command.AccountListCommand
         {
             if (addNewAccountForm == null) return false;
             List<USER> users = DataProvider.Ins.DB.USERs.ToList();
-            foreach(USER user in users)
-            {
-                if(user.USERNAME == addNewAccountForm.txbTenDangNhap.Text)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại");
-                    notifyWindow.ShowDialog();
-                    addNewAccountForm.txbTenDangNhap.Focus();
-                    return false;
-                }
-            }
-
             if (string.IsNullOrWhiteSpace(addNewAccountForm.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
@@ -68,23 +79,63 @@ namespace HospitalManagement.Command.AccountListCommand
                 addNewAccountForm.txbEmail.Focus();
                 return false;
             }
+            if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
+            {
+                if(DataProvider.Ins.DB.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
+                    DataProvider.Ins.DB.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
+                    DataProvider.Ins.DB.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
+                    DataProvider.Ins.DB.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
+                {
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
+                    notifyWindow.ShowDialog();
+                    addNewAccountForm.txbID.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(addNewAccountForm.txbTenDangNhap.Text))
+                {
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
+                    notifyWindow.ShowDialog();
+                    addNewAccountForm.txbTenDangNhap.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(addNewAccountForm.txbID.Text))
+                {
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND/CCCD");
+                    notifyWindow.ShowDialog();
+                    addNewAccountForm.txbID.Focus();
+                    return false;
+                }
+                foreach (USER user in users)
+                {
+                    if (user.USERNAME == addNewAccountForm.txbTenDangNhap.Text)
+                    {
+                        NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại");
+                        notifyWindow.ShowDialog();
+                        addNewAccountForm.txbTenDangNhap.Focus();
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(addNewAccountForm.txbGroup.Text))
+                {
+                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn tổ công tác");
+                    notifyWindow.ShowDialog();
+                    addNewAccountForm.txbGroup.Focus();
+                    return false;
+                }
+            }
+            
 
-            if(!addNewAccountForm.txbEmail.Text.Contains('@'))
+            if (!addNewAccountForm.txbEmail.Text.Contains('@'))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Email không hợp lệ!");
                 notifyWindow.ShowDialog();
                 addNewAccountForm.txbEmail.Focus();
                 return false;
             }
-
-            if (string.IsNullOrWhiteSpace(addNewAccountForm.txbTenDangNhap.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
-                notifyWindow.ShowDialog();
-                addNewAccountForm.txbTenDangNhap.Focus();
-                return false;
-            }
-
+            
             if (string.IsNullOrWhiteSpace(addNewAccountForm.txbVaiTro.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn vai trò");
@@ -104,6 +155,11 @@ namespace HospitalManagement.Command.AccountListCommand
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
             return res.ToString();
+        }
+
+        public string CreateUsername(string groupName)
+        {
+            return "fhmsto" + groupName;
         }
 
         public void SendEmailAccount(AddNewAccountForm addNewAccountForm, string password)

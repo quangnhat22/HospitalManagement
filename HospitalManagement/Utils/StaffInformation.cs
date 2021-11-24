@@ -55,7 +55,7 @@ namespace HospitalManagement.Utils
             this.QuocTich = bacsi.QUOCTICH;
             this.DiaChi = bacsi.DIACHI;
             this.NgSinh = bacsi.NGSINH;
-            this.GioiTinh = bacsi.GIOITINH.Value;
+            this.GioiTinh = bacsi.GIOITINH.HasValue ? bacsi.GIOITINH.Value : false;
             this.VaiTro = bacsi.VAITRO;
             this.ChuyenKhoa = bacsi.CHUYENKHOA;
             this.GhiChu = bacsi.GHICHU;
@@ -81,7 +81,7 @@ namespace HospitalManagement.Utils
             this.QuocTich = yta.QUOCTICH;
             this.DiaChi = yta.DIACHI;
             this.NgSinh = yta.NGSINH;
-            this.GioiTinh = yta.GIOITINH.Value;
+            this.GioiTinh = yta.GIOITINH.HasValue ? yta.GIOITINH.Value : false;
             this.VaiTro = yta.VAITRO;
             this.ChuyenKhoa = yta.CHUYENKHOA;
             this.GhiChu = yta.GHICHU;
@@ -99,7 +99,7 @@ namespace HospitalManagement.Utils
             this.QuocTich = admin.QUOCTICH;
             this.DiaChi = admin.DIACHI;
             this.NgSinh = admin.NGSINH;
-            this.GioiTinh = admin.GIOITINH.Value;
+            this.GioiTinh = admin.GIOITINH.HasValue?admin.GIOITINH.Value:false;
             this.UserName = admin.USER.USERNAME;
             this.PhanLoai = "admin";
         }

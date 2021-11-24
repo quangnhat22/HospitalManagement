@@ -54,7 +54,7 @@
                 <RowDefinition Height="70"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10" Grid.RowSpan="2" Background="White"/>
+            <Border CornerRadius="8" Grid.RowSpan="2" Background="White"/>
             <Grid Grid.Row="0">
                 <Border CornerRadius="0">
                     <Border.Background>
@@ -73,18 +73,46 @@
                         ĐĂNG KÝ TÀI KHOẢN MỚI
                 </TextBlock>
             </Grid>
-
-            <StackPanel Grid.Row="1" Margin="60,49.6,60,10">
-                <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
+            
+            <StackPanel 
+                Grid.Row="1" 
+                Margin="60,49.6,60,10">
+                <StackPanel 
+                    Orientation="Horizontal" 
+                    Margin="0 16 0 0">
+                    <Border Style="{StaticResource borderStyle}">
+                        <materialDesign:PackIcon Kind="ClipboardAccount" Style="{StaticResource styleIcon}"/>
+                    </Border>
+                    <ComboBox
+                          x:Name="txbVaiTro"
+                          materialDesign:HintAssist.Hint="Vai trò của người dùng" 
+                          Width="333" 
+                          Padding="10 11" 
+                          FontSize="14"
+                          FontWeight="Bold"
+                          BorderBrush="{StaticResource clrPrimary}"
+                          ItemsSource="{Binding AccountList}"
+                          SelectedItem="{Binding SelectedAccount}" 
+                          SelectionChanged="txbVaiTro_SelectionChanged">
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal" 
+                    Margin="0 24 0 0">
                     <Border Style="{StaticResource borderStyle}">
                         <materialDesign:PackIcon Kind="Email" Style="{StaticResource styleIcon}"/>
                     </Border>
-                    <TextBox x:Name="txbEmail"
-                    Style="{StaticResource textboxStyle}"
-                    materialDesign:HintAssist.Hint="E-mail"
+                    <TextBox 
+                        x:Name="txbEmail"
+                        Style="{StaticResource textboxStyle}"
+                        materialDesign:HintAssist.Hint="E-mail"
                 />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
+                <StackPanel
+                    x:Name="userName"
+                    Visibility="Visible"
+                    Orientation="Horizontal" 
+                    Margin="0 24 0 0">
                     <Border Style="{StaticResource borderStyle}">
                         <materialDesign:PackIcon Kind="Account" Style="{StaticResource styleIcon }"/>
                     </Border>
@@ -93,25 +121,46 @@
                     materialDesign:HintAssist.Hint="Tên đăng nhập"
                 />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 24 0 0">
+                <StackPanel
+                        x:Name="userID"
+                        Visibility="Visible"
+                        Orientation="Horizontal" 
+                        Margin="0 24 0 0">
                     <Border Style="{StaticResource borderStyle}">
-                        <materialDesign:PackIcon Kind="GenderMaleFemale" Style="{StaticResource styleIcon}"/>
+                        <materialDesign:PackIcon 
+                            Kind="CardAccountDetails" 
+                            Style="{StaticResource styleIcon }"/>
+                    </Border>
+                    <TextBox 
+                        x:Name="txbID"
+                        Style="{StaticResource textboxStyle}"
+                        materialDesign:HintAssist.Hint="CMND/CCCD"
+                />
+                </StackPanel>
+                <StackPanel 
+                    x:Name="stackPannelGroupBox"
+                    Orientation="Horizontal" 
+                    Margin="0 24 0 0"
+                    Visibility="Collapsed">
+                    <Border Style="{StaticResource borderStyle}">
+                        <materialDesign:PackIcon Kind="AccountGroup" Style="{StaticResource styleIcon}"/>
                     </Border>
                     <ComboBox
-                          x:Name="txbVaiTro"
-                          materialDesign:HintAssist.Hint="Vai trò của người dùng" 
+                          x:Name="txbGroup"
+                          materialDesign:HintAssist.Hint="Tổ công tác" 
                           Width="333" 
                           Padding="10 11" 
                           FontSize="14"
-                          BorderBrush="{StaticResource clrPrimary}">
-                        <ComboBoxItem Content="staff" />
-                        <ComboBoxItem Content="admin" />
-                    </ComboBox>
+                          FontWeight="Bold"
+                          BorderBrush="{StaticResource clrPrimary}"
+                          ItemsSource="{Binding GroupList}"
+                          SelectedItem="{Binding SelectedGroup}"/>
                 </StackPanel>
+                
                 <StackPanel 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
-                    Margin="0 70 0 0">
+                    Margin="0 50 0 0">
                     <Button 
                         Content="HUỶ"
                         Style="{StaticResource MaterialDesignRaisedButton}"

@@ -31,5 +31,22 @@ namespace HospitalManagement.View.AddStaff
         {
             this.Close();
         }
+
+
+        private void txbVaiTro_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txbVaiTro.SelectedIndex == 0)
+            {
+                this.userName.Visibility = Visibility.Visible;
+                this.userID.Visibility = Visibility.Visible;    
+                this.stackPannelGroupBox.Visibility = Visibility.Collapsed;
+            }
+            else if (txbVaiTro.SelectedIndex == 1)
+            {
+                this.userName.Visibility = Visibility.Collapsed;
+                this.userID.Visibility = Visibility.Collapsed;
+                this.stackPannelGroupBox.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
