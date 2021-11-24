@@ -8,6 +8,9 @@ using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +40,11 @@ namespace HospitalManagement.ViewModel
         public SeriesCollection SeriesCollection { get => seriesCollection; set { seriesCollection = value; OnPropertyChanged(); } }
         private List<string> labels;
         public List<string> Labels { get => labels; set => labels = value; }
+        //Line Chart
+        private SeriesCollection lineChartSeriesCollection;
+        public SeriesCollection LineChartSeriesCollection { get => lineChartSeriesCollection; set => lineChartSeriesCollection = value; }
+        private List<string> lineLabels;
+        public List<string> LineLabels { get => lineLabels; set => lineLabels = value; }
         public DateTime ColumnChartDate { get => columnChartDate; set => columnChartDate = value; }
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
@@ -82,8 +90,48 @@ namespace HospitalManagement.ViewModel
                 },
             };
             #endregion
+            #region "Initial Line Chart"
+            LineLabels = new List<string>();
+            LineChartSeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Bệnh nhân trung bình",
+                    Values = GenerateLive(),
+                    LabelPoint = point => ": " + point.Y + " người",
+                },
+            };
+            #endregion
         }
 
-
+        public ChartValues<double> GenerateLive(DateTime? from = null, DateTime? to = null)
+        {
+            // This method is suck but it works
+            var sqlString = "SELECT COUNT(*), MONTH(NGNHAPVIEN) AS THANG, YEAR(NGNHAPVIEN) AS NAM " +
+                "FROM BENHNHAN " +
+                "GROUP BY MONTH(NGNHAPVIEN), YEAR(NGNHAPVIEN) " +
+                "ORDER BY YEAR(NGNHAPVIEN), MONTH(NGNHAPVIEN)";
+            ChartValues<double> value = new ChartValues<double>();
+            EntityConnectionStringBuilder entityConnectionStringBuilder = new EntityConnectionStringBuilder();
+            entityConnectionStringBuilder.ConnectionString = ConfigurationManager.ConnectionStrings["QUANLYBENHVIENEntities"].ConnectionString;
+            string connectionString = entityConnectionStringBuilder.ProviderConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sqlString, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            value.Add((int)reader[0]);
+                            string date = reader[1].ToString() + '/' + reader[2].ToString();
+                            LineLabels.Add(date);
+                        }
+                    }
+                }
+            }
+            return value;
+        }
     }
 }

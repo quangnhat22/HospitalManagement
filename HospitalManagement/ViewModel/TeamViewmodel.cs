@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using HospitalManagement.Command.TeamCommand;
+using HospitalManagement.Utils;
 
 namespace HospitalManagement.ViewModel
 {
@@ -24,13 +25,15 @@ namespace HospitalManagement.ViewModel
         }
 
         private ObservableCollection<CountedTeam> countedTeams;
+        private static List<StaffInformation> members;
         private List<TOA> buildings;
-        private TOA toa;
 
-        private int? teamNumber;
         private string currentBuilding;
+        private string currentTeam;
 
         public ICommand ChangeBuildingTeamCommand { get; set; }
+        public ICommand ShowMembersInTeamCommand { get; set; }
+        public ICommand ShowMembersInformationInTeamCommand { get; set; }
 
         public ObservableCollection<CountedTeam> CountedTeams
         {
@@ -40,6 +43,12 @@ namespace HospitalManagement.ViewModel
                 countedTeams = value;
                 OnPropertyChanged("CountedTeams");
             }
+        }
+
+        public List<StaffInformation> Members
+        {
+            get { return members; }
+            set { members = value; OnPropertyChanged("Members"); }
         }
 
         public List<TOA> Buildings
@@ -58,20 +67,24 @@ namespace HospitalManagement.ViewModel
             set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
         }
 
-        public int? TeamNumber
+        public string CurrentTeam
         {
-            get { return teamNumber; }
-            set { teamNumber = value; OnPropertyChanged("TeamNumber"); }
+            get { return currentTeam; }
+            set
+            {
+                currentTeam = value;OnPropertyChanged("CurrentTeam");
+            }
         }
-
-        public TOA Toa { get => toa; set => toa = value; }
 
         public TeamViewmodel()
         {
             Buildings = DataProvider.Ins.DB.TOAs.ToList();
             currentBuilding = buildings[0].DISPLAYNAME;
+            currentTeam = "";
             CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList());
             ChangeBuildingTeamCommand = new ChangeBuildingTeamCommand(this);
+            ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
+            ShowMembersInformationInTeamCommand = new ShowMembersInformationInTeamCommand(this);
         }
     }
 
