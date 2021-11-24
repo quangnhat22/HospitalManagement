@@ -15,8 +15,8 @@ namespace HospitalManagement.ViewModel
 {
     public class AccountListViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        private static ObservableCollection<SelectableItem<StaffAccount>> users; 
-        public ObservableCollection<SelectableItem<StaffAccount>> Users
+        private static ObservableCollection<SelectableItem<StaffInformation>> users; 
+        public ObservableCollection<SelectableItem<StaffInformation>> Users
         {
             get { return users; }
             set { users = value; OnPropertyChanged("Users"); }
@@ -61,8 +61,8 @@ namespace HospitalManagement.ViewModel
         
         public AccountListViewModel ()
         {
-            List<StaffAccount> staffAccounts = StaffAccount.InitAccountList();
-            Users = SelectableItem<StaffAccount>.GetSelectableItems(staffAccounts);
+            List<StaffInformation> staffAccounts = StaffInformation.InitAccountList();
+            Users = SelectableItem<StaffInformation>.GetSelectableItems(staffAccounts);
             OpenAddAccountListForm = new OpenAddNewAccountForm();
             //DeleteAccountListCommand = new DeleteAccountListCommand(this);
             //SearchAccountListCommand = new SearchAccountListCommand(this);

@@ -203,7 +203,7 @@
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
     <Compile Include="Utils\SelectableItem.cs" />
-    <Compile Include="Utils\StaffAccount.cs" />
+    <Compile Include="Utils\StaffInformation.cs" />
     <Compile Include="Utils\ToaTK.cs" />
     <Compile Include="Utils\VietnameseSign.cs" />
     <Compile Include="ViewModel\AccountListViewModel.cs" />
