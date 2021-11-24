@@ -79,7 +79,24 @@ namespace HospitalManagement.Utils
             this.IdTo = yta.IDTO;
         }
 
-        
+        public StaffInformation(ADMIN admin)
+        {
+            //this.Cmnd_cccd = admin.CMND_CCCD;
+            //this.Ho = admin.HO;
+            //this.Ten = admin.TEN;
+            //this.Email = admin.EMAIL;
+            //this.Sdt = admin.SDT;
+            //this.QuocTich = admin.QUOCTICH;
+            //this.DiaChi = admin.DIACHI;
+            //this.NgSinh = yta.NGSINH;
+            //this.GioiTinh = yta.GIOITINH.Value;
+            //this.VaiTro = yta.VAITRO;
+            //this.ChuyenKhoa = yta.CHUYENKHOA;
+            //this.GhiChu = yta.GHICHU;
+            //this.IdTo = yta.IDTO;
+        }
+
+
 
         public static List<StaffInformation> InitAccountList()
         {

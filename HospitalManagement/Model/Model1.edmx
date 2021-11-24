@@ -14,8 +14,11 @@
           <Property Name="HO" Type="nvarchar" MaxLength="100" />
           <Property Name="TEN" Type="nvarchar" MaxLength="100" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
           <Property Name="NGSINH" Type="smalldatetime" />
           <Property Name="GIOITINH" Type="bit" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BACSI">
           <Key>
@@ -81,16 +84,6 @@
           </Key>
           <Property Name="IDVATTU" Type="int" Nullable="false" />
           <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TANG">
           <Key>
@@ -320,7 +313,6 @@
           <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
@@ -419,7 +411,6 @@
           <EntitySet Name="BACSIs" EntityType="QUANLYBENHVIENModel.BACSI" />
           <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
-          <EntitySet Name="sysdiagrams" EntityType="QUANLYBENHVIENModel.sysdiagram" />
           <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
           <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
@@ -491,8 +482,11 @@
           <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NGSINH" Type="DateTime" Precision="0" />
           <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="ADMIN" ToRole="USER" />
         </EntityType>
         <EntityType Name="BACSI">
@@ -513,7 +507,7 @@
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
-          <NavigationProperty Name="LATOTRUONG" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
+          <NavigationProperty Name="LATRUONGTO" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
         </EntityType>
         <EntityType Name="BENHNHAN">
           <Key>
@@ -549,16 +543,6 @@
           <Property Name="IDTANG" Type="Int32" />
           <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TANG">
           <Key>
@@ -765,8 +749,11 @@
           <EntitySetMapping Name="ADMINs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
                 <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
                 <ScalarProperty Name="HO" ColumnName="HO" />
@@ -824,17 +811,6 @@
                 <ScalarProperty Name="SUCCHUA" ColumnName="SUCCHUA" />
                 <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

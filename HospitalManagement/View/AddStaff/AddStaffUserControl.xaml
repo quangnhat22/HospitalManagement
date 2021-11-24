@@ -69,8 +69,7 @@
                     Command="{Binding OpenAddAccountListForm}"
                     CommandParameter="{Binding ElementName=addStaffUserControl}"
                     Content="Đăng ký tài khoản mới"
-                
-                Width="200"/>
+                    Width="200"/>
                 <Button Content="Xóa"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
@@ -172,7 +171,7 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.Email}"
                                                    Header="EMAIL"
-                                                   Width="120"
+                                                   Width="250"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.Sdt}"
@@ -182,11 +181,11 @@
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.UserName}"
                                                    Header="Tên đăng nhập"
-                                                   Width="200"
+                                                   Width="220"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.GroupName}"
-                                                   Header="Tổ trực"
+                                                   Header="Tổ công tác"
                                                    Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>

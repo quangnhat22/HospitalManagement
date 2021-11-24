@@ -19,8 +19,11 @@ namespace Seeds
         public string HO { get; set; }
         public string TEN { get; set; }
         public string EMAIL { get; set; }
+        public string SDT { get; set; }
         public Nullable<System.DateTime> NGSINH { get; set; }
         public Nullable<bool> GIOITINH { get; set; }
+        public string QUOCTICH { get; set; }
+        public string DIACHI { get; set; }
     
         public virtual USER USER { get; set; }
     }
