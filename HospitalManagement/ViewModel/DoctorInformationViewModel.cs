@@ -10,20 +10,22 @@ using HospitalManagement.Command;
 
 namespace HospitalManagement.ViewModel
 {
-    class DoctorInformationViewModel : INotifyPropertyChanged
+     class DoctorInformationViewModel : INotifyPropertyChanged
     {
-        private BACSI doctor;
-        public DoctorInformationViewModel(BACSI bs)
-        {
-            this.Doctor = bs;
-        }
-        public BACSI Doctor { get => doctor; set => doctor = value;}
+        private BACSI doctor;        
+        public BACSI Doctor { get => doctor; set => doctor = value;}       
+        public ICommand SaveChange { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+        public DoctorInformationViewModel(BACSI bs)
+        {
+            this.Doctor = bs;
+            SaveChange = new SaveChangeDoctorInformationCommand();
         }
 
         //private Doctor doctor;

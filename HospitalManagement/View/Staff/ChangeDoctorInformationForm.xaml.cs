@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,10 @@ namespace HospitalManagement.View.Staff
     /// </summary>
     public partial class ChangeDoctorInformationForm : Window
     {
-        public ChangeDoctorInformationForm()
+        public ChangeDoctorInformationForm(BACSI bs)
         {
             InitializeComponent();
+            this.DataContext = new DoctorInformationViewModel(bs);
         }
     }
 }

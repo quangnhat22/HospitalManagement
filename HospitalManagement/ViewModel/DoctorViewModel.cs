@@ -10,6 +10,7 @@ using System.ComponentModel;
 using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
+using HospitalManagement.Command.DoctorListCommand;
 
 namespace HospitalManagement.ViewModel
 {
@@ -47,6 +48,7 @@ namespace HospitalManagement.ViewModel
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowDoctorInfomationCommand { get; set; }
+        public ICommand OpenChangeDoctorForm { get; set; }
         public DoctorViewModel()
         {
             //for (int i = 0; i < 200; i++)
@@ -127,6 +129,7 @@ namespace HospitalManagement.ViewModel
             //CheckedCount = 0;
             //IsCheckedAll = false;
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
+            OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();
 
             //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             //{
