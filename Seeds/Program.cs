@@ -18,6 +18,14 @@ namespace Seeds
             CleanDatabase();
             Console.WriteLine("Complete delete database's data");
             Console.WriteLine("================================");
+            Console.WriteLine("Generate sudo admin with username: superadmin; password: 1");
+            USER su = new USER();
+            su.USERNAME = "superadmin";
+            su.PASSWORD = Encryptor.Hash("1");
+            su.ROLE = "sudo";
+            DataProvider.Ins.DB.USERs.Add(su);
+            DataProvider.Ins.DB.SaveChanges();
+            Console.WriteLine("================================");
             Console.WriteLine("Start seed database's data");
             SeedsDatabase();
             Console.WriteLine("Complete seed database's data");
