@@ -130,7 +130,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Nurse.CMND_CCCD}" x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding Nurse.CMND_CCCD}" x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" IsReadOnly="True" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="85" Orientation="Horizontal">

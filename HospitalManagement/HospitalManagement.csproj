@@ -128,6 +128,8 @@
     <Compile Include="Command\AccountCommand\OpenChangePasswordWindowCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\OpenFacilitiesFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\OpenChangePatientFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\SaveChangePatientInformationCommand.cs" />
     <Compile Include="Command\ReportFormCommand\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenLoginWindowCommand.cs" />

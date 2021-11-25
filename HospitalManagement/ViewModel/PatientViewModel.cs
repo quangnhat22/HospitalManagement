@@ -10,6 +10,7 @@ using System.ComponentModel;
 using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
+using HospitalManagement.Command.PatientListCommand;
 
 namespace HospitalManagement.ViewModel
 {
@@ -35,7 +36,7 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowPatientInfomationCommand { get; set; }
         public ICommand SearchPatientCommand { get; set; }
         public ICommand DeletePatientCommand { get; set; }
-
+        public ICommand OpenChangePatientForm { get; set; }
 
         private bool? isCheckedAll;
 
@@ -72,6 +73,7 @@ namespace HospitalManagement.ViewModel
             SearchPatientCommand = new SearchPatientCommand(this);
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
+            OpenChangePatientForm = new OpenChangePatientFormCommand();
 
             IsCheckedAll = false;
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
