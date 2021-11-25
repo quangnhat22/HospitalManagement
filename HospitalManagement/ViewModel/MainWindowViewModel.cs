@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel
 {
-    class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         private BaseViewModel _selectedViewModel = new SwitchDashboardViewModel();
 
