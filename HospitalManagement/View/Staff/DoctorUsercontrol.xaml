@@ -61,16 +61,16 @@
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Name="SingleSelect">
+                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Name="abc">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Checked">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
-                                                               CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                         </i:EventTrigger>
                                         <i:EventTrigger EventName="Unchecked">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
-                                                               CommandParameter="{Binding ElementName=SingleSelect }"/>
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </CheckBox>

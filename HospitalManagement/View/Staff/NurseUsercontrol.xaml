@@ -49,28 +49,30 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.Header>
                                 <CheckBox IsThreeState="True" 
-                                  x:Name="AllSelect" 
-                                  IsChecked="{Binding DataContext.IsCheckedAll, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, UpdateSourceTrigger=PropertyChanged}">
+                                  Name="AllSelect" 
+                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                        Path=DataContext.IsCheckedAll, 
+                                                        UpdateSourceTrigger=PropertyChanged}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction Command="{Binding DataContext.AllCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                                           CommandParameter="{Binding ElementName=AllSelect}"/>
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.AllCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=AllSelect }"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </CheckBox>
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      x:Name="SingleSelect">
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Name="abc">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="Checked">
-                                                <i:InvokeCommandAction Command="{Binding DataContext.SingleCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                               CommandParameter="{Binding ElementName=SingleSelect}"/>
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                             </i:EventTrigger>
                                             <i:EventTrigger EventName="Unchecked">
-                                                <i:InvokeCommandAction Command="{Binding DataContext.SingleCheckedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                               CommandParameter="{Binding ElementName=SingleSelect}"/>
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=abc }"/>
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </CheckBox>
