@@ -1,5 +1,4 @@
 ﻿using HospitalManagement.Model;
-using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.Staff;
 using HospitalManagement.ViewModel;
@@ -12,7 +11,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.Command
 {
-    internal class SaveChangeDoctorInformationCommand: ICommand
+    internal class SaveChangeNurseInformationCommand: ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -26,117 +25,115 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            ChangeDoctorInformationForm doctorForm = parameter as ChangeDoctorInformationForm;
-            if (Check(doctorForm))
+            ChangeNurseInformationForm nurseForm = parameter as ChangeNurseInformationForm;
+            if (Check(nurseForm))
             {
                 DataProvider.Ins?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
                 notifyWindow.ShowDialog();
             }
         }
-        public bool Check(ChangeDoctorInformationForm cdf)
+        public bool Check(ChangeNurseInformationForm cnf)
         {
-            if (cdf == null) return false;
+            if (cnf == null) return false;
 
 
-            if (string.IsNullOrWhiteSpace(cdf.txbHo.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
                 notifyWindow.ShowDialog();
-                cdf.txbHo.Focus();
+                cnf.txbHo.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbTen.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
-                cdf.txbTen.Focus();
+                cnf.txbTen.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbSDT.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
                 notifyWindow.ShowDialog();
-                cdf.txbSDT.Focus();
+                cnf.txbSDT.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cdf.txbEmail.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
                 notifyWindow.ShowDialog();
-                cdf.txbEmail.Focus();
+                cnf.txbEmail.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbDiaChi.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
                 notifyWindow.ShowDialog();
-                cdf.txbDiaChi.Focus();
+                cnf.txbDiaChi.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbNGSinh.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
-                cdf.txbNGSinh.Focus();
+                cnf.txbNGSinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.cbxGioiTinh.Text.ToString()))
+            if (string.IsNullOrWhiteSpace(cnf.cbxGioiTinh.Text.ToString()))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
                 notifyWindow.ShowDialog();
-                cdf.cbxGioiTinh.Focus();
+                cnf.cbxGioiTinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbQuocTich.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbQuocTich.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập quốc tịch");
                 notifyWindow.ShowDialog();
-                cdf.txbQuocTich.Focus();
+                cnf.txbQuocTich.Focus();
                 return false;
             }
-            
-            if (string.IsNullOrWhiteSpace(cdf.txbChuyenKhoa.Text))
+
+            if (string.IsNullOrWhiteSpace(cnf.txbChuyenKhoa.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập chuyên Khoa");
                 notifyWindow.ShowDialog();
-                cdf.txbChuyenKhoa.Focus();
+                cnf.txbChuyenKhoa.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbVaiTro.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbVaiTro.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
                 notifyWindow.ShowDialog();
-                cdf.txbVaiTro.Focus();
+                cnf.txbVaiTro.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbIDTO.Text))
+            if (string.IsNullOrWhiteSpace(cnf.txbIDTO.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
                 notifyWindow.ShowDialog();
-                cdf.txbVaiTro.Focus();
+                cnf.txbVaiTro.Focus();
                 return false;
             }
-            //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
-            //Kiem tra cmnnd//            
-            //Kiểm tra IDTO//
+
             try
             {
-                int idTo = int.Parse(cdf.txbIDTO.Text);
+                int idTo = int.Parse(cnf.txbIDTO.Text);
                 var checkTO = DataProvider.Ins.DB.TOes.Any(x => x.ID == idTo);
                 if (checkTO == false)
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
                     notifyWindow.ShowDialog();
-                    cdf.txbIDTO.Focus();
+                    cnf.txbIDTO.Focus();
                     return false;
                 }
             }
@@ -144,12 +141,11 @@ namespace HospitalManagement.Command
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Tổ là một số nguyên dương");
                 notifyWindow.ShowDialog();
-                cdf.txbIDTO.Focus();
+                cnf.txbIDTO.Focus();
                 return false;
             }
 
             return true;
         }
-        
     }
 }

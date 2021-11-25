@@ -2,6 +2,7 @@
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +27,12 @@ namespace HospitalManagement.View.Staff
             InitializeComponent();
             this.DataContext = new DoctorInformationViewModel(bs);
         }
+        void DataWindow_Closing(object sender, CancelEventArgs e)
+        {
+            
+        }
+
+         
+        
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
-
+using HospitalManagement.Command.NurseListCommand;
 
 namespace HospitalManagement.ViewModel
 {
@@ -21,7 +21,7 @@ namespace HospitalManagement.ViewModel
         public ObservableCollection<SelectableItem<YTA>> Nurses
         {
             get { return nurses; }
-            set { nurses = value; OnPropertyChanged("Doctors"); }
+            set { nurses = value; OnPropertyChanged("Nurses"); }
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;
@@ -45,7 +45,7 @@ namespace HospitalManagement.ViewModel
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowNurseInfomationCommand { get; set; }
-
+        public ICommand OpenChangeNurseForm { get; set; }
         public NurseViewModel()
         {
             //for (int i = 0; i < 200; i++)
@@ -110,6 +110,7 @@ namespace HospitalManagement.ViewModel
             //CheckedCount = 0;
             //IsCheckedAll = false;
             ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
+            OpenChangeNurseForm = new OpenChangeNurseFormCommand();
 
             //AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             //{
