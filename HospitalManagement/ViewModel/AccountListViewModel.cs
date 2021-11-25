@@ -15,7 +15,13 @@ namespace HospitalManagement.ViewModel
 {
     public class AccountListViewModel : BaseViewModel, INotifyPropertyChanged
     {
-        private static ObservableCollection<SelectableItem<StaffInformation>> users; 
+        private static ObservableCollection<SelectableItem<StaffInformation>> users;
+        private static List<StaffInformation> staffAccounts;
+        public List<StaffInformation> StaffAccounts
+        {
+            get { return staffAccounts; }
+            set { staffAccounts = value; OnPropertyChanged("StaffAccounts"); }
+        }
         public ObservableCollection<SelectableItem<StaffInformation>> Users
         {
             get { return users; }
@@ -61,8 +67,8 @@ namespace HospitalManagement.ViewModel
         
         public AccountListViewModel ()
         {
-            List<StaffInformation> staffAccounts = StaffInformation.InitAccountList();
-            Users = SelectableItem<StaffInformation>.GetSelectableItems(staffAccounts);
+            StaffAccounts = StaffInformation.InitAccountList();
+            Users = SelectableItem<StaffInformation>.GetSelectableItems(StaffAccounts);
             OpenAddAccountListForm = new OpenAddNewAccountForm();
             //DeleteAccountListCommand = new DeleteAccountListCommand(this);
             //SearchAccountListCommand = new SearchAccountListCommand(this);
@@ -91,7 +97,7 @@ namespace HospitalManagement.ViewModel
                     if (Users.Where(f => f.IsSelected).Count() == 0)
                     IsCheckedAll = false;
             });
-        }
-
+            DeleteAccountListCommand = new DeleteAccountListCommand(this);
+        }   
     }
 }
