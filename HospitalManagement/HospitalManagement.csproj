@@ -108,9 +108,14 @@
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\ChangeDoctorInformationClosingCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\DeleteFacilitiesCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\SearchFacilitiesCommand.cs" />
     <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
+    <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
+    <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
     <Compile Include="Command\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
@@ -123,6 +128,8 @@
     <Compile Include="Command\AccountCommand\OpenChangePasswordWindowCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\FacilitiesListCommand\OpenFacilitiesFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\OpenChangePatientFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\SaveChangePatientInformationCommand.cs" />
     <Compile Include="Command\ReportFormCommand\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenLoginWindowCommand.cs" />

@@ -139,18 +139,20 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}, Path=DataContext.OpenEditStaff}"
-                            CommandParameter="{Binding ElementName=StaffDetailCT}"
-                            Background="Transparent" Height="25" BorderThickness="0" Padding="0" Margin="0 0 20 0">
-                                        <materialDesign:PackIcon Height="25" Width="25" Foreground="Blue" Kind="PencilBoxOutline" />
-                                    </Button>
-                                    <Button Background="Transparent" Height="25" BorderThickness="0" Padding="0"
-                            Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}, Path=DataContext.DeleteStaffCommand}"
-                            CommandParameter="{Binding ElementName=StaffDetailCT}">
-                                        <materialDesign:PackIcon Height="25" Width="25" Foreground="Red" Kind="Delete" />
-                                    </Button>
-                                </StackPanel>
+                                <Button Background="Transparent" 
+                                        Height="25" BorderThickness="0" 
+                                        Padding="0">
+                                    <materialDesign:PackIcon Height="25" Width="25" Foreground="#35a0fe" Kind="PencilBoxOutline"/>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                            Path=DataContext.OpenChangeDoctorForm}"
+                                                               CommandParameter="{Binding ElementName=dtgDoctorList, Path=SelectedItem}"/>
+                                        </i:EventTrigger>
+
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

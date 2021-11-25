@@ -10,7 +10,7 @@ using System.ComponentModel;
 using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
-
+using HospitalManagement.Command.NurseListCommand;
 
 namespace HospitalManagement.ViewModel
 {
@@ -23,29 +23,11 @@ namespace HospitalManagement.ViewModel
             get { return nurses; }
             set { nurses = value; OnPropertyChanged("Nurses"); }
         }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void OnPropertyChanged(string name)
-        //{
-        //    if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
-        //}
-
-
-
-        private bool? isCheckedAll;
-
-        public bool? IsCheckedAll
-        {
-            get { return isCheckedAll; }
-            set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
-        }
-
         public ICommand OpenNurseForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowNurseInfomationCommand { get; set; }
-
+        public ICommand OpenChangeNurseForm { get; set; }
         public NurseViewModel()
         {
             IsCheckedAll = false;
@@ -67,7 +49,9 @@ namespace HospitalManagement.ViewModel
                     if (Nurses.Where(nurse => nurse.IsSelected).Count() == 0)
                     IsCheckedAll = false;
             });
+        {         
             ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
+            OpenChangeNurseForm = new OpenChangeNurseFormCommand();
             OpenNurseForm = new OpenNurseFormCommand();
         }
     }
