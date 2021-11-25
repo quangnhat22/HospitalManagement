@@ -2,6 +2,7 @@
 using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.AddStaff;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +16,7 @@ namespace HospitalManagement.Command.AccountListCommand
 {
     public class AddNewAccountCommand : ICommand
     {
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -51,23 +53,38 @@ namespace HospitalManagement.Command.AccountListCommand
                     };
                     DataProvider.Ins.DB.ADMINs.Add(adminUser);
                 }
+
                 if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
                 {
                     string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
                     userInput.USERNAME = CreateUsername(groupName);
+                    if(checkUsernameStaff(userInput.USERNAME))
+                    {
+                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tài khoản cho tổ này đã tồn tại!");
+                        notifyWindowUsername.ShowDialog();
+                        addNewAccountForm.txbGroup.Focus();
+                        return;
+                    }
+
                     DataProvider.Ins.DB.TOes.ToList().ForEach(x =>
                         {
                             if (x.ID == int.Parse(groupName))
                                 x.IDUSER = userInput.ID;
                         });
                 }
+
                 DataProvider.Ins.DB.USERs.Add(userInput);
                 DataProvider.Ins.DB.SaveChanges();
-                SendEmailAccount(addNewAccountForm, password);
+                SendEmailAccount(addNewAccountForm, password, userInput);
+                SendEmailAccountToFHMS(addNewAccountForm, userInput);
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký mới thành công!");
+                NotifyWindow notifyWindow1 = new NotifyWindow("Success", "Đã gửi tên đăng nhập, mật khẩu qua\t email đăng ký.");
                 notifyWindow.ShowDialog();
+                notifyWindow1.ShowDialog();
+                
             }
         }
+        
         public bool Check(AddNewAccountForm addNewAccountForm)
         {
             if (addNewAccountForm == null) return false;
@@ -79,6 +96,7 @@ namespace HospitalManagement.Command.AccountListCommand
                 addNewAccountForm.txbEmail.Focus();
                 return false;
             }
+
             if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
             {
                 if(DataProvider.Ins.DB.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
@@ -91,6 +109,7 @@ namespace HospitalManagement.Command.AccountListCommand
                     addNewAccountForm.txbID.Focus();
                     return false;
                 }
+
                 if (string.IsNullOrWhiteSpace(addNewAccountForm.txbTenDangNhap.Text))
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
@@ -98,6 +117,7 @@ namespace HospitalManagement.Command.AccountListCommand
                     addNewAccountForm.txbTenDangNhap.Focus();
                     return false;
                 }
+
                 if (string.IsNullOrWhiteSpace(addNewAccountForm.txbID.Text))
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND/CCCD");
@@ -145,6 +165,16 @@ namespace HospitalManagement.Command.AccountListCommand
             }
             return true;
         }
+        public string CreateUsername(string groupName)
+        {
+            return "fhmsto" + groupName;
+        }
+
+        public bool checkUsernameStaff(string usernameStaff)
+        {
+            return DataProvider.Ins.DB.USERs.Any(x=> x.USERNAME == usernameStaff);
+        }
+
         public string CreatePassword(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -157,20 +187,39 @@ namespace HospitalManagement.Command.AccountListCommand
             return res.ToString();
         }
 
-        public string CreateUsername(string groupName)
-        {
-            return "fhmsto" + groupName;
-        }
-
-        public void SendEmailAccount(AddNewAccountForm addNewAccountForm, string password)
+        public void SendEmailAccount(AddNewAccountForm addNewAccountForm, string password, USER user)
         {
             string emailSubject = "FHMS New Account";
             string emailBody = "Vui lòng không tiết lộ thông tin này ra ngoài!" +
-                                $"\n Tên đăng nhập: {addNewAccountForm.txbTenDangNhap.Text}" +
+                                $"\n Tên đăng nhập: {user.USERNAME}" +
                                 $"\n Mật khẩu: {password}";
             string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
             string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
             EmailProcessing emailProcessing = new EmailProcessing(addNewAccountForm.txbEmail.Text, emailAddress, 
+                                                                    emailPassword, emailSubject, emailBody);
+            emailProcessing.sendEmail();
+        }
+
+        public string findIdUserAdmin()
+        {
+            string idAdmin = string.Empty;
+            DataProvider.Ins.DB.ADMINs.ToList().ForEach(ad =>
+                {
+                    if (ad.IDUSER == MainWindowViewModel.User.ID)
+                        idAdmin = ad.ID;
+                });
+            return idAdmin;
+        }
+
+        public void SendEmailAccountToFHMS(AddNewAccountForm addNewAccountForm, USER user)
+        {
+            string idAdmin = findIdUserAdmin();
+            string emailSubject = "FHMS Create Account";
+            string emailBody = $"ID Admin: {MainWindowViewModel.User.ID} đã tạo một tài khoản mới: " +
+                                $"\n Tên đăng nhập đã tạo mới: {user.USERNAME}";
+            string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
+            string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
+            EmailProcessing emailProcessing = new EmailProcessing(emailAddress, emailAddress,
                                                                     emailPassword, emailSubject, emailBody);
             emailProcessing.sendEmail();
         }
