@@ -10,6 +10,8 @@ namespace HospitalManagement.Utils
     {
         public static string convertToUnSign2(string s)
         {
+            if (string.IsNullOrEmpty(s))
+                return string.Empty;
             string stFormD = s.Normalize(NormalizationForm.FormD);
             StringBuilder sb = new StringBuilder();
             for (int ich = 0; ich < stFormD.Length; ich++)

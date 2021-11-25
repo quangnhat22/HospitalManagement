@@ -213,6 +213,25 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="Transparent" 
+                                        Height="25" BorderThickness="0" 
+                                        Padding="0">
+                                    <materialDesign:PackIcon Height="25" Width="25" Foreground="#35a0fe" Kind="PencilBoxOutline"/>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                            Path=DataContext.OpenChangePatientForm}"
+                                                               CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
+                                        </i:EventTrigger>
+
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

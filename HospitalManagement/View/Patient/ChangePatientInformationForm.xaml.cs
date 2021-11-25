@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,10 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class ChangePatientInformationForm : Window
     {
-        public ChangePatientInformationForm()
+        public ChangePatientInformationForm(BENHNHAN bn)
         {
             InitializeComponent();
+            this.DataContext = new PatientInformationViewModel(bn);
         }
     }
 }
