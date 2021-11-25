@@ -57,17 +57,29 @@
                            VerticalAlignment="Center"
                            TextWrapping="Wrap"
                            FontSize="16"/>
-                <Button x:Name="btnOK"
-                        Grid.Row="2"
-                        Style="{StaticResource MaterialDesignOutlinedButton}"
-                        Content="OK"
-                        Width="130"
-                        Margin="0 0 0 10"
-                        Background="White"
-                        BorderThickness="2"
-                        HorizontalAlignment="Center"
-                        Command="{Binding CloseWindow}"
-                        CommandParameter="{Binding ElementName=notifyWindow}"/>
+                <StackPanel Grid.Row="2" 
+                            Orientation="Horizontal" 
+                            Margin="0 0 0 10"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="btnCancel"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding Cancel}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Content="Cancel"
+                            Width="100"
+                            Margin="5 0"
+                            Background="White"
+                            BorderThickness="2" Click="btnCancel_Click"/>
+                    <Button x:Name="btnOK"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Content="OK"
+                            Width="100"
+                            Margin="5 0"
+                            Background="White"
+                            BorderThickness="2"
+                            HorizontalAlignment="Center" Click="btnOK_Click"/>
+                </StackPanel>
+                
             </Grid>
         </Grid>
     </Grid>

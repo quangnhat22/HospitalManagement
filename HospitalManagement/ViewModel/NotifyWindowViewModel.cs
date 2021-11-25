@@ -11,13 +11,19 @@ namespace HospitalManagement.ViewModel
 {
     class NotifyWindowViewModel
     {
-        public ICommand CloseWindow { get; set; }
         public ICommand LoadContent { get; set; }
 
-        public NotifyWindowViewModel()
-        { 
+        private string cancel;
+        public string Cancel
+        {
+            get { return cancel; }
+            set { cancel = value; }
+        }
+
+        public NotifyWindowViewModel(string cancel)
+        {
+            this.cancel = cancel;
             LoadContent = new NotifyWindowCommand();
-            CloseWindow = new CloseWindowCommand();
         }
     }
 }

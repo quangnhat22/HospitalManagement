@@ -33,7 +33,7 @@ namespace HospitalManagement.Command
                 SetProperties(w, "#2FDD92", "CheckboxMarkedCircleOutline");
             else
                 if (w.Tag.ToString() == "Warning")
-                    SetProperties(w, "#FCCF31", "AlertCircleOutline");
+                    SetProperties(w, "#FEB721", "AlertCircleOutline");
                 else
                     if (w.Tag.ToString() == "Error")
                         SetProperties(w, "#F6416C", "AlertOutline");
@@ -45,6 +45,8 @@ namespace HospitalManagement.Command
             w.bodyBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.btnOK.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.btnOK.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
+            w.btnCancel.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
+            w.btnCancel.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.Icon.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.ToolTip = iconName;
         }
