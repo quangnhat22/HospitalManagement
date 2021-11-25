@@ -104,34 +104,16 @@ namespace HospitalManagement.ViewModel
             #endregion
         }
 
-        public ChartValues<double> GenerateLive(DateTime? from = null, DateTime? to = null)
+        public ChartValues<int> GenerateLive(DateTime? from = null, DateTime? to = null)
         {
-            // This method is suck but it works
-            var sqlString = "SELECT COUNT(*), MONTH(NGNHAPVIEN) AS THANG, YEAR(NGNHAPVIEN) AS NAM " +
-                "FROM BENHNHAN " +
-                "GROUP BY MONTH(NGNHAPVIEN), YEAR(NGNHAPVIEN) " +
-                "ORDER BY YEAR(NGNHAPVIEN), MONTH(NGNHAPVIEN)";
-            ChartValues<double> value = new ChartValues<double>();
-            EntityConnectionStringBuilder entityConnectionStringBuilder = new EntityConnectionStringBuilder();
-            entityConnectionStringBuilder.ConnectionString = ConfigurationManager.ConnectionStrings["QUANLYBENHVIENEntities"].ConnectionString;
-            string connectionString = entityConnectionStringBuilder.ProviderConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            ChartValues<int> chartValues = new ChartValues<int>();
+            List<LineChartInitialization> list = LineChartInitialization.ChartInitialize();
+            foreach(LineChartInitialization lineChartInitialization in list)
             {
-                using (SqlCommand cmd = new SqlCommand(sqlString, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            value.Add((int)reader[0]);
-                            string date = reader[1].ToString() + '/' + reader[2].ToString();
-                            LineLabels.Add(date);
-                        }
-                    }
-                }
+                chartValues.Add(lineChartInitialization.SL);
+                LineLabels.Add(lineChartInitialization.THANG.ToString() + '/' + lineChartInitialization.NAM.ToString());
             }
-            return value;
+            return chartValues;
         }
     }
 }
