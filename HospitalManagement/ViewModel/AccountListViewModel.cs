@@ -29,7 +29,7 @@ namespace HospitalManagement.ViewModel
         }
 
         private bool? isCheckedAll;
-        private List<String> filterList = new List<string> { "Tên tài khoản","Tổ" };
+        private List<String> filterList = new List<string> { "CMND/CCCD","Họ","Tên","Email","Tên đăng nhập","Tổ" };
         private string selectedFilter;
         private string searchBox;
 
@@ -70,8 +70,8 @@ namespace HospitalManagement.ViewModel
             StaffAccounts = StaffInformation.InitAccountList();
             Users = SelectableItem<StaffInformation>.GetSelectableItems(StaffAccounts);
             OpenAddAccountListForm = new OpenAddNewAccountForm();
-            //DeleteAccountListCommand = new DeleteAccountListCommand(this);
-            //SearchAccountListCommand = new SearchAccountListCommand(this);
+            DeleteAccountListCommand = new DeleteAccountListCommand(this);
+            SearchAccountListCommand = new SearchAccountListCommand(this);
             if (FilterList.Count > 0)
             {
                 SelectedFilter = FilterList[0];
@@ -97,7 +97,7 @@ namespace HospitalManagement.ViewModel
                     if (Users.Where(f => f.IsSelected).Count() == 0)
                     IsCheckedAll = false;
             });
-            DeleteAccountListCommand = new DeleteAccountListCommand(this);
+            
         }   
     }
 }

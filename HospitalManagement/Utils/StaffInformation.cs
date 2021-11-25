@@ -108,11 +108,8 @@ namespace HospitalManagement.Utils
         {
             List<StaffInformation> staffAccounts = new List<StaffInformation>();
             foreach (var to in DataProvider.Ins.DB.TOes.ToList())
-            {
-                var BacSiList = to.BACSIs.ToList().ConvertAll(p => new StaffInformation(p));
-                var YTaList = to.YTAs.ToList().ConvertAll(p => new StaffInformation(p));
-                staffAccounts.AddRange(BacSiList);
-                staffAccounts.AddRange(YTaList);
+            {  
+                staffAccounts.Add(new StaffInformation(to.TOTRUONG));
             }
             foreach(var admin in DataProvider.Ins.DB.ADMINs.ToList())
                 staffAccounts.Add(new StaffInformation(admin));
