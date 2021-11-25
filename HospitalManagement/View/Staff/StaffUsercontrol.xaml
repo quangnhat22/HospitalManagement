@@ -87,7 +87,7 @@
             </StackPanel>
             <StackPanel
                 x:Name="NurseStackPanelComponent"
-                DataContext="{Binding ElementName=NurseUC, Path=Content}"
+                DataContext="{Binding ElementName=NurseUC, Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Orientation="Horizontal"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
@@ -138,6 +138,7 @@
                 <Button Content="Xóa"
                          x:Name="btnDeleteNurse"
                         Command="{Binding DeleteNurse}"
+                        CommandParameter="{Binding ElementName=NurseUC, Path=Content}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
                         Margin="15 0 0 0"
@@ -179,7 +180,7 @@
                          Height="40" 
                          Margin="-3,0,0,0" 
                          Padding="0">
-                    <UserControl x:Name="NurseUC" Content="{Binding NurseViewModel}"></UserControl>
+                    <UserControl x:Name="NurseUC" Content="{Binding NurseViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></UserControl>
                 </TabItem>
             </TabControl>
         </StackPanel>

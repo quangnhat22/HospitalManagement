@@ -13,11 +13,9 @@ namespace HospitalManagement.Command
 {
     class DeleteNurseCommand : ICommand
     {
-        private NurseViewModel nurseViewModel;
 
-        public DeleteNurseCommand(NurseViewModel nurseViewModel)
+        public DeleteNurseCommand()
         {
-            this.nurseViewModel = nurseViewModel;
         }
 
         public event EventHandler CanExecuteChanged
@@ -33,7 +31,8 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            var selectableItems = nurseViewModel.Nurses.Where(p => p.IsSelected).Select(x => x.Value);
+            NurseViewModel nurse = parameter as NurseViewModel;
+            var selectableItems = nurse.Nurses.Where(p => p.IsSelected).Select(x => x.Value);
             foreach (YTA yt in selectableItems)
             {
                 foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == yt.IDTO))
@@ -43,8 +42,8 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.YTAs.Remove(yt);
             }
             DataProvider.Ins.DB.SaveChanges();
-            nurseViewModel.IsCheckedAll = false;
-            nurseViewModel.Nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
+            nurse.IsCheckedAll = false;
+            nurse.Nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
         }
     }
 }

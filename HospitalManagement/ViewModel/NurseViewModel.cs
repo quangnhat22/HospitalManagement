@@ -34,6 +34,8 @@ namespace HospitalManagement.ViewModel
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowNurseInfomationCommand { get; set; }
         public ICommand OpenChangeNurseForm { get; set; }
+        public ICommand DeleteNurse { get; set; }
+
 
         public NurseViewModel()
         {
@@ -59,6 +61,7 @@ namespace HospitalManagement.ViewModel
             ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
             OpenChangeNurseForm = new OpenChangeNurseFormCommand();
             OpenNurseForm = new OpenNurseFormCommand();
+            DeleteNurse = new DeleteNurseCommand();
         }
     }
 }

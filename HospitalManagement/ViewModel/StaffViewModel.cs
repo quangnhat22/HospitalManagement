@@ -13,15 +13,21 @@ namespace HospitalManagement.ViewModel
 {
     class StaffViewModel : BaseViewModel
     {
-        public DoctorViewModel DoctorViewModel { get; set; }
-        public NurseViewModel NurseViewModel { get; set; }
-        public ICommand DeleteNurse { get; set; }
-        public ICommand DeleteDoctor { get; set; }
+        private DoctorViewModel doctorViewModel=new DoctorViewModel();
+        private NurseViewModel nurseViewModel=new NurseViewModel();
+        public DoctorViewModel DoctorViewModel
+        {
+            get { return doctorViewModel; }
+            set { doctorViewModel = value; OnPropertyChanged("DoctorViewModel"); }
+        }
+        public NurseViewModel NurseViewModel 
+        {
+            get { return nurseViewModel; }
+            set { nurseViewModel = value; OnPropertyChanged("NurseViewModel"); }
+        }
+        
         public StaffViewModel()
         {
-            DoctorViewModel = new DoctorViewModel();
-            NurseViewModel = new NurseViewModel();
-            DeleteNurse = new DeleteNurseCommand(NurseViewModel);
         }
     }
 }
