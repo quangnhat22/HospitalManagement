@@ -70,6 +70,7 @@
                 Content="Thêm bác sĩ"
                 Width="110"/>
                 <Button Content="Xóa"
+                         x:Name="btnDeleteDoctor"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
                         Margin="15 0 0 0"
@@ -135,6 +136,8 @@
                     Content="Thêm y tá"
                     Width="110"/>
                 <Button Content="Xóa"
+                         x:Name="btnDeleteNurse"
+                        Command="{Binding DeleteNurse}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
                         Margin="15 0 0 0"

@@ -14,7 +14,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
-        Title="DoctorForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
+        Title="NurseForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
     <Grid Background="WhiteSmoke">
         <StackPanel Orientation="Vertical">
             <Grid Height="100">
