@@ -27,12 +27,29 @@ namespace HospitalManagement.View.Staff
             InitializeComponent();
             this.DataContext = new DoctorInformationViewModel(bs);
         }
-        void DataWindow_Closing(object sender, CancelEventArgs e)
-        {
-            
-        }
 
-         
-        
+        private void ChangeDoctorInformationFormWindow_Closing(object sender, CancelEventArgs e)
+        {
+            BACSI bs = DataProvider.Ins.DB.BACSIs.Find(txbCMND_CCCD.Text);
+            DataProvider.Ins.DB.Entry<BACSI>(bs).Reload();           
+            txbHo.Text = bs.HO;
+            txbTen.Text = bs.TEN;
+            txbChuyenKhoa.Text = bs.CHUYENKHOA;
+            txbQuocTich.Text = bs.QUOCTICH;
+            txbDiaChi.Text = bs.DIACHI;
+            txbEmail.Text = bs.EMAIL;
+            txbGhiChu.Text = bs.GHICHU;
+            txbSDT.Text = bs.SDT;
+            txbVaiTro.Text = bs.VAITRO;
+            txbIDTO.Text = bs.IDTO.ToString();
+            if ((bool)bs.GIOITINH)
+            {
+                cbxGioiTinh.Text = "Nữ";
+            }
+            else cbxGioiTinh.Text = "Nam";
+            DateTime text = (DateTime)bs.NGSINH;
+            string date = text.ToString("dd/MM/yyyy");
+            txbNGSinh.Text = date;
+        }
     }
 }
