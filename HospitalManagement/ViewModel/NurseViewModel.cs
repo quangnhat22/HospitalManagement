@@ -61,7 +61,7 @@ namespace HospitalManagement.ViewModel
             ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
             OpenChangeNurseForm = new OpenChangeNurseFormCommand();
             OpenNurseForm = new OpenNurseFormCommand();
-            DeleteNurse = new DeleteNurseCommand();
+            DeleteNurse = new DeleteNurseCommand(this);
         }
     }
 }
