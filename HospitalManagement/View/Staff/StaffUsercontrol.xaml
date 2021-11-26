@@ -22,7 +22,7 @@
         <Grid Width="auto" Panel.ZIndex="1">
             <StackPanel 
                 x:Name="DoctorStackPanelComponent"
-                DataContext="{Binding ElementName=DoctorUC, Path=Content}"
+                DataContext="{Binding ElementName=DoctorUC, Path=Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Orientation="Horizontal"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
@@ -70,6 +70,7 @@
                 Content="Thêm bác sĩ"
                 Width="110"/>
                 <Button Content="Xóa"
+                        Command="{Binding DeleteDoctor}"
                          x:Name="btnDeleteDoctor"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
@@ -168,7 +169,7 @@
                          Height="40" 
                          Margin="-3,0,0,0" 
                          Padding="0">
-                    <UserControl x:Name="DoctorUC" Content="{Binding DoctorViewModel}">
+                    <UserControl x:Name="DoctorUC" Content="{Binding DoctorViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     </UserControl>
                 </TabItem>
                 <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}"
