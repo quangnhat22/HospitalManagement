@@ -138,7 +138,6 @@
                 <Button Content="Xóa"
                          x:Name="btnDeleteNurse"
                         Command="{Binding DeleteNurse}"
-                        CommandParameter="{Binding ElementName=NurseUC, Path=Content}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
                         Margin="15 0 0 0"
