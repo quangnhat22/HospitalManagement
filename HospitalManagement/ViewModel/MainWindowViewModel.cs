@@ -50,7 +50,7 @@ namespace HospitalManagement.ViewModel
                 StaffRolesVisibility = Visibility.Collapsed;
                 IsSuperAdmin = true;
             }
-            if (User.ROLE == "admin")
+            else if (User.ROLE == "admin")
             {
                 AdminRolesVisibility = Visibility.Visible;
                 StaffRolesVisibility = Visibility.Collapsed;
