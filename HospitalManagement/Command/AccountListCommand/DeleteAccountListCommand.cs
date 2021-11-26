@@ -57,6 +57,14 @@ namespace HospitalManagement.Command.AccountListCommand
                         }
                     }
                 }
+                else if (si.PhanLoai == "admin")
+                {
+                    var ad = DataProvider.Ins.DB.ADMINs.Where(p => p.ID == si.Cmnd_cccd);
+                    foreach(ADMIN adMin in ad)
+                    {
+                        DataProvider.Ins.DB.ADMINs.Remove(adMin);
+                    }
+                }
                 DataProvider.Ins.DB.SaveChanges();
                 accountListViewModel.StaffAccounts.Remove(si);
             }
