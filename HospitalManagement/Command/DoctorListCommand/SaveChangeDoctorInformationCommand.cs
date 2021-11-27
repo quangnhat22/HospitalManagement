@@ -28,7 +28,7 @@ namespace HospitalManagement.Command
         {
             ChangeDoctorInformationForm doctorForm = parameter as ChangeDoctorInformationForm;
             if (Check(doctorForm))
-            {
+            {          
                 DataProvider.Ins?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
                 notifyWindow.ShowDialog();

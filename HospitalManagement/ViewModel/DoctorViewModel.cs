@@ -36,6 +36,7 @@ namespace HospitalManagement.ViewModel
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowDoctorInfomationCommand { get; set; }
         public ICommand OpenChangeDoctorForm { get; set; }
+        public ICommand DeleteDoctor { get; set; }
         public DoctorViewModel()
         {
             IsCheckedAll = false;
@@ -60,6 +61,7 @@ namespace HospitalManagement.ViewModel
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
             OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();           
             OpenDoctorForm = new OpenDoctorFormCommand();
+            DeleteDoctor = new DeleteDoctorCommand(this);
         }
     }
 }

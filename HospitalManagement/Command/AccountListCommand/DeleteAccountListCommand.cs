@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
+using HospitalManagement.View;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,22 @@ namespace HospitalManagement.Command.AccountListCommand
                         {
                             to.YTAs.Remove(yTa);   
                         }
+                    }
+                }
+                else if (si.PhanLoai == "admin")
+                {
+                    if (MainWindowViewModel.IsSuperAdmin)
+                    {
+                        var ad = DataProvider.Ins.DB.ADMINs.Where(p => p.ID == si.Cmnd_cccd);
+                        foreach (ADMIN adMin in ad)
+                        {
+                            DataProvider.Ins.DB.ADMINs.Remove(adMin);
+                        }
+                    }
+                    else
+                    {
+                        NotifyWindow notifyWindow = new NotifyWindow("Error", "Bạn không có quyền hạn thực hiện thao tác này");
+                        notifyWindow.ShowDialog();
                     }
                 }
                 DataProvider.Ins.DB.SaveChanges();

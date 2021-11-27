@@ -18,6 +18,7 @@ namespace Seeds
         public BACSI()
         {
             this.LATRUONGTO = new HashSet<TO>();
+            this.CONGVIECs = new HashSet<CONGVIEC>();
         }
     
         public string CMND_CCCD { get; set; }
@@ -37,5 +38,7 @@ namespace Seeds
         public virtual TO TO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO> LATRUONGTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
     }
 }
