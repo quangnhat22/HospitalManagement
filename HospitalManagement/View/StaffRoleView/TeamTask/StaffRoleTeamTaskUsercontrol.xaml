@@ -5,8 +5,211 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
+             xmlns:dd="urn:gong-wpf-dragdrop"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             d:DesignHeight="600" d:DesignWidth="1387"
+             >
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <Viewbox
+                    Margin="5 10 0 0"
+                    Height="320">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style
+                                x:Key="CustomCalendarDayButton"
+                                TargetType="CalendarDayButton"
+                                BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
+                                <Setter
+                                    Property="materialDesign:CalendarAssist.SelectionColor"
+                                    Value="#B2F39B" />
+                                <Setter
+                                    Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                    Value="Black" />
+                            </Style>
+                            <Style
+                                x:Key="CustomCalendarButton"
+                                TargetType="CalendarButton"
+                                BasedOn="{StaticResource MaterialDesignCalendarButton}">
+                                <Setter
+                                    Property="materialDesign:CalendarAssist.SelectionColor"
+                                    Value="#B2F39B" />
+                                <Setter
+                                    Property="materialDesign:CalendarAssist.SelectionForegroundColor"
+                                    Value="Black" />
+                            </Style>
+                        </Grid.Resources>
+                        <Calendar
+                            Background="{DynamicResource MaterialDesignPaper}"
+                            Foreground="black"
+                            materialDesign:CalendarAssist.HeaderBackground="{DynamicResource MaterialDesignPaper}"
+                            materialDesign:CalendarAssist.HeaderForeground="Black"
+                            CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
+                            CalendarButtonStyle="{StaticResource CustomCalendarButton}" />
+                    </Grid>
+
+                </Viewbox>
+            </StackPanel>
+
+        </Grid>
+        <Grid 
+            Grid.Column="1">
+            <materialDesign:Card 
+                Margin="5 0 0 0" 
+                UniformCornerRadius="0"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"
+                >
+                <ListBox   
+                    ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    Background="White" 
+                    BorderBrush="White"
+                    Margin="5 5 5 5"
+                    dd:DragDrop.IsDropTarget="True"
+                    dd:DragDrop.DropHandler="{Binding}" 
+                    d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border 
+                                CornerRadius="20"  
+                                Background="White" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center"
+                                Margin="30 30 0 0" Cursor="Hand">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction 
+                                            Command="{Binding ElementName=teamUC, Path=DataContext.ShowMembersInTeamCommand}"
+                                            CommandParameter="{Binding Value.ID}"  />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Border.Effect>
+                                    <DropShadowEffect 
+                                        BlurRadius="20" 
+                                        Direction="-90"
+                                        RenderingBias="Performance" 
+                                        ShadowDepth="2" 
+                                        Color="#EEEEEE"/>
+                                </Border.Effect>
+                                <Grid Background="Transparent" Width="300">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                        <Grid Width="50" 
+                                            Height="50" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="20">
+                                            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                                Height="50"
+                                                Width="50"
+                                                Value="1" 
+                                                Maximum="1" 
+                                                 Background="{x:Null}"
+                                                Foreground="#5F88FE"/>
+                                            <TextBlock 
+                                                HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"
+                                                Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Grid>
+                                        <WrapPanel VerticalAlignment="Center">
+                                            <TextBlock  
+                                                FontWeight="Bold" FontSize="20">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}Tổ {0} Tầng {1}">
+                                                        <Binding Path="Value.ID" />
+                                                        <Binding Path="Value.TANG.SOTANG" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </WrapPanel>
+
+                                    </StackPanel>
+                                    <Separator 
+                                        Grid.Row="1" 
+                                        Background="#E0EBFD" 
+                                        Margin="20 0 20 20" 
+                                        Height="2"/>
+                                    <StackPanel 
+                                        Grid.Row="2" 
+                                        Orientation="Horizontal" 
+                                        HorizontalAlignment="Right" 
+                                        Margin="0 0 20 20">
+                                        <Border 
+                                            CornerRadius="20" 
+                                            Height="40" Width="40" 
+                                            Margin="-10 0 0 0">
+                                            <Border.Background>
+                                                <ImageBrush 
+                                                    Stretch="UniformToFill" 
+                                                    ImageSource="/HospitalManagement;component/Images/man.png"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border 
+                                            CornerRadius="20" 
+                                            Height="40" Width="40" 
+                                            Margin="-10 0 0 0">
+                                            <Border.Background>
+                                                <ImageBrush 
+                                                    Stretch="UniformToFill" 
+                                                    ImageSource="/HospitalManagement;component/Images/profile.png"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <Border 
+                                            CornerRadius="20" 
+                                            Height="40" 
+                                            Width="40" 
+                                            Margin="-10 0 0 0">
+                                            <Border.Background>
+                                                <ImageBrush 
+                                                    Stretch="UniformToFill" 
+                                                    ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
+                                            </Border.Background>
+                                        </Border>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel 
+                                IsItemsHost="True" 
+                                Orientation="Horizontal"  />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </materialDesign:Card>
+        </Grid>
+        
     </Grid>
-</UserControl>
+    <!--#B2F39B-->
+</UserControl> 

@@ -22,7 +22,7 @@
                  BorderBrush="White"
                  Margin="0 0 0 20"
                  dd:DragDrop.IsDropTarget="True"
-                 dd:DragDrop.DropHandler="{Binding}">
+                 dd:DragDrop.DropHandler="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
