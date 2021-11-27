@@ -301,6 +301,9 @@
     <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml.cs">
+      <DependentUpon>AddToDoForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleTeamTaskUsercontrol.xaml</DependentUpon>
     </Compile>
@@ -409,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
