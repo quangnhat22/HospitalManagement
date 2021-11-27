@@ -12,33 +12,27 @@ namespace Seeds
     using System;
     using System.Collections.Generic;
     
-    public partial class BACSI
+    public partial class CONGVIEC
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BACSI()
+        public CONGVIEC()
         {
-            this.LATRUONGTO = new HashSet<TO>();
-            this.CONGVIECs = new HashSet<CONGVIEC>();
+            this.BACSIs = new HashSet<BACSI>();
+            this.YTAs = new HashSet<YTA>();
         }
     
-        public string CMND_CCCD { get; set; }
-        public string HO { get; set; }
-        public string TEN { get; set; }
-        public string SDT { get; set; }
-        public string EMAIL { get; set; }
-        public string QUOCTICH { get; set; }
-        public string DIACHI { get; set; }
-        public Nullable<System.DateTime> NGSINH { get; set; }
-        public Nullable<bool> GIOITINH { get; set; }
-        public string VAITRO { get; set; }
-        public string CHUYENKHOA { get; set; }
-        public string GHICHU { get; set; }
-        public Nullable<int> IDTO { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> IDUSER { get; set; }
+        public string TIEUDE { get; set; }
+        public string NOIDUNG { get; set; }
+        public Nullable<System.DateTime> BATDAU { get; set; }
+        public Nullable<System.DateTime> KETTHUC { get; set; }
+        public string DIADIEM { get; set; }
     
-        public virtual TO TO { get; set; }
+        public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO> LATRUONGTO { get; set; }
+        public virtual ICollection<BACSI> BACSIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
+        public virtual ICollection<YTA> YTAs { get; set; }
     }
 }
