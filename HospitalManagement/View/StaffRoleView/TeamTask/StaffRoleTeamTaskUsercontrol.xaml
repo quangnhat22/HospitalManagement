@@ -209,17 +209,6 @@
                 </ListBox>
             </materialDesign:Card>
         </Grid>
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-        <Viewbox VerticalAlignment="Top">
-            <Calendar Style="{StaticResource MaterialDesignCalendarPortraitForeground}"
-                      materialDesign:CalendarAssist.IsHeaderVisible="True"/>
-        </Viewbox>
     </Grid>
     <!--#B2F39B-->
 </UserControl> 
