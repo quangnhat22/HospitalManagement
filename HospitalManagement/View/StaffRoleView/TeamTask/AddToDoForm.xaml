@@ -16,7 +16,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Title="AddToDoForm" 
-        Height="450" 
+        Height="450"
         Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,6 +44,7 @@
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
+                        Text="{Binding SubjectText}"
                         AcceptsReturn="True"
                         VerticalScrollBarVisibility="Auto"
                         SpellCheck.IsEnabled="True"
@@ -60,13 +61,15 @@
                     <Grid Grid.Row="0">
                         <DatePicker
                             Width="140"
-                            materialDesign:HintAssist.Hint="Pick Date"
+                            SelectedDate="{Binding StartDate}"
+                            materialDesign:HintAssist.Hint="Start Date"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Grid>
                     <Grid Grid.Row="1">
                         <DatePicker
                             Width="140"
-                            materialDesign:HintAssist.Hint="Pick Date"
+                            SelectedDate="{Binding EndDate}"
+                            materialDesign:HintAssist.Hint="End Date"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                     </Grid>
                 </Grid>
@@ -77,72 +80,30 @@
                     <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Nơi diễn ra"/>
-                        <ComboBox
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                            materialDesign:HintAssist.Hint="Validation test"
-                            ItemsSource="{Binding ShortStringList}"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
-                            Width="160">
-                            <ComboBox.SelectedItem>
-                                <Binding
-                                    Path="SelectedValidationOutlined"
-                                    Mode="TwoWay"
-                                    UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <!--<colorsDomain:NotEmptyValidationRule
-                                            ValidatesOnTargetUpdated="True" 
-                                            xmlns:colorsDomain="clr-namespace:MaterialDesignDemo.Domain" />-->
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </ComboBox.SelectedItem>
-                        </ComboBox>
-                        <ComboBox
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                            materialDesign:HintAssist.Hint="Validation test"
-                            ItemsSource="{Binding ShortStringList}"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
-                            Width="160">
-                            <ComboBox.SelectedItem>
-                                <Binding
-                                    Path="SelectedValidationOutlined"
-                                    Mode="TwoWay"
-                                    UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <!--<colorsDomain:NotEmptyValidationRule
-                                            ValidatesOnTargetUpdated="True" 
-                                            xmlns:colorsDomain="clr-namespace:MaterialDesignDemo.Domain" />-->
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </ComboBox.SelectedItem>
-                        </ComboBox>
-                        <ComboBox
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                            materialDesign:HintAssist.Hint="Validation test"
-                            ItemsSource="{Binding ShortStringList}"
-                            materialDesign:TextFieldAssist.HasClearButton="True"
-                            Width="160">
-                            <ComboBox.SelectedItem>
-                                <Binding
-                                    Path="SelectedValidationOutlined"
-                                    Mode="TwoWay"
-                                    UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <!--<colorsDomain:NotEmptyValidationRule
-                                            ValidatesOnTargetUpdated="True" 
-                                            xmlns:colorsDomain="clr-namespace:MaterialDesignDemo.Domain" />-->
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </ComboBox.SelectedItem>
-                        </ComboBox>
-                    </StackPanel>
+                    <GroupBox
+                    HorizontalAlignment="Left"
+                    Header="Địa điểm"
+                    Margin="0,-10,0,-37.2"
+                    Width="430"
+                    Height="100">
+                        <TextBox
+                        x:Name="txbLocation"
+                        HorizontalAlignment="Left"
+                        TextWrapping="Wrap"
+                        MinWidth="280"
+                        Text="{Binding LocationText}"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto"
+                        SpellCheck.IsEnabled="True"
+                        materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..." Margin="0,0,0,-4" Width="417"
+                        />
+                    </GroupBox>
                 </Grid>
                 <Grid Grid.Row="1">
                     <GroupBox
                     HorizontalAlignment="Left"
                     Header="Chi tiết"
-                    Margin="30 15 30 0"
+                    Margin="0,40,0,-20.4"
                     Width="430"
                     Height="190">
                         <TextBox
@@ -150,6 +111,7 @@
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
+                        Text="{Binding InfoText}"
                         AcceptsReturn="True"
                         VerticalScrollBarVisibility="Auto"
                         SpellCheck.IsEnabled="True"
@@ -160,7 +122,20 @@
                 
             </Grid>
         </Grid>
-        
-        
+        <Grid Grid.Column="1">
+            <Button
+                            Command="{Binding AddTaskCommand}"
+                            x:Name="btnLogin"
+                            Width="120"
+                            Height="45"
+                            Background="#35a0fe"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            BorderThickness="2"
+                            BorderBrush="#35a0fe"
+                            ToolTip="Đăng nhập"
+                            Content="Xác nhận">
+            </Button>
+        </Grid>
     </Grid>
 </Window>
