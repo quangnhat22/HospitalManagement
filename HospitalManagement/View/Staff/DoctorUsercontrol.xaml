@@ -26,7 +26,7 @@
                   HeadersVisibility="All"
                   Height="550"
                   HorizontalScrollBarVisibility="Disabled"
-                  ItemsSource="{Binding Doctors, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
+                  ItemsSource="{Binding Doctors, Mode=OneWay, UpdateSourceTrigger=Explicit}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Left" />

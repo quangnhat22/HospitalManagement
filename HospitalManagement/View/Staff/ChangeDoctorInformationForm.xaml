@@ -7,19 +7,25 @@
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         x:Name="ChangeDoctorInformationFormWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Closing="ChangeDoctorInformationFormWindow_Closing"
         FontFamily="{materialDesign:MaterialDesignFont}"   
         Title="DoctorForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseWindow}" 
+                                   CommandParameter="{Binding ElementName=ChangeDoctorInformationFormWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="WhiteSmoke">
         <StackPanel Orientation="Vertical">
             <Grid Height="100">
