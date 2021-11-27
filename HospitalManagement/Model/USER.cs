@@ -18,6 +18,7 @@ namespace HospitalManagement.Model
         public USER()
         {
             this.ADMINs = new HashSet<ADMIN>();
+            this.CONGVIECs = new HashSet<CONGVIEC>();
             this.TOes = new HashSet<TO>();
         }
     
@@ -28,6 +29,8 @@ namespace HospitalManagement.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADMIN> ADMINs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TO> TOes { get; set; }
     }
