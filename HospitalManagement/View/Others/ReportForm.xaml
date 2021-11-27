@@ -81,20 +81,20 @@
                 />
                     </StackPanel>
                     <GroupBox
-                    HorizontalAlignment="Left"
-                    Header="Subject"
-                    Margin="30 20 30 0"
-                    Width="430"
-                    Height="80">
-                        <TextBox
-                        x:Name="txbSubject"
                         HorizontalAlignment="Left"
-                        TextWrapping="Wrap"
-                        MinWidth="280"
-                        AcceptsReturn="True"
-                        VerticalScrollBarVisibility="Auto"
-                        SpellCheck.IsEnabled="True"
-                        materialDesign:HintAssist.Hint="Subject" Margin="0,0,0,-4" Width="417"
+                        Header="Subject"
+                        Margin="30 20 30 0"
+                        Width="430"
+                        Height="80">
+                        <TextBox
+                            x:Name="txbSubject"
+                            HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                            MinWidth="280"
+                            AcceptsReturn="True"
+                            VerticalScrollBarVisibility="Auto"
+                            SpellCheck.IsEnabled="True"
+                            materialDesign:HintAssist.Hint="Subject" Margin="0,0,0,-4" Width="417"
                         />
                     </GroupBox>
                     <GroupBox
