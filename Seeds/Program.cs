@@ -142,6 +142,7 @@ namespace Seeds
             for(int i = 0; i < 6; i++)
             {
                 TOA toa = new TOA();
+                toa.SOTOA = i + 1;
                 toa.DISPLAYNAME = (Convert.ToChar((int)('A') + i)).ToString();
                 toa.SLTANG = random.Next(6, 9);
                 DataProvider.Ins.DB.TOAs.Add(toa);
