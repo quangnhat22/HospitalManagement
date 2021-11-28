@@ -21,6 +21,7 @@ namespace HospitalManagement.Model
         }
     
         public int IDTOA { get; set; }
+        public Nullable<int> SOTOA { get; set; }
         public string DISPLAYNAME { get; set; }
         public Nullable<int> SLTANG { get; set; }
     
