@@ -36,13 +36,14 @@ namespace HospitalManagement
         {
             Button btn = parameter as Button;
             int currentBuilding = roomUsercontrolViewModel.CurrentBuilding;
-            
+            int temp;
             if (btn.Name == "btnLeft")
             {
                 if (currentBuilding > 1)
                 {
                     currentBuilding--;
-                    roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                    temp = (int)roomUsercontrolViewModel.Buildings[currentBuilding - 1].IDTOA;
+                    roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.SOTOA == temp).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
             }
@@ -51,7 +52,8 @@ namespace HospitalManagement
                 if (currentBuilding < roomUsercontrolViewModel.Buildings.Count)
                 {
                     currentBuilding++;
-                    roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuilding).ToList();
+                    temp = (int)roomUsercontrolViewModel.Buildings[currentBuilding - 1].SOTOA;
+                    roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.SOTOA == temp).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
             }

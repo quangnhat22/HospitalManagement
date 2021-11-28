@@ -28,22 +28,26 @@
             <RowDefinition Height="420"/>
             <RowDefinition Height="220"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Row="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="80 40 0 0">
-            <TextBlock Text="TOÀ " 
-                       Foreground="White"
-                       FontSize="30"
-                       FontWeight="Bold"/>
-            <TextBlock x:Name="txtCurrent" 
-                       Foreground="White"
-                       FontSize="30"
-                       FontWeight="Bold"
-                       Text="{Binding CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"/>
-        </StackPanel>
-        <ListBox Grid.Row="1"
+        <Grid Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" 
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="80 40 0 0"
+                        >
+                <TextBlock Text="TOÀ " 
+                           Foreground="White"
+                           FontSize="30"
+                           FontWeight="Bold"/>
+                <TextBlock x:Name="txtCurrent" 
+                           Foreground="White"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Text="{Binding CurrentBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListBox Grid.Row="1"
                  ItemsSource="{Binding Floors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -52,51 +56,150 @@
                  HorizontalAlignment="Center"
                  VerticalAlignment="Bottom"
                  Margin="72 0 0 -5">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ListBoxItem">
-                                <ContentPresenter/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Width="380">
-                        <Grid Height="10" 
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="380">
+                            <Grid Height="10" 
                               Background="#FFE0EBFD"/>
-                        <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                            <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                                 ToolTip="MaterialDesignOutlinedButton"
                                 Height="50"
                                 Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <i:InvokeCommandAction Command="{Binding ElementName=roomUC, Path=DataContext.OpenRoomWindow}"
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=roomUC, Path=DataContext.OpenRoomWindow}"
                                                          CommandParameter="{Binding ID}"  />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <WrapPanel>
-                                <TextBlock Text="TẦNG "/>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <Binding Path="SOTANG"/>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </WrapPanel>
-                        </Button>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <WrapPanel>
+                                    <TextBlock Text="TẦNG "/>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="SOTANG"/>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </WrapPanel>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Vertical"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <StackPanel HorizontalAlignment="Right" 
+                        VerticalAlignment="Center"
+                        Margin="0 0 10 0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                            x:Name="btnAddBuilding"
+                            ToolTip="Tạo mới toà"
+                            Height="70"
+                            Width="70"
+                            Margin="0 0 10 0"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Command="{Binding AddOrDeleteBuildingCommand}"
+                            CommandParameter="{Binding ElementName=btnAddBuilding}"
+                            Background="#2AE2BC"
+                            BorderBrush="White">
+                        <materialDesign:PackIcon Kind="HomePlus" 
+                                             Width="40" 
+                                             Height="40"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                            x:Name="btnDeleteBuilding"
+                            ToolTip="Xoá toà"
+                            Height="70"
+                            Width="70"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right"
+                            Command="{Binding AddOrDeleteBuildingCommand}"
+                            CommandParameter="{Binding ElementName=btnDeleteBuilding}"
+                            Background="#FF7F7E"
+                            BorderBrush="White">
+                        <materialDesign:PackIcon Kind="HomeMinus" 
+                                             Width="40" 
+                                             Height="40"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Visibility="{Binding AddVisibility}">
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         AcceptsReturn="True"
+                         materialDesign:HintAssist.Hint="Số tầng"
+                         Width="95"
+                         Margin="0 0 5 0"
+                         BorderBrush="#2AE2BC"
+                         Text="{Binding FloorsNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                            ToolTip="Xác nhận"
+                            Height="50"
+                            Width="50"
+                            Padding="0"
+                            VerticalAlignment="Bottom"
+                            Command="{Binding AddBuildingCommand}"
+                            Background="#2AE2BC"
+                            BorderBrush="#2AE2BC">
+                        <materialDesign:PackIcon Kind="CheckBold" 
+                                             Width="30" 
+                                             Height="30"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Visibility="{Binding DeleteVisibility}">
+                    <ComboBox x:Name="OutlinedComboBox"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              materialDesign:HintAssist.Hint="Số toà"
+                              ItemsSource="{Binding Buildings, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding SelectedBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="SOTOA"
+                              SelectedValuePath="SOTOA"
+                              Width="95"
+                              Margin="0 0 5 0"
+                              BorderBrush="#FF7F7E"
+                              SelectedIndex="0"/>
+                    <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
+                            ToolTip="Xác nhận"
+                            Height="50"
+                            Width="50"
+                            Padding="0"
+                            VerticalAlignment="Bottom"
+                            Command="{Binding DeleteBuildingCommand}"
+                            Background="#FF7F7E"
+                            BorderBrush="#FF7F7E">
+                        <materialDesign:PackIcon Kind="CheckBold" 
+                                             Width="30" 
+                                             Height="30"
+                                             Foreground="White"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"

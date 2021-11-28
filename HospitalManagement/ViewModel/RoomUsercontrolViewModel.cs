@@ -14,11 +14,18 @@ namespace HospitalManagement.ViewModel
     {
         public ICommand OpenRoomWindow { get; set; }
         public ICommand ChangeBuildingCommand { get; set; }
-        public ICommand DisableButtonCommand { get; set; }
+        public ICommand AddBuildingCommand { get; set; }
+        public ICommand DeleteBuildingCommand { get; set; }
+        public ICommand AddOrDeleteBuildingCommand { get; set; }
 
         private int currentBuilding;
         private bool canMoveForward;
         private bool canMoveBackward = false;
+        private int floorsNumber;
+        private int selectedBuilding;
+        private string addVisibility;
+        private string deleteVisibility;
+
         private static List<TOA> buildings;
         private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
         
@@ -38,6 +45,30 @@ namespace HospitalManagement.ViewModel
         {
             get { return canMoveBackward; }
             set { canMoveBackward = value; OnPropertyChanged("CanMoveBackward"); }
+        }
+
+        public int FloorsNumber
+        {
+            get { return floorsNumber; }
+            set { floorsNumber = value; OnPropertyChanged("FloorsNumber"); }
+        }
+
+        public int SelectedBuilding
+        {
+            get { return selectedBuilding; }
+            set { selectedBuilding = value; OnPropertyChanged("SelectedBuilding"); }
+        }
+
+        public string AddVisibility
+        {
+            get { return addVisibility; }
+            set { addVisibility = value; OnPropertyChanged("AddVisibility"); }
+        }
+
+        public string DeleteVisibility
+        {
+            get { return deleteVisibility; }
+            set { deleteVisibility = value; OnPropertyChanged("DeleteVisibility"); }
         }
 
         public List<TOA> Buildings
@@ -61,8 +92,14 @@ namespace HospitalManagement.ViewModel
             currentBuilding = 1;
             Buildings = DataProvider.Ins.DB.TOAs.ToList();
             canMoveForward = Buildings.Count > 1 ? true : false;
+            selectedBuilding = (int)buildings[0].SOTOA;
+            addVisibility = "Collapsed";
+            deleteVisibility = "Collapsed";
             OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
+            AddBuildingCommand = new AddBuildingCommand(this);
+            DeleteBuildingCommand = new DeleteBuildingCommand(this);
+            AddOrDeleteBuildingCommand = new AddOrDeleteBuildingCommand(this);
         }
     }
-}
+} 
