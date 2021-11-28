@@ -159,6 +159,7 @@
     <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -253,6 +254,7 @@
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\TeamTask\StaffRoleTeamTaskViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
       <DependentUpon>AddNewAccountForm.xaml</DependentUpon>

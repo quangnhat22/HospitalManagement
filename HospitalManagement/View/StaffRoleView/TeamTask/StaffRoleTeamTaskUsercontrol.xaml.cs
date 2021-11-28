@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace HospitalManagement.View.StaffRoleView.TeamTask
         public StaffRoleTeamTaskUsercontrol()
         {
             InitializeComponent();
+            this.DataContext = new StaffRoleTeamTaskViewModel();
+
         }
     }
 }

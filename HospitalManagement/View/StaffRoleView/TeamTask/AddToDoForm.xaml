@@ -16,126 +16,130 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Title="AddToDoForm" 
-        Height="450"
-        Width="800">
+        Height="710"
+        Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <GroupBox
-                    Header="Subject"
-                    Width="430"
-                    HorizontalAlignment="Left"
-                    Height="80">
+                <Label
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="Phân chia công việc"
+                    FontSize="28"
+                    FontWeight="DemiBold"
+                    ></Label>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Vertical">
                     <TextBox
                         x:Name="txbSubject"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         Text="{Binding SubjectText}"
                         AcceptsReturn="True"
-                        VerticalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Hidden"
                         SpellCheck.IsEnabled="True"
-                        materialDesign:HintAssist.Hint="Subject" 
-                        Margin="0,0,0,-4" 
-                        Width="417"
+                        materialDesign:HintAssist.Hint="Tiêu đề" 
+                        Margin="10" 
+                        Width="415"
+                        Height="50"
                         />
-                </GroupBox>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal">
                         <DatePicker
-                            Width="140"
+                            x:Name="dpStart"
+                            HorizontalAlignment="Left"
+                            Margin="10"
+                            Width="225"
                             SelectedDate="{Binding StartDate}"
-                            materialDesign:HintAssist.Hint="Start Date"
+                            materialDesign:HintAssist.Hint="Ngày bắt đầu"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                    </Grid>
-                    <Grid Grid.Row="1">
+                        <materialDesign:TimePicker
+                            x:Name="tpStart"
+                            Width="180" 
+                            materialDesign:HintAssist.Hint="Thời gian bắt đầu"
+                            Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
                         <DatePicker
-                            Width="140"
-                            SelectedDate="{Binding EndDate}"
-                            materialDesign:HintAssist.Hint="End Date"
+                            x:Name="dpEnd"
+                            HorizontalAlignment="Left"
+                            Margin="10"
+                            Width="225"
+                            SelectedDate="{Binding StartDate}"
+                            materialDesign:HintAssist.Hint="Ngày bắt đầu"
                             Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                    </Grid>
-                </Grid>
+                        <materialDesign:TimePicker
+                            x:Name="tpEnd"
+                            Width="180" 
+                            materialDesign:HintAssist.Hint="Thời gian bắt đầu"
+                            Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+                    </StackPanel>
+                </StackPanel>
             </Grid>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-                <Grid>
-                    <GroupBox
-                    HorizontalAlignment="Left"
-                    Header="Địa điểm"
-                    Margin="0,-10,0,-37.2"
-                    Width="430"
-                    Height="100">
-                        <TextBox
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Vertical">
+                    <TextBox
                         x:Name="txbLocation"
+                        VerticalAlignment="Top"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
+                        Height="55"
+                        Margin="10"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         Text="{Binding LocationText}"
-                        AcceptsReturn="True"
-                        VerticalScrollBarVisibility="Auto"
-                        SpellCheck.IsEnabled="True"
-                        materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..." Margin="0,0,0,-4" Width="417"
+                        AcceptsReturn="true"
+                        VerticalScrollBarVisibility="Hidden"
+                        SpellCheck.IsEnabled="true"
+                        materialDesign:HintAssist.Hint="Địa điểm (Ex: phòng 1 tòa A)" 
+                        Width="415"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
                         />
-                    </GroupBox>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <GroupBox
-                    HorizontalAlignment="Left"
-                    Header="Chi tiết"
-                    Margin="0,40,0,-20.4"
-                    Width="430"
-                    Height="190">
-                        <TextBox
+                    <TextBox
                         x:Name="txbBody"
                         HorizontalAlignment="Left"
                         TextWrapping="Wrap"
                         MinWidth="280"
                         Text="{Binding InfoText}"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         AcceptsReturn="True"
                         VerticalScrollBarVisibility="Auto"
                         SpellCheck.IsEnabled="True"
-                        materialDesign:HintAssist.Hint="Vui lòng chia sẻ chi tiết nhất có thể..." Margin="0,0,0,-4" Width="417"
+                        materialDesign:HintAssist.Hint="Nội dung" 
+                        Margin="10" 
+                        Width="415"
+                        Height="200"
+                        VerticalAlignment="Top"
                         />
-                    </GroupBox>
-                </Grid>
-                
+                </StackPanel>
             </Grid>
-        </Grid>
-        <Grid Grid.Column="1">
-            <Button
-                            Command="{Binding AddTaskCommand}"
-                            x:Name="btnLogin"
-                            Width="120"
-                            Height="45"
-                            Background="#35a0fe"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            BorderThickness="2"
-                            BorderBrush="#35a0fe"
-                            ToolTip="Đăng nhập"
-                            Content="Xác nhận">
-            </Button>
+            <Grid Grid.Row="3">
+                <Button
+                        Command="{Binding AddTaskCommand}"
+                        x:Name="btnLogin"
+                        Width="120"
+                        Height="45"
+                        Background="#35a0fe"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        BorderThickness="2"
+                        BorderBrush="#35a0fe"
+                        ToolTip="Đăng nhập"
+                        Content="Xác nhận"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
