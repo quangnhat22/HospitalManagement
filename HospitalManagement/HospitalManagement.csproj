@@ -155,6 +155,7 @@
     <Compile Include="Command\TeamCommand\ChangeBuildingTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -162,6 +163,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\BENHNHAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CONGVIEC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
@@ -187,6 +191,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TANG.cs">
@@ -245,6 +252,7 @@
     <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
       <DependentUpon>AddNewAccountForm.xaml</DependentUpon>
@@ -294,6 +302,9 @@
     </Compile>
     <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml.cs">
+      <DependentUpon>AddToDoForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleTeamTaskUsercontrol.xaml</DependentUpon>
@@ -403,6 +414,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

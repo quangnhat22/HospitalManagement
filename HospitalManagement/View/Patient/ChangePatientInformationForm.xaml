@@ -112,8 +112,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox Text="{Binding BenhNhan.GIOITINH, Converter={StaticResource BooleanToSexConverter}}" x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                                               
+                    <ComboBox Text="{Binding BenhNhan.GIOITINH, Converter={StaticResource BooleanToSexConverter}}" x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                              
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Nam" />

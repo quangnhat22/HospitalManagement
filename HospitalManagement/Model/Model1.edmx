@@ -38,6 +38,14 @@
           <Property Name="GHICHU" Type="nvarchar(max)" />
           <Property Name="IDTO" Type="int" />
         </EntityType>
+        <EntityType Name="BACSILIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="int" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="BENHNHAN">
           <Key>
             <PropertyRef Name="CMND_CCCD" />
@@ -67,6 +75,18 @@
           <Property Name="IDTO" Type="int" Nullable="false" />
           <Property Name="IDVATTU" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CONGVIEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUSER" Type="int" />
+          <Property Name="TIEUDE" Type="nvarchar" MaxLength="256" />
+          <Property Name="NOIDUNG" Type="nvarchar(max)" />
+          <Property Name="BATDAU" Type="smalldatetime" />
+          <Property Name="KETTHUC" Type="smalldatetime" />
+          <Property Name="DIADIEM" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
         <EntityType Name="PHONG">
           <Key>
             <PropertyRef Name="ID" />
@@ -84,6 +104,16 @@
           </Key>
           <Property Name="IDVATTU" Type="int" Nullable="false" />
           <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TANG">
           <Key>
@@ -150,6 +180,14 @@
           <Property Name="GHICHU" Type="nvarchar(max)" />
           <Property Name="IDTO" Type="int" />
         </EntityType>
+        <EntityType Name="YTALIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="int" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <Association Name="ADMIN_USER_FK">
           <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
           <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
@@ -171,6 +209,30 @@
             </Principal>
             <Dependent Role="BACSI">
               <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_BACSI_FK">
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="1" />
+          <End Role="BACSILIENQUAN" Type="Self.BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BACSI">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_CONGVIEC_FK">
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="1" />
+          <End Role="BACSILIENQUAN" Type="Self.BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -207,6 +269,18 @@
             </Principal>
             <Dependent Role="CHIDINH">
               <PropertyRef Name="IDVATTU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONVIEC_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CONGVIEC">
+              <PropertyRef Name="IDUSER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -306,19 +380,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="YTALIENQUAN_CONGVIEC_FK">
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="1" />
+          <End Role="YTALIENQUAN" Type="Self.YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTALIENQUAN_YTA_FK">
+          <End Role="YTA" Type="Self.YTA" Multiplicity="1" />
+          <End Role="YTALIENQUAN" Type="Self.YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YTA">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QUANLYBENHVIENModelStoreContainer">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BACSI" EntityType="Self.BACSI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BACSILIENQUAN" EntityType="Self.BACSILIENQUAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BENHNHAN" EntityType="Self.BENHNHAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONGVIEC" EntityType="Self.CONGVIEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YTALIENQUAN" EntityType="Self.YTALIENQUAN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ADMIN_USER_FK" Association="Self.ADMIN_USER_FK">
             <End Role="USER" EntitySet="USER" />
             <End Role="ADMIN" EntitySet="ADMIN" />
@@ -326,6 +428,14 @@
           <AssociationSet Name="BACSI_IDTO_FK" Association="Self.BACSI_IDTO_FK">
             <End Role="TO" EntitySet="TO" />
             <End Role="BACSI" EntitySet="BACSI" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_BACSI_FK" Association="Self.BACSILIENQUAN_BACSI_FK">
+            <End Role="BACSI" EntitySet="BACSI" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUAN" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_CONGVIEC_FK" Association="Self.BACSILIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUAN" />
           </AssociationSet>
           <AssociationSet Name="BENHNHAN_IDPHONG_FK" Association="Self.BENHNHAN_IDPHONG_FK">
             <End Role="PHONG" EntitySet="PHONG" />
@@ -338,6 +448,10 @@
           <AssociationSet Name="CHIDINH_IDVATTU_FK" Association="Self.CHIDINH_IDVATTU_FK">
             <End Role="VATTU" EntitySet="VATTU" />
             <End Role="CHIDINH" EntitySet="CHIDINH" />
+          </AssociationSet>
+          <AssociationSet Name="CONVIEC_USER_FK" Association="Self.CONVIEC_USER_FK">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
           </AssociationSet>
           <AssociationSet Name="PHONG_IDTANG_FK" Association="Self.PHONG_IDTANG_FK">
             <End Role="TANG" EntitySet="TANG" />
@@ -370,6 +484,14 @@
           <AssociationSet Name="YTA_IDTO_FK" Association="Self.YTA_IDTO_FK">
             <End Role="TO" EntitySet="TO" />
             <End Role="YTA" EntitySet="YTA" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_CONGVIEC_FK" Association="Self.YTALIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUAN" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_YTA_FK" Association="Self.YTALIENQUAN_YTA_FK">
+            <End Role="YTA" EntitySet="YTA" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUAN" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -410,7 +532,9 @@
           <EntitySet Name="ADMINs" EntityType="QUANLYBENHVIENModel.ADMIN" />
           <EntitySet Name="BACSIs" EntityType="QUANLYBENHVIENModel.BACSI" />
           <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
+          <EntitySet Name="CONGVIECs" EntityType="QUANLYBENHVIENModel.CONGVIEC" />
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
+          <EntitySet Name="sysdiagrams" EntityType="QUANLYBENHVIENModel.sysdiagram" />
           <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
           <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
@@ -433,6 +557,10 @@
             <End Role="PHONG" EntitySet="PHONGs" />
             <End Role="BENHNHAN" EntitySet="BENHNHANs" />
           </AssociationSet>
+          <AssociationSet Name="CONVIEC_USER_FK" Association="QUANLYBENHVIENModel.CONVIEC_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+          </AssociationSet>
           <AssociationSet Name="PHONG_IDTANG_FK" Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK">
             <End Role="TANG" EntitySet="TANGs" />
             <End Role="PHONG" EntitySet="PHONGs" />
@@ -453,6 +581,10 @@
             <End Role="TO" EntitySet="TOes" />
             <End Role="YTA" EntitySet="YTAs" />
           </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN" Association="QUANLYBENHVIENModel.BACSILIENQUAN">
+            <End Role="BACSI" EntitySet="BACSIs" />
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+          </AssociationSet>
           <AssociationSet Name="CHIDINH" Association="QUANLYBENHVIENModel.CHIDINH">
             <End Role="TO" EntitySet="TOes" />
             <End Role="VATTU" EntitySet="VATTUs" />
@@ -460,6 +592,10 @@
           <AssociationSet Name="SUDUNG" Association="QUANLYBENHVIENModel.SUDUNG">
             <End Role="BENHNHAN" EntitySet="BENHNHANs" />
             <End Role="VATTU" EntitySet="VATTUs" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN" Association="QUANLYBENHVIENModel.YTALIENQUAN">
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+            <End Role="YTA" EntitySet="YTAs" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -508,6 +644,7 @@
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
           <NavigationProperty Name="LATRUONGTO" Relationship="QUANLYBENHVIENModel.TO_BACSI_FK" FromRole="BACSI" ToRole="TO" />
+          <NavigationProperty Name="CONGVIECs" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN" FromRole="BACSI" ToRole="CONGVIEC" />
         </EntityType>
         <EntityType Name="BENHNHAN">
           <Key>
@@ -532,6 +669,21 @@
           <NavigationProperty Name="PHONG" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="BENHNHAN" ToRole="PHONG" />
           <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.SUDUNG" FromRole="BENHNHAN" ToRole="VATTU" />
         </EntityType>
+        <EntityType Name="CONGVIEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUSER" Type="Int32" />
+          <Property Name="TIEUDE" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BATDAU" Type="DateTime" Precision="0" />
+          <Property Name="KETTHUC" Type="DateTime" Precision="0" />
+          <Property Name="DIADIEM" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.CONVIEC_USER_FK" FromRole="CONGVIEC" ToRole="USER" />
+          <NavigationProperty Name="BACSIs" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN" FromRole="CONGVIEC" ToRole="BACSI" />
+          <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTALIENQUAN" FromRole="CONGVIEC" ToRole="YTA" />
+        </EntityType>
         <EntityType Name="PHONG">
           <Key>
             <PropertyRef Name="ID" />
@@ -543,6 +695,16 @@
           <Property Name="IDTANG" Type="Int32" />
           <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TANG">
           <Key>
@@ -589,6 +751,7 @@
           <Property Name="PASSWORD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="ROLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ADMINs" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="USER" ToRole="ADMIN" />
+          <NavigationProperty Name="CONGVIECs" Relationship="QUANLYBENHVIENModel.CONVIEC_USER_FK" FromRole="USER" ToRole="CONGVIEC" />
           <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="USER" ToRole="TO" />
         </EntityType>
         <EntityType Name="VATTU">
@@ -623,6 +786,7 @@
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDTO" Type="Int32" />
           <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="YTA" ToRole="TO" />
+          <NavigationProperty Name="CONGVIECs" Relationship="QUANLYBENHVIENModel.YTALIENQUAN" FromRole="YTA" ToRole="CONGVIEC" />
         </EntityType>
         <Association Name="ADMIN_USER_FK">
           <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
@@ -669,6 +833,18 @@
             </Principal>
             <Dependent Role="BENHNHAN">
               <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONVIEC_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CONGVIEC">
+              <PropertyRef Name="IDUSER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -732,6 +908,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="BACSILIENQUAN">
+          <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="*" />
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="*" />
+        </Association>
         <Association Name="CHIDINH">
           <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="*" />
           <End Type="QUANLYBENHVIENModel.VATTU" Role="VATTU" Multiplicity="*" />
@@ -739,6 +919,10 @@
         <Association Name="SUDUNG">
           <End Type="QUANLYBENHVIENModel.BENHNHAN" Role="BENHNHAN" Multiplicity="*" />
           <End Type="QUANLYBENHVIENModel.VATTU" Role="VATTU" Multiplicity="*" />
+        </Association>
+        <Association Name="YTALIENQUAN">
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="*" />
+          <End Type="QUANLYBENHVIENModel.YTA" Role="YTA" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -803,6 +987,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CONGVIECs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.CONGVIEC">
+              <MappingFragment StoreEntitySet="CONGVIEC">
+                <ScalarProperty Name="DIADIEM" ColumnName="DIADIEM" />
+                <ScalarProperty Name="KETTHUC" ColumnName="KETTHUC" />
+                <ScalarProperty Name="BATDAU" ColumnName="BATDAU" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="TIEUDE" ColumnName="TIEUDE" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PHONGs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.PHONG">
               <MappingFragment StoreEntitySet="PHONG">
@@ -811,6 +1008,17 @@
                 <ScalarProperty Name="SUCCHUA" ColumnName="SUCCHUA" />
                 <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -885,6 +1093,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="BACSILIENQUAN" TypeName="QUANLYBENHVIENModel.BACSILIENQUAN" StoreEntitySet="BACSILIENQUAN">
+            <EndProperty Name="CONGVIEC">
+              <ScalarProperty Name="ID" ColumnName="IDCONGVIEC" />
+            </EndProperty>
+            <EndProperty Name="BACSI">
+              <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="CHIDINH" TypeName="QUANLYBENHVIENModel.CHIDINH" StoreEntitySet="CHIDINH">
             <EndProperty Name="VATTU">
               <ScalarProperty Name="ID" ColumnName="IDVATTU" />
@@ -899,6 +1115,14 @@
             </EndProperty>
             <EndProperty Name="BENHNHAN">
               <ScalarProperty Name="CMND_CCCD" ColumnName="IDBENHNHAN" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="YTALIENQUAN" TypeName="QUANLYBENHVIENModel.YTALIENQUAN" StoreEntitySet="YTALIENQUAN">
+            <EndProperty Name="YTA">
+              <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+            </EndProperty>
+            <EndProperty Name="CONGVIEC">
+              <ScalarProperty Name="ID" ColumnName="IDCONGVIEC" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

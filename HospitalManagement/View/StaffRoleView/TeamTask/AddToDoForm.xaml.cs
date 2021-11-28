@@ -1,8 +1,6 @@
-﻿using HospitalManagement.Model;
-using HospitalManagement.ViewModel;
+﻿using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.Staff
+namespace HospitalManagement.View.StaffRoleView.TeamTask
 {
     /// <summary>
-    /// Interaction logic for ChageDoctorInformationForm.xaml
+    /// Interaction logic for AddToDoForm.xaml
     /// </summary>
-    public partial class ChangeDoctorInformationForm : Window
+    public partial class AddToDoForm : Window
     {
-        public ChangeDoctorInformationForm(BACSI bs)
+        public AddToDoForm()
         {
             InitializeComponent();
-            this.DataContext = new DoctorInformationViewModel(bs);
+            this.DataContext = new AddToDoFormViewModel();
         }
-
-        
     }
 }

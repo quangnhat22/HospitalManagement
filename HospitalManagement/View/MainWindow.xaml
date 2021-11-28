@@ -144,7 +144,8 @@
                         </ListView.ItemContainerStyle>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding SelectViewCommand}" CommandParameter="{Binding ElementName=ListViewNavigate, Path=SelectedItem}"/>
+                                <i:InvokeCommandAction Command="{Binding SelectViewCommand}" 
+                                                       CommandParameter="{Binding ElementName=ListViewNavigate, Path=SelectedItem}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <ListViewItem Height="60" 

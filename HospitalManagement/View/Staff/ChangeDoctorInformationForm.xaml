@@ -7,7 +7,8 @@
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         x:Name="ChangeDoctorInformationFormWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
@@ -19,6 +20,12 @@
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseWindow}" 
+                                   CommandParameter="{Binding ElementName=ChangeDoctorInformationFormWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="WhiteSmoke">
         <StackPanel Orientation="Vertical">
             <Grid Height="100">
@@ -41,7 +48,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox Text="{Binding Doctor.HO}" x:Name="txbHo" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                    <TextBox Text="{Binding Doctor.HO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbHo" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                                 </Grid>
                                 <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
                                     <Grid.RowDefinitions>
@@ -49,7 +56,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox Text="{Binding Doctor.TEN}" x:Name="txbTen" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                    <TextBox Text="{Binding Doctor.TEN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbTen" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                                 </Grid>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -59,7 +66,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox Text="{Binding Doctor.SDT}" x:Name="txbSDT" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                    <TextBox Text="{Binding Doctor.SDT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbSDT" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                                 </Grid>
                                 <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
                                     <Grid.RowDefinitions>
@@ -67,7 +74,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox Text="{Binding Doctor.EMAIL}" x:Name="txbEmail" HorizontalAlignment="Left" Width="400"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                    <TextBox Text="{Binding Doctor.EMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbEmail" HorizontalAlignment="Left" Width="400"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                                 </Grid>
                             </StackPanel>
                             <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
@@ -76,7 +83,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox Text="{Binding Doctor.DIACHI}" x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <TextBox Text="{Binding Doctor.DIACHI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                             </Grid>
                         </StackPanel>
                     </StackPanel>
@@ -101,7 +108,8 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker  Text="{Binding Doctor.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"  x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left"  Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <DatePicker  Text="{Binding Doctor.NGSINH, Mode=TwoWay, 
+                        UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"  x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left"  Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
                 <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -123,7 +131,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Doctor.QUOCTICH}" x:Name="txbQuocTich"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding Doctor.QUOCTICH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbQuocTich"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -131,7 +139,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Doctor.CMND_CCCD}" x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" IsReadOnly="True" />
+                    <TextBox Text="{Binding Doctor.CMND_CCCD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" IsReadOnly="True" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="85" Orientation="Horizontal">
@@ -141,7 +149,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Doctor.CHUYENKHOA}" x:Name="txbChuyenKhoa" Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding Doctor.CHUYENKHOA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbChuyenKhoa" Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
                     <Grid.RowDefinitions>
@@ -149,7 +157,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Doctor.VAITRO}" x:Name="txbVaiTro" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding Doctor.VAITRO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbVaiTro" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
                     <Grid.RowDefinitions>
@@ -157,7 +165,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding Doctor.IDTO}" x:Name="txbIDTO" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding Doctor.IDTO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbIDTO" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="190" Orientation="Horizontal">
@@ -168,7 +176,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <StackPanel Grid.Row="1">
-                        <TextBox Text="{Binding Doctor.GHICHU}" x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
+                        <TextBox Text="{Binding Doctor.GHICHU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             VerticalAlignment="Top"
                             Height="100"

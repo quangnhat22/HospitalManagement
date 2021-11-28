@@ -15,6 +15,7 @@ namespace HospitalManagement.ViewModel
         private BACSI doctor;        
         public BACSI Doctor { get => doctor; set => doctor = value;}       
         public ICommand SaveChange { get; set; }
+        public ICommand CloseWindow { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string name)
@@ -25,6 +26,7 @@ namespace HospitalManagement.ViewModel
         {
             this.Doctor = bs;
             SaveChange = new SaveChangeDoctorInformationCommand();
+            CloseWindow = new ChangeDoctorInformationClosingCommand();
         }
 
         //private Doctor doctor;

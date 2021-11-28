@@ -7,31 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HospitalManagement.Model
+namespace Seeds
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class CONGVIEC
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USER()
+        public CONGVIEC()
         {
-            this.ADMINs = new HashSet<ADMIN>();
-            this.CONGVIECs = new HashSet<CONGVIEC>();
-            this.TOes = new HashSet<TO>();
+            this.BACSIs = new HashSet<BACSI>();
+            this.YTAs = new HashSet<YTA>();
         }
     
         public int ID { get; set; }
-        public string USERNAME { get; set; }
-        public string PASSWORD { get; set; }
-        public string ROLE { get; set; }
+        public Nullable<int> IDUSER { get; set; }
+        public string TIEUDE { get; set; }
+        public string NOIDUNG { get; set; }
+        public Nullable<System.DateTime> BATDAU { get; set; }
+        public Nullable<System.DateTime> KETTHUC { get; set; }
+        public string DIADIEM { get; set; }
     
+        public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ADMIN> ADMINs { get; set; }
+        public virtual ICollection<BACSI> BACSIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO> TOes { get; set; }
+        public virtual ICollection<YTA> YTAs { get; set; }
     }
 }
