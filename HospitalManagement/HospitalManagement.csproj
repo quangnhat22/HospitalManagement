@@ -271,6 +271,7 @@
     <Compile Include="View\EmptyView\SwitchStaffViewRoomViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchStaffViewTeamTaskViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
+    <Compile Include="View\EmptyView\SwithStaffViewTeamMemberViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
     </Compile>
@@ -304,6 +305,9 @@
     </Compile>
     <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml.cs">
+      <DependentUpon>TeamMemberUsercontrol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml.cs">
       <DependentUpon>AddToDoForm.xaml</DependentUpon>
@@ -416,6 +420,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

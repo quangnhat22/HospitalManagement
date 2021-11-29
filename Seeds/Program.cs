@@ -217,13 +217,16 @@ namespace Seeds
         }
         private static void SeedsUSERs()
         {
-            USER admin = new USER();
-            admin.USERNAME = "admin";
-            admin.PASSWORD = Encryptor.Hash("1");
-            admin.ROLE = "admin";
-            ADMIN adminInfo = new ADMIN();
-            adminInfo.USER = admin;
-            DataProvider.Ins.DB.USERs.Add(admin);
+            for(int i = 0; i < 10; i++)
+            {
+                USER admin = new USER();
+                admin.USERNAME = "admin" + i;
+                admin.PASSWORD = Encryptor.Hash("1");
+                admin.ROLE = "admin";
+                ADMIN adminInfo = new ADMIN();
+                adminInfo.USER = admin;
+                DataProvider.Ins.DB.USERs.Add(admin);
+            }
             foreach(TO to in DataProvider.Ins.DB.TOes)
             {
                 USER user = new USER();
@@ -315,18 +318,18 @@ namespace Seeds
                     vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
                     vt.SLUONG = random.Next(50, 500);
                 }
-                foreach (TO to in ts)
-                {
-                    if (random.Next(2) == 0)
-                    {
-                        vt.TOes.Add(to);
-                    }
-                }
+                //foreach (TO to in ts)
+                //{
+                //    if (random.Next(2) == 0)
+                //    {
+                //        vt.TOes.Add(to);
+                //    }
+                //}
 
-                foreach (BENHNHAN bn in bs)
-                {
-                    vt.BENHNHANs.Add(bn);
-                }
+                //foreach (BENHNHAN bn in bs)
+                //{
+                //    vt.BENHNHANs.Add(bn);
+                //}
                 dataProvider.DB.VATTUs.Add(vt);
             }
             dataProvider.DB.SaveChanges();
