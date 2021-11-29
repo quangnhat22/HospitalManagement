@@ -9,6 +9,7 @@
                     xmlns:viewaddstaff="clr-namespace:HospitalManagement.View.AddStaff"
                     xmlns:viewstaffviewroom="clr-namespace:HospitalManagement.View.StaffRoleView.Room"
                     xmlns:viewstaffteamtask="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
+                    xmlns:viewstaffteammember="clr-namespace:HospitalManagement.View.StaffRoleView.TeamMember"
                     xmlns:viewdoctor="c">
     <DataTemplate DataType="{x:Type switchview:SwitchDashboardViewModel}">
         <view:DashBoard></view:DashBoard>
@@ -36,6 +37,9 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type switchview:SwitchStaffViewTeamTaskViewModel}">
         <viewstaffteamtask:StaffRoleTeamTaskUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwithStaffViewTeamMemberViewModel}">
+        <viewstaffteammember:TeamMemberUsercontrol/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
         <viewstaff:DoctorUsercontrol></viewstaff:DoctorUsercontrol>

@@ -14,11 +14,20 @@ namespace HospitalManagement.ViewModel
     {
         public ICommand OpenRoomWindow { get; set; }
         public ICommand ChangeBuildingCommand { get; set; }
-        public ICommand DisableButtonCommand { get; set; }
+        public ICommand AddBuildingCommand { get; set; }
+        public ICommand DeleteBuildingCommand { get; set; }
+        public ICommand AddOrDeleteBuildingCommand { get; set; }
 
         private int currentBuilding;
+        private string currentBuildingName;
         private bool canMoveForward;
         private bool canMoveBackward = false;
+        private int floorsNumber;
+        private string newBuildingName;
+        private string selectedBuildingName;
+        private string addVisibility;
+        private string deleteVisibility;
+
         private static List<TOA> buildings;
         private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
         
@@ -26,6 +35,12 @@ namespace HospitalManagement.ViewModel
         {
             get { return currentBuilding; }
             set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
+        }
+
+        public string CurrentBuildingName
+        {
+            get { return currentBuildingName; }
+            set { currentBuildingName = value; OnPropertyChanged("CurrentBuildingName"); }
         }
 
         public bool CanMoveForward
@@ -38,6 +53,36 @@ namespace HospitalManagement.ViewModel
         {
             get { return canMoveBackward; }
             set { canMoveBackward = value; OnPropertyChanged("CanMoveBackward"); }
+        }
+
+        public int FloorsNumber
+        {
+            get { return floorsNumber; }
+            set { floorsNumber = value; OnPropertyChanged("FloorsNumber"); }
+        }
+
+        public string NewBuildingName
+        {
+            get { return newBuildingName; }
+            set { newBuildingName = value; OnPropertyChanged("NewBuildingName"); }
+        }
+
+        public string SelectedBuildingName
+        {
+            get { return selectedBuildingName; }
+            set { selectedBuildingName = value; OnPropertyChanged("SelectedBuildingName"); }
+        }
+
+        public string AddVisibility
+        {
+            get { return addVisibility; }
+            set { addVisibility = value; OnPropertyChanged("AddVisibility"); }
+        }
+
+        public string DeleteVisibility
+        {
+            get { return deleteVisibility; }
+            set { deleteVisibility = value; OnPropertyChanged("DeleteVisibility"); }
         }
 
         public List<TOA> Buildings
@@ -58,11 +103,20 @@ namespace HospitalManagement.ViewModel
 
         public RoomUsercontrolViewModel()
         {
-            currentBuilding = 1;
-            Buildings = DataProvider.Ins.DB.TOAs.ToList();
+            buildings = DataProvider.Ins.DB.TOAs.ToList();
+            currentBuilding = 0;
+            currentBuildingName = buildings[0].DISPLAYNAME;
+            newBuildingName = "";
             canMoveForward = Buildings.Count > 1 ? true : false;
+            selectedBuildingName = buildings[0].DISPLAYNAME;
+            addVisibility = "Collapsed";
+            deleteVisibility = "Collapsed";
+
             OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
+            AddBuildingCommand = new AddBuildingCommand(this);
+            DeleteBuildingCommand = new DeleteBuildingCommand(this);
+            AddOrDeleteBuildingCommand = new AddOrDeleteBuildingCommand(this);
         }
     }
-}
+} 

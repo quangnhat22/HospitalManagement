@@ -104,9 +104,12 @@
     <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
     <Compile Include="Command\AccountListCommand\OpenAddNewAccountForm.cs" />
     <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
+    <Compile Include="Command\AddOrDeleteBuildingCommand.cs" />
+    <Compile Include="Command\AddBuildingCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
+    <Compile Include="Command\DeleteBuildingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\ChangeDoctorInformationClosingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -191,9 +195,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TANG.cs">
@@ -253,6 +254,7 @@
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\TeamTask\StaffRoleTeamTaskViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
       <DependentUpon>AddNewAccountForm.xaml</DependentUpon>
@@ -269,6 +271,7 @@
     <Compile Include="View\EmptyView\SwitchStaffViewRoomViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchStaffViewTeamTaskViewModel.cs" />
     <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
+    <Compile Include="View\EmptyView\SwithStaffViewTeamMemberViewModel.cs" />
     <Compile Include="View\Facilities\FacilitiesForm.xaml.cs">
       <DependentUpon>FacilitiesForm.xaml</DependentUpon>
     </Compile>
@@ -302,6 +305,9 @@
     </Compile>
     <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
       <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml.cs">
+      <DependentUpon>TeamMemberUsercontrol.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml.cs">
       <DependentUpon>AddToDoForm.xaml</DependentUpon>
@@ -414,6 +420,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

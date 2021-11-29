@@ -1,5 +1,4 @@
-﻿using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement.View.StaffRoleView.TeamTask
+namespace HospitalManagement.View.StaffRoleView.TeamMember
 {
     /// <summary>
-    /// Interaction logic for StaffRoleTeamTaskUsercontrol.xaml
+    /// Interaction logic for TeamMemberUsercontrol.xaml
     /// </summary>
-    public partial class StaffRoleTeamTaskUsercontrol : UserControl
+    public partial class TeamMemberUsercontrol : UserControl
     {
-        public StaffRoleTeamTaskUsercontrol()
+        public TeamMemberUsercontrol()
         {
             InitializeComponent();
-            this.DataContext = new StaffRoleTeamTaskViewModel();
-
         }
     }
 }

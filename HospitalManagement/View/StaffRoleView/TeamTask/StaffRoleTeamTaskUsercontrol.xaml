@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
+             x:Name="staffRoleTeamTask"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -98,6 +99,8 @@
                             materialDesign:ButtonAssist.CornerRadius="10"
                             Background="#35a0fe"
                             ToolTip="Thêm mới"
+                            Command="{Binding OpenAddToDoFormCommand}"
+                            CommandParameter="{Binding ElementName=staffRoleTeamTask}"
                             />
                         <Button 
                             Style="{StaticResource MaterialDesignRaisedButton}"
@@ -152,7 +155,7 @@
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDown">
                                                 <i:InvokeCommandAction 
-                                            Command="{Binding ElementName=teamUC, Path=DataContext.ShowMembersInTeamCommand}"
+                                                    Command="{Binding ElementName=teamUC, Path=DataContext.ShowMembersInTeamCommand}"
                                             CommandParameter="{Binding Value.ID}"  />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
@@ -164,85 +167,141 @@
                                                 ShadowDepth="2" 
                                                 Color="#EEEEEE"/>
                                         </Border.Effect>
-                                        <Grid Background="Transparent" Width="300">
+                                        <Grid Background="Transparent" Width="auto" Height="auto">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                                <Grid Width="50" 
-                                                    Height="50" 
-                                                    HorizontalAlignment="Left" 
-                                                    Margin="20">
-                                                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                                        Height="50"
-                                                        Width="50"
-                                                        Value="1" 
-                                                        Maximum="1" 
-                                                        Background="{x:Null}"
-                                                        Foreground="#5F88FE"/>
-                                                    <TextBlock 
-                                                        HorizontalAlignment="Center" 
-                                                        VerticalAlignment="Center"
-                                                        Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                </Grid>
+                                            
+                                            <StackPanel Grid.Row="0" Orientation="Vertical">
+                                                <!--Status-->
+                                                <Label
+                                                    Margin="10"
+                                                    Content="!IMPORTANT"
+                                                    Foreground="Red"
+                                                    FontWeight="SemiBold"
+                                                    />
+                                                <!--title-->
                                                 <WrapPanel 
                                                     VerticalAlignment="Center">
-                                                    <TextBlock  
-                                                        FontWeight="Bold" FontSize="20">
+                                                    <Grid 
+                                                        Width="50" 
+                                                        Height="50" 
+                                                        HorizontalAlignment="Left" 
+                                                        Margin="10">
+                                                        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                                            Height="50"
+                                                            Width="50"
+                                                            Value="1" 
+                                                            Maximum="1" 
+                                                            Background="{x:Null}"
+                                                            Foreground="#5F88FE"/>
+                                                        <TextBlock 
+                                                            HorizontalAlignment="Center" 
+                                                            VerticalAlignment="Center"
+                                                            Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </Grid>
+                                                    <TextBlock
+                                                        Margin="10 5 10 5 "
+                                                        VerticalAlignment="Center"
+                                                        FontWeight="Bold" 
+                                                        FontSize="20"
+                                                        >
                                                         <TextBlock.Text>
-                                                            <MultiBinding StringFormat="{}Tổ {0} Tầng {1}">
-                                                                <Binding Path="Value.ID" />
-                                                                <Binding Path="Value.TANG.SOTANG" />
-                                                            </MultiBinding>
+                                                            <Binding Path="Value.TIEUDE" />
                                                         </TextBlock.Text>
                                                     </TextBlock>
                                                 </WrapPanel>
-                                        
+                                                <!--location-->
+                                                <StackPanel Orientation="Horizontal">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon 
+                                                            Kind="MapMarker"
+                                                            Margin="10 5 5 5"/>
+                                                        <TextBlock
+                                                            Margin="0"
+                                                            FontWeight="ExtraLight" 
+                                                            FontSize="16"
+                                                            TextWrapping="Wrap">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="Value.DIADIEM" />
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </StackPanel>
                                             </StackPanel>
+                                            
                                             <Separator 
                                                 Grid.Row="1" 
                                                 Background="#E0EBFD" 
-                                                Margin="20 0 20 20" 
+                                                Margin="10" 
                                                 Height="2"/>
                                             <StackPanel 
                                                 Grid.Row="2" 
-                                                Orientation="Horizontal" 
-                                                HorizontalAlignment="Right" 
-                                                Margin="0 0 20 20">
+                                                Orientation="Vertical" 
+                                                HorizontalAlignment="Left" 
+                                                Margin="10">
+                                                <StackPanel
+                                                    Orientation="Vertical">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="Bắt đầu: "></Label>
+                                                        <TextBlock  
+                                                        FontWeight="ExtraLight" FontSize="16">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="Value.BATDAU" />
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </StackPanel>
 
-                                                <Border 
-                                                    CornerRadius="20" 
-                                                    Height="40" Width="40" 
-                                                    Margin="-10 0 0 0">
-                                                    <Border.Background>
-                                                        <ImageBrush 
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="Kết thúc: "></Label>
+                                                        <TextBlock  
+                                                            FontWeight="ExtraLight" FontSize="16">
+                                                            <TextBlock.Text>
+                                                                <Binding Path="Value.KETTHUC" />
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel 
+                                                    Orientation="Horizontal"
+                                                    Margin="0 10 5 10"
+                                                    HorizontalAlignment="Right">
+                                                    <Border 
+                                                        CornerRadius="20" 
+                                                        Height="40" Width="40" 
+                                                        Margin="-10 0 0 0">
+                                                        <Border.Background>
+                                                            <ImageBrush 
                                                             Stretch="UniformToFill" 
                                                             ImageSource="/HospitalManagement;component/Images/man.png"/>
-                                                    </Border.Background>
-                                                </Border>
-                                                <Border 
-                                                    CornerRadius="20" 
-                                                    Height="40" Width="40" 
-                                                    Margin="-10 0 0 0">
-                                                    <Border.Background>
-                                                        <ImageBrush 
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <Border 
+                                                        CornerRadius="20" 
+                                                        Height="40" Width="40" 
+                                                        Margin="-10 0 0 0">
+                                                        <Border.Background>
+                                                            <ImageBrush 
                                                             Stretch="UniformToFill" 
                                                             ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                                                    </Border.Background>
-                                                </Border>
-                                                <Border 
-                                                    CornerRadius="20" 
-                                                    Height="40" 
-                                                    Width="40" 
-                                                    Margin="-10 0 0 0">
-                                                    <Border.Background>
-                                                        <ImageBrush 
+                                                        </Border.Background>
+                                                    </Border>
+                                                    <Border 
+                                                        CornerRadius="20" 
+                                                        Height="40" 
+                                                        Width="40" 
+                                                        Margin="-10 0 0 0"
+                                                        >
+                                                        <Border.Background>
+                                                            <ImageBrush 
                                                             Stretch="UniformToFill" 
                                                             ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                                                    </Border.Background>
-                                                </Border>
+                                                        </Border.Background>
+                                                    </Border>
+                                                </StackPanel>
+                                               
                                             </StackPanel>
                                         </Grid>
                                     </Border>

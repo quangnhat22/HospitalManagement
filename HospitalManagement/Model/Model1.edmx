@@ -105,16 +105,6 @@
           <Property Name="IDVATTU" Type="int" Nullable="false" />
           <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TANG">
           <Key>
             <PropertyRef Name="ID" />
@@ -138,6 +128,7 @@
             <PropertyRef Name="IDTOA" />
           </Key>
           <Property Name="IDTOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOTOA" Type="int" />
           <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
           <Property Name="SLTANG" Type="int" />
         </EntityType>
@@ -413,7 +404,6 @@
           <EntitySet Name="CONGVIEC" EntityType="Self.CONGVIEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
@@ -534,7 +524,6 @@
           <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
           <EntitySet Name="CONGVIECs" EntityType="QUANLYBENHVIENModel.CONGVIEC" />
           <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
-          <EntitySet Name="sysdiagrams" EntityType="QUANLYBENHVIENModel.sysdiagram" />
           <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
           <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
@@ -696,16 +685,6 @@
           <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="TANG">
           <Key>
             <PropertyRef Name="ID" />
@@ -738,6 +717,7 @@
             <PropertyRef Name="IDTOA" />
           </Key>
           <Property Name="IDTOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOTOA" Type="Int32" />
           <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SLTANG" Type="Int32" />
           <NavigationProperty Name="TANGs" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TOA" ToRole="TANG" />
@@ -1011,17 +991,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TANGs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TANG">
               <MappingFragment StoreEntitySet="TANG">
@@ -1047,6 +1016,7 @@
               <MappingFragment StoreEntitySet="TOA">
                 <ScalarProperty Name="SLTANG" ColumnName="SLTANG" />
                 <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
+                <ScalarProperty Name="SOTOA" ColumnName="SOTOA" />
                 <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
               </MappingFragment>
             </EntityTypeMapping>
