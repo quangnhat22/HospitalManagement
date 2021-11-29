@@ -10,16 +10,23 @@ using HospitalManagement.ViewModel;
 using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.Staff;
+using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 
 namespace HospitalManagement.Command.TeamCommand
 {
     class ShowMembersInformationInTeamCommand : ICommand
     {
         private TeamViewmodel teamViewmodel;
+        private AddToDoFormViewModel addToDoFormViewModel;
 
         public ShowMembersInformationInTeamCommand(TeamViewmodel teamViewmodel)
         {
             this.teamViewmodel = teamViewmodel;
+        }
+
+        public ShowMembersInformationInTeamCommand(AddToDoFormViewModel addToDoFormViewModel)
+        {
+            this.addToDoFormViewModel = addToDoFormViewModel;
         }
 
         public event EventHandler CanExecuteChanged

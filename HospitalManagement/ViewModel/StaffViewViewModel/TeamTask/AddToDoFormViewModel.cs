@@ -1,4 +1,6 @@
-﻿using HospitalManagement.Command.TeamTaskCommand;
+﻿using HospitalManagement.Command.TeamCommand;
+using HospitalManagement.Command.TeamTaskCommand;
+using HospitalManagement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,25 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         private string locationText;
         private DateTime startDate;
         private DateTime endDate;
+        private string currentTeam;
+        private static List<StaffInformation> members;
 
+        #region "prop"
+        public string CurrentTeam
+        {
+            get { return currentTeam; }
+            set
+            {
+                currentTeam = value; OnPropertyChanged("CurrentTeam");
+            }
+        }
+        public List<StaffInformation> Members
+        {
+            get { return members; }
+            set { members = value; OnPropertyChanged("Members"); }
+        }
+        public ICommand ShowMembersInformationInTeamCommand { get; set; }
+        public ICommand ShowMembersInTeamCommand { get; set; }
         public string SubjectText { get => subjectText; set => subjectText = value; }
         public string InfoText { get => infoText; set => infoText = value; }
         public string LocationText { get => locationText; set => locationText = value; }
@@ -23,11 +43,15 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public DateTime EndDate { get => endDate; set => endDate = value; }
 
         public ICommand AddTaskCommand { get; set; }
+        #endregion
 
         public AddToDoFormViewModel()
         {
             AddTaskCommand = new AddTaskCommand(this);
             StartDate = EndDate = DateTime.Now;
+            currentTeam = "";
+            ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
+            //ShowMembersInformationInTeamCommand = new ShowMembersInformationInTeamCommand(this);
         }
     }
 }

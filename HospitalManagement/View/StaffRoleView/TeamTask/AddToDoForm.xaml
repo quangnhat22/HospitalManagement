@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
         mc:Ignorable="d"
+        x:Name="addToDoFormWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
@@ -161,6 +162,12 @@
                       dd:DragDrop.IsDragSource="True"
                       dd:DragDrop.IsDropTarget="True"
                       dd:DragDrop.UseDefaultDragAdorner="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding ElementName=addToDoFormWindow, Path=DataContext.ShowMembersInTeamCommand}"
+                                               CommandParameter="{Binding ElementName=addToDoFormWindow}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <DataGrid.Resources>
                     <ResourceDictionary>
                         <Style TargetType="{x:Type DataGridRow}">
@@ -283,7 +290,7 @@
                                        FontWeight="SemiBold">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}Danh sách thành viên tổ {0}">
-                                        <Binding ElementName="teamUC" Path="DataContext.CurrentTeam" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                        <Binding ElementName="addToDoFormWindow" Path="DataContext.CurrentTeam" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
