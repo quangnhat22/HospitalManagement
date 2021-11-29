@@ -51,7 +51,6 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             StartDate = EndDate = DateTime.Now;
             currentTeam = "";
             ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
-            //ShowMembersInformationInTeamCommand = new ShowMembersInformationInTeamCommand(this);
         }
     }
 }

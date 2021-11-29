@@ -25,6 +25,12 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding ElementName=addToDoFormWindow, Path=DataContext.ShowMembersInTeamCommand}"
+                                               CommandParameter="{Binding ElementName=addToDoFormWindow}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
@@ -162,12 +168,7 @@
                       dd:DragDrop.IsDragSource="True"
                       dd:DragDrop.IsDropTarget="True"
                       dd:DragDrop.UseDefaultDragAdorner="True">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDown">
-                        <i:InvokeCommandAction Command="{Binding ElementName=addToDoFormWindow, Path=DataContext.ShowMembersInTeamCommand}"
-                                               CommandParameter="{Binding ElementName=addToDoFormWindow}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                
                 <DataGrid.Resources>
                     <ResourceDictionary>
                         <Style TargetType="{x:Type DataGridRow}">
