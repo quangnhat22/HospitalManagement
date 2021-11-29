@@ -17,7 +17,7 @@ namespace HospitalManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public YTA()
         {
-            this.CONGVIECs = new HashSet<CONGVIEC>();
+            this.YTALIENQUANs = new HashSet<YTALIENQUAN>();
         }
     
         public string CMND_CCCD { get; set; }
@@ -36,6 +36,6 @@ namespace HospitalManagement.Model
     
         public virtual TO TO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
+        public virtual ICollection<YTALIENQUAN> YTALIENQUANs { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace Seeds
     
         public virtual DbSet<ADMIN> ADMINs { get; set; }
         public virtual DbSet<BACSI> BACSIs { get; set; }
+        public virtual DbSet<BACSILIENQUAN> BACSILIENQUANs { get; set; }
         public virtual DbSet<BENHNHAN> BENHNHANs { get; set; }
         public virtual DbSet<CONGVIEC> CONGVIECs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }
@@ -36,5 +37,6 @@ namespace Seeds
         public virtual DbSet<USER> USERs { get; set; }
         public virtual DbSet<VATTU> VATTUs { get; set; }
         public virtual DbSet<YTA> YTAs { get; set; }
+        public virtual DbSet<YTALIENQUAN> YTALIENQUANs { get; set; }
     }
 }
