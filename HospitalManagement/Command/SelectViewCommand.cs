@@ -41,7 +41,14 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Staff")
                 {
-                    mainWindowViewModel.SelectedViewModel = new SwitchStaffViewModel();
+                    if(MainWindowViewModel.User.ROLE == "staff")
+                    {
+                        mainWindowViewModel.SelectedViewModel = new SwithStaffViewTeamMemberViewModel();
+                    }
+                    else
+                    {
+                        mainWindowViewModel.SelectedViewModel = new SwitchStaffViewModel();
+                    }
                 }
                 if (tag == "Patient")
                 {
