@@ -78,41 +78,49 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.CMND_CCCD}"
+                                                    IsReadOnly="True"
                                                     Header="CMND"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.HO}"
+                                                    IsReadOnly="True"
                                                     Header="Họ"
                                                     Width="100"
                                                     ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.TEN}"
+                                                   IsReadOnly="True"
                                                    Header="Tên"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
+                                                   IsReadOnly="True"
                                                    Header="Giới tính"
                                                    Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                    Header="Ngày sinh"
+                                                   IsReadOnly="True"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.CHUYENKHOA}"
                                                    Header="Chuyên khoa"
+                                                   IsReadOnly="True"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.VAITRO}"
                                                    Header="Vai trò"
+                                                   IsReadOnly="True"
                                                    Width="150"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.IDTO}"
                                                    Header="Tổ"
+                                                   IsReadOnly="True"
                                                    Width="80"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>

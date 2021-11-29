@@ -24,7 +24,7 @@
             <Grid Height="100">
                 <TextBlock 
                     HorizontalAlignment="Left" 
-                    Text="Thông tin bệnh nhân" VerticalAlignment="Center" Margin="100,0,0,0" 
+                    Text="Chỉnh sửa thông tin bệnh nhân" VerticalAlignment="Center" Margin="100,0,0,0" 
                     Foreground="#35a0fe" 
                     TextAlignment="Center" 
                     FontSize="30 px" 
