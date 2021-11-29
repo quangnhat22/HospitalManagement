@@ -61,10 +61,8 @@
                             CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
                             CalendarButtonStyle="{StaticResource CustomCalendarButton}" />
                     </Grid>
-
                 </Viewbox>
                 <Grid Height="330">
-
                 </Grid>
             </StackPanel>
         </Grid>

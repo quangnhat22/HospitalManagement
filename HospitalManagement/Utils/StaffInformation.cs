@@ -61,7 +61,7 @@ namespace HospitalManagement.Utils
             this.GhiChu = bacsi.GHICHU;
             this.IdTo = bacsi.IDTO;
             this.userName = bacsi.TO.USER.USERNAME;
-            if(this.userName == null)
+            if(bacsi.TO.TOTRUONG == bacsi)
             {
                 this.PhanLoai = "Bác Sĩ";
             }

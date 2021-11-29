@@ -184,7 +184,7 @@
                                                    Width="220"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GroupName}"
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.IdTo}"
                                                    Header="Tổ công tác"
                                                    Width="120"
                                                    ElementStyle="{StaticResource ElementStyle}"
