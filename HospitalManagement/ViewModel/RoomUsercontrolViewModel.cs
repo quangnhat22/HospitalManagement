@@ -19,10 +19,12 @@ namespace HospitalManagement.ViewModel
         public ICommand AddOrDeleteBuildingCommand { get; set; }
 
         private int currentBuilding;
+        private string currentBuildingName;
         private bool canMoveForward;
         private bool canMoveBackward = false;
         private int floorsNumber;
-        private int selectedBuilding;
+        private string newBuildingName;
+        private string selectedBuildingName;
         private string addVisibility;
         private string deleteVisibility;
 
@@ -33,6 +35,12 @@ namespace HospitalManagement.ViewModel
         {
             get { return currentBuilding; }
             set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
+        }
+
+        public string CurrentBuildingName
+        {
+            get { return currentBuildingName; }
+            set { currentBuildingName = value; OnPropertyChanged("CurrentBuildingName"); }
         }
 
         public bool CanMoveForward
@@ -53,10 +61,16 @@ namespace HospitalManagement.ViewModel
             set { floorsNumber = value; OnPropertyChanged("FloorsNumber"); }
         }
 
-        public int SelectedBuilding
+        public string NewBuildingName
         {
-            get { return selectedBuilding; }
-            set { selectedBuilding = value; OnPropertyChanged("SelectedBuilding"); }
+            get { return newBuildingName; }
+            set { newBuildingName = value; OnPropertyChanged("NewBuildingName"); }
+        }
+
+        public string SelectedBuildingName
+        {
+            get { return selectedBuildingName; }
+            set { selectedBuildingName = value; OnPropertyChanged("SelectedBuildingName"); }
         }
 
         public string AddVisibility
@@ -89,12 +103,15 @@ namespace HospitalManagement.ViewModel
 
         public RoomUsercontrolViewModel()
         {
-            currentBuilding = 1;
-            Buildings = DataProvider.Ins.DB.TOAs.ToList();
+            buildings = DataProvider.Ins.DB.TOAs.ToList();
+            currentBuilding = 0;
+            currentBuildingName = buildings[0].DISPLAYNAME;
+            newBuildingName = "";
             canMoveForward = Buildings.Count > 1 ? true : false;
-            selectedBuilding = (int)buildings[0].SOTOA;
+            selectedBuildingName = buildings[0].DISPLAYNAME;
             addVisibility = "Collapsed";
             deleteVisibility = "Collapsed";
+
             OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
             AddBuildingCommand = new AddBuildingCommand(this);

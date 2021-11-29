@@ -36,32 +36,33 @@ namespace HospitalManagement
         {
             Button btn = parameter as Button;
             int currentBuilding = roomUsercontrolViewModel.CurrentBuilding;
-            int temp;
+            int currentBuildingID;
             if (btn.Name == "btnLeft")
             {
-                if (currentBuilding > 1)
+                if (currentBuilding > 0)
                 {
                     currentBuilding--;
-                    temp = (int)roomUsercontrolViewModel.Buildings[currentBuilding - 1].IDTOA;
-                    roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.SOTOA == temp).ToList();
+                    currentBuildingID = (int)roomUsercontrolViewModel.Buildings[currentBuilding].IDTOA;
+                    roomUsercontrolViewModel.Floors= DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuildingID).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
             }
             else
             {
-                if (currentBuilding < roomUsercontrolViewModel.Buildings.Count)
+                if (currentBuilding < roomUsercontrolViewModel.Buildings.Count - 1)
                 {
                     currentBuilding++;
-                    temp = (int)roomUsercontrolViewModel.Buildings[currentBuilding - 1].SOTOA;
-                    roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.SOTOA == temp).ToList();
+                    currentBuildingID = (int)roomUsercontrolViewModel.Buildings[currentBuilding].IDTOA;
+                    roomUsercontrolViewModel.Floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == currentBuildingID).ToList();
                     roomUsercontrolViewModel.OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
                 }
             }
             roomUsercontrolViewModel.CurrentBuilding = currentBuilding;
-            if (currentBuilding == 1)
+            roomUsercontrolViewModel.CurrentBuildingName = roomUsercontrolViewModel.Buildings[currentBuilding].DISPLAYNAME;
+            if (currentBuilding == 0)
                 roomUsercontrolViewModel.CanMoveBackward = false;
             else
-                if (currentBuilding == roomUsercontrolViewModel.Buildings.Count)
+                if (currentBuilding == roomUsercontrolViewModel.Buildings.Count - 1)
                 roomUsercontrolViewModel.CanMoveForward = false;
             else
             {
