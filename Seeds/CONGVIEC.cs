@@ -17,8 +17,8 @@ namespace Seeds
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CONGVIEC()
         {
-            this.BACSIs = new HashSet<BACSI>();
-            this.YTAs = new HashSet<YTA>();
+            this.BACSILIENQUANs = new HashSet<BACSILIENQUAN>();
+            this.YTALIENQUANs = new HashSet<YTALIENQUAN>();
         }
     
         public int ID { get; set; }
@@ -28,11 +28,12 @@ namespace Seeds
         public Nullable<System.DateTime> BATDAU { get; set; }
         public Nullable<System.DateTime> KETTHUC { get; set; }
         public string DIADIEM { get; set; }
+        public string TINHCHAT { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BACSILIENQUAN> BACSILIENQUANs { get; set; }
         public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BACSI> BACSIs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<YTA> YTAs { get; set; }
+        public virtual ICollection<YTALIENQUAN> YTALIENQUANs { get; set; }
     }
 }

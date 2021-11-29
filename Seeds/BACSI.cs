@@ -17,8 +17,8 @@ namespace Seeds
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BACSI()
         {
+            this.BACSILIENQUANs = new HashSet<BACSILIENQUAN>();
             this.LATRUONGTO = new HashSet<TO>();
-            this.CONGVIECs = new HashSet<CONGVIEC>();
         }
     
         public string CMND_CCCD { get; set; }
@@ -37,8 +37,8 @@ namespace Seeds
     
         public virtual TO TO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TO> LATRUONGTO { get; set; }
+        public virtual ICollection<BACSILIENQUAN> BACSILIENQUANs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONGVIEC> CONGVIECs { get; set; }
+        public virtual ICollection<TO> LATRUONGTO { get; set; }
     }
 }
