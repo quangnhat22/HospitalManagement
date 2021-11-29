@@ -85,7 +85,7 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
                                         </TextBlock>
-                                        <TextBlock Text="{Binding BenhNhan.PHONG.SOPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        <TextBlock Text="{Binding BenhNhan.IDPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
                                     <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">

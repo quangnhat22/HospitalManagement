@@ -181,17 +181,11 @@
                                                    Width="120"
                                                   ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    <materialDesign:DataGridTextColumn
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.IDPHONG}"
                                                    Header="Phòng"
                                                    Width="90"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0}.{1}">
-                                <Binding Path="Value.PHONG.TANG.SOTANG" />
-                                <Binding Path="Value.PHONG.SOPHONG" />
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
                     </materialDesign:DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>

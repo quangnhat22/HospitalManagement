@@ -39,7 +39,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox Text="{Binding BenhNhan.HO}" x:Name="txbHo" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox Text="{Binding BenhNhan.HO, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbHo" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                         <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
                             <Grid.RowDefinitions>
@@ -47,7 +47,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox Text="{Binding BenhNhan.TEN}" x:Name="txbTen" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox Text="{Binding BenhNhan.TEN, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbTen" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                         <Grid Width="280" HorizontalAlignment="Left" Margin="60,13,0,0">
                             <Grid.RowDefinitions>
@@ -65,7 +65,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox Text="{Binding BenhNhan.SDT}" x:Name="txbSDT" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1"/>
+                            <TextBox Text="{Binding BenhNhan.SDT, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbSDT" HorizontalAlignment="Left" Width="300" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1"/>
                         </Grid>
                         <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
                             <Grid.RowDefinitions>
@@ -73,7 +73,7 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                            <TextBox Text="{Binding BenhNhan.EMAIL}" x:Name="txbEmail" HorizontalAlignment="Left" Width="400" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            <TextBox Text="{Binding BenhNhan.EMAIL, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbEmail" HorizontalAlignment="Left" Width="400" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                         </Grid>
                     </StackPanel>
                     <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
@@ -82,7 +82,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                        <TextBox Text="{Binding BenhNhan.DIACHI}" x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                        <TextBox Text="{Binding BenhNhan.DIACHI, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                     </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="400">
@@ -104,7 +104,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker Text="{Binding BenhNhan.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <DatePicker Text="{Binding BenhNhan.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN', Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
                 <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -112,7 +112,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox Text="{Binding BenhNhan.GIOITINH, Converter={StaticResource BooleanToSexConverter}}" x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                              
+                    <ComboBox Text="{Binding BenhNhan.GIOITINH, Converter={StaticResource BooleanToSexConverter}, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                              
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Nam" />
@@ -126,7 +126,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding BenhNhan.QUOCTICH}" x:Name="txbQuocTich" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding BenhNhan.QUOCTICH, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbQuocTich" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
                     <Grid.RowDefinitions>
@@ -144,7 +144,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ngày nhập viện" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker Text="{Binding BenhNhan.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" x:Name="txbNGNhapVien" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                    <DatePicker Text="{Binding BenhNhan.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN', Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbNGNhapVien" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                 </Grid>
                 <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -152,7 +152,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Bệnh nền" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding BenhNhan.BENHNEN}" x:Name="txbBenhNen" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding BenhNhan.BENHNEN, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbBenhNen" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -160,7 +160,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Tình trạng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox Text="{Binding BenhNhan.TINHTRANG}" x:Name="cbxTinhTrang" Margin="0,0,0,5" Grid.Row="1" Width="250" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                               
+                    <ComboBox Text="{Binding BenhNhan.TINHTRANG, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="cbxTinhTrang" Margin="0,0,0,5" Grid.Row="1" Width="250" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                               
                         IsEditable="True">
                         <ComboBoxItem
                             Content="Không triệu chứng" />
@@ -176,7 +176,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="ID phòng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding BenhNhan.IDPHONG}" x:Name="txbIDPhong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding BenhNhan.IDPHONG, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbIDPhong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150"  Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
                 <Grid Width="150" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
@@ -184,7 +184,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Số giường" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox Text="{Binding BenhNhan.GIUONGBENH}" x:Name="txbSoGiuong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <TextBox Text="{Binding BenhNhan.GIUONGBENH, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbSoGiuong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="190" Orientation="Horizontal">
@@ -195,7 +195,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <StackPanel Grid.Row="1">
-                        <TextBox Text="{Binding BenhNhan.GHICHU}" x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
+                        <TextBox Text="{Binding BenhNhan.GHICHU, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             VerticalAlignment="Top"
                             Height="100"

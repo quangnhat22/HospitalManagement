@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -27,6 +29,34 @@ namespace HospitalManagement.Command
             ChangePatientInformationForm patientForm = parameter as ChangePatientInformationForm;
             if (Check(patientForm))
             {
+                BindingExpression beHo = patientForm.txbHo.GetBindingExpression(TextBox.TextProperty);
+                beHo.UpdateSource();
+                BindingExpression beTen = patientForm.txbTen.GetBindingExpression(TextBox.TextProperty);
+                beTen.UpdateSource();
+                BindingExpression beSDT = patientForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
+                beSDT.UpdateSource();
+                BindingExpression beEmail = patientForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
+                beEmail.UpdateSource();
+                BindingExpression beDiaChi = patientForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
+                beDiaChi.UpdateSource();
+                BindingExpression beNGSinh = patientForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
+                beNGSinh.UpdateSource();
+                BindingExpression beGioiTinh = patientForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
+                beGioiTinh.UpdateSource();
+                BindingExpression beQuocTich = patientForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
+                beQuocTich.UpdateSource();
+                BindingExpression beNGNhapVien = patientForm.txbNGNhapVien.GetBindingExpression(DatePicker.TextProperty);
+                beNGNhapVien.UpdateSource();
+                BindingExpression beBenhNen = patientForm.txbBenhNen.GetBindingExpression(TextBox.TextProperty);
+                beBenhNen.UpdateSource();
+                BindingExpression beTinhTrang = patientForm.cbxTinhTrang.GetBindingExpression(ComboBox.TextProperty);
+                beTinhTrang.UpdateSource();
+                BindingExpression beIDPhong = patientForm.txbIDPhong.GetBindingExpression(TextBox.TextProperty);
+                beIDPhong.UpdateSource();
+                BindingExpression beSoGiuong = patientForm.txbSoGiuong.GetBindingExpression(TextBox.TextProperty);
+                beSoGiuong.UpdateSource();
+                BindingExpression beGhiChu = patientForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
+                beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
                 notifyWindow.ShowDialog();
