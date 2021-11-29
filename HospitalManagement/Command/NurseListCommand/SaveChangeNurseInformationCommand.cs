@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -28,6 +30,30 @@ namespace HospitalManagement.Command
             ChangeNurseInformationForm nurseForm = parameter as ChangeNurseInformationForm;
             if (Check(nurseForm))
             {
+                BindingExpression beHo = nurseForm.txbHo.GetBindingExpression(TextBox.TextProperty);
+                beHo.UpdateSource();
+                BindingExpression beTen = nurseForm.txbTen.GetBindingExpression(TextBox.TextProperty);
+                beTen.UpdateSource();
+                BindingExpression beSDT = nurseForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
+                beSDT.UpdateSource();
+                BindingExpression beEmail = nurseForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
+                beEmail.UpdateSource();
+                BindingExpression beDiaChi = nurseForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
+                beDiaChi.UpdateSource();
+                BindingExpression beNGSinh = nurseForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
+                beNGSinh.UpdateSource();
+                BindingExpression beGioiTinh = nurseForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
+                beGioiTinh.UpdateSource();
+                BindingExpression beQuocTich = nurseForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
+                beQuocTich.UpdateSource();
+                BindingExpression beChuyenKhoa = nurseForm.txbChuyenKhoa.GetBindingExpression(TextBox.TextProperty);
+                beChuyenKhoa.UpdateSource();
+                BindingExpression beVaiTro = nurseForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
+                beVaiTro.UpdateSource();
+                BindingExpression beIDTO = nurseForm.txbIDTO.GetBindingExpression(TextBox.TextProperty);
+                beIDTO.UpdateSource();
+                BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
+                beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
                 notifyWindow.ShowDialog();

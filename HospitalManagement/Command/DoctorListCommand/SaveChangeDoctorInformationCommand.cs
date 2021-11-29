@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -28,10 +30,34 @@ namespace HospitalManagement.Command
         {
             ChangeDoctorInformationForm doctorForm = parameter as ChangeDoctorInformationForm;
             if (Check(doctorForm))
-            {          
+            {
+                BindingExpression beHo = doctorForm.txbHo.GetBindingExpression(TextBox.TextProperty);
+                beHo.UpdateSource();
+                BindingExpression beTen = doctorForm.txbTen.GetBindingExpression(TextBox.TextProperty);
+                beTen.UpdateSource();
+                BindingExpression beSDT = doctorForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
+                beSDT.UpdateSource();
+                BindingExpression beEmail = doctorForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
+                beEmail.UpdateSource();
+                BindingExpression beDiaChi = doctorForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
+                beDiaChi.UpdateSource();
+                BindingExpression beNGSinh = doctorForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
+                beNGSinh.UpdateSource();
+                BindingExpression beGioiTinh = doctorForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
+                beGioiTinh.UpdateSource();
+                BindingExpression beQuocTich = doctorForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
+                beQuocTich.UpdateSource();
+                BindingExpression beChuyenKhoa = doctorForm.txbChuyenKhoa.GetBindingExpression(TextBox.TextProperty);
+                beChuyenKhoa.UpdateSource();
+                BindingExpression beVaiTro = doctorForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
+                beVaiTro.UpdateSource();
+                BindingExpression beIDTO = doctorForm.txbIDTO.GetBindingExpression(TextBox.TextProperty);
+                beIDTO.UpdateSource();
+                BindingExpression beGhiChu = doctorForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
+                beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
-                notifyWindow.ShowDialog();
+                notifyWindow.ShowDialog();                
             }
         }
         public bool Check(ChangeDoctorInformationForm cdf)
