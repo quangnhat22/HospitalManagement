@@ -148,8 +148,8 @@
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Thành viên tham gia" Margin="10"/>
                                     <ListBox 
-                                    ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                    ItemsSource="{Binding InvolveMembers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                     ScrollViewer.VerticalScrollBarVisibility="Visible"
                                     Background="White" 
                                     BorderBrush="White"
@@ -157,7 +157,7 @@
                                     MaxHeight="150"
                                     Height="90"
                                     dd:DragDrop.IsDropTarget="True"
-                                    dd:DragDrop.DropHandler="{Binding}" d:ItemsSource="{d:SampleData ItemCount=10}">
+                                    dd:DragDrop.DropHandler="{Binding}">
                                         <ListBox.ItemContainerStyle>
                                             <Style TargetType="ListBoxItem">
                                                 <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -180,10 +180,17 @@
                                                     <!--DeleteClick="ButtonsDemoChip_OnDeleteClick"-->
                                                     <materialDesign:Chip.Content>
                                                         <StackPanel>
-                                                            <TextBlock Text="James Willock"/>
+                                                            <TextBlock>
+                                                                <TextBlock.Text>
+                                                                    <MultiBinding StringFormat="{}{0} {1}">
+                                                                        <Binding Path="Ho" />
+                                                                        <Binding Path="Ten" />
+                                                                    </MultiBinding>
+                                                                </TextBlock.Text>
+                                                            </TextBlock>
                                                             <StackPanel Orientation="Horizontal">
                                                                 <TextBlock Text="CMND:" FontSize="8" Margin="2"/>
-                                                                <TextBlock Text="123456789123" FontSize="8" Margin="2"/>
+                                                                <TextBlock Text="{Binding Cmnd_cccd}" FontSize="8" Margin="2"/>
                                                             </StackPanel>
                                                         </StackPanel>
                                                     </materialDesign:Chip.Content>

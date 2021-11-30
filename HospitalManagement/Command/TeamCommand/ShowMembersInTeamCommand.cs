@@ -9,6 +9,7 @@ using HospitalManagement.Utils;
 using HospitalManagement.ViewModel;
 using HospitalManagement.Model;
 using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
+using System.Collections.ObjectModel;
 
 namespace HospitalManagement.Command.TeamCommand
 {
@@ -61,7 +62,7 @@ namespace HospitalManagement.Command.TeamCommand
                     staffAccounts.AddRange(BacSiList);
                     staffAccounts.AddRange(YTaList);
                 }    
-                addToDoFormViewModel.Members = staffAccounts;
+                addToDoFormViewModel.Members = new ObservableCollection<StaffInformation>(staffAccounts);
             }
         }
     }
