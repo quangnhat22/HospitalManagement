@@ -53,18 +53,17 @@
                 </TextBlock>
             </Grid>
 
-            <Grid Grid.Row="1" Background="White">
+            <Grid Grid.Row="1" 
+                  Background="White"
+                  Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="0.1*"/>
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="3*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
+                    <Grid>
                         <StackPanel Orientation="Vertical">
                             <TextBox
                                 x:Name="txbSubject"
@@ -91,10 +90,10 @@
                                 materialDesign:HintAssist.Hint="Ngày bắt đầu"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                 <materialDesign:TimePicker
-                                x:Name="tpStart"
-                                Width="150" 
-                                materialDesign:HintAssist.Hint="Thời gian"
-                                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+                                    x:Name="tpStart"
+                                    Width="150" 
+                                    materialDesign:HintAssist.Hint="Thời gian"
+                                    Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <DatePicker
@@ -112,46 +111,109 @@
                                     Style="{StaticResource MaterialDesignOutlinedTimePicker}"
                                 />
                             </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <StackPanel Orientation="Vertical">
-                            <TextBox
-                                x:Name="txbLocation"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Left"
-                                TextWrapping="Wrap"
-                                Height="55"
-                                Margin="10"
-                                Width="320"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="{Binding LocationText}"
-                                AcceptsReturn="true"
-                                VerticalScrollBarVisibility="Hidden"
-                                SpellCheck.IsEnabled="true"
-                                materialDesign:HintAssist.Hint="Địa điểm (Ex: phòng 1 tòa A)" 
-                                materialDesign:TextFieldAssist.HasClearButton="True"
-                        />
-                            <TextBox
-                                x:Name="txbBody"
-                                HorizontalAlignment="Left"
-                                TextWrapping="Wrap"
-                                MinWidth="280"
-                                Text="{Binding InfoText}"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                AcceptsReturn="True"
-                                VerticalScrollBarVisibility="Auto"
-                                SpellCheck.IsEnabled="True"
-                                materialDesign:HintAssist.Hint="Nội dung" 
-                                Margin="10" 
-                                Width="320"
-                                Height="50"
-                                VerticalAlignment="Top"
-                        />
+                            <StackPanel Orientation="Vertical">
+                                <TextBox
+                                    x:Name="txbLocation"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                    Height="55"
+                                    Margin="10"
+                                    Width="320"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    Text="{Binding LocationText}"
+                                    AcceptsReturn="true"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    SpellCheck.IsEnabled="true"
+                                    materialDesign:HintAssist.Hint="Địa điểm (Ex: phòng 1 tòa A)" 
+                                    materialDesign:TextFieldAssist.HasClearButton="True"/>
+                                <TextBox
+                                    x:Name="txbBody"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                    MinWidth="280"
+                                    Text="{Binding InfoText}"
+                                    TextAlignment="Left"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    AcceptsReturn="True"
+                                    VerticalScrollBarVisibility="Auto"
+                                    materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
+                                    SpellCheck.IsEnabled="True"
+                                    materialDesign:HintAssist.Hint="Nội dung công việc" 
+                                    Margin="10" 
+                                    Width="320"
+                                    Height="150"
+                                    VerticalAlignment="Top"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <Label Content="Thành viên tham gia" Margin="10"/>
+                                <ListBox 
+                                    ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    Background="White" 
+                                    BorderBrush="White"
+                                    Margin="0 0 0 20"
+                                    MaxHeight="150"
+                                    Height="90"
+                                    dd:DragDrop.IsDropTarget="True"
+                                    dd:DragDrop.DropHandler="{Binding}" d:ItemsSource="{d:SampleData ItemCount=10}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="ListBoxItem">
+                                                        <ContentPresenter/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Chip
+                                                IsDeletable="True"
+                                                ToolTip="Just a tool tip"
+                                                Margin="5 10 10 10"
+                                                DeleteToolTip="Your friendly neighbor delete button">
+                                                <!--DeleteClick="ButtonsDemoChip_OnDeleteClick"-->
+                                                <materialDesign:Chip.Content>
+                                                    <StackPanel>
+                                                        <TextBlock Text="James Willock"/>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="CMND:" FontSize="8" Margin="2"/>
+                                                            <TextBlock Text="123456789123" FontSize="8" Margin="2"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </materialDesign:Chip.Content>
+                                                <materialDesign:Chip.Icon>
+                                                    <Image
+                                                        Source="Resources/ProfilePic.jpg" />
+                                                </materialDesign:Chip.Icon>
+                                            </materialDesign:Chip>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                </ListBox>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </Grid>
-                <Grid Grid.Column="1">
+                 <Grid Grid.Column="1">
+                    <Rectangle 
+                        VerticalAlignment="Stretch"
+                        Height="580"
+                        Fill="Black"
+                        Width="1"/>
+                </Grid>
+                <Grid Grid.Column="2">
                     <DataGrid 
                         x:Name="dtgMembers"
                         ItemsSource="{Binding Members, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -170,7 +232,8 @@
                         SelectionUnit="FullRow"
                         dd:DragDrop.IsDragSource="True"
                         dd:DragDrop.IsDropTarget="True"
-                        dd:DragDrop.UseDefaultDragAdorner="True">
+                        dd:DragDrop.UseDefaultDragAdorner="True"
+                        Background="White">
 
                         <DataGrid.Resources>
                             <ResourceDictionary>
@@ -345,5 +408,5 @@
             </Grid>
         </Grid>
     </Border>
-   
+
 </Window>
