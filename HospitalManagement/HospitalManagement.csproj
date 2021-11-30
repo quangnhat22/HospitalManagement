@@ -160,6 +160,7 @@
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\RemoveInvolveMembersCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

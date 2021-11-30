@@ -176,7 +176,9 @@
                                                 IsDeletable="True"
                                                 ToolTip="Just a tool tip"
                                                 Margin="5 10 10 10"
-                                                DeleteToolTip="Your friendly neighbor delete button">
+                                                DeleteToolTip="Your friendly neighbor delete button"
+                                                DeleteCommand="{Binding Path=DataContext.RemoveInvolveMembersCommand, RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}"
+                                                DeleteCommandParameter="{Binding RelativeSource={x:Static RelativeSource.Self}}">
                                                     <!--DeleteClick="ButtonsDemoChip_OnDeleteClick"-->
                                                     <materialDesign:Chip.Content>
                                                         <StackPanel>

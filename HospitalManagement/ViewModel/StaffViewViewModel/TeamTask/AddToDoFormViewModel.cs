@@ -32,6 +32,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public ObservableCollection<StaffInformation> InvolveMembers { get => involveMembers; set => involveMembers = value; }
         public ICommand ShowMembersInformationInTeamCommand { get; set; }
         public ICommand ShowMembersInTeamCommand { get; set; }
+        public ICommand RemoveInvolveMembersCommand { get; set; }
         public string SubjectText { get => subjectText; set => subjectText = value; }
         public string InfoText { get => infoText; set => infoText = value; }
         public string LocationText { get => locationText; set => locationText = value; }
@@ -45,6 +46,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         {
             InvolveMembers = new ObservableCollection<StaffInformation>();
             AddTaskCommand = new AddTaskCommand(this);
+            RemoveInvolveMembersCommand = new RemoveInvolveMembersCommand(this);
             StartDate = EndDate = DateTime.Now;
             ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
             ShowMembersInTeamCommand.Execute(null);
