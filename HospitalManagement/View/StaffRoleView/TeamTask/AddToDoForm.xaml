@@ -88,6 +88,7 @@
                                 materialDesign:HintAssist.Hint="Ngày bắt đầu"
                                 Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     <materialDesign:TimePicker
+                                    SelectedTime="{Binding StartHour}"
                                     x:Name="tpStart"
                                     Width="150" 
                                     materialDesign:HintAssist.Hint="Thời gian"
@@ -99,10 +100,11 @@
                                     HorizontalAlignment="Left"
                                     Margin="10"
                                     Width="160"
-                                    SelectedDate="{Binding StartDate}"
+                                    SelectedDate="{Binding EndDate}"
                                     materialDesign:HintAssist.Hint="Ngày kết thúc"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     <materialDesign:TimePicker
+                                    SelectedTime="{Binding EndHour}"
                                     x:Name="tpEnd"
                                     Width="150" 
                                     materialDesign:HintAssist.Hint="Thời gian"
@@ -388,7 +390,6 @@
                     VerticalAlignment="Center"
                     >
                     <Button
-                        Command="{Binding AddTaskCommand}"
                         x:Name="btnCancel"
                         Width="120"
                         Height="45"

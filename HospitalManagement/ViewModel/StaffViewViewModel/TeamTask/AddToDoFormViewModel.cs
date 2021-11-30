@@ -19,7 +19,9 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         private string infoText;
         private string locationText;
         private DateTime startDate;
+        private DateTime startHour;
         private DateTime endDate;
+        private DateTime endHour;
         private ObservableCollection<StaffInformation> members;
         private ObservableCollection<StaffInformation> involveMembers;
 
@@ -33,13 +35,15 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public ICommand ShowMembersInformationInTeamCommand { get; set; }
         public ICommand ShowMembersInTeamCommand { get; set; }
         public ICommand RemoveInvolveMembersCommand { get; set; }
+        public ICommand AddTaskCommand { get; set; }
         public string SubjectText { get => subjectText; set => subjectText = value; }
         public string InfoText { get => infoText; set => infoText = value; }
         public string LocationText { get => locationText; set => locationText = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
 
-        public ICommand AddTaskCommand { get; set; }
+        public DateTime StartHour { get => startHour; set => startHour = value; }
+        public DateTime EndHour { get => endHour; set => endHour = value; }
         #endregion
 
         public AddToDoFormViewModel()
