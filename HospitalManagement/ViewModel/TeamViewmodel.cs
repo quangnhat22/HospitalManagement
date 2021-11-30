@@ -15,25 +15,24 @@ using HospitalManagement.Utils;
 
 namespace HospitalManagement.ViewModel
 {
-    class TeamViewmodel : INotifyPropertyChanged
+    class TeamViewmodel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private ObservableCollection<CountedTeam> countedTeams;
         private static List<StaffInformation> members;
         private List<TOA> buildings;
+        private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
 
         private string currentBuilding;
+        private int? currentFloor = null;
         private string currentTeam;
+        private string deleteButtonVisibility = "Collapsed";
 
         public ICommand ChangeBuildingTeamCommand { get; set; }
         public ICommand ShowMembersInTeamCommand { get; set; }
         public ICommand ShowMembersInformationInTeamCommand { get; set; }
+        public ICommand ToggleDeleteButtonCommand { get; set; }
+        public ICommand AddTeamCommand { get; set; }
+        public ICommand DeleteTeamCommand { get; set; }
 
         public ObservableCollection<CountedTeam> CountedTeams
         {
@@ -61,10 +60,22 @@ namespace HospitalManagement.ViewModel
             }
         }
 
+        public List<TANG> Floors
+        {
+            get { return floors; }
+            set { floors = value; OnPropertyChanged("Floors"); }
+        }
+
         public string CurrentBuilding
         {
             get { return currentBuilding; }
             set { currentBuilding = value; OnPropertyChanged("CurrentBuilding"); }
+        }
+
+        public int? CurrentFloor
+        {
+            get { return currentFloor; }
+            set { currentFloor = value; OnPropertyChanged("CurrentFloor"); }
         }
 
         public string CurrentTeam
@@ -76,15 +87,24 @@ namespace HospitalManagement.ViewModel
             }
         }
 
+        public string DeleteButtonVisibility
+        {
+            get { return deleteButtonVisibility; }
+            set { deleteButtonVisibility = value; OnPropertyChanged("DeleteButtonVisibility"); }
+        }
+
         public TeamViewmodel()
         {
-            Buildings = DataProvider.Ins.DB.TOAs.ToList();
+            buildings = DataProvider.Ins.DB.TOAs.ToList();
             currentBuilding = buildings[0].DISPLAYNAME;
             currentTeam = "";
             CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList());
             ChangeBuildingTeamCommand = new ChangeBuildingTeamCommand(this);
             ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
             ShowMembersInformationInTeamCommand = new ShowMembersInformationInTeamCommand(this);
+            ToggleDeleteButtonCommand = new ToggleDeleteButtonCommand(this);
+            AddTeamCommand = new AddTeamCommand(this);
+            DeleteTeamCommand = new DeleteTeamCommand(this);
         }
     }
 
@@ -111,7 +131,9 @@ namespace HospitalManagement.ViewModel
         public CountedTeam(TO p)
         {
             Value = p;
-            Count = p.BACSIs.Count + p.YTAs.Count;
+            Count = 0;
+            if (p.BACSIs != null) Count += p.BACSIs.Count;
+            if (p.YTAs != null) Count += p.YTAs.Count;
         }
 
         public static ObservableCollection<CountedTeam> GetCountedTeams(List<TO> ls)

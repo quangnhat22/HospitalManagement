@@ -155,9 +155,12 @@
     <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
     <Compile Include="Command\ShowPatientsInformationInRoomCommand.cs" />
     <Compile Include="Command\ShowPatientsInRoomCommand.cs" />
+    <Compile Include="Command\TeamCommand\AddTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ChangeBuildingTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\DeleteTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ToggleDeleteButtonCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
     <Compile Include="Model\ADMIN.cs">
