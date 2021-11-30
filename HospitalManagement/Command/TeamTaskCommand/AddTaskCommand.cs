@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
+using HospitalManagement.View;
 using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,21 @@ namespace HospitalManagement.Command.TeamTaskCommand
 
         public void Execute(object parameter)
         {
+            NotifyWindow notifyWindow;
             CONGVIEC congviec = new CONGVIEC();
             congviec.TIEUDE = addToDoFormViewModel.SubjectText;
             congviec.NOIDUNG = addToDoFormViewModel.InfoText;
             congviec.DIADIEM = addToDoFormViewModel.LocationText;
-            congviec.BATDAU = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.StartDate, addToDoFormViewModel.StartHour);
-            congviec.KETTHUC = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.EndDate, addToDoFormViewModel.EndHour);
+            DateTime start = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.StartDate, addToDoFormViewModel.StartHour);
+            congviec.BATDAU = start;
+            DateTime end = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.EndDate, addToDoFormViewModel.EndHour);
+            congviec.KETTHUC = end;
+            if(DateTime.Compare(start, end) > 0)
+            {
+                notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời điểm kết thúc!");
+                notifyWindow.ShowDialog();
+                return;
+            }
             //congviec.TINHCHAT = null;
             foreach(StaffInformation staffInformation in addToDoFormViewModel.InvolveMembers)
             {
@@ -58,6 +68,8 @@ namespace HospitalManagement.Command.TeamTaskCommand
             }
             DataProvider.Ins.DB.CONGVIECs.Add(congviec);
             DataProvider.Ins.DB.SaveChanges();
+            notifyWindow = new NotifyWindow("Success", "Thêm thành công");
+            notifyWindow.ShowDialog();
         }
 
         private DateTime GenerateDatetimeFromDateAndHour(DateTime date, DateTime hour)
