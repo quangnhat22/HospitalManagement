@@ -3,10 +3,107 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HospitalManagement.View.StaffRoleView.TeamMember"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:local="clr-namespace:HospitalManagement.View" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
+             x:Name="staffListUC"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d"
+             Width="1383">
+    <UserControl.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </UserControl.Resources>
     <Grid>
-            
+        <StackPanel Margin="50 30">
+            <TextBlock Text="Danh sách thành viên"
+                   FontSize="20"
+                   Margin="0 0 0 5"
+                   FontWeight="Bold"
+                   Foreground="#08AEEA"/>
+        </StackPanel>
+        <Grid>
+            <DataGrid x:Name="dtgStaffList"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  Height="550"
+                  HeadersVisibility="All"
+                  ItemsSource="{Binding Members, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <Setter Property="Height" Value="46"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.Cmnd_cccd}"
+                                                    IsReadOnly="True"
+                                                    Header="CMND"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.Ho}"
+                                                    IsReadOnly="True"
+                                                    Header="Họ"
+                                                    Width="100"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.Ten}"
+                                                   IsReadOnly="True"
+                                                   Header="Tên"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.GioiTinh, Converter={StaticResource BooleanToSexConverter}}"
+                                                   IsReadOnly="True"
+                                                   Header="Giới tính"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.NgSinh, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                                                   Header="Ngày sinh"
+                                                   IsReadOnly="True"
+                                                   Width="120"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.ChuyenKhoa}"
+                                                   Header="Chuyên khoa"
+                                                   IsReadOnly="True"
+                                                   Width="130"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.VaiTro}"
+                                                   Header="Vai trò"
+                                                   IsReadOnly="True"
+                                                   Width="90"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.IdTo}"
+                                                   Header="Tổ"
+                                                   IsReadOnly="True"
+                                                   Width="50"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    <materialDesign:DataGridTextColumn Binding="{Binding Value.PhanLoai}"
+                                                   Header="Phân loại"
+                                                   IsReadOnly="True"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

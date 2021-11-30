@@ -265,6 +265,7 @@
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\TeamTask\StaffRoleTeamTaskViewModel.cs" />
+    <Compile Include="ViewModel\TeamMemberViewModel.cs" />
     <Compile Include="ViewModel\TeamViewmodel.cs" />
     <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
       <DependentUpon>AddNewAccountForm.xaml</DependentUpon>
