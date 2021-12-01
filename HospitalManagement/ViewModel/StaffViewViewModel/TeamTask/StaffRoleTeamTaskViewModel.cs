@@ -20,7 +20,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public StaffRoleTeamTaskViewModel()
         {
-            OpenAddToDoFormCommand = new OpenAddToDoFormCommand(); 
+            OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this); 
             LoadTaskList();
         }
 

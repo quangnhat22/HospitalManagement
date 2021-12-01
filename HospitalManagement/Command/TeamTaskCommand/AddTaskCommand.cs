@@ -71,10 +71,9 @@ namespace HospitalManagement.Command.TeamTaskCommand
             DataProvider.Ins.DB.SaveChanges();
             notifyWindow = new NotifyWindow("Success", "Thêm thành công");
             notifyWindow.ShowDialog();
-            StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel = Application.Current.MainWindow.DataContext as StaffRoleTeamTaskViewModel;
-            if(staffRoleTeamTaskViewModel != null)
+            if(addToDoFormViewModel.Owner != null)
             {
-                staffRoleTeamTaskViewModel.LoadTaskList();
+                addToDoFormViewModel.Owner.ProgressTasks.Add(new ProgressTask(congviec));
             }
         }
 
