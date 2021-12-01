@@ -47,16 +47,16 @@ namespace HospitalManagement.ViewModel
             Nurses = To.YTAs.ToList();
             Doctors = To.BACSIs.ToList();
             StaffInformation staff;
-            foreach(YTA yTA in Nurses)
-            {
-                staff = new StaffInformation(yTA);
-                StaffInformations.Add(staff);
-            }
             foreach (BACSI bACSI in Doctors)
             {
                 staff = new StaffInformation(bACSI);
                 StaffInformations.Add(staff);
             }
+            foreach (YTA yTA in Nurses)
+            {
+                staff = new StaffInformation(yTA);
+                StaffInformations.Add(staff);
+            }          
             Members= SelectableItem<StaffInformation>.GetSelectableItems(StaffInformations);
         }
     }
