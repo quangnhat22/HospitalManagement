@@ -24,6 +24,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         private DateTime endHour;
         private ObservableCollection<StaffInformation> members;
         private ObservableCollection<StaffInformation> involveMembers;
+        private StaffRoleTeamTaskViewModel owner;
 
         #region "prop"
         public ObservableCollection<StaffInformation> Members
@@ -32,6 +33,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             set { members = value; OnPropertyChanged("Members"); }
         }
         public ObservableCollection<StaffInformation> InvolveMembers { get => involveMembers; set => involveMembers = value; }
+        internal StaffRoleTeamTaskViewModel Owner { get => owner; set => owner = value; }
         public ICommand ShowMembersInformationInTeamCommand { get; set; }
         public ICommand ShowMembersInTeamCommand { get; set; }
         public ICommand RemoveInvolveMembersCommand { get; set; }

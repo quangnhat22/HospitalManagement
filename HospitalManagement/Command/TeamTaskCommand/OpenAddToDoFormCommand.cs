@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.View.StaffRoleView.TeamTask;
+using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,13 @@ namespace HospitalManagement.Command.TeamTaskCommand
 {
     internal class OpenAddToDoFormCommand : ICommand
     {
+        private StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel;
+
+        public OpenAddToDoFormCommand(StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel)
+        {
+            this.staffRoleTeamTaskViewModel = staffRoleTeamTaskViewModel;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -26,6 +34,8 @@ namespace HospitalManagement.Command.TeamTaskCommand
         {
             Window window = parameter as Window;
             AddToDoForm addToDoForm = new AddToDoForm();
+            AddToDoFormViewModel addToDoFormViewModel = addToDoForm.DataContext as AddToDoFormViewModel;
+            addToDoFormViewModel.Owner = staffRoleTeamTaskViewModel;
             Application.Current.MainWindow = addToDoForm;
             addToDoForm.Show();
         }

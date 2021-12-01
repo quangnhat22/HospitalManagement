@@ -16,8 +16,7 @@
              TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             d:Width="1387"
-             >
+             d:DesignHeight="760" d:DesignWidth="1387">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -120,7 +119,7 @@
                     </StackPanel>
                     <Border BorderThickness="0 2 0 0" BorderBrush="DarkBlue">
                         <ListBox 
-                            ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            ItemsSource="{Binding ProgressTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                             ScrollViewer.VerticalScrollBarVisibility="Hidden"
                             Background="White" 
@@ -128,7 +127,6 @@
                             Margin="0"
                             dd:DragDrop.IsDropTarget="True"
                             dd:DragDrop.DropHandler="{Binding}" 
-                            d:ItemsSource="{d:SampleData ItemCount=5}" 
                             Height="652">
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
@@ -191,14 +189,20 @@
                                                         <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                                                             Height="50"
                                                             Width="50"
-                                                            Value="1" 
-                                                            Maximum="1" 
+                                                            Value="{Binding NumberCompletedPeople, Mode=OneWay}" 
+                                                            Maximum="{Binding NumberInvolvePeople, Mode=OneWay}" 
                                                             Background="{x:Null}"
                                                             Foreground="#5F88FE"/>
                                                         <TextBlock 
                                                             HorizontalAlignment="Center" 
-                                                            VerticalAlignment="Center"
-                                                            Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                            VerticalAlignment="Center">
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0}/{1}">
+                                                                    <Binding Path="NumberCompletedPeople" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                                                                    <Binding Path="NumberInvolvePeople" />
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
                                                     </Grid>
                                                     <TextBlock
                                                         Margin="10 5 10 5 "

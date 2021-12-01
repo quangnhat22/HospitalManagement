@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command.TeamTaskCommand
@@ -70,6 +71,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
             DataProvider.Ins.DB.SaveChanges();
             notifyWindow = new NotifyWindow("Success", "Thêm thành công");
             notifyWindow.ShowDialog();
+            if(addToDoFormViewModel.Owner != null)
+            {
+                addToDoFormViewModel.Owner.ProgressTasks.Add(new ProgressTask(congviec));
+            }
         }
 
         private DateTime GenerateDatetimeFromDateAndHour(DateTime date, DateTime hour)
