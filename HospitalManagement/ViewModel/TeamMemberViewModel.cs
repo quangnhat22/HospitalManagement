@@ -10,6 +10,7 @@ using System.ComponentModel;
 using HospitalManagement.Command;
 using System.Collections.ObjectModel;
 using HospitalManagement.Utils;
+using HospitalManagement.Command.TeamCommand;
 
 namespace HospitalManagement.ViewModel
 {
@@ -18,7 +19,6 @@ namespace HospitalManagement.ViewModel
         private static List<YTA> nurses;
         private static List<BACSI> doctors;
         private List<StaffInformation> staffInformations=new List<StaffInformation>();
-        private static ObservableCollection<SelectableItem<StaffInformation>> members;
         private TO to;
         public List<YTA> Nurses
         {
@@ -35,12 +35,8 @@ namespace HospitalManagement.ViewModel
             get { return staffInformations; }
             set { staffInformations = value; OnPropertyChanged("StaffInformations"); }
         }
-        public ObservableCollection<SelectableItem<StaffInformation>> Members
-        {
-            get { return members; }
-            set { members = value; OnPropertyChanged("Members"); }
-        }
         public TO To { get => to; set => to = value; }
+        public ICommand ShowMemberInformation { get; set; }
         public TeamMemberViewModel(int idTo)
         {
             To = DataProvider.Ins.DB.TOes.Find(idTo);
@@ -56,8 +52,8 @@ namespace HospitalManagement.ViewModel
             {
                 staff = new StaffInformation(yTA);
                 StaffInformations.Add(staff);
-            }          
-            Members= SelectableItem<StaffInformation>.GetSelectableItems(StaffInformations);
+            }
+            ShowMemberInformation = new ShowMembersInformationInTeamCommand(this);
         }
     }
 }

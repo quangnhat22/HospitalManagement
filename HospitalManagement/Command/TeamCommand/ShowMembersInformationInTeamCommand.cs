@@ -18,6 +18,8 @@ namespace HospitalManagement.Command.TeamCommand
     {
         private TeamViewmodel teamViewmodel;
         private AddToDoFormViewModel addToDoFormViewModel;
+        private TeamMemberViewModel teamMemberViewModel;
+        private bool isTeamMemberCalled=false;
 
         public ShowMembersInformationInTeamCommand(TeamViewmodel teamViewmodel)
         {
@@ -27,6 +29,11 @@ namespace HospitalManagement.Command.TeamCommand
         public ShowMembersInformationInTeamCommand(AddToDoFormViewModel addToDoFormViewModel)
         {
             this.addToDoFormViewModel = addToDoFormViewModel;
+        }
+        public ShowMembersInformationInTeamCommand(TeamMemberViewModel teamMemberViewModel)
+        {
+            this.teamMemberViewModel = teamMemberViewModel;
+            isTeamMemberCalled = true;
         }
 
         public event EventHandler CanExecuteChanged
@@ -43,7 +50,11 @@ namespace HospitalManagement.Command.TeamCommand
         public void Execute(object parameter)
         {
             int index = (int)parameter;
-            StaffInformation member = teamViewmodel.Members[index];
+            StaffInformation member;
+            if (isTeamMemberCalled)
+                member = teamMemberViewModel.StaffInformations[index];
+            else
+                member= teamViewmodel.Members[index];
             if (member.PhanLoai== "Tổ Trưởng"|| member.PhanLoai == "Bác Sĩ")
             {
                 BACSI bs = new BACSI();
