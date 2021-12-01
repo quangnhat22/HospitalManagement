@@ -17,14 +17,347 @@
     <UserControl.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </UserControl.Resources>
-    <Grid>
-        <StackPanel Margin="50 30">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="50 30">
             <TextBlock Text="Danh sách thành viên"
                    FontSize="20"
                    Margin="0 0 0 5"
                    FontWeight="Bold"
                    Foreground="#08AEEA"/>
+            <ListBox ItemsSource="{Binding Members, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                 Background="White" 
+                 BorderBrush="White"
+                 Margin="0 0 0 20">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="20"  
+                            Background="White" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"
+                            Margin="30 30 0 15" Cursor="Hand">
+                            <!--<i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInRoom}"
+                                                         CommandParameter="{Binding Value.ID}"  />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>-->
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" Direction="-90"
+                              RenderingBias="Performance" ShadowDepth="2" Color="#EEEEEE"/>
+                            </Border.Effect>
+                            <StackPanel Background="Transparent" Width="350" Height="100" Orientation="Horizontal">
+                                <Grid Width="70" Margin="15 0 0 0">
+                                    <Border CornerRadius="20" Height="70" Width="70">
+                                        <!--<Border.Background>
+                                            
+                                            <ImageBrush>
+                                                <Style TargetType="Image" x:Key="MemberStyle">
+                                                    <Style.Triggers>
+                                                        <DataTrigger>
+                                                            <DataTrigger.Conditions>
+                                                                <Condition Binding="{Binding Value.PhanLoai}" Value="Tổ Trưởng" />
+                                                            </DataTrigger.Conditions>
+                                                            <Setter Property="Stretch" Value="UniformToFill" />
+                                                            <Setter Property="Source" Value="/HospitalManagement;component/Images/man.png"
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ImageBrush>
+                                        </Border.Background>-->
+                                        <Border.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Value.PhanLoai}" Value="Tổ Trưởng">
+                                                        <Setter Property="Background">
+                                                            <Setter.Value>
+                                                                <ImageBrush ImageSource="/HospitalManagement;component/Images/man.png">
+                                                                    <ImageBrush.Stretch>Uniform</ImageBrush.Stretch>
+                                                                </ImageBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Value.PhanLoai}" Value="Bác Sĩ">
+                                                        <Setter Property="Background">
+                                                            <Setter.Value>
+                                                                <ImageBrush ImageSource="/HospitalManagement;component/Images/doctoravatar.png">
+                                                                    <ImageBrush.Stretch>Uniform</ImageBrush.Stretch>
+                                                                </ImageBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Value.PhanLoai}" Value="Y Tá">
+                                                        <Setter Property="Background">
+                                                            <Setter.Value>
+                                                                <ImageBrush ImageSource="/HospitalManagement;component/Images/nurse.png">
+                                                                    <ImageBrush.Stretch>Uniform</ImageBrush.Stretch>
+                                                                </ImageBrush>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Resources>
+                                    </Border>
+                                </Grid>
+                                <StackPanel Margin="15 20" Orientation="Vertical">
+                                    <TextBlock Foreground="Black"
+                                               FontSize="16">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}: {1} {2}">
+                                                <Binding Path="Value.PhanLoai"/>
+                                                <Binding Path="Value.Ho" />
+                                                <Binding Path="Value.Ten" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <WrapPanel>
+                                        <TextBlock Text="Giới tính: " 
+                                                   Foreground="Black"
+                                                   FontSize="16">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Value.GioiTinh}"
+                                                   Foreground="Black"
+                                                   FontSize="16">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel>
+                                        <TextBlock Text="Chuyên khoa: "
+                                                   Foreground="Black"
+                                                   FontSize="16">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Value.ChuyenKhoa}"
+                                                   Foreground="Black"
+                                                   FontSize="16">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
         </StackPanel>
+        <Grid Grid.Column="1" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="24"
+                       FontWeight="Bold"
+                       Margin="25"
+                       Grid.Row="0"
+                       Text="Thông tin chi tiết"/>
+            <StackPanel Grid.Row="1">
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
+
+    
+
+            <!--<DataGrid Grid.Row="1"  
+                      x:Name="dtgPatients"
+                      ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False" 
+                      GridLinesVisibility="None"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Hidden"
+                      CanUserResizeRows="False" 
+                      CanUserReorderColumns="False" 
+                      CanUserResizeColumns="False" 
+                      CanUserSortColumns="False"  
+                      CanUserAddRows="False"
+                      Padding="0 0 0 20"
+                      VirtualizingPanel.ScrollUnit="Pixel" 
+                      RowDetailsVisibilityMode="Collapsed" 
+                      SelectionUnit="FullRow"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True">
+                <DataGrid.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Background" Value="{x:Null}" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ResourceDictionary>
+                </DataGrid.Resources>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <ControlTemplate.Resources>-->
+                                        <!--Auto set color for vertical line--><!--
+                                        <Style TargetType="Border" x:Key="VerticalBorderStyle">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Không triệu chứng">
+                                                    <Setter Property="Background" Value="#2AE2BE"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Có triệu chứng">
+                                                    <Setter Property="Background" Value="#FEB721"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtTinhTrang}" Value="Triệu chứng trở nặng">
+                                                    <Setter Property="Background" Value="#FF7F7E"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        --><!--Auto set color for selected patient--><!--
+                                        <Style TargetType="Border" x:Key="SelectedPatientStyle">
+                                            <Style.Triggers>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Không triệu chứng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#C9F9EB" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Có triệu chứng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#FFF3D9" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding ElementName=txtTinhTrang, Path=Text}" Value="Triệu chứng trở nặng" />
+                                                        <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Value="True" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Background" Value="#FFEAE9" />
+                                                </MultiDataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ControlTemplate.Resources>
+                                    <Border Margin="15 0 0 0" 
+                                            CornerRadius="10" 
+                                            Width="320" 
+                                            HorizontalAlignment="Center" 
+                                            Style="{StaticResource SelectedPatientStyle}">
+                                        <TextBlock>
+                                            <TextBlock.InputBindings>
+                                                <MouseBinding Gesture="LeftDoubleClick" 
+                                                              Command="{Binding ElementName=RoomForm, Path=DataContext.ShowPatientsInformationInRoomCommand}" 
+                                                              CommandParameter="{Binding ElementName=dtgPatients, Path=SelectedIndex}"/>
+                                            </TextBlock.InputBindings>    
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border CornerRadius="1" 
+                                                        Width="2" 
+                                                        Margin="10" 
+                                                        Style="{StaticResource VerticalBorderStyle}"/>
+                                                <Border CornerRadius="25" 
+                                                        Height="50" 
+                                                        Width="50" 
+                                                        Margin="10 0 0 0">
+                                                    <Border.Background>
+                                                        <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/patient.png"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <StackPanel VerticalAlignment="Center" Margin="20">
+                                                    <TextBlock Foreground="Black"
+                                                               FontSize="16"
+                                                               FontWeight="SemiBold">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                                <Binding Path="HO" />
+                                                                <Binding Path="TEN" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>       
+                                                    </TextBlock>
+                                                    
+                                                    <TextBlock Text="{Binding TINHTRANG}"
+                                                               x:Name="txtTinhTrang"
+                                                               FontSize="14"
+                                                               Foreground="Black"
+                                                               FontWeight="Regular"
+                                                               Margin="0 6 0 0"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </TextBlock>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Danh sách bệnh nhân"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"/>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>-->
+                                <!--<Border CornerRadius="10" Width="300" Height="80" Background="White" HorizontalAlignment="Center">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="10" 
+                                                          Direction="-90"
+                                                          RenderingBias="Quality" 
+                                                          ShadowDepth="2" Color="#DDDDDD"/>
+                                    </Border.Effect>
+                                    <StackPanel Style="{StaticResource borderstyle}"
+                                                Orientation="Horizontal"
+                                                Background="Transparent">
+                                        <Border CornerRadius="1" Background="#2AE2BE" Width="2" Margin="10"/>
+                                        <Border CornerRadius="25" Height="50" Width="50" Margin="10 0 0 0">
+                                            <Border.Background>
+                                                <ImageBrush Stretch="UniformToFill" ImageSource="/HospitalManagement;component/Images/patient.png"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <StackPanel VerticalAlignment="Center" Margin="20">
+                                            <TextBlock Text="{Binding ten}" 
+                                                       FontSize="16"
+                                                       FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding tinhtrang}"
+                                                       FontSize="14"
+                                                       FontWeight="Regular"
+                                                       Margin="0 6 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>-->
+                            <!--</DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>-->
+    <!--</Grid>-->
+    <!--<Grid>
+        
         <Grid>
             <DataGrid x:Name="dtgStaffList"
                   CanUserAddRows="False"
@@ -105,5 +438,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-    </Grid>
-</UserControl>
+    </Grid>-->
+
