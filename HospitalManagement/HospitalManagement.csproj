@@ -96,7 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ChangeBuildingCommand.cs" />
+    <Compile Include="Command\BuildingCommand\ChangeBuildingCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
@@ -104,12 +104,12 @@
     <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
     <Compile Include="Command\AccountListCommand\OpenAddNewAccountForm.cs" />
     <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
-    <Compile Include="Command\AddOrDeleteBuildingCommand.cs" />
-    <Compile Include="Command\AddBuildingCommand.cs" />
+    <Compile Include="Command\BuildingCommand\AddOrDeleteBuildingCommand.cs" />
+    <Compile Include="Command\BuildingCommand\AddBuildingCommand.cs" />
     <Compile Include="Command\CloseWindowCommand.cs" />
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
-    <Compile Include="Command\DeleteBuildingCommand.cs" />
+    <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\ChangeDoctorInformationClosingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
@@ -119,7 +119,7 @@
     <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
     <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
-    <Compile Include="Command\OpenRoomWindowCommand.cs" />
+    <Compile Include="Command\RoomCommand\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
     <Compile Include="Command\LoginCommand\ForgotPasswordValidationCommand.cs" />
@@ -145,13 +145,13 @@
     <Compile Include="Command\PatientListCommand\SearchPatientCommand.cs" />
     <Compile Include="Command\ReportFormCommand\SendEmailReportCommand.cs" />
     <Compile Include="Command\DoctorListCommand\ShowDoctorInfomationCommand.cs" />
-    <Compile Include="Command\RoomProgressBarCommand.cs" />
+    <Compile Include="Command\RoomCommand\RoomProgressBarCommand.cs" />
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Command\NurseListCommand\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\PatientListCommand\ShowPatientInfomationCommand.cs" />
     <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
-    <Compile Include="Command\ShowPatientsInformationInRoomCommand.cs" />
-    <Compile Include="Command\ShowPatientsInRoomCommand.cs" />
+    <Compile Include="Command\RoomCommand\ShowPatientsInformationInRoomCommand.cs" />
+    <Compile Include="Command\RoomCommand\ShowPatientsInRoomCommand.cs" />
     <Compile Include="Command\TeamCommand\AddTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ChangeBuildingTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\DeleteTeamCommand.cs" />
