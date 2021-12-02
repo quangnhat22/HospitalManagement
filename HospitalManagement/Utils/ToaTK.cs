@@ -15,6 +15,7 @@ namespace HospitalManagement.Utils
         public static ChartValues<int> TrungBinhList;
         public static ChartValues<int> NheList;
         public static List<string> LabelList;
+        private static QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities();
         public ToaTK()
         {
             NangList = new ChartValues<int>();
@@ -27,22 +28,19 @@ namespace HospitalManagement.Utils
         {
             await Task.Run(async () =>
             {
-                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                List<Task<CategorizedPatientBuilding>> categorizedPatientBuildingTasks = new List<Task<CategorizedPatientBuilding>>();
+                foreach (TOA toa in dbContext.TOAs)
                 {
-                    List<Task<CategorizedPatientBuilding>> categorizedPatientBuildingTasks = new List<Task<CategorizedPatientBuilding>>();
-                    foreach (TOA toa in dbContext.TOAs)
-                    {
-                        var categorizedPatientBuildingTask = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa, date);
-                        categorizedPatientBuildingTasks.Add(categorizedPatientBuildingTask);
-                    }
-                    CategorizedPatientBuilding[] categorizedPatientBuildings = await Task.WhenAll(categorizedPatientBuildingTasks);
-                    foreach (CategorizedPatientBuilding categorizedPatientBuilding in categorizedPatientBuildings)
-                    {
-                        NangList.Add(categorizedPatientBuilding.Nang);
-                        TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
-                        NheList.Add(categorizedPatientBuilding.Nhe);
-                        LabelList.Add(categorizedPatientBuilding.Toa.DISPLAYNAME);
-                    }
+                    var categorizedPatientBuildingTask = CategorizedPatientBuilding.CategorizedPatientBuildingFactory(toa, date);
+                    categorizedPatientBuildingTasks.Add(categorizedPatientBuildingTask);
+                }
+                CategorizedPatientBuilding[] categorizedPatientBuildings = await Task.WhenAll(categorizedPatientBuildingTasks);
+                foreach (CategorizedPatientBuilding categorizedPatientBuilding in categorizedPatientBuildings)
+                {
+                    NangList.Add(categorizedPatientBuilding.Nang);
+                    TrungBinhList.Add(categorizedPatientBuilding.Trungbinh);
+                    NheList.Add(categorizedPatientBuilding.Nhe);
+                    LabelList.Add(categorizedPatientBuilding.Toa.DISPLAYNAME);
                 }
             });
         }
