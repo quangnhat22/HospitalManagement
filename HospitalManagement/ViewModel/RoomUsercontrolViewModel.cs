@@ -103,20 +103,33 @@ namespace HospitalManagement.ViewModel
 
         public RoomUsercontrolViewModel()
         {
-            buildings = DataProvider.Ins.DB.TOAs.ToList();
-            currentBuilding = 0;
-            currentBuildingName = buildings[0].DISPLAYNAME;
-            newBuildingName = "";
-            canMoveForward = Buildings.Count > 1 ? true : false;
-            selectedBuildingName = buildings[0].DISPLAYNAME;
-            addVisibility = "Collapsed";
-            deleteVisibility = "Collapsed";
-
+            LoadData();
             OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
             AddBuildingCommand = new AddBuildingCommand(this);
             DeleteBuildingCommand = new DeleteBuildingCommand(this);
             AddOrDeleteBuildingCommand = new AddOrDeleteBuildingCommand(this);
+        }
+
+        private async void LoadData()
+        {
+            await Task.Run(async () =>
+            {
+                buildings = await Task.Run(() =>
+                {
+                    using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                    {
+                        return dbContext.TOAs.ToList();
+                    }
+                });
+                currentBuilding = 0;
+                currentBuildingName = buildings[0].DISPLAYNAME;
+                newBuildingName = "";
+                canMoveForward = Buildings.Count > 1 ? true : false;
+                selectedBuildingName = buildings[0].DISPLAYNAME;
+                addVisibility = "Collapsed";
+                deleteVisibility = "Collapsed";
+            });
         }
     }
 } 

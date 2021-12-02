@@ -41,10 +41,16 @@ namespace HospitalManagement.Command.TeamCommand
                 teamViewmodel.CurrentFloor = null;
                 currentFloor = null;
             }
-            if (currentFloor != null) 
-                teamViewmodel.CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding && p.TANG.SOTANG == currentFloor).ToList());
+            if (currentFloor != null)
+            {
+                List<TO> teams = TeamViewmodel.DbContext.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding && p.TANG.SOTANG == currentFloor).ToList();
+                teamViewmodel.InitTeams(teams);
+            }
             else
-                teamViewmodel.CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList());
+            {
+                List<TO> teams = TeamViewmodel.DbContext.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList();
+                teamViewmodel.InitTeams(teams);
+            }
             teamViewmodel.CurrentTeam = "";
             if (teamViewmodel.Members != null && teamViewmodel.Members.Count > 0) 
                 teamViewmodel.Members = new List<Utils.StaffInformation>();

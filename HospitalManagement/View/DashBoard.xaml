@@ -354,6 +354,17 @@
 
                                     </Button>
                                 </StackPanel>
+                                <ProgressBar Width="100"
+                                             Height="100"
+                                             VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                             Value="45"
+                                             Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             IsIndeterminate="True" />
+                                <TextBlock Text="Đang tải" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <lvc:CartesianChart 
                                         x:Name="lvcColumnChart" 
                                         Series="{Binding SeriesCollection}" 
@@ -362,7 +373,10 @@
                                         Height="339" 
                                         HorizontalAlignment="Center" 
                                         VerticalAlignment="Top"
-                                        Margin="0,100,0,0" >
+                                        Margin="0,100,0,0" 
+                                        
+                                        Visibility="{Binding ColumnChartVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    >
                                     <lvc:CartesianChart.AxisX>
                                         <lvc:Axis 
                                             Title="{Binding AxisXTitle, Mode=TwoWay}" 
