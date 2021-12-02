@@ -37,7 +37,6 @@ namespace HospitalManagement.Model
         public virtual DbSet<TO> TOes { get; set; }
         public virtual DbSet<TOA> TOAs { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
-        public virtual DbSet<VATTU> VATTUs { get; set; }
         public virtual DbSet<YTA> YTAs { get; set; }
         public virtual DbSet<YTALIENQUAN> YTALIENQUANs { get; set; }
     

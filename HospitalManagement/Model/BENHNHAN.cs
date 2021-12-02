@@ -14,12 +14,6 @@ namespace HospitalManagement.Model
     
     public partial class BENHNHAN
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BENHNHAN()
-        {
-            this.VATTUs = new HashSet<VATTU>();
-        }
-    
         public string CMND_CCCD { get; set; }
         public string HO { get; set; }
         public string TEN { get; set; }
@@ -38,7 +32,5 @@ namespace HospitalManagement.Model
         public Nullable<int> IDPHONG { get; set; }
     
         public virtual PHONG PHONG { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VATTU> VATTUs { get; set; }
     }
 }

@@ -54,10 +54,6 @@ namespace HospitalManagement.Command
                 {
                     mainWindowViewModel.SelectedViewModel = new SwitchPatientViewModel();
                 }
-                if (tag == "Facilities")
-                {
-                    mainWindowViewModel.SelectedViewModel = new SwitchFacilitiesViewModel();
-                }
                 if (tag == "Rooms")
                 {
                     if (MainWindowViewModel.User.ROLE == "admin")

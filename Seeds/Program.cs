@@ -48,8 +48,6 @@ namespace Seeds
             Console.WriteLine("Seeds PHONG successful");
             SeedsBENHNHAN();
             Console.WriteLine("Seeds BENHNHAN successful");
-            SeedsVATTU();
-            Console.WriteLine("Seeds VATTU successful");
             SeedsUSERs();
             Console.WriteLine("Seeds User successful");
             Console.WriteLine("Seeds successful");
@@ -57,16 +55,6 @@ namespace Seeds
 
         private static void CleanDatabase()
         {
-            // Delete VATTU
-            List<VATTU> vtList = DataProvider.Ins.DB.VATTUs.ToList();
-            foreach (VATTU vattu in vtList)
-            {
-                vattu.BENHNHANs.Clear();
-                vattu.TOes.Clear();
-            }
-            DataProvider.Ins.DB.VATTUs.RemoveRange(vtList);
-            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('VATTU', RESEED, 0)");
-            Console.WriteLine("Delete VATTU successful");
             // Detele YTA
             List<YTA> ytalist = DataProvider.Ins.DB.YTAs.ToList();
             DataProvider.Ins.DB.YTAs.RemoveRange(ytalist);
@@ -119,7 +107,7 @@ namespace Seeds
             Console.WriteLine("Delete User successful");
         }
 
-        #region seeds medthod
+        #region seeds method
         private static void SeedsTo()
         {
             
@@ -287,52 +275,6 @@ namespace Seeds
                 }
             }
             DataProvider.Ins.DB.SaveChanges();
-        }
-        private static void SeedsVATTU()
-        {
-            List<string> thuocList = new List<string>() { "Paracetamol",  "Oresol", "Vitamin",
-                                                          "Natri clorit", "Dexamethason", "Prednisolon",
-                                                          "Rivaroxaban", "Apixaban" };
-            List<string> thietbiList = new List<string> { "Kit xét nghiệm nhanh", "Máy thở",
-                                                          "Hệ thống ECMO", "Máy phun khử khuẩn",
-                                                           "Hệ thống Oxy", "Máy theo dõi bệnh nhân"};
-            List<TO> ts = dataProvider.DB.TOes.ToList();
-            List<BENHNHAN> bs = dataProvider.DB.BENHNHANs.ToList();
-            for (int i = 0; i < 100; i++)
-            {
-                VATTU vt = new VATTU();
-                if (random.Next(2) == 0) // Thuoc
-                {
-                    vt.DISPLAYNAME = thuocList[random.Next(thuocList.Count)];
-                    vt.LOAIVATTU = "Thuốc";
-                    vt.DVTINH = "Viên";
-                    vt.NGSX = RandomInformation.GenerateDate(2020, 2021);
-                    vt.SLUONG = random.Next(500, 5000);
-                    vt.GHICHU = "Thời hạn sử dụng là " + random.Next(1, 5).ToString() + " năm kể từ ngày sản xuất";
-                }
-                else
-                {
-                    vt.DISPLAYNAME = thietbiList[random.Next(thietbiList.Count)];
-                    vt.LOAIVATTU = "Thiết bị";
-                    vt.DVTINH = "Máy";
-                    vt.NGSX = RandomInformation.GenerateDate(2010, 2021);
-                    vt.SLUONG = random.Next(50, 500);
-                }
-                //foreach (TO to in ts)
-                //{
-                //    if (random.Next(2) == 0)
-                //    {
-                //        vt.TOes.Add(to);
-                //    }
-                //}
-
-                //foreach (BENHNHAN bn in bs)
-                //{
-                //    vt.BENHNHANs.Add(bn);
-                //}
-                dataProvider.DB.VATTUs.Add(vt);
-            }
-            dataProvider.DB.SaveChanges();
         }
         #endregion
     }

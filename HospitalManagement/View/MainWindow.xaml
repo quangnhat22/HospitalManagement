@@ -169,15 +169,6 @@
                                 <TextBlock Text="Bệnh Nhân" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="Facilities"
-                                      Height="60"
-                                      Tag="Facilities"
-                                      Visibility="{Binding AdminRolesVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Toolbox" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Vật tư" VerticalAlignment="Center"  Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
                         <ListViewItem Height="60"
                                       Tag="Rooms">
                             <StackPanel Orientation="Horizontal">

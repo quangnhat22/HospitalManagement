@@ -101,9 +101,6 @@
     <Compile Include="USER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="VATTU.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="YTA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

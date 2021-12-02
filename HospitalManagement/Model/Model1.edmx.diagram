@@ -5,19 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4ce77d68555c4ab2bba01b573dda9052" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.ADMIN" Width="1.5" PointX="3" PointY="9.25" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSI" Width="1.5" PointX="5.25" PointY="10.375" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSILIENQUAN" Width="1.5" PointX="5.25" PointY="20.125" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BENHNHAN" Width="1.5" PointX="3" PointY="3.5" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.CONGVIEC" Width="1.5" PointX="3" PointY="22.625" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.PHONG" Width="1.5" PointX="0.75" PointY="4.5" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TANG" Width="1.5" PointX="0.75" PointY="15.5" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TO" Width="1.5" PointX="3" PointY="13.25" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TOA" Width="1.5" PointX="1.5" PointY="18.75" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.USER" Width="1.5" PointX="0.75" PointY="11.5" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.VATTU" Width="1.5" PointX="5.25" PointY="15.375" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTA" Width="1.5" PointX="5.25" PointY="26.625" />
-        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTALIENQUAN" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.ADMIN" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSI" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSILIENQUAN" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BENHNHAN" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.CONGVIEC" Width="1.5" PointX="3" PointY="20.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.PHONG" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TANG" Width="1.5" PointX="0.75" PointY="13.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TO" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TOA" Width="1.5" PointX="1.5" PointY="16.75" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.USER" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTA" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTALIENQUAN" Width="1.5" PointX="5.25" PointY="21.25" />
         <AssociationConnector Association="QUANLYBENHVIENModel.ADMIN_USER_FK" />
         <AssociationConnector Association="QUANLYBENHVIENModel.BACSI_IDTO_FK" />
         <AssociationConnector Association="QUANLYBENHVIENModel.BACSILIENQUAN_BACSI_FK" />
@@ -32,8 +31,6 @@
         <AssociationConnector Association="QUANLYBENHVIENModel.TO_USER_FK" />
         <AssociationConnector Association="QUANLYBENHVIENModel.YTA_IDTO_FK" />
         <AssociationConnector Association="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK" />
-        <AssociationConnector Association="QUANLYBENHVIENModel.CHIDINH" />
-        <AssociationConnector Association="QUANLYBENHVIENModel.SUDUNG" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
