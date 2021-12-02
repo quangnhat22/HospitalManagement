@@ -64,7 +64,7 @@
                                                               Command="{Binding ElementName=memberUC, Path=DataContext.ShowMemberInformation}" 
                                                               CommandParameter="{Binding ElementName=lbxMember, Path=SelectedIndex}"/>
                                 </TextBlock.InputBindings>   
-                                <StackPanel Background="Transparent" Width="350" Height="100" Orientation="Horizontal">
+                                <StackPanel Background="Transparent" Width="350" Height="120" Orientation="Horizontal">
                                 <Grid Width="70" Margin="15 0 0 0">
                                     <Border CornerRadius="20" Height="70" Width="70">
                                         <Border.Resources>
@@ -102,9 +102,16 @@
                                         </Border.Resources>
                                     </Border>
                                 </Grid>
-                                <StackPanel Margin="15 20" Orientation="Vertical">
-                                    <TextBlock Foreground="Black"
-                                               FontSize="16">
+                                <StackPanel Margin="15 30" Orientation="Vertical">
+                                    <StackPanel.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </StackPanel.Resources>
+                                    <TextBlock>
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0}: {1} {2}">
                                                     <Binding Path="PhanLoai"/>
@@ -114,24 +121,12 @@
                                             </TextBlock.Text>
                                     </TextBlock>
                                     <WrapPanel>
-                                        <TextBlock Text="Giới tính: " 
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding GioiTinh}"
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
+                                        <TextBlock Text="Giới tính: "></TextBlock>
+                                        <TextBlock Text="{Binding GioiTinh, Converter={StaticResource BooleanToSexConverter}}"></TextBlock>
                                     </WrapPanel>
                                     <WrapPanel>
-                                        <TextBlock Text="Chuyên khoa: "
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding ChuyenKhoa}"
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
+                                        <TextBlock Text="Chuyên khoa: "></TextBlock>
+                                        <TextBlock Text="{Binding ChuyenKhoa}"></TextBlock>
                                     </WrapPanel>
                                 </StackPanel>
                             </StackPanel>
@@ -156,7 +151,38 @@
                        Margin="25"
                        Grid.Row="0"
                        Text="Thông tin của tổ"/>
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" Margin="25 10">
+                <StackPanel.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="18"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackPanel.Resources>
+                <WrapPanel>
+                    <TextBlock Text="ID tổ: "></TextBlock>
+                    <TextBlock Text="{Binding To.ID}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Margin="0 5">
+                    <TextBlock Text="Khu vực phụ trách: Tầng "></TextBlock>
+                    <TextBlock Text="{Binding To.TANG.SOTANG}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Margin="0 5">
+                    <TextBlock Text="Tổ trưởng: "></TextBlock>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="ToTruong.HO" />
+                                <Binding Path="ToTruong.TEN" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </WrapPanel>
+                <WrapPanel Margin="0 5">
+                    <TextBlock Text="Số lượng thành viên: "></TextBlock>
+                    <TextBlock Text="{Binding StaffInformations.Count}"></TextBlock>
+                </WrapPanel>
             </StackPanel>
         </Grid>
     </Grid>
