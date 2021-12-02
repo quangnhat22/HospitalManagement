@@ -17,9 +17,6 @@
     <DataTemplate DataType="{x:Type switchview:SwitchPatientViewModel}">
         <view:Patient></view:Patient>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type switchview:SwitchFacilitiesViewModel}">
-        <view:Facilities></view:Facilities>
-    </DataTemplate>
     <DataTemplate DataType="{x:Type switchview:SwitchRoomViewModel}">
         <viewroom:RoomUsercontrol></viewroom:RoomUsercontrol>
     </DataTemplate>

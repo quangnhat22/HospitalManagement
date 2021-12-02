@@ -19,7 +19,6 @@ namespace Seeds
         {
             this.BACSIs = new HashSet<BACSI>();
             this.YTAs = new HashSet<YTA>();
-            this.VATTUs = new HashSet<VATTU>();
         }
     
         public int ID { get; set; }
@@ -34,7 +33,5 @@ namespace Seeds
         public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YTA> YTAs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VATTU> VATTUs { get; set; }
     }
 }

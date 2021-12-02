@@ -36,7 +36,6 @@ namespace HospitalManagement.Command
             var selectableItems = patientViewModel.Patients.Where(p => p.IsSelected).Select(x => x.Value);
             foreach (BENHNHAN bn in selectableItems)
             {
-                bn.VATTUs.Clear();
                 DataProvider.Ins.DB.BENHNHANs.Remove(bn);
             }
             DataProvider.Ins.DB.SaveChanges();

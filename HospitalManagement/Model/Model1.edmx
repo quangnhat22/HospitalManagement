@@ -68,14 +68,6 @@
           <Property Name="BENHNEN" Type="nvarchar(max)" />
           <Property Name="IDPHONG" Type="int" />
         </EntityType>
-        <EntityType Name="CHIDINH">
-          <Key>
-            <PropertyRef Name="IDTO" />
-            <PropertyRef Name="IDVATTU" />
-          </Key>
-          <Property Name="IDTO" Type="int" Nullable="false" />
-          <Property Name="IDVATTU" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="CONGVIEC">
           <Key>
             <PropertyRef Name="ID" />
@@ -98,14 +90,6 @@
           <Property Name="SUCCHUA" Type="int" />
           <Property Name="GHICHU" Type="nvarchar(max)" />
           <Property Name="IDTANG" Type="int" />
-        </EntityType>
-        <EntityType Name="SUDUNG">
-          <Key>
-            <PropertyRef Name="IDVATTU" />
-            <PropertyRef Name="IDBENHNHAN" />
-          </Key>
-          <Property Name="IDVATTU" Type="int" Nullable="false" />
-          <Property Name="IDBENHNHAN" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="TANG">
           <Key>
@@ -142,18 +126,6 @@
           <Property Name="USERNAME" Type="nvarchar" MaxLength="100" />
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="32" />
           <Property Name="ROLE" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="VATTU">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
-          <Property Name="LOAIVATTU" Type="nvarchar" MaxLength="100" />
-          <Property Name="NGSX" Type="smalldatetime" />
-          <Property Name="SLUONG" Type="int" />
-          <Property Name="DVTINH" Type="nvarchar(max)" />
-          <Property Name="GHICHU" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="YTA">
           <Key>
@@ -242,30 +214,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CHIDINH_IDTO_FK">
-          <End Role="TO" Type="Self.TO" Multiplicity="1" />
-          <End Role="CHIDINH" Type="Self.CHIDINH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CHIDINH">
-              <PropertyRef Name="IDTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CHIDINH_IDVATTU_FK">
-          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
-          <End Role="CHIDINH" Type="Self.CHIDINH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VATTU">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CHIDINH">
-              <PropertyRef Name="IDVATTU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CONVIEC_USER_FK">
           <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
           <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="*" />
@@ -287,30 +235,6 @@
             </Principal>
             <Dependent Role="PHONG">
               <PropertyRef Name="IDTANG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SUDUNG_IDBENHNHAN_FK">
-          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="1" />
-          <End Role="SUDUNG" Type="Self.SUDUNG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BENHNHAN">
-              <PropertyRef Name="CMND_CCCD" />
-            </Principal>
-            <Dependent Role="SUDUNG">
-              <PropertyRef Name="IDBENHNHAN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SUDUNG_IDVATTU_FK">
-          <End Role="VATTU" Type="Self.VATTU" Multiplicity="1" />
-          <End Role="SUDUNG" Type="Self.SUDUNG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VATTU">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SUDUNG">
-              <PropertyRef Name="IDVATTU" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -403,15 +327,12 @@
           <EntitySet Name="BACSI" EntityType="Self.BACSI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BACSILIENQUAN" EntityType="Self.BACSILIENQUAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BENHNHAN" EntityType="Self.BENHNHAN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CHIDINH" EntityType="Self.CHIDINH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONGVIEC" EntityType="Self.CONGVIEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SUDUNG" EntityType="Self.SUDUNG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VATTU" EntityType="Self.VATTU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YTALIENQUAN" EntityType="Self.YTALIENQUAN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ADMIN_USER_FK" Association="Self.ADMIN_USER_FK">
@@ -434,14 +355,6 @@
             <End Role="PHONG" EntitySet="PHONG" />
             <End Role="BENHNHAN" EntitySet="BENHNHAN" />
           </AssociationSet>
-          <AssociationSet Name="CHIDINH_IDTO_FK" Association="Self.CHIDINH_IDTO_FK">
-            <End Role="TO" EntitySet="TO" />
-            <End Role="CHIDINH" EntitySet="CHIDINH" />
-          </AssociationSet>
-          <AssociationSet Name="CHIDINH_IDVATTU_FK" Association="Self.CHIDINH_IDVATTU_FK">
-            <End Role="VATTU" EntitySet="VATTU" />
-            <End Role="CHIDINH" EntitySet="CHIDINH" />
-          </AssociationSet>
           <AssociationSet Name="CONVIEC_USER_FK" Association="Self.CONVIEC_USER_FK">
             <End Role="USER" EntitySet="USER" />
             <End Role="CONGVIEC" EntitySet="CONGVIEC" />
@@ -449,14 +362,6 @@
           <AssociationSet Name="PHONG_IDTANG_FK" Association="Self.PHONG_IDTANG_FK">
             <End Role="TANG" EntitySet="TANG" />
             <End Role="PHONG" EntitySet="PHONG" />
-          </AssociationSet>
-          <AssociationSet Name="SUDUNG_IDBENHNHAN_FK" Association="Self.SUDUNG_IDBENHNHAN_FK">
-            <End Role="BENHNHAN" EntitySet="BENHNHAN" />
-            <End Role="SUDUNG" EntitySet="SUDUNG" />
-          </AssociationSet>
-          <AssociationSet Name="SUDUNG_IDVATTU_FK" Association="Self.SUDUNG_IDVATTU_FK">
-            <End Role="VATTU" EntitySet="VATTU" />
-            <End Role="SUDUNG" EntitySet="SUDUNG" />
           </AssociationSet>
           <AssociationSet Name="TANG_IDTOA_FK" Association="Self.TANG_IDTOA_FK">
             <End Role="TOA" EntitySet="TOA" />
@@ -532,7 +437,6 @@
           <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
           <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
           <EntitySet Name="USERs" EntityType="QUANLYBENHVIENModel.USER" />
-          <EntitySet Name="VATTUs" EntityType="QUANLYBENHVIENModel.VATTU" />
           <EntitySet Name="YTAs" EntityType="QUANLYBENHVIENModel.YTA" />
           <EntitySet Name="YTALIENQUANs" EntityType="QUANLYBENHVIENModel.YTALIENQUAN" />
           <AssociationSet Name="ADMIN_USER_FK" Association="QUANLYBENHVIENModel.ADMIN_USER_FK">
@@ -590,14 +494,6 @@
           <AssociationSet Name="YTALIENQUAN_YTA_FK" Association="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK">
             <End Role="YTA" EntitySet="YTAs" />
             <End Role="YTALIENQUAN" EntitySet="YTALIENQUANs" />
-          </AssociationSet>
-          <AssociationSet Name="CHIDINH" Association="QUANLYBENHVIENModel.CHIDINH">
-            <End Role="TO" EntitySet="TOes" />
-            <End Role="VATTU" EntitySet="VATTUs" />
-          </AssociationSet>
-          <AssociationSet Name="SUDUNG" Association="QUANLYBENHVIENModel.SUDUNG">
-            <End Role="BENHNHAN" EntitySet="BENHNHANs" />
-            <End Role="VATTU" EntitySet="VATTUs" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -680,7 +576,6 @@
           <Property Name="BENHNEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IDPHONG" Type="Int32" />
           <NavigationProperty Name="PHONG" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="BENHNHAN" ToRole="PHONG" />
-          <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.SUDUNG" FromRole="BENHNHAN" ToRole="VATTU" />
         </EntityType>
         <EntityType Name="CONGVIEC">
           <Key>
@@ -735,7 +630,6 @@
           <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
           <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="TO" ToRole="USER" />
           <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
-          <NavigationProperty Name="VATTUs" Relationship="QUANLYBENHVIENModel.CHIDINH" FromRole="TO" ToRole="VATTU" />
         </EntityType>
         <EntityType Name="TOA">
           <Key>
@@ -758,20 +652,6 @@
           <NavigationProperty Name="ADMINs" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="USER" ToRole="ADMIN" />
           <NavigationProperty Name="CONGVIECs" Relationship="QUANLYBENHVIENModel.CONVIEC_USER_FK" FromRole="USER" ToRole="CONGVIEC" />
           <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_USER_FK" FromRole="USER" ToRole="TO" />
-        </EntityType>
-        <EntityType Name="VATTU">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LOAIVATTU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NGSX" Type="DateTime" Precision="0" />
-          <Property Name="SLUONG" Type="Int32" />
-          <Property Name="DVTINH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.CHIDINH" FromRole="VATTU" ToRole="TO" />
-          <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.SUDUNG" FromRole="VATTU" ToRole="BENHNHAN" />
         </EntityType>
         <EntityType Name="YTA">
           <Key>
@@ -972,14 +852,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CHIDINH">
-          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="*" />
-          <End Type="QUANLYBENHVIENModel.VATTU" Role="VATTU" Multiplicity="*" />
-        </Association>
-        <Association Name="SUDUNG">
-          <End Type="QUANLYBENHVIENModel.BENHNHAN" Role="BENHNHAN" Multiplicity="*" />
-          <End Type="QUANLYBENHVIENModel.VATTU" Role="VATTU" Multiplicity="*" />
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1117,19 +989,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VATTUs">
-            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.VATTU">
-              <MappingFragment StoreEntitySet="VATTU">
-                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
-                <ScalarProperty Name="DVTINH" ColumnName="DVTINH" />
-                <ScalarProperty Name="SLUONG" ColumnName="SLUONG" />
-                <ScalarProperty Name="NGSX" ColumnName="NGSX" />
-                <ScalarProperty Name="LOAIVATTU" ColumnName="LOAIVATTU" />
-                <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="YTAs">
             <EntityTypeMapping TypeName="QUANLYBENHVIENModel.YTA">
               <MappingFragment StoreEntitySet="YTA">
@@ -1158,22 +1017,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CHIDINH" TypeName="QUANLYBENHVIENModel.CHIDINH" StoreEntitySet="CHIDINH">
-            <EndProperty Name="VATTU">
-              <ScalarProperty Name="ID" ColumnName="IDVATTU" />
-            </EndProperty>
-            <EndProperty Name="TO">
-              <ScalarProperty Name="ID" ColumnName="IDTO" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SUDUNG" TypeName="QUANLYBENHVIENModel.SUDUNG" StoreEntitySet="SUDUNG">
-            <EndProperty Name="VATTU">
-              <ScalarProperty Name="ID" ColumnName="IDVATTU" />
-            </EndProperty>
-            <EndProperty Name="BENHNHAN">
-              <ScalarProperty Name="CMND_CCCD" ColumnName="IDBENHNHAN" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
