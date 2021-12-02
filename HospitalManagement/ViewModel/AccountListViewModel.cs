@@ -67,8 +67,7 @@ namespace HospitalManagement.ViewModel
         
         public AccountListViewModel ()
         {
-            StaffAccounts = StaffInformation.InitAccountList();
-            Users = SelectableItem<StaffInformation>.GetSelectableItems(StaffAccounts);
+            initAccountList();
             OpenAddAccountListForm = new OpenAddNewAccountForm();
             DeleteAccountListCommand = new DeleteAccountListCommand(this);
             SearchAccountListCommand = new SearchAccountListCommand(this);
@@ -99,5 +98,11 @@ namespace HospitalManagement.ViewModel
             });
             
         }   
+
+        private async void initAccountList()
+        {
+            StaffAccounts = await StaffInformation.InitAccountList();
+            Users = SelectableItem<StaffInformation>.GetSelectableItems(StaffAccounts);
+        }
     }
 }
