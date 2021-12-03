@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.View;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace HospitalManagement.Command
 {
     public class OpenPatientFormCommand : ICommand
     {
+        private PatientViewModel patientViewModel;
+        public OpenPatientFormCommand(PatientViewModel patientViewModel)
+        {
+            this.patientViewModel = patientViewModel;
+        }
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -25,7 +31,7 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            var patientForm = new PatientForm();
+            var patientForm = new PatientForm(patientViewModel);
             Application.Current.MainWindow = patientForm;
             patientForm.Show();
         }
