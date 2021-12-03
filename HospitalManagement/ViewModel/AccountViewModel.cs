@@ -29,22 +29,45 @@ namespace HospitalManagement.ViewModel
         
         public AccountViewModel()
         {
-            //OpenChangeAccount = new OpenChangeAccoutWindowCommand();
-            
-            //HoTen = MainWindowViewModel.User.HO + " " + MainWindowViewModel.User.TEN;
-            //TenDangNhap = MainWindowViewModel.User.USERNAME;
-
-            //if(MainWindowViewModel.User.NGSINH.HasValue)
-            //{
-            //    DateTime ngsinh = (DateTime)MainWindowViewModel.User.NGSINH;
-            //    NgaySinh = ngsinh.ToString("dd/MM/yyyy");
-            //}
-
-            //if (MainWindowViewModel.User.GIOITINH.HasValue)
-            //{
-            //    GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
-            //}
-            //Email = MainWindowViewModel.User.EMAIL;
+            OpenChangeAccount = new OpenChangeAccoutWindowCommand();
+            if (MainWindowViewModel.User.ROLE == "admin")
+            {
+                var admin = MainWindowViewModel.User.ADMINs.FirstOrDefault();
+                if (admin != null || admin != default)
+                {
+                    HoTen = admin.HO + " " + admin.TEN;
+                    TenDangNhap = admin.USER.USERNAME;
+                    if (admin.NGSINH.HasValue)
+                    {
+                        DateTime ngsinh = (DateTime)admin.NGSINH;
+                        NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                    }
+                    if (admin.GIOITINH.HasValue)
+                    {
+                        GioiTinh = admin.GIOITINH.Value;
+                    }
+                    Email = admin.EMAIL;
+                }
+            }   
+            else 
+            {
+                var leader = MainWindowViewModel.User.TOes.FirstOrDefault().TOTRUONG;
+                if (leader != null || leader != default)
+                {
+                    HoTen = leader.HO + " " + leader.TEN;
+                    TenDangNhap = leader.TO.USER.USERNAME;
+                    if (leader.NGSINH.HasValue)
+                    {
+                        DateTime ngsinh = (DateTime)leader.NGSINH;
+                        NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                    }
+                    if (leader.GIOITINH.HasValue)
+                    {
+                        GioiTinh = leader.GIOITINH.Value;
+                    }
+                    Email = leader.EMAIL;
+                }
+            }
         }
     }
 }

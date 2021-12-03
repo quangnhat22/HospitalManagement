@@ -28,20 +28,43 @@ namespace HospitalManagement.Command
             ChangeAccountWindow cw = parameter as ChangeAccountWindow;
             if(Check(cw))
             {
-                List<USER> users = DataProvider.Ins?.DB?.USERs?.ToList();
-                foreach (USER user in users)
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
                 {
-                    if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
+                    List<USER> users = dbContext.USERs?.ToList();
+                    foreach (USER user in users)
                     {
-                        //user.HO = cw.txbLastName.Text;
-                        //user.TEN = cw.txbFistName.Text;
-                        //user.EMAIL = cw.txbEmail.Text;
-                        //user.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                        //user.GIOITINH = (cw.cbSex.Text != "Nam");
-                        DataProvider.Ins?.DB?.SaveChanges();
-                        break;
+                        if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
+                        {
+                            if(user.ROLE == "admin")
+                            {
+                                var admin = user.ADMINs.FirstOrDefault();
+                                if(admin != null || admin != default)
+                                {
+                                    admin.HO = cw.txbLastName.Text;
+                                    admin.TEN = cw.txbFistName.Text;
+                                    admin.EMAIL = cw.txbEmail.Text;
+                                    admin.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                                    admin.GIOITINH = (cw.cbSex.Text != "Nam");
+                                }
+                            }
+                            else
+                            {
+                                var leader = user.TOes.FirstOrDefault().TOTRUONG;
+                                if (leader != null || leader != default)
+                                {
+                                    leader.HO = cw.txbLastName.Text;
+                                    leader.TEN = cw.txbFistName.Text;
+                                    leader.EMAIL = cw.txbEmail.Text;
+                                    leader.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                                    leader.GIOITINH = (cw.cbSex.Text != "Nam");
+                                }
+                            } 
+                                
+                            dbContext.SaveChanges();
+                            break;
+                        }
                     }
-                }
+                }          
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
                 notifyWindow.ShowDialog();
             }    
