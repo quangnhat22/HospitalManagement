@@ -16,11 +16,12 @@ namespace HospitalManagement.Command
     class AddNurseCommand : ICommand
     {
         private NurseFormViewModel nurseFormViewModel;
-        public AddNurseCommand(NurseFormViewModel nurseFormViewModel)
+        private NurseViewModel nurseViewModel;
+        public AddNurseCommand(NurseFormViewModel nurseFormViewModel, NurseViewModel nurseViewModel)
         {
             this.nurseFormViewModel = nurseFormViewModel;
+            this.nurseViewModel = nurseViewModel;
         }
-
 
         public event EventHandler CanExecuteChanged
         {
@@ -59,7 +60,8 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.YTAs.Add(nurseInput);
                 DataProvider.Ins.DB.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Thêm thành công!");
-                notifyWindow.Show();   
+                notifyWindow.Show();
+                nurseViewModel.Nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
             }
 
         }

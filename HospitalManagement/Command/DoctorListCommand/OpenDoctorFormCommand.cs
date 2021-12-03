@@ -12,11 +12,10 @@ namespace HospitalManagement.Command
 {
     class OpenDoctorFormCommand : ICommand
     {
-        private DoctorViewModel doctorFormViewModel;
-        public ICommand AddDoctor;
-        public OpenDoctorFormCommand(DoctorViewModel doctorFormViewModel)
+        private DoctorViewModel doctorViewModel;
+        public OpenDoctorFormCommand(DoctorViewModel doctorViewModel)
         {
-            this.doctorFormViewModel = doctorFormViewModel;
+            this.doctorViewModel = doctorViewModel;
         }
 
         public event EventHandler CanExecuteChanged
@@ -33,7 +32,7 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            var doctorForm = new DoctorForm(doctorFormViewModel);
+            var doctorForm = new DoctorForm(doctorViewModel);
             Application.Current.MainWindow = doctorForm;
             doctorForm.Show();
         }

@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using HospitalManagement.View.Staff;
+using HospitalManagement.ViewModel;
 
 namespace HospitalManagement.Command
 {
     class OpenNurseFormCommand : ICommand
     {
+        private NurseViewModel nurseViewModel;
+        public OpenNurseFormCommand(NurseViewModel nurseViewModel)
+        {
+            this.nurseViewModel = nurseViewModel;
+        }
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -25,7 +31,7 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             Window window = parameter as Window;
-            var nurseForm = new NurseForm();
+            var nurseForm = new NurseForm(nurseViewModel);
             Application.Current.MainWindow = nurseForm;
             nurseForm.Show();
         }

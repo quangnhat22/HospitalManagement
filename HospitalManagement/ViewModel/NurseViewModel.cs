@@ -14,7 +14,7 @@ using HospitalManagement.Command.NurseListCommand;
 
 namespace HospitalManagement.ViewModel
 {
-    class NurseViewModel : BaseViewModel, INotifyPropertyChanged
+    public class NurseViewModel : BaseViewModel, INotifyPropertyChanged
     {
         //public int CheckedCount;
         private static ObservableCollection<SelectableItem<YTA>> nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
@@ -60,7 +60,7 @@ namespace HospitalManagement.ViewModel
             });        
             ShowNurseInfomationCommand = new ShowNurseInfomationCommand();
             OpenChangeNurseForm = new OpenChangeNurseFormCommand();
-            OpenNurseForm = new OpenNurseFormCommand();
+            OpenNurseForm = new OpenNurseFormCommand(this);
             DeleteNurse = new DeleteNurseCommand(this);
         }
     }
