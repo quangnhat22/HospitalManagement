@@ -358,7 +358,6 @@
                                              Height="100"
                                              VerticalAlignment="Center"
                                              Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                             Value="45"
                                              Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              IsIndeterminate="True" />
                                 <TextBlock Text="Đang tải" 

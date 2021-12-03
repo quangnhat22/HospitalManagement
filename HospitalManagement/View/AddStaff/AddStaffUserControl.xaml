@@ -14,11 +14,24 @@
              TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
-             >
+             d:DesignHeight="760" d:DesignWidth="1387">
     <UserControl.InputBindings>
         <KeyBinding Key="Return" Command="{Binding SearchFacilitiesCommand}"/>
     </UserControl.InputBindings>
     <Grid>
+        <TextBlock HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                   FontSize="24"
+                       Visibility="{Binding ProgressbarVisibility}">
+                    Đang tải
+        </TextBlock>
+        <ProgressBar IsIndeterminate="True" 
+                         Visibility="{Binding ProgressbarVisibility}"
+                         Width="172"
+                         Height="172"
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"/>
         <StackPanel Margin="50 30">
             <TextBlock Text="Danh sách tài khoản"
                    FontSize="20"
@@ -86,16 +99,7 @@
                     </Button.Style>
                 </Button>
             </StackPanel>
-            <TextBlock HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"
-                       Visibility="{Binding ProgressbarVisibility}"
-                       Margin="0 40 0 0">
-                    Đang tải dữ liệu
-            </TextBlock>
-            <ProgressBar IsIndeterminate="True" 
-                         Visibility="{Binding ProgressbarVisibility}"
-                         Margin="0 10 0 0"
-                         Width="700"/>
+            
 
             <DataGrid 
                   x:Name="dtgAccountList"

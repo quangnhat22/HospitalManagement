@@ -24,7 +24,6 @@
         </Grid.ColumnDefinitions>
         <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
                      IsIndeterminate="True"
-                     Value="45"
                      Width="100"
                      Visibility="{Binding ProgressBarVisibility}"
                      Height="100"/>
