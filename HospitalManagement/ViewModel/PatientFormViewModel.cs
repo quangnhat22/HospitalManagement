@@ -12,11 +12,13 @@ namespace HospitalManagement.ViewModel
     internal class PatientFormViewModel : BaseViewModel
     {
         public DataProvider db;
+        private PatientViewModel patientViewModel;
         public ICommand AddPatient { get; set; }
-        public PatientFormViewModel()
+        public PatientFormViewModel(PatientViewModel patientViewModel)
         {
             db = new DataProvider();
-            AddPatient = new AddPatientCommand(this);
+            this.patientViewModel = patientViewModel;
+            AddPatient = new AddPatientCommand(this, this.patientViewModel);
         }
     }
 }

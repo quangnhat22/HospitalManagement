@@ -14,7 +14,7 @@ using HospitalManagement.Command.PatientListCommand;
 
 namespace HospitalManagement.ViewModel
 {
-    class PatientViewModel : BaseViewModel, INotifyPropertyChanged
+    public class PatientViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private static ObservableCollection<SelectableItem<BENHNHAN>> patients = SelectableItem<BENHNHAN>.GetSelectableItems(DataProvider.Ins.DB.BENHNHANs.ToList());
         private List<String> filterList = new List<string> { "CMND", 
@@ -69,7 +69,7 @@ namespace HospitalManagement.ViewModel
         {
             SelectedFilter = filterList[0];
             SearchBox = String.Empty;
-            OpenPatientForm = new OpenPatientFormCommand();
+            OpenPatientForm = new OpenPatientFormCommand(this);
             SearchPatientCommand = new SearchPatientCommand(this);
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
