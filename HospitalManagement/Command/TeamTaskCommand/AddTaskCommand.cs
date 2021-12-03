@@ -45,7 +45,7 @@ namespace HospitalManagement.Command.TeamTaskCommand
                 notifyWindow.ShowDialog();
                 return;
             }
-            //congviec.TINHCHAT = null;
+            congviec.TINHCHAT = addToDoFormViewModel.TaskType;
             foreach(StaffInformation staffInformation in addToDoFormViewModel.InvolveMembers)
             {
                 BACSI bs = DataProvider.Ins.DB.BACSIs.Find(staffInformation.Cmnd_cccd);
