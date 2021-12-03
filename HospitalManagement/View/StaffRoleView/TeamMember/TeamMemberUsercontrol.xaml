@@ -20,6 +20,7 @@
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="50 30">
@@ -61,10 +62,10 @@
                             <TextBlock>
                                 <TextBlock.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" 
-                                                              Command="{Binding ElementName=memberUC, Path=DataContext.ShowMemberInformation}" 
-                                                              CommandParameter="{Binding ElementName=lbxMember, Path=SelectedIndex}"/>
+                                                  Command="{Binding ElementName=memberUC, Path=DataContext.ShowMemberInformation}" 
+                                                  CommandParameter="{Binding ElementName=lbxMember, Path=SelectedIndex}"/>
                                 </TextBlock.InputBindings>   
-                                <StackPanel Background="Transparent" Width="350" Height="100" Orientation="Horizontal">
+                                <StackPanel Background="Transparent" Width="350" Height="120" Orientation="Horizontal">
                                 <Grid Width="70" Margin="15 0 0 0">
                                     <Border CornerRadius="20" Height="70" Width="70">
                                         <Border.Resources>
@@ -102,9 +103,16 @@
                                         </Border.Resources>
                                     </Border>
                                 </Grid>
-                                <StackPanel Margin="15 20" Orientation="Vertical">
-                                    <TextBlock Foreground="Black"
-                                               FontSize="16">
+                                <StackPanel Margin="15 30" Orientation="Vertical">
+                                    <StackPanel.Resources>
+                                        <ResourceDictionary>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontSize" Value="16"/>
+                                            </Style>
+                                        </ResourceDictionary>
+                                    </StackPanel.Resources>
+                                    <TextBlock>
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0}: {1} {2}">
                                                     <Binding Path="PhanLoai"/>
@@ -114,24 +122,12 @@
                                             </TextBlock.Text>
                                     </TextBlock>
                                     <WrapPanel>
-                                        <TextBlock Text="Giới tính: " 
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding GioiTinh}"
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
+                                        <TextBlock Text="Giới tính: "></TextBlock>
+                                        <TextBlock Text="{Binding GioiTinh, Converter={StaticResource BooleanToSexConverter}}"></TextBlock>
                                     </WrapPanel>
                                     <WrapPanel>
-                                        <TextBlock Text="Chuyên khoa: "
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding ChuyenKhoa}"
-                                                   Foreground="Black"
-                                                   FontSize="16">
-                                        </TextBlock>
+                                        <TextBlock Text="Chuyên khoa: "></TextBlock>
+                                        <TextBlock Text="{Binding ChuyenKhoa}"></TextBlock>
                                     </WrapPanel>
                                 </StackPanel>
                             </StackPanel>
@@ -146,9 +142,13 @@
                 </ListBox.ItemsPanel>
             </ListBox>
         </StackPanel>
-        <Grid Grid.Column="1" Background="White">
+        <StackPanel Orientation="Horizontal" Width="10" Grid.Column="1">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Width="5" />
+        </StackPanel>
+        <Grid Grid.Column="2" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock FontSize="24"
@@ -156,7 +156,49 @@
                        Margin="25"
                        Grid.Row="0"
                        Text="Thông tin của tổ"/>
-            <StackPanel Grid.Row="1">
+            <Image Grid.Row="1"
+                   Width="120"
+                   Height="120"
+                   Stretch="UniformToFill"
+                   Source="/HospitalManagement;component/Images/medical-team.png">
+            </Image>
+            <StackPanel Grid.Row="2" Margin="25 30">
+                <StackPanel.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="18"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackPanel.Resources>
+                <WrapPanel>
+                    <TextBlock Text="ID tổ: "></TextBlock>
+                    <TextBlock Text="{Binding To.ID}"></TextBlock>
+                </WrapPanel>
+                <TextBlock Margin="0 5">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Khu vực phụ trách: Tầng {0}, Tòa {1}">
+                            <Binding Path="To.TANG.SOTANG"/>
+                            <Binding Path="To.TANG.TOA.DISPLAYNAME" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="0 5">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Tổ trưởng: {0} {1}">
+                            <Binding Path="ToTruong.HO" />
+                            <Binding Path="ToTruong.TEN" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <WrapPanel Margin="0 5">
+                    <TextBlock Text="Số lượng thành viên: "></TextBlock>
+                    <TextBlock Text="{Binding StaffInformations.Count}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Margin="0 5">
+                    <TextBlock Text="Số lượng công việc còn lại: "></TextBlock>
+                    <TextBlock Text="{Binding To.USER.CONGVIECs.Count}"></TextBlock>
+                </WrapPanel>
             </StackPanel>
         </Grid>
     </Grid>

@@ -86,10 +86,22 @@
                     </Button.Style>
                 </Button>
             </StackPanel>
+            <TextBlock HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Visibility="{Binding ProgressbarVisibility}"
+                       Margin="0 40 0 0">
+                    Đang tải dữ liệu
+            </TextBlock>
+            <ProgressBar IsIndeterminate="True" 
+                         Visibility="{Binding ProgressbarVisibility}"
+                         Margin="0 10 0 0"
+                         Width="700"/>
+
             <DataGrid 
                   x:Name="dtgAccountList"
                   CanUserAddRows="False"
                   Height="550"
+                  Visibility="{Binding DataGridVisibility}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
                   ItemsSource="{Binding Users, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

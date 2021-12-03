@@ -22,13 +22,24 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
+        <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                     IsIndeterminate="True"
+                     Value="45"
+                     Width="100"
+                     Visibility="{Binding ProgressBarVisibility}"
+                     Height="100"/>
+        <TextBlock Text="Đang tải" 
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Visibility="{Binding ProgressBarVisibility}"
+                   HorizontalAlignment="Center"/>
         <ListBox ItemsSource="{Binding CountedTeams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                  Background="White" 
                  BorderBrush="White"
                  Margin="0 0 0 20"
-                 >
+                 Visibility="{Binding ListBoxVisibility}">
             <!--dd:DragDrop.IsDropTarget="True"
                  dd:DragDrop.DropHandler="{Binding}" d:ItemsSource="{d:SampleData ItemCount=5}"-->
             <ListBox.ItemContainerStyle>

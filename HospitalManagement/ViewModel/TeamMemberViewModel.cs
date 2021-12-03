@@ -20,6 +20,7 @@ namespace HospitalManagement.ViewModel
         private static List<BACSI> doctors;
         private List<StaffInformation> staffInformations=new List<StaffInformation>();
         private TO to;
+        private BACSI toTruong;
         public List<YTA> Nurses
         {
             get { return nurses; }
@@ -36,6 +37,7 @@ namespace HospitalManagement.ViewModel
             set { staffInformations = value; OnPropertyChanged("StaffInformations"); }
         }
         public TO To { get => to; set => to = value; }
+        public BACSI ToTruong { get => toTruong; set => toTruong = value; }
         public ICommand ShowMemberInformation { get; set; }
         public TeamMemberViewModel(int idTo)
         {
@@ -46,6 +48,8 @@ namespace HospitalManagement.ViewModel
             foreach (BACSI bACSI in Doctors)
             {
                 staff = new StaffInformation(bACSI);
+                if (staff.PhanLoai == "Tổ Trưởng")
+                    ToTruong = bACSI;
                 StaffInformations.Add(staff);
             }
             foreach (YTA yTA in Nurses)

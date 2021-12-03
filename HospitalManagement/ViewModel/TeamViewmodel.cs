@@ -21,11 +21,14 @@ namespace HospitalManagement.ViewModel
         private static List<StaffInformation> members;
         private List<TOA> buildings;
         private static List<TANG> floors = DataProvider.Ins.DB.TANGs.Where(p => p.TOA.IDTOA == 1).ToList();
+        private Visibility progressBarVisibility;
+        private Visibility listBoxVisibility;
 
         private string currentBuilding;
         private int? currentFloor = null;
         private string currentTeam;
         private string deleteButtonVisibility = "Collapsed";
+        private static QUANLYBENHVIENEntities dbContext;
 
         public ICommand ChangeBuildingTeamCommand { get; set; }
         public ICommand ShowMembersInTeamCommand { get; set; }
@@ -87,24 +90,67 @@ namespace HospitalManagement.ViewModel
             }
         }
 
+        public Visibility ProgressBarVisibility 
+        { 
+            get => progressBarVisibility; 
+            set
+            {
+                progressBarVisibility = value;
+                OnPropertyChanged("ProgressBarVisibility");
+            }
+        }
+        public Visibility ListBoxVisibility 
+        { 
+            get => listBoxVisibility; 
+            set
+            {
+                listBoxVisibility = value;
+                OnPropertyChanged("ListBoxVisibility");
+            }
+        }
+
         public string DeleteButtonVisibility
         {
             get { return deleteButtonVisibility; }
             set { deleteButtonVisibility = value; OnPropertyChanged("DeleteButtonVisibility"); }
         }
 
+        public static QUANLYBENHVIENEntities DbContext 
+        { 
+            get
+            {
+                if (dbContext == null)
+                    dbContext = new QUANLYBENHVIENEntities();
+                return dbContext;
+            }
+            set => dbContext = value; 
+        }
+
         public TeamViewmodel()
         {
-            buildings = DataProvider.Ins.DB.TOAs.ToList();
+            buildings = DbContext.TOAs.ToList();
             currentBuilding = buildings[0].DISPLAYNAME;
             currentTeam = "";
-            CountedTeams = CountedTeam.GetCountedTeams(DataProvider.Ins.DB.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList());
+            List<TO> teams = DbContext.TOes.Where(p => p.TANG.TOA.DISPLAYNAME == currentBuilding).ToList();
+            InitTeams(teams);
             ChangeBuildingTeamCommand = new ChangeBuildingTeamCommand(this);
             ShowMembersInTeamCommand = new ShowMembersInTeamCommand(this);
             ShowMembersInformationInTeamCommand = new ShowMembersInformationInTeamCommand(this);
             ToggleDeleteButtonCommand = new ToggleDeleteButtonCommand(this);
             AddTeamCommand = new AddTeamCommand(this);
             DeleteTeamCommand = new DeleteTeamCommand(this);
+        }
+
+        public async void InitTeams(List<TO> teams)
+        {
+            ListBoxVisibility = Visibility.Collapsed;
+            ProgressBarVisibility = Visibility.Visible;
+            await Task.Run(() =>
+            {
+                CountedTeams = CountedTeam.GetCountedTeams(teams);
+            });
+            ListBoxVisibility = Visibility.Visible;
+            ProgressBarVisibility = Visibility.Collapsed;
         }
     }
 

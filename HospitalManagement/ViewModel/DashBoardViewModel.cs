@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -26,6 +27,8 @@ namespace HospitalManagement.ViewModel
         private int bedCount;
         private DashBoard dab;
         private DateTime columnChartDate;
+        private Visibility progressBarVisibility;
+        private Visibility columnChartVisibility;
 
         //get information for card
         public int StaffCount { get => staffCount; set => staffCount = value; }
@@ -49,6 +52,24 @@ namespace HospitalManagement.ViewModel
         public ICommand InitPieChartCommand { get; set; }
         public ICommand InitColumnChartCommand { get; set; }
         public ICommand ReloadBuildingStatisticCommand { get; set; }
+        public Visibility ProgressBarVisibility 
+        { 
+            get => progressBarVisibility; 
+            set
+            {
+                progressBarVisibility = value;
+                OnPropertyChanged("ProgressBarVisibility");
+            }
+        }
+        public Visibility ColumnChartVisibility 
+        { 
+            get => columnChartVisibility;
+            set
+            {
+                columnChartVisibility = value;
+                OnPropertyChanged("ColumnChartVisibility");
+            }
+        }
 
         public DashBoardViewModel(DashBoard dab)
         {
@@ -64,31 +85,36 @@ namespace HospitalManagement.ViewModel
             BedCount = DataProvider.Ins.DB.PHONGs.Count() * 6;
 
             #region "Initial Stacked Column Chart"
+            ProgressBarVisibility = Visibility.Visible;
+            ColumnChartVisibility = Visibility.Collapsed;
             ToaTK toaTK = new ToaTK();
-            toaTK.thongKeBenhNhanTheoToa();
-
-            Labels = ToaTK.LabelList;
-            SeriesCollection = new SeriesCollection
+            toaTK.thongKeBenhNhanTheoToa().GetAwaiter().OnCompleted(()=> 
             {
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.NangList,
-                    StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                    DataLabels = true
-                },
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.TrungBinhList,
-                    StackMode = StackMode.Values,
-                    DataLabels = true
-                },
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.NheList,
-                    StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                    DataLabels = true
-                },
-            };
+                Labels = ToaTK.LabelList;
+                SeriesCollection = new SeriesCollection
+                                    {
+                                        new StackedColumnSeries
+                                        {
+                                            Values = ToaTK.NangList,
+                                            StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
+                                            DataLabels = true
+                                        },
+                                        new StackedColumnSeries
+                                        {
+                                            Values = ToaTK.TrungBinhList,
+                                            StackMode = StackMode.Values,
+                                            DataLabels = true
+                                        },
+                                        new StackedColumnSeries
+                                        {
+                                            Values = ToaTK.NheList,
+                                            StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
+                                            DataLabels = true
+                                        },
+                                    };
+                ProgressBarVisibility = Visibility.Collapsed;
+                ColumnChartVisibility = Visibility.Visible;
+            });      
             #endregion
             #region "Initial Line Chart"
             LineLabels = new List<string>();

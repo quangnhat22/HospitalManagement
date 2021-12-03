@@ -104,16 +104,29 @@ namespace HospitalManagement.Utils
             this.PhanLoai = "admin";
         }
 
-        public static List<StaffInformation> InitAccountList()
+        public async static Task<List<StaffInformation>> InitAccountList()
         {
-            List<StaffInformation> staffAccounts = new List<StaffInformation>();
-            foreach (var to in DataProvider.Ins.DB.TOes.ToList())
-            {  
-                staffAccounts.Add(new StaffInformation(to.TOTRUONG));
-            }
-            foreach(var admin in DataProvider.Ins.DB.ADMINs.ToList())
-                staffAccounts.Add(new StaffInformation(admin));
-            return staffAccounts;
+            List<StaffInformation> toTruongs = new List<StaffInformation>();
+            Task toTruongTask = Task.Run(() =>
+            {
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                {
+                    toTruongs = dbContext.TOes.ToList().ConvertAll(p => new StaffInformation(p.TOTRUONG));
+                }
+            });
+           
+            List<StaffInformation> admins = new List<StaffInformation>();
+            Task adminTask = Task.Run(() =>
+            {
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                {
+                    List<ADMIN> al = dbContext.ADMINs.ToList();
+                    admins = al.ConvertAll(p => new StaffInformation(p));
+                }
+            });
+            await Task.WhenAll(toTruongTask, adminTask);
+            return toTruongs.Concat(admins).ToList();
+
         }
     }
 }
