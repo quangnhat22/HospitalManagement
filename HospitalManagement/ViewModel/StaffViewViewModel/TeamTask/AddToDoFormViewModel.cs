@@ -25,6 +25,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         private ObservableCollection<StaffInformation> members;
         private ObservableCollection<StaffInformation> involveMembers;
         private StaffRoleTeamTaskViewModel owner;
+        private List<string> taskTypes = new List<string> { "Bình thường", "Ưu tiên", "Nguy cấp" };
+        private string taskType;
 
         #region "prop"
         public ObservableCollection<StaffInformation> Members
@@ -46,6 +48,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public DateTime StartHour { get => startHour; set => startHour = value; }
         public DateTime EndHour { get => endHour; set => endHour = value; }
+        public List<string> TaskTypes { get => taskTypes; }
+        public string TaskType { get => taskType; set => taskType = value; }
         #endregion
 
         public AddToDoFormViewModel()
