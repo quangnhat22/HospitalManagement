@@ -20,10 +20,10 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class DoctorForm : Window
     {
-        public DoctorForm()
+        public DoctorForm(DoctorViewModel doctorViewModel)
         {
             InitializeComponent();
-            this.DataContext = new DoctorFormViewModel();
+            this.DataContext = new DoctorFormViewModel(doctorViewModel);
         }
     }
 }

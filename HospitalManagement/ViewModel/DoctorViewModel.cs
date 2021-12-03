@@ -14,7 +14,7 @@ using HospitalManagement.Command.DoctorListCommand;
 
 namespace HospitalManagement.ViewModel
 {
-    class DoctorViewModel : BaseViewModel, INotifyPropertyChanged
+    public class DoctorViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private static ObservableCollection<SelectableItem<BACSI>> doctors = SelectableItem<BACSI>.GetSelectableItems(DataProvider.Ins.DB.BACSIs.ToList());
         public ObservableCollection<SelectableItem<BACSI>> Doctors
@@ -60,7 +60,7 @@ namespace HospitalManagement.ViewModel
             });    
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
             OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();           
-            OpenDoctorForm = new OpenDoctorFormCommand();
+            OpenDoctorForm = new OpenDoctorFormCommand(this);
             DeleteDoctor = new DeleteDoctorCommand(this);
         }
     }

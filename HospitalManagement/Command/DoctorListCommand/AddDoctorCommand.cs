@@ -14,9 +14,11 @@ namespace HospitalManagement.Command
     class AddDoctorCommand : ICommand
     {
         private DoctorFormViewModel doctorFormViewModel;
-        public AddDoctorCommand(DoctorFormViewModel doctorFormViewModel)
+        private DoctorViewModel doctorViewModel;
+        public AddDoctorCommand(DoctorFormViewModel doctorFormViewModel, DoctorViewModel doctorViewModel)
         {
             this.doctorFormViewModel = doctorFormViewModel;
+            this.doctorViewModel = doctorViewModel;
         }
 
 
@@ -58,6 +60,7 @@ namespace HospitalManagement.Command
                 DataProvider.Ins.DB.SaveChanges();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Thêm thành công!");
                 notifyWindow.ShowDialog();
+                doctorViewModel.Doctors = SelectableItem<BACSI>.GetSelectableItems(DataProvider.Ins.DB.BACSIs.ToList());
             }          
             
         }
