@@ -26,6 +26,7 @@ namespace HospitalManagement.Utils
         private string phanLoai;
         //account information
         private string userName;
+        private static QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities();
 
         #region "Prop"
         public string Cmnd_cccd { get => cmnd_cccd; set => cmnd_cccd = value; }
@@ -109,10 +110,7 @@ namespace HospitalManagement.Utils
             List<StaffInformation> toTruongs = new List<StaffInformation>();
             Task toTruongTask = Task.Run(() =>
             {
-                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
-                {
-                    toTruongs = dbContext.TOes.ToList().ConvertAll(p => new StaffInformation(p.TOTRUONG));
-                }
+                 toTruongs = dbContext.TOes.ToList().ConvertAll(p => new StaffInformation(p.TOTRUONG));
             });
            
             List<StaffInformation> admins = new List<StaffInformation>();
