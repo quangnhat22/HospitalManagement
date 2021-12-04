@@ -14,6 +14,20 @@ namespace Seeds
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Do you want to seeds? (yes/no)");
+            string input = Console.ReadLine();
+            if(input.ToLower() == "yes")
+            {
+                startSeeds();
+            }
+            else
+            {
+                return ;
+            }
+        }
+
+        private static void startSeeds()
+        {
             Console.WriteLine("Start delete database's data");
             CleanDatabase();
             Console.WriteLine("Complete delete database's data");
@@ -31,7 +45,6 @@ namespace Seeds
             Console.WriteLine("Complete seed database's data");
             Thread.Sleep(1000);
         }
-
         private static void SeedsDatabase()
         {
             SeedsTOA();
