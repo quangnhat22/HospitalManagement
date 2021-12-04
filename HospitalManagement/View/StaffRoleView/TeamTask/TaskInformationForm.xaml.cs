@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +12,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HospitalManagement.View.StaffRoleView.TeamTask
 {
     /// <summary>
-    /// Interaction logic for StaffRoleTeamTaskUsercontrol.xaml
+    /// Interaction logic for TaskInformationForm.xaml
     /// </summary>
-    public partial class StaffRoleTeamTaskUsercontrol : UserControl
+    public partial class TaskInformationForm : Window
     {
-        public StaffRoleTeamTaskUsercontrol()
+        public TaskInformationForm(CONGVIEC cv)
         {
             InitializeComponent();
-            this.DataContext = new StaffRoleTeamTaskViewModel();
+            this.DataContext = new TaskInformationViewModel(cv);
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
