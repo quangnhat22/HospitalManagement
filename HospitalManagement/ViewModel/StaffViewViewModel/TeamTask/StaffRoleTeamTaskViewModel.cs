@@ -1,4 +1,5 @@
-﻿using HospitalManagement.Command.TeamCommand;
+﻿using HospitalManagement.Command;
+using HospitalManagement.Command.TeamCommand;
 using HospitalManagement.Command.TeamTaskCommand;
 using HospitalManagement.Model;
 using HospitalManagement.Utils;
@@ -16,11 +17,13 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
     {
         private ObservableCollection<ProgressTask> progressTasks;
         public ICommand OpenAddToDoFormCommand { get; set; }
+        public ICommand ShowTaskInformation { get; set; }
         public ObservableCollection<ProgressTask> ProgressTasks { get => progressTasks; set => progressTasks = value; }
 
         public StaffRoleTeamTaskViewModel()
         {
-            OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this); 
+            OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this);
+            ShowTaskInformation = new ShowTaskInformationCommand(this);
             LoadTaskList();
         }
 
