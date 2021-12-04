@@ -7,17 +7,27 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using HospitalManagement.Model;
 using HospitalManagement.Command;
+using HospitalManagement.Utils;
+using System.Collections.ObjectModel;
 
 namespace HospitalManagement.ViewModel
 {
     class TaskInformationViewModel : INotifyPropertyChanged
     {
         private CONGVIEC task;
-        private string doctorNameList = "";
-        private string nurseNameList = "";
+        private DateTime startDate;
+        private DateTime startHour;
+        private DateTime endDate;
+        private DateTime endHour;
+        private ObservableCollection<StaffInformation> involveMembers = new ObservableCollection<StaffInformation>();
+        public ObservableCollection<StaffInformation> InvolveMembers { get => involveMembers; set => involveMembers = value; }
+        private List<string> taskTypes = new List<string> { "Bình thường", "Ưu tiên", "Nguy cấp" };
         public CONGVIEC Task { get => task; set => task = value; }
-        public string DoctorNameList { get => doctorNameList; set => doctorNameList = value; }
-        public string NurseNameList { get => nurseNameList; set => nurseNameList = value; }
+        public DateTime StartDate { get => startDate; set => startDate = value; }
+        public DateTime EndDate { get => endDate; set => endDate = value; }
+        public DateTime StartHour { get => startHour; set => startHour = value; }
+        public DateTime EndHour { get => endHour; set => endHour = value; }
+        public List<string> TaskTypes { get => taskTypes; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,18 +38,21 @@ namespace HospitalManagement.ViewModel
         public TaskInformationViewModel(CONGVIEC cv)
         {
             this.Task = cv;
-            foreach(BACSILIENQUAN bs in Task.BACSILIENQUANs)
+            DateTime StartTime = Task.BATDAU.Value;
+            DateTime EndTime = Task.KETTHUC.Value;
+            StartDate = new DateTime(StartTime.Year, StartTime.Month, StartTime.Day);
+            EndDate = new DateTime(EndTime.Year, EndTime.Month, EndTime.Day);
+            StaffInformation staffInformation;
+            foreach (BACSILIENQUAN bs in Task.BACSILIENQUANs)
             {
-                DoctorNameList += " " + bs.BACSI.HO.ToString() + " " + bs.BACSI.TEN.ToString() + ",";
+                staffInformation = new StaffInformation(bs.BACSI);
+                InvolveMembers.Add(staffInformation);
             }
-            if (DoctorNameList.Length > 0)
-                DoctorNameList = DoctorNameList.Remove(DoctorNameList.Length - 1, 1);
             foreach (YTALIENQUAN yt in Task.YTALIENQUANs)
             {
-                NurseNameList += " " + yt.YTA.HO.ToString() + " " + yt.YTA.TEN.ToString() + ",";
+                staffInformation = new StaffInformation(yt.YTA);
+                InvolveMembers.Add(staffInformation);
             }
-            if (NurseNameList.Length > 0)
-                NurseNameList = NurseNameList.Remove(NurseNameList.Length - 1, 1);
         }
     }
 }

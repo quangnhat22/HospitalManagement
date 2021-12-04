@@ -6,126 +6,249 @@
         xmlns:local="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
+        TextElement.FontSize="14"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{materialDesign:MaterialDesignFont}"
-        WindowStartupLocation="CenterScreen"
+        Title="TaskInformationForm"
+        x:Name="taskInforWindow"
+        Height="730"
+        Width="570"
         WindowStyle="None" 
-        AllowsTransparency="True"
+        ResizeMode="NoResize"
         Background="Transparent"
-        Title="TaskInformationForm" Height="640" Width="550">
-    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <SolidColorBrush x:Key="clrPrimary" Color="#228be6" />
+    </Window.Resources>
+    <Border BorderBrush="{StaticResource clrPrimary}" BorderThickness="4" CornerRadius="5">
         <Grid>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Border Background="White" CornerRadius="8 8 0 0"></Border>
-                    <StackPanel Orientation="Vertical">
-                        <Grid Height="150" Margin="0,10,0,0">
-                            <Image Source="/Images/medical-team.png" Height="150" Width="150"/>
-                        </Grid>
-                        <TextBlock Text="{Binding Task.TIEUDE}" 
-                                   Foreground="Black" 
-                                   FontSize="20" 
-                                   HorizontalAlignment="Center"
-                                   />
-                        <Grid Height="380">
-                            <StackPanel Margin="40,15,0,0">
-                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.75*"></ColumnDefinition>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Nội dung:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top">
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
-                                                    FontSize="18" 
-                                                    TextWrapping="Wrap" 
-                                                    Foreground="Black"
-                                                    Text="{Binding Task.NOIDUNG}" />
-                                </Grid>
-                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.73*"></ColumnDefinition>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Địa điểm:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top">
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
-                                                    FontSize="18" 
-                                                    TextWrapping="Wrap" 
-                                                    Foreground="Black"
-                                                    Text="{Binding Task.DIADIEM}" />
-                                </Grid>
-                                <WrapPanel Margin="0 10 0 0">
-                                    <TextBlock Text="Ngày bắt đầu:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
-                                    </TextBlock>
-                                    <TextBlock Margin="5,0,0,0"
-                                               FontSize="18" 
-                                               TextWrapping="Wrap" 
-                                               Foreground="Black"
-                                               Text="{Binding Task.BATDAU}"/>
-                                </WrapPanel>
-                                <WrapPanel Margin="0 10 0 0">
-                                    <TextBlock Text="Ngày kết thúc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
-                                    </TextBlock>
-                                    <TextBlock Margin="5,0,0,0"
-                                               FontSize="18" 
-                                               TextWrapping="Wrap" 
-                                               Foreground="Black"
-                                               Text="{Binding Task.KETTHUC}"/>
-                                </WrapPanel>
-                                <WrapPanel Margin="0 10 0 0">
-                                    <TextBlock Text="Mức độ ưu tiên:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
-                                    </TextBlock>
-                                    <TextBlock Margin="5,0,0,0"
-                                               FontSize="18" 
-                                               TextWrapping="Wrap" 
-                                               Foreground="Black"
-                                               Text="{Binding Task.TINHCHAT}"/>
-                                </WrapPanel>
-                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.33*"></ColumnDefinition>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Bác sĩ tham gia:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top">
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
-                                                    FontSize="18" 
-                                                    TextWrapping="Wrap" 
-                                                    Foreground="Black"
-                                                    Text="{Binding DoctorNameList}" />
-                                </Grid>
-                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.13*"></ColumnDefinition>
-                                        <ColumnDefinition Width="4*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Y tá tham gia:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top">
-                                    </TextBlock>
-                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
-                                                    FontSize="18" 
-                                                    TextWrapping="Wrap" 
-                                                    Foreground="Black"
-                                                    Text="{Binding NurseNameList}" />
-                                </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid 
+                Grid.Row="0"
+                Background="{StaticResource clrPrimary}">
+                <TextBlock 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Foreground="White"
+                    FontSize="20" FontFamily="Inter"
+                    FontWeight="DemiBold">
+                    Phân chia công việc
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Row="1" Background="White" Margin="0,0,0,-1">
+                <Grid Grid.Row="1" HorizontalAlignment="Center"                 
+                  Margin="10">
+                    <Grid>
+                        <Grid>
+                            <StackPanel Orientation="Vertical">
+                                <TextBox
+                                x:Name="txbSubject"
+                                HorizontalAlignment="Left"
+                                TextWrapping="Wrap"
+                                MinWidth="280"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Text="{Binding Task.TIEUDE}"
+                                AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Hidden"
+                                SpellCheck.IsEnabled="True"
+                                materialDesign:HintAssist.Hint="Tiêu đề" 
+                                Margin="10" 
+                                Width="320"
+                                Height="40"
+                                Padding="20 10"
+                        />
+                                <StackPanel Orientation="Horizontal">
+                                    <DatePicker
+                                x:Name="dpStart"
+                                HorizontalAlignment="Left"
+                                Margin="10"
+                                Width="160"
+                                SelectedDate="{Binding StartDate, Mode=OneWay}"
+                                materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                        Padding="20 10"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                    <materialDesign:TimePicker
+                                    SelectedTime="{Binding StartDate.TimeOfDay, Mode=OneWay}"
+                                    x:Name="tpStart"
+                                    Width="150" 
+                                        Padding="20 10"
+                                    materialDesign:HintAssist.Hint="Thời gian"
+                                    Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <DatePicker
+                                    x:Name="dpEnd"
+                                    HorizontalAlignment="Left"
+                                    Margin="10"
+                                        Padding="20 10"
+                                    Width="160"
+                                    SelectedDate="{Binding EndDate, Mode=OneWay}"
+                                    materialDesign:HintAssist.Hint="Ngày kết thúc"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                    <materialDesign:TimePicker
+                                    SelectedTime="{Binding EndĐate.TimeOfDay, Mode=OneWay}"
+                                    x:Name="tpEnd"
+                                    Width="150" 
+                                        Padding="20 10"
+                                    materialDesign:HintAssist.Hint="Thời gian"
+                                    Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBox
+                                    x:Name="txbLocation"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                    Height="40"
+                                    Margin="10"
+                                    Width="320"
+                                        Padding="20 10"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    Text="{Binding Task.DIADIEM}"
+                                    AcceptsReturn="true"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    SpellCheck.IsEnabled="true"
+                                    materialDesign:HintAssist.Hint="Địa điểm (Ex: phòng 1 tòa A)" 
+                                    materialDesign:TextFieldAssist.HasClearButton="True"/>
+                                    <TextBox
+                                    x:Name="txbBody"
+                                    HorizontalAlignment="Left"
+                                    TextWrapping="Wrap"
+                                    MinWidth="280"
+                                    Text="{Binding Task.NOIDUNG}"
+                                    TextAlignment="Left"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    AcceptsReturn="True"
+                                    VerticalScrollBarVisibility="Auto"
+                                    materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
+                                    SpellCheck.IsEnabled="True"
+                                    materialDesign:HintAssist.Hint="Nội dung công việc" 
+                                    Margin="10" 
+                                    Width="320"
+                                    Height="100"
+                                    VerticalAlignment="Top"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                                    <ComboBox x:Name="cbType"
+                                              ItemsSource="{Binding TaskTypes}"
+                                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                              materialDesign:HintAssist.Hint="Tính chất công việc" 
+                                              Width="320"
+                                              Padding="20 10"
+                                              Margin="-8 0 0 0"
+                                              Text="{Binding Task.TINHCHAT}"
+                                              HorizontalAlignment="Center" 
+                                              SelectedValue="{Binding Task.TINHCHAT}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <Label Content="Thành viên tham gia" Margin="10"/>
+                                    <ListBox 
+                                    ItemsSource="{Binding InvolveMembers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    Background="White" 
+                                    BorderBrush="White"
+                                    Margin="0 0 0 20"
+                                    Height="120">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ListBoxItem">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <materialDesign:Chip
+                                                ToolTip="Just a tool tip"
+                                                Margin="5 10 10 10">
+                                                    <materialDesign:Chip.Content>
+                                                    <StackPanel>
+                                                        <TextBlock>
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                                    <Binding Path="Ho" />
+                                                                    <Binding Path="Ten" />
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="CMND:" FontSize="8" Margin="2"/>
+                                                            <TextBlock Text="{Binding Cmnd_cccd}" FontSize="8" Margin="2"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                    </materialDesign:Chip.Content>
+                                                    <materialDesign:Chip.Icon>
+                                                        <Image Source="/HospitalManagement;component/Images/doctor.png" />
+                                                    </materialDesign:Chip.Icon>
+                                                </materialDesign:Chip>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                    </ListBox>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
-                    </StackPanel>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Border Background="White" CornerRadius="0 0 8 8"></Border>
-                    <Button Height="50" Width="100" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
-                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="23*"/>
+                    <ColumnDefinition Width="150*"/>
+                </Grid.ColumnDefinitions>
+                <Border Background="White" CornerRadius="0 0 3 3" Grid.ColumnSpan="2"></Border>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="86,2,86,3">
+                    <Button
+                        x:Name="btnCancel"
+                        Width="120"
+                        Height="45"
+                        Margin="70 0 70 0"
+                        Background="White"
+                        Foreground="{StaticResource clrPrimary}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource clrPrimary}"
+                        ToolTip="Đăng nhập"
+                        Content="HỦY" Click="btnCancel_Click"/>
+                    <Button
+                        x:Name="btnOK"
+                        Width="120"
+                        Height="45"
+                        Margin="70 0 70 0"
+                        Background="{StaticResource clrPrimary}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource clrPrimary}"
+                        ToolTip="Đăng nhập"
+                        Content="CHỈNH SỬA"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Border>

@@ -26,7 +26,7 @@ namespace HospitalManagement.View.StaffRoleView.TeamTask
             InitializeComponent();
             this.DataContext = new TaskInformationViewModel(cv);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
