@@ -33,8 +33,10 @@ namespace HospitalManagement.Model
         public string CHUYENKHOA { get; set; }
         public string GHICHU { get; set; }
         public Nullable<int> IDTO { get; set; }
+        public Nullable<int> IDUSER { get; set; }
     
         public virtual TO TO { get; set; }
+        public virtual USER USER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<YTALIENQUAN> YTALIENQUANs { get; set; }
     }

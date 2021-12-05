@@ -31,6 +31,7 @@ namespace Seeds
         public virtual DbSet<BENHNHAN> BENHNHANs { get; set; }
         public virtual DbSet<CONGVIEC> CONGVIECs { get; set; }
         public virtual DbSet<PHONG> PHONGs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TANG> TANGs { get; set; }
         public virtual DbSet<TO> TOes { get; set; }
         public virtual DbSet<TOA> TOAs { get; set; }

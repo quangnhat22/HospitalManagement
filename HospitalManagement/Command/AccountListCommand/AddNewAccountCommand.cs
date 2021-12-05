@@ -66,11 +66,11 @@ namespace HospitalManagement.Command.AccountListCommand
                         return;
                     }
 
-                    DataProvider.Ins.DB.TOes.ToList().ForEach(x =>
-                        {
-                            if (x.ID == int.Parse(groupName))
-                                x.IDUSER = userInput.ID;
-                        });
+                    //DataProvider.Ins.DB.TOes.ToList().ForEach(x =>
+                    //    {
+                    //        if (x.ID == int.Parse(groupName))
+                    //            x.IDUSER = userInput.ID;
+                    //    });
                 }
 
                 DataProvider.Ins.DB.USERs.Add(userInput);

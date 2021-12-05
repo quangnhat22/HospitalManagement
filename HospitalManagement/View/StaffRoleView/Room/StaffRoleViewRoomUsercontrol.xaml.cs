@@ -26,8 +26,11 @@ namespace HospitalManagement.View.StaffRoleView.Room
         {
             InitializeComponent();
             USER user = MainWindowViewModel.User;
-
-            this.DataContext = new RoomViewModel(user.TOes.FirstOrDefault().TANG.ID);
+            var leader = user.BACSIs.FirstOrDefault();
+            if (leader != null || leader != default(BACSI))
+            {
+                this.DataContext = new RoomViewModel(leader.TO.TANG.ID);
+            }
         }
     }
 }

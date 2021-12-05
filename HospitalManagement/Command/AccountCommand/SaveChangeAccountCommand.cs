@@ -49,7 +49,7 @@ namespace HospitalManagement.Command
                             }
                             else
                             {
-                                var leader = user.TOes.FirstOrDefault().TOTRUONG;
+                                var leader = user.BACSIs.FirstOrDefault();
                                 if (leader != null || leader != default)
                                 {
                                     leader.HO = cw.txbLastName.Text;

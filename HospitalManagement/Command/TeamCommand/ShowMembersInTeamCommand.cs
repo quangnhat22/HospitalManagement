@@ -54,15 +54,16 @@ namespace HospitalManagement.Command.TeamCommand
             }
             if (addToDoFormViewModel != null)
             {
-                var members = MainWindowViewModel.User.TOes.ToList();
-                foreach(var member in members)
+                var leader = MainWindowViewModel.User.BACSIs.FirstOrDefault();
+                if(leader != null || leader != default(BACSI))
                 {
-                    var BacSiList = member.BACSIs.ToList().ConvertAll(p => new StaffInformation(p));
-                    var YTaList = member.YTAs.ToList().ConvertAll(p=> new StaffInformation(p));
+                    var BacSiList = leader.TO.BACSIs.ToList().ConvertAll(p => new StaffInformation(p));
+                    var YTaList = leader.TO.YTAs.ToList().ConvertAll(p => new StaffInformation(p));
                     staffAccounts.AddRange(BacSiList);
                     staffAccounts.AddRange(YTaList);
-                }    
-                addToDoFormViewModel.Members = new ObservableCollection<StaffInformation>(staffAccounts);
+                    addToDoFormViewModel.Members = new ObservableCollection<StaffInformation>(staffAccounts);
+                }
+                
             }
         }
     }

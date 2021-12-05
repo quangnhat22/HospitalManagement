@@ -202,6 +202,9 @@
     <Compile Include="Model\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\TANG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

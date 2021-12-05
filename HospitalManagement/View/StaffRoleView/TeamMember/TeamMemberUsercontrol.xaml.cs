@@ -26,7 +26,11 @@ namespace HospitalManagement.View.StaffRoleView.TeamMember
         {
             InitializeComponent();
             USER user = MainWindowViewModel.User;
-            this.DataContext = new TeamMemberViewModel(user.TOes.FirstOrDefault().ID);
+            var leader = user.BACSIs.FirstOrDefault();
+            if (leader != null || leader != default(BACSI))
+            {
+                this.DataContext = new TeamMemberViewModel(leader.TO.ID);
+            }
         }
     }
 }

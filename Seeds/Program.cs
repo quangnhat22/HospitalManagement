@@ -16,13 +16,13 @@ namespace Seeds
         {
             Console.WriteLine("Do you want to seeds? (yes/no)");
             string input = Console.ReadLine();
-            if(input.ToLower() == "yes")
+            if (input.ToLower() == "yes")
             {
                 startSeeds();
             }
             else
             {
-                return ;
+                return;
             }
         }
 
@@ -75,10 +75,6 @@ namespace Seeds
             Console.WriteLine("Delete YTA successful");
             // Delete BACSI
             List<BACSI> bacsilist = DataProvider.Ins.DB.BACSIs.ToList();
-            foreach (BACSI bacsi in bacsilist)
-            {
-                bacsi.LATRUONGTO.Clear();
-            }
             DataProvider.Ins.DB.BACSIs.RemoveRange(bacsilist);
             DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete BACSI successful");
@@ -109,7 +105,6 @@ namespace Seeds
             //Delete Admin
             List<ADMIN> admins = DataProvider.Ins.DB.ADMINs.ToList();
             DataProvider.Ins.DB.ADMINs.RemoveRange(admins);
-            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DBCC CHECKIDENT ('USER', RESEED, 0)");
             DataProvider.Ins.DB.SaveChanges();
             Console.WriteLine("Delete admin successful");
             // Delete User
@@ -123,12 +118,12 @@ namespace Seeds
         #region seeds method
         private static void SeedsTo()
         {
-            
+
             List<TANG> ts = DataProvider.Ins.DB.TANGs.ToList();
-            
-            foreach(TANG tang in ts)
+
+            foreach (TANG tang in ts)
             {
-                for(int i = 0; i < 3; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     TO t = new TO();
                     t.TANG = tang;
@@ -140,7 +135,7 @@ namespace Seeds
 
         private static void SeedsTOA()
         {
-            for(int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 TOA toa = new TOA();
                 toa.SOTOA = i + 1;
@@ -153,7 +148,7 @@ namespace Seeds
         private static void SeedsTANG()
         {
             List<TOA> toaList = DataProvider.Ins.DB.TOAs.ToList();
-            foreach(TOA toa in toaList)
+            foreach (TOA toa in toaList)
             {
                 for (int i = 0; i < toa.SLTANG; i++)
                 {
@@ -169,9 +164,9 @@ namespace Seeds
         private static void SeedsYTA()
         {
             List<TO> toList = DataProvider.Ins.DB.TOes.ToList();
-            foreach(TO to in toList)
+            foreach (TO to in toList)
             {
-                for(int i = 0; i < 2; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     YTA yta = new YTA();
                     yta.CMND_CCCD = RandomInformation.GenerateCCCD();
@@ -207,10 +202,6 @@ namespace Seeds
                     bacsi.DIACHI = RandomInformation.GenerateAddress();
                     bacsi.GIOITINH = RandomInformation.GenerateGioiTinh();
                     bacsi.TO = to;
-                    if (i == 0)
-                    {
-                        bacsi.LATRUONGTO.Add(to);
-                    }
                     DataProvider.Ins.DB.BACSIs.Add(bacsi);
                 }
             }
@@ -218,34 +209,65 @@ namespace Seeds
         }
         private static void SeedsUSERs()
         {
-            for(int i = 0; i < 10; i++)
+            using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
             {
-                USER admin = new USER();
-                admin.USERNAME = "admin" + i;
-                admin.PASSWORD = Encryptor.Hash("1");
-                admin.ROLE = "admin";
-                ADMIN adminInfo = new ADMIN();
-                adminInfo.USER = admin;
-                DataProvider.Ins.DB.USERs.Add(admin);
+                for (int i = 0; i < 5; i++)
+                {
+                    USER admin = new USER();
+                    admin.USERNAME = "admin" + i;
+                    admin.PASSWORD = Encryptor.Hash("1");
+                    admin.ROLE = "admin";
+                    ADMIN adminInfo = new ADMIN();
+                    adminInfo.USER = admin;
+                    dbContext.USERs.Add(admin);
+                }
+                dbContext.SaveChanges();
+                foreach (TO to in dbContext.TOes)
+                {
+                    bool HaveLeader = false;
+                    int count = 0;
+                    foreach (BACSI bs in to.BACSIs)
+                    {
+                        if (!HaveLeader)
+                        {
+                            HaveLeader = true;
+                            USER user = new USER();
+                            user.USERNAME = "leader" + to.ID;
+                            user.PASSWORD = Encryptor.Hash("1");
+                            user.ROLE = "leader";
+                            user.BACSIs.Add(bs);
+                            dbContext.USERs.Add(user);
+                        }
+                        else
+                        {
+                            USER user = new USER();
+                            user.USERNAME = "staff" + to.ID + (++count);
+                            user.PASSWORD = Encryptor.Hash("1");
+                            user.ROLE = "staff";
+                            user.BACSIs.Add(bs);
+                            dbContext.USERs.Add(user);
+                        }
+                    }
+                    foreach(YTA yta in to.YTAs)
+                    {
+                        USER user = new USER();
+                        user.USERNAME = "staff" + to.ID + (++count);
+                        user.PASSWORD = Encryptor.Hash("1");
+                        user.ROLE = "staff";
+                        user.YTAs.Add(yta);
+                        dbContext.USERs.Add(user);
+                    }
+                }
+                dbContext.SaveChanges();
             }
-            foreach(TO to in DataProvider.Ins.DB.TOes)
-            {
-                USER user = new USER();
-                to.USER = user;
-                to.USER.USERNAME = "staff" + to.ID;
-                to.USER.PASSWORD = Encryptor.Hash("1");
-                user.ROLE = "staff";
-                DataProvider.Ins.DB.USERs.Add(user);
-            }
-            DataProvider.Ins.DB.SaveChanges();
         }
         private static void SeedsPHONG()
         {
             List<TANG> ts = DataProvider.Ins.DB.TANGs.ToList();
-            
-            foreach(TANG tang in ts)
+
+            foreach (TANG tang in ts)
             {
-                for(int i = 0; i < tang.SLPHONG; i++)
+                for (int i = 0; i < tang.SLPHONG; i++)
                 {
                     PHONG p = new PHONG();
                     p.SOPHONG = i + 1;
@@ -259,7 +281,7 @@ namespace Seeds
         private static void SeedsBENHNHAN()
         {
             List<PHONG> phongList = DataProvider.Ins.DB.PHONGs.ToList();
-            List<string> tinhTrang = new List<string>() {"Không triệu chứng", "Có triệu chứng", "Triệu chứng trở nặng" };
+            List<string> tinhTrang = new List<string>() { "Không triệu chứng", "Có triệu chứng", "Triệu chứng trở nặng" };
             List<string> benhNen = new List<string>() { "Cao huyết áp", "Viêm phổi", "Đau dạ dày", "Béo phì" };
             foreach (PHONG p in phongList)
             {
@@ -327,12 +349,12 @@ namespace Seeds
             bool unique = false;
             string cccd = string.Empty;
             do
-            {   
+            {
                 for (int i = 0; i < 11; i++)
                 {
                     cccd += rd.Next(10).ToString();
                 }
-                if(!listcccd.Contains(cccd))
+                if (!listcccd.Contains(cccd))
                 {
                     unique = true;
                 }
@@ -341,7 +363,7 @@ namespace Seeds
                     cccd = String.Empty;
                 }
             }
-            while(!unique);
+            while (!unique);
             return cccd;
         }
         public static string GenerateHo()
@@ -366,13 +388,13 @@ namespace Seeds
         public static DateTime GenerateDate(int start, int end)
         {
             RandomDateTime randomDateTime = new RandomDateTime(start, end);
-            if(randomDateTime != null)
+            if (randomDateTime != null)
             {
                 return randomDateTime.Next();
             }
             else
             {
-                return new DateTime(1970,1,1);
+                return new DateTime(1970, 1, 1);
             }
         }
         public static string GenerateEmail(string Ho, string Ten)

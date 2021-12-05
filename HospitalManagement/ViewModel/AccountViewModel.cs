@@ -51,11 +51,11 @@ namespace HospitalManagement.ViewModel
             }   
             else 
             {
-                var leader = MainWindowViewModel.User.TOes.FirstOrDefault().TOTRUONG;
+                var leader = MainWindowViewModel.User.BACSIs.FirstOrDefault();
                 if (leader != null || leader != default)
                 {
                     HoTen = leader.HO + " " + leader.TEN;
-                    TenDangNhap = leader.TO.USER.USERNAME;
+                    TenDangNhap = leader.USER.USERNAME;
                     if (leader.NGSINH.HasValue)
                     {
                         DateTime ngsinh = (DateTime)leader.NGSINH;

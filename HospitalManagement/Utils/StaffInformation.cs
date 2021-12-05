@@ -26,8 +26,6 @@ namespace HospitalManagement.Utils
         private string phanLoai;
         //account information
         private string userName;
-        private static QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities();
-
         #region "Prop"
         public string Cmnd_cccd { get => cmnd_cccd; set => cmnd_cccd = value; }
         public string Ho { get => ho; set => ho = value; }
@@ -61,15 +59,7 @@ namespace HospitalManagement.Utils
             this.ChuyenKhoa = bacsi.CHUYENKHOA;
             this.GhiChu = bacsi.GHICHU;
             this.IdTo = bacsi.IDTO;
-            this.userName = bacsi.TO.USER.USERNAME;
-            if(bacsi.TO.TOTRUONG == bacsi)
-            {
-                this.PhanLoai = "Bác Sĩ";
-            }
-            else
-            {
-                this.PhanLoai = "Tổ Trưởng";
-            }
+            this.userName = bacsi.USER.USERNAME;
         }
 
         public StaffInformation(YTA yta)
@@ -87,6 +77,7 @@ namespace HospitalManagement.Utils
             this.ChuyenKhoa = yta.CHUYENKHOA;
             this.GhiChu = yta.GHICHU;
             this.IdTo = yta.IDTO;
+            this.userName = yta.USER.USERNAME;
             this.PhanLoai = "Y Tá";
         }
 
@@ -107,24 +98,14 @@ namespace HospitalManagement.Utils
 
         public async static Task<List<StaffInformation>> InitAccountList()
         {
-            List<StaffInformation> toTruongs = new List<StaffInformation>();
-            Task toTruongTask = Task.Run(() =>
+            return await Task.Run(() =>
             {
-                 toTruongs = dbContext.TOes.ToList().ConvertAll(p => new StaffInformation(p.TOTRUONG));
+                List<StaffInformation> list = new List<StaffInformation>();
+                list.AddRange(DataProvider.Ins.DB.BACSIs.ToList().ConvertAll(p => new StaffInformation(p)));
+                list.AddRange(DataProvider.Ins.DB.BACSIs.ToList().ConvertAll(p => new StaffInformation(p)));
+                list.AddRange(DataProvider.Ins.DB.ADMINs.ToList().ConvertAll(p => new StaffInformation(p)));
+                return list;
             });
-           
-            List<StaffInformation> admins = new List<StaffInformation>();
-            Task adminTask = Task.Run(() =>
-            {
-                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
-                {
-                    List<ADMIN> al = dbContext.ADMINs.ToList();
-                    admins = al.ConvertAll(p => new StaffInformation(p));
-                }
-            });
-            await Task.WhenAll(toTruongTask, adminTask);
-            return toTruongs.Concat(admins).ToList();
-
         }
     }
 }
