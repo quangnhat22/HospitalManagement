@@ -11,6 +11,7 @@ using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
 using HospitalManagement.Command.PatientListCommand;
+using System.Windows;
 
 namespace HospitalManagement.ViewModel
 {
@@ -24,6 +25,7 @@ namespace HospitalManagement.ViewModel
         private string selectedFilter;
         private string searchBox;
         private string cmnd;
+        private Visibility buttonVisibility;
         public ObservableCollection<SelectableItem<BENHNHAN>> Patients
         {
             get { return patients; }
@@ -64,6 +66,7 @@ namespace HospitalManagement.ViewModel
         public List<string> FilterList { get => filterList; set => filterList = value; }
         public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
         public string CMND { get => cmnd; set => cmnd = value; }
+        public Visibility ButtonVisibility { get => buttonVisibility; set => buttonVisibility = value; }
 
         public PatientViewModel()
         {
@@ -74,6 +77,14 @@ namespace HospitalManagement.ViewModel
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
             OpenChangePatientForm = new OpenChangePatientFormCommand();
+            if (MainWindowViewModel.User.ROLE == "staff")
+            {
+                ButtonVisibility = Visibility.Hidden;
+            }
+            else
+            {
+                ButtonVisibility = Visibility.Visible;
+            }
 
             IsCheckedAll = false;
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
