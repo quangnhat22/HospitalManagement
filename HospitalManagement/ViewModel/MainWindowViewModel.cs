@@ -37,6 +37,7 @@ namespace HospitalManagement.ViewModel
         public Visibility AdminRolesVisibility { get; set; }
         public Visibility StaffRolesVisibility { get; set; }
         public Visibility PatientTabVisibility { get; set; }
+        public Visibility StaffTabVisibility { get; set; }
         public MainWindowViewModel()
         {
             SelectViewCommand = new SelectViewCommand(this);
@@ -63,10 +64,12 @@ namespace HospitalManagement.ViewModel
             if(User.ROLE == "staff")
             {
                 PatientTabVisibility = Visibility.Collapsed;
+                StaffTabVisibility = Visibility.Collapsed;
             }
             else
             {
                 PatientTabVisibility = Visibility.Visible;
+                StaffTabVisibility = Visibility.Visible;
             }
         }
     }
