@@ -37,14 +37,12 @@ namespace HospitalManagement.View.AddStaff
         {
             if (txbVaiTro.SelectedIndex == 0)
             {
-                this.userName.Visibility = Visibility.Visible;
-                this.userID.Visibility = Visibility.Visible;    
+                this.userName.Visibility = Visibility.Visible;  
                 this.stackPannelGroupBox.Visibility = Visibility.Collapsed;
             }
-            else if (txbVaiTro.SelectedIndex == 1)
+            else 
             {
                 this.userName.Visibility = Visibility.Collapsed;
-                this.userID.Visibility = Visibility.Collapsed;
                 this.stackPannelGroupBox.Visibility = Visibility.Visible;
             }
         }

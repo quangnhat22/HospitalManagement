@@ -102,7 +102,7 @@ namespace HospitalManagement.Utils
             {
                 List<StaffInformation> list = new List<StaffInformation>();
                 list.AddRange(DataProvider.Ins.DB.BACSIs.ToList().ConvertAll(p => new StaffInformation(p)));
-                list.AddRange(DataProvider.Ins.DB.BACSIs.ToList().ConvertAll(p => new StaffInformation(p)));
+                list.AddRange(DataProvider.Ins.DB.YTAs.ToList().ConvertAll(p => new StaffInformation(p)));
                 list.AddRange(DataProvider.Ins.DB.ADMINs.ToList().ConvertAll(p => new StaffInformation(p)));
                 return list;
             });

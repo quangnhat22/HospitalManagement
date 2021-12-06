@@ -12,7 +12,7 @@ namespace HospitalManagement.ViewModel.AddAccountVM
 {
     public class AddNewAccountViewModel : BaseViewModel
     {
-        private List<String> accountList = new List<string> { "admin", "staff"};
+        private List<String> accountList = new List<string> { "Quản lý nhân sự", "Nhóm trưởng", "Bác sĩ", "Y tá"};
         private string selectedAccount;
         private List<int> groupList = new List<int>();
         private string selectedGroup;

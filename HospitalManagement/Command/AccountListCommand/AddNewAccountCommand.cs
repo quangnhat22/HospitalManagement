@@ -16,7 +16,7 @@ namespace HospitalManagement.Command.AccountListCommand
 {
     public class AddNewAccountCommand : ICommand
     {
-
+        private static QUANLYBENHVIENEntities db = new QUANLYBENHVIENEntities();
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -45,43 +45,90 @@ namespace HospitalManagement.Command.AccountListCommand
                 if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
                 {
                     userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
+                    if (checkUsername(userInput.USERNAME))
+                    {
+                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
+                        notifyWindowUsername.ShowDialog();
+                        addNewAccountForm.txbGroup.Focus();
+                        return;
+                    }
                     var adminUser = new ADMIN
                     {
                         ID = addNewAccountForm.txbID.Text,
                         IDUSER = userInput.ID,
                         EMAIL = addNewAccountForm.txbEmail.Text,
                     };
-                    DataProvider.Ins.DB.ADMINs.Add(adminUser);
+                    db.ADMINs.Add(adminUser);
                 }
-
-                if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
+                else if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
                 {
                     string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
                     userInput.USERNAME = CreateUsername(groupName);
-                    if(checkUsernameStaff(userInput.USERNAME))
+                    var leaderUser = new BACSI
                     {
-                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tài khoản cho tổ này đã tồn tại!");
+                        CMND_CCCD = addNewAccountForm.txbID.Text,
+                        VAITRO = "Nhóm trưởng",
+                        IDTO = int.Parse(groupName),
+                        IDUSER = userInput.ID
+                    };
+                    if (checkUsername(userInput.USERNAME))
+                    {
+                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
                         notifyWindowUsername.ShowDialog();
                         addNewAccountForm.txbGroup.Focus();
                         return;
                     }
-
-                    //DataProvider.Ins.DB.TOes.ToList().ForEach(x =>
-                    //    {
-                    //        if (x.ID == int.Parse(groupName))
-                    //            x.IDUSER = userInput.ID;
-                    //    });
+                    db.BACSIs.Add(leaderUser);
+                }
+                else if (addNewAccountForm.txbVaiTro.SelectedIndex == 2)
+                {
+                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                    userInput.USERNAME = CreateUsername(groupName);
+                    var doctorUser = new BACSI
+                    {
+                        CMND_CCCD = addNewAccountForm.txbID.Text,
+                        VAITRO = "Bác sĩ",
+                        IDTO = int.Parse(groupName),
+                        IDUSER = userInput.ID
+                    };
+                    if (checkUsername(userInput.USERNAME))
+                    {
+                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
+                        notifyWindowUsername.ShowDialog();
+                        addNewAccountForm.txbGroup.Focus();
+                        return;
+                    }
+                    db.BACSIs.Add(doctorUser);
+                }
+                else
+                {
+                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                    userInput.USERNAME = CreateUsername(groupName);
+                    var nurseUser = new YTA
+                    {
+                        CMND_CCCD = addNewAccountForm.txbID.Text,
+                        VAITRO = "Y Tá",
+                        IDTO = int.Parse(groupName),
+                        IDUSER = userInput.ID
+                    };
+                    if (checkUsername(userInput.USERNAME))
+                    {
+                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
+                        notifyWindowUsername.ShowDialog();
+                        addNewAccountForm.txbGroup.Focus();
+                        return;
+                    }
+                    db.YTAs.Add(nurseUser);
                 }
 
-                DataProvider.Ins.DB.USERs.Add(userInput);
-                DataProvider.Ins.DB.SaveChanges();
+                db.USERs.Add(userInput);
+                db.SaveChanges();
                 SendEmailAccount(addNewAccountForm, password, userInput);
-                SendEmailAccountToFHMS(addNewAccountForm, userInput);
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký mới thành công!");
                 NotifyWindow notifyWindow1 = new NotifyWindow("Success", "Đã gửi tên đăng nhập, mật khẩu qua\t email đăng ký.");
                 notifyWindow.ShowDialog();
                 notifyWindow1.ShowDialog();
-                
+
             }
         }
         
@@ -170,9 +217,9 @@ namespace HospitalManagement.Command.AccountListCommand
             return "fhmsto" + groupName;
         }
 
-        public bool checkUsernameStaff(string usernameStaff)
+        public bool checkUsername(string usernameStaff)
         {
-            return DataProvider.Ins.DB.USERs.Any(x=> x.USERNAME == usernameStaff);
+            return db.USERs.Any(x=> x.USERNAME == usernameStaff);
         }
 
         public string CreatePassword(int length)
@@ -195,7 +242,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 $"\n Mật khẩu: {password}";
             string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
             string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
-            EmailProcessing emailProcessing = new EmailProcessing(addNewAccountForm.txbEmail.Text, emailAddress, 
+            EmailProcessing emailProcessing = new EmailProcessing(addNewAccountForm.txbEmail.Text, emailAddress,
                                                                     emailPassword, emailSubject, emailBody);
             emailProcessing.sendEmail();
         }
@@ -209,19 +256,6 @@ namespace HospitalManagement.Command.AccountListCommand
                         idAdmin = ad.ID;
                 });
             return idAdmin;
-        }
-
-        public void SendEmailAccountToFHMS(AddNewAccountForm addNewAccountForm, USER user)
-        {
-            string idAdmin = findIdUserAdmin();
-            string emailSubject = "FHMS Create Account";
-            string emailBody = $"ID Admin: {MainWindowViewModel.User.ID} đã tạo một tài khoản mới: " +
-                                $"\n Tên đăng nhập đã tạo mới: {user.USERNAME}";
-            string emailAddress = ConfigurationManager.AppSettings.Get("EmailAddress");
-            string emailPassword = ConfigurationManager.AppSettings.Get("EmailPassword");
-            EmailProcessing emailProcessing = new EmailProcessing(emailAddress, emailAddress,
-                                                                    emailPassword, emailSubject, emailBody);
-            emailProcessing.sendEmail();
         }
     }
 }
