@@ -48,6 +48,7 @@
                             Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txbSearchBox"
                             Padding="3 5 0 0"
+                            Margin="10,0,0,0"
                             Width="400"
                             Height="30"
                             materialDesign:HintAssist.Hint="Tìm kiếm"

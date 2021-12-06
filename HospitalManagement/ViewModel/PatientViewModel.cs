@@ -77,7 +77,7 @@ namespace HospitalManagement.ViewModel
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
             OpenChangePatientForm = new OpenChangePatientFormCommand();
-            if (MainWindowViewModel.User.ROLE == "staff")
+            if (MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
             {
                 ButtonVisibility = Visibility.Hidden;
             }
