@@ -56,7 +56,7 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Rooms")
                 {
-                    if (MainWindowViewModel.User.ROLE == "admin")
+                    if (MainWindowViewModel.User.ROLE == "admin" || MainWindowViewModel.User.ROLE == "sudo")
                         mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
                     else
                         mainWindowViewModel.SelectedViewModel = new SwitchStaffViewRoomViewModel();
