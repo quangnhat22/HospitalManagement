@@ -41,14 +41,8 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Staff")
                 {
-                    if(MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
-                    {
-                        mainWindowViewModel.SelectedViewModel = new SwithStaffViewTeamMemberViewModel();
-                    }
-                    else
-                    {
-                        mainWindowViewModel.SelectedViewModel = new SwitchStaffViewModel();
-                    }
+                    mainWindowViewModel.SelectedViewModel = new SwitchStaffViewModel();
+
                 }
                 if (tag == "Patient")
                 {
@@ -63,14 +57,17 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Teams")
                 {
-                    mainWindowViewModel.SelectedViewModel = new SwitchTeamViewModel();
+                    if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "staff")
+                        mainWindowViewModel.SelectedViewModel = new SwithStaffViewTeamMemberViewModel();
+                    else
+                        mainWindowViewModel.SelectedViewModel = new SwitchTeamViewModel();
                 }
-                if(tag == "AddStaff")
+                if (tag == "AddStaff")
                 {
                     mainWindowViewModel.SelectedViewModel = new SwitchAddStaffViewModel();
                 }
 
-                if(tag== "TeamTask")
+                if (tag == "TeamTask")
                 {
                     mainWindowViewModel.SelectedViewModel = new SwitchStaffViewTeamTaskViewModel();
                 }

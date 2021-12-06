@@ -163,7 +163,8 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
-                                      Tag="Patient">
+                                      Tag="Patient"
+                                      Visibility="{Binding PatientTabVisibility}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Bệnh Nhân" VerticalAlignment="Center"  Margin="20 10"/>
@@ -177,8 +178,7 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
-                                      Tag="Teams"
-                                      Visibility="{Binding AdminRolesVisibility}">
+                                      Tag="Teams">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Tổ" VerticalAlignment="Center"  Margin="20 10"/>
