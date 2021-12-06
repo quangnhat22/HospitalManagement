@@ -119,7 +119,7 @@
                 <Button
                     Margin="-16 0 20 0"
                     Padding="8"
-                    Command="{Binding SearchN}">
+                    Command="{Binding SearchNurse}">
                     <Button.Content>
                         <materialDesign:PackIcon 
                             Kind="Search"/>
