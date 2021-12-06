@@ -21,10 +21,10 @@ namespace HospitalManagement.ViewModel
         private List<String> filterList = new List<string> { "CMND", 
                                                             "Họ", 
                                                             "Tên"
-                                                            /*, "Họ và Tên"*/ };
+                                                            , "Họ và Tên" };
         private string selectedFilter;
         private string searchBox;
-        private string cmnd;
+        //private string cmnd;
         private Visibility buttonVisibility;
         public ObservableCollection<SelectableItem<BENHNHAN>> Patients
         {
@@ -65,7 +65,7 @@ namespace HospitalManagement.ViewModel
 
         public List<string> FilterList { get => filterList; set => filterList = value; }
         public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
-        public string CMND { get => cmnd; set => cmnd = value; }
+        //public string CMND { get => cmnd; set => cmnd = value; }
         public Visibility ButtonVisibility { get => buttonVisibility; set => buttonVisibility = value; }
 
         public PatientViewModel()
