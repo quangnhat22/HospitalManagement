@@ -115,10 +115,12 @@
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\SearchDoctorCommand.cs" />
     <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
     <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
+    <Compile Include="Command\NurseListCommand\SearchNurseCommand.cs" />
     <Compile Include="Command\RoomCommand\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />

@@ -17,6 +17,12 @@ namespace HospitalManagement.ViewModel
     public class DoctorViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private static ObservableCollection<SelectableItem<BACSI>> doctors = SelectableItem<BACSI>.GetSelectableItems(DataProvider.Ins.DB.BACSIs.ToList());
+        private List<String> filterList = new List<string> { "CMND",
+                                                            "Họ",
+                                                            "Tên"
+                                                            , "Họ và Tên" };
+        private string selectedFilter;
+        private string searchBox;
         public ObservableCollection<SelectableItem<BACSI>> Doctors
         {
             get { return doctors; }
@@ -30,6 +36,21 @@ namespace HospitalManagement.ViewModel
             get { return isCheckedAll; }
             set { isCheckedAll = value; OnPropertyChanged("IsCheckedAll"); }
         }
+        public List<string> FilterList { get => filterList; set => filterList = value; }
+        public string SelectedFilter { get => selectedFilter; set => selectedFilter = value; }
+        public string SearchBox
+        {
+            get => searchBox;
+            set
+            {
+                searchBox = value;
+                OnPropertyChanged("SearchBox");
+                if (searchBox == string.Empty || searchBox == null)
+                {
+                    Doctors = SelectableItem<BACSI>.GetSelectableItems(DataProvider.Ins.DB.BACSIs.ToList());
+                }
+            }
+        }
 
         public ICommand OpenDoctorForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
@@ -37,8 +58,11 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowDoctorInfomationCommand { get; set; }
         public ICommand OpenChangeDoctorForm { get; set; }
         public ICommand DeleteDoctor { get; set; }
+        public ICommand SearchDoctor { get; set; }
         public DoctorViewModel()
         {
+            SelectedFilter = filterList[0];
+            SearchBox = String.Empty;
             IsCheckedAll = false;
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
@@ -59,9 +83,10 @@ namespace HospitalManagement.ViewModel
                     IsCheckedAll = false;
             });    
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
-            OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();           
+            OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();
             OpenDoctorForm = new OpenDoctorFormCommand(this);
             DeleteDoctor = new DeleteDoctorCommand(this);
+            SearchDoctor = new SearchDoctorCommand(this);
         }
     }
 }

@@ -153,6 +153,7 @@
                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                     ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                                     <ComboBox x:Name="cbType"
+                                              IsReadOnly="True"
                                               ItemsSource="{Binding TaskTypes}"
                                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                               materialDesign:HintAssist.Hint="Tính chất công việc" 
@@ -190,7 +191,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <materialDesign:Chip
-                                                IsDeletable="True"
+                                                IsDeletable="{Binding txbBody.IsReadOnly, Mode=TwoWay}"
                                                 ToolTip="Just a tool tip"
                                                 Margin="5 10 10 10"
                                                 DeleteToolTip="Your friendly neighbor delete button"
