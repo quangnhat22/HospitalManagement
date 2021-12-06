@@ -272,7 +272,7 @@
                         Content="Hủy" 
                         FontSize="20" 
                         VerticalAlignment="Top" 
-                        Margin="321,0,521,0" 
+                        Margin="321,0,521,0" Click="Button_Click" 
                         />
                 </Grid>
             </Grid>

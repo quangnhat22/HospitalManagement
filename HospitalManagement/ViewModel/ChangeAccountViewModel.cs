@@ -54,7 +54,7 @@ namespace HospitalManagement.ViewModel
             //    GioiTinh = MainWindowViewModel.User.GIOITINH.Value;
             //}
             //Email = MainWindowViewModel.User.EMAIL;
-            //OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
+            OpenChangePasswordWindow = new OpenChangePasswordWindowCommand();
             //SaveChangeAccount = new SaveChangeAccountCommand();
             //ReturnAccountWindow = new ReturnAccountWindowCommand();
         }

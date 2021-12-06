@@ -55,6 +55,14 @@ namespace HospitalManagement.Command.AccountCommand
                 return false;
             }
 
+            if (Encryptor.Hash(changePasswordWindow.txbPasswordCurent.Password) != MainWindowViewModel.User.PASSWORD)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu hiện tại không đúng");
+                notifyWindow.ShowDialog();
+                changePasswordWindow.txbPasswordCurent.Focus();
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(changePasswordWindow.txbNewPassword.Password))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mật khẩu mới");
