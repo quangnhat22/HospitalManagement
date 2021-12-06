@@ -96,6 +96,22 @@
                           SelectionChanged="txbVaiTro_SelectionChanged">
                     </ComboBox>
                 </StackPanel>
+                <StackPanel
+                        x:Name="userID"
+                        Visibility="Visible"
+                        Orientation="Horizontal" 
+                        Margin="0 24 0 0">
+                    <Border Style="{StaticResource borderStyle}">
+                        <materialDesign:PackIcon 
+                            Kind="CardAccountDetails" 
+                            Style="{StaticResource styleIcon }"/>
+                    </Border>
+                    <TextBox 
+                        x:Name="txbID"
+                        Style="{StaticResource textboxStyle}"
+                        materialDesign:HintAssist.Hint="CMND/CCCD"
+                />
+                </StackPanel>
                 <StackPanel 
                     Orientation="Horizontal" 
                     Margin="0 24 0 0">
@@ -119,22 +135,6 @@
                     <TextBox x:Name="txbTenDangNhap"
                     Style="{StaticResource textboxStyle}"
                     materialDesign:HintAssist.Hint="Tên đăng nhập"
-                />
-                </StackPanel>
-                <StackPanel
-                        x:Name="userID"
-                        Visibility="Visible"
-                        Orientation="Horizontal" 
-                        Margin="0 24 0 0">
-                    <Border Style="{StaticResource borderStyle}">
-                        <materialDesign:PackIcon 
-                            Kind="CardAccountDetails" 
-                            Style="{StaticResource styleIcon }"/>
-                    </Border>
-                    <TextBox 
-                        x:Name="txbID"
-                        Style="{StaticResource textboxStyle}"
-                        materialDesign:HintAssist.Hint="CMND/CCCD"
                 />
                 </StackPanel>
                 <StackPanel 
