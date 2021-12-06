@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HospitalManagement.Command;
 using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
 
 namespace HospitalManagement.ViewModel
 {
     class RoomUsercontrolViewModel : BaseViewModel
     {
+        public USER User = MainWindowViewModel.User;
+
         public ICommand OpenRoomWindow { get; set; }
         public ICommand ChangeBuildingCommand { get; set; }
         public ICommand AddBuildingCommand { get; set; }
         public ICommand DeleteBuildingCommand { get; set; }
         public ICommand AddOrDeleteBuildingCommand { get; set; }
+
+        public Visibility SuperAdminRolesVisibility { get; set; }
 
         private int currentBuilding;
         private string currentBuildingName;
@@ -104,6 +110,10 @@ namespace HospitalManagement.ViewModel
         public RoomUsercontrolViewModel()
         {
             LoadData();
+            if (User.ROLE == "sudo")
+                SuperAdminRolesVisibility = Visibility.Visible;
+            else
+                SuperAdminRolesVisibility = Visibility.Collapsed;
             OpenRoomWindow = new OpenRoomWindowCommand(currentBuilding);
             ChangeBuildingCommand = new ChangeBuildingCommand(this);
             AddBuildingCommand = new AddBuildingCommand(this);
