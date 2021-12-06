@@ -44,7 +44,6 @@ namespace HospitalManagement.Command.AccountListCommand
                 
                 if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
                 {
-                    userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
                     if (checkUsername(userInput.USERNAME))
                     {
                         NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
@@ -58,12 +57,13 @@ namespace HospitalManagement.Command.AccountListCommand
                         IDUSER = userInput.ID,
                         EMAIL = addNewAccountForm.txbEmail.Text,
                     };
+                    userInput.USERNAME = adminUser.ID;
                     db.ADMINs.Add(adminUser);
                 }
+
                 else if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
                 {
-                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
-                    userInput.USERNAME = CreateUsername(groupName);
+                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();    
                     var leaderUser = new BACSI
                     {
                         CMND_CCCD = addNewAccountForm.txbID.Text,
@@ -71,15 +71,10 @@ namespace HospitalManagement.Command.AccountListCommand
                         IDTO = int.Parse(groupName),
                         IDUSER = userInput.ID
                     };
-                    if (checkUsername(userInput.USERNAME))
-                    {
-                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
-                        notifyWindowUsername.ShowDialog();
-                        addNewAccountForm.txbGroup.Focus();
-                        return;
-                    }
+                    userInput.USERNAME = leaderUser.CMND_CCCD;
                     db.BACSIs.Add(leaderUser);
                 }
+
                 else if (addNewAccountForm.txbVaiTro.SelectedIndex == 2)
                 {
                     string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
@@ -91,19 +86,12 @@ namespace HospitalManagement.Command.AccountListCommand
                         IDTO = int.Parse(groupName),
                         IDUSER = userInput.ID
                     };
-                    if (checkUsername(userInput.USERNAME))
-                    {
-                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
-                        notifyWindowUsername.ShowDialog();
-                        addNewAccountForm.txbGroup.Focus();
-                        return;
-                    }
+                    userInput.USERNAME = doctorUser.CMND_CCCD;
                     db.BACSIs.Add(doctorUser);
                 }
                 else
                 {
                     string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
-                    userInput.USERNAME = CreateUsername(groupName);
                     var nurseUser = new YTA
                     {
                         CMND_CCCD = addNewAccountForm.txbID.Text,
@@ -111,13 +99,7 @@ namespace HospitalManagement.Command.AccountListCommand
                         IDTO = int.Parse(groupName),
                         IDUSER = userInput.ID
                     };
-                    if (checkUsername(userInput.USERNAME))
-                    {
-                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
-                        notifyWindowUsername.ShowDialog();
-                        addNewAccountForm.txbGroup.Focus();
-                        return;
-                    }
+                    userInput.USERNAME = nurseUser.CMND_CCCD;
                     db.YTAs.Add(nurseUser);
                 }
 
