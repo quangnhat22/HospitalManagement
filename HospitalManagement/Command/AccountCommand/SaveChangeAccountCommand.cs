@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Data.Entity.Migrations;
 
 namespace HospitalManagement.Command
 {
@@ -23,10 +25,11 @@ namespace HospitalManagement.Command
         {
             return true;
         }
+
         public void Execute(object parameter)
         {
             ChangeAccountWindow cw = parameter as ChangeAccountWindow;
-            if(Check(cw))
+            if (Check(cw))
             {
                 using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
                 {
@@ -35,10 +38,10 @@ namespace HospitalManagement.Command
                     {
                         if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
                         {
-                            if(user.ROLE == "admin")
+                            if (user.ROLE == "admin")
                             {
                                 var admin = user.ADMINs.FirstOrDefault();
-                                if(admin != null || admin != default)
+                                if (admin != null)
                                 {
                                     admin.HO = cw.txbLastName.Text;
                                     admin.TEN = cw.txbFistName.Text;
@@ -49,25 +52,39 @@ namespace HospitalManagement.Command
                             }
                             else
                             {
-                                var leader = user.BACSIs.FirstOrDefault();
-                                if (leader != null || leader != default)
+                                if (user.ROLE == "leader" || user.ROLE == "doctor")
                                 {
-                                    leader.HO = cw.txbLastName.Text;
-                                    leader.TEN = cw.txbFistName.Text;
-                                    leader.EMAIL = cw.txbEmail.Text;
-                                    leader.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                                    leader.GIOITINH = (cw.cbSex.Text != "Nam");
+                                    var doctor = user.BACSIs.FirstOrDefault();
+                                    if (doctor != null || doctor != default)
+                                    {
+                                        doctor.HO = cw.txbLastName.Text;
+                                        doctor.TEN = cw.txbFistName.Text;
+                                        doctor.EMAIL = cw.txbEmail.Text;
+                                        doctor.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                                        doctor.GIOITINH = (cw.cbSex.Text != "Nam");
+                                    }
                                 }
-                            } 
-                                
-                            dbContext.SaveChanges();
+                                else
+                                {
+                                    var nurse = user.YTAs.FirstOrDefault();
+                                    if (nurse != null || nurse != default)
+                                    {
+                                        nurse.HO = cw.txbLastName.Text;
+                                        nurse.TEN = cw.txbFistName.Text;
+                                        nurse.EMAIL = cw.txbEmail.Text;
+                                        nurse.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                                        nurse.GIOITINH = (cw.cbSex.Text != "Nam");
+                                    }
+                                }
+                            }
                             break;
                         }
                     }
-                }          
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
+                    dbContext.SaveChanges();
+                }
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhật thành công");
                 notifyWindow.ShowDialog();
-            }    
+            }
         }
         public bool Check(ChangeAccountWindow cw)
         {

@@ -51,21 +51,43 @@ namespace HospitalManagement.ViewModel
             }   
             else 
             {
-                var leader = MainWindowViewModel.User.BACSIs.FirstOrDefault();
-                if (leader != null || leader != default)
+                if (MainWindowViewModel.User.ROLE == "leader"|| MainWindowViewModel.User.ROLE == "doctor")
                 {
-                    HoTen = leader.HO + " " + leader.TEN;
-                    TenDangNhap = leader.USER.USERNAME;
-                    if (leader.NGSINH.HasValue)
+                    var doctor = MainWindowViewModel.User.BACSIs.FirstOrDefault();
+                    if (doctor != null || doctor != default)
                     {
-                        DateTime ngsinh = (DateTime)leader.NGSINH;
-                        NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                        HoTen = doctor.HO + " " + doctor.TEN;
+                        TenDangNhap = doctor.USER.USERNAME;
+                        if (doctor.NGSINH.HasValue)
+                        {
+                            DateTime ngsinh = (DateTime)doctor.NGSINH;
+                            NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                        }
+                        if (doctor.GIOITINH.HasValue)
+                        {
+                            GioiTinh = doctor.GIOITINH.Value;
+                        }
+                        Email = doctor.EMAIL;
                     }
-                    if (leader.GIOITINH.HasValue)
+                }
+                else
+                {
+                    var nurse = MainWindowViewModel.User.YTAs.FirstOrDefault();
+                    if (nurse != null || nurse != default)
                     {
-                        GioiTinh = leader.GIOITINH.Value;
+                        HoTen = nurse.HO + " " + nurse.TEN;
+                        TenDangNhap = nurse.USER.USERNAME;
+                        if (nurse.NGSINH.HasValue)
+                        {
+                            DateTime ngsinh = (DateTime)nurse.NGSINH;
+                            NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                        }
+                        if (nurse.GIOITINH.HasValue)
+                        {
+                            GioiTinh = nurse.GIOITINH.Value;
+                        }
+                        Email = nurse.EMAIL;
                     }
-                    Email = leader.EMAIL;
                 }
             }
         }
