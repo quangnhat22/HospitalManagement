@@ -55,8 +55,11 @@ namespace HospitalManagement.Utils
 
         public async static Task<CategorizedPatientBuilding> CategorizedPatientBuildingFactory(TOA toa, DateTime? date = null)
         {
+            DateTime NotNullDate;
             if (date is null)
-                date = System.DateTime.Now;
+                NotNullDate = DateTime.Now;
+            else
+                NotNullDate = (DateTime)date;
             CategorizedPatientBuilding categorizedPatientBuilding = new CategorizedPatientBuilding();
             categorizedPatientBuilding.toa = toa;
 
@@ -66,9 +69,10 @@ namespace HospitalManagement.Utils
                     WHERE BENHNHAN.IDPHONG = PHONG.ID
                     AND PHONG.IDTANG = TANG.ID
                     AND TANG.IDTOA = {0}
+                    AND NGNHAPVIEN < DATEFROMPARTS({1}, {2}, {3})
                     GROUP BY TINHTRANG";
 
-            query = string.Format(query, toa.IDTOA);
+            query = string.Format(query, toa.IDTOA, NotNullDate.Year, NotNullDate.Month, NotNullDate.Day);
 
             List<StoreData> storeDatas;
             using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
