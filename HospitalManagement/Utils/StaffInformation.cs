@@ -44,6 +44,10 @@ namespace HospitalManagement.Utils
         public string PhanLoai { get => phanLoai; set => phanLoai = value; }
         #endregion
 
+        public StaffInformation()
+        {
+
+        }
         public StaffInformation(BACSI bacsi)
         {
             this.Cmnd_cccd = bacsi.CMND_CCCD;
@@ -91,21 +95,41 @@ namespace HospitalManagement.Utils
             this.QuocTich = admin.QUOCTICH;
             this.DiaChi = admin.DIACHI;
             this.NgSinh = admin.NGSINH;
-            this.GioiTinh = admin.GIOITINH.HasValue?admin.GIOITINH.Value:false;
+            this.GioiTinh = admin.GIOITINH.HasValue ? admin.GIOITINH.Value : false;
             this.UserName = admin.USER.USERNAME;
             this.PhanLoai = "admin";
         }
 
         public async static Task<List<StaffInformation>> InitAccountList()
         {
-            return await Task.Run(() =>
-            {
-                List<StaffInformation> list = new List<StaffInformation>();
-                list.AddRange(DataProvider.Ins.DB.BACSIs.ToList().ConvertAll(p => new StaffInformation(p)));
-                list.AddRange(DataProvider.Ins.DB.YTAs.ToList().ConvertAll(p => new StaffInformation(p)));
-                list.AddRange(DataProvider.Ins.DB.ADMINs.ToList().ConvertAll(p => new StaffInformation(p)));
-                return list;
-            });
+            string query = @"
+select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	   NGSINH as NgSinh, GIOITINH as GioiTinh, IIF([USER].ROLE != 'leader', 'bacsi', 'leader' ) as PhanLoai ,
+	   IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
+FROM BACSI, [USER]
+WHERE BACSI.IDUSER = [USER].ID
+UNION
+select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	   NGSINH as NgSinh, GIOITINH as GioiTinh, 'yta' as PhanLoai,
+	   IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
+FROM YTA, [USER]
+WHERE YTA.IDUSER = [USER].ID
+UNION
+select [ADMIN].ID as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	   NGSINH as NgSinh, GIOITINH as GioiTinh, 'admin' as PHANLOAI,
+	   null as IdTo, USERNAME as UserName,null as VaiTro, null as ChuyenKhoa, null as GhiChu
+FROM [ADMIN], [USER]
+WHERE [ADMIN].IDUSER = [USER].ID
+";
+            //return await Task.Run(() =>
+            //{
+            //    List<StaffInformation> staffInformation = DataProvider.Ins.DB.Database.SqlQuery<StaffInformation>(query).ToList(); ;
+            //    return staffInformation;
+            //});
+            return await DataProvider.Ins.DB.Database.SqlQuery<StaffInformation>(query).ToListAsync();
         }
     }
 }
