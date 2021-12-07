@@ -103,27 +103,27 @@ namespace HospitalManagement.Utils
         public async static Task<List<StaffInformation>> InitAccountList()
         {
             string query = @"
-select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
-	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
-	   NGSINH as NgSinh, GIOITINH as GioiTinh, IIF([USER].ROLE != 'leader', 'bacsi', 'leader' ) as PhanLoai ,
-	   IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
-FROM BACSI, [USER]
-WHERE BACSI.IDUSER = [USER].ID
-UNION
-select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
-	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
-	   NGSINH as NgSinh, GIOITINH as GioiTinh, 'yta' as PhanLoai,
-	   IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
-FROM YTA, [USER]
-WHERE YTA.IDUSER = [USER].ID
-UNION
-select [ADMIN].ID as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
-	   SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
-	   NGSINH as NgSinh, GIOITINH as GioiTinh, 'admin' as PHANLOAI,
-	   null as IdTo, USERNAME as UserName,null as VaiTro, null as ChuyenKhoa, null as GhiChu
-FROM [ADMIN], [USER]
-WHERE [ADMIN].IDUSER = [USER].ID
-";
+                        select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	                           SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	                           NGSINH as NgSinh, GIOITINH as GioiTinh, IIF([USER].ROLE != 'leader', 'bacsi', 'leader' ) as PhanLoai ,
+	                           IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
+                        FROM BACSI, [USER]
+                        WHERE BACSI.IDUSER = [USER].ID
+                        UNION
+                        select CMND_CCCD as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	                           SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	                           NGSINH as NgSinh, GIOITINH as GioiTinh, 'yta' as PhanLoai,
+	                           IDTO as IdTo, USERNAME as UserName,VAITRO as VaiTro, CHUYENKHOA as ChuyenKhoa, GHICHU as GhiChu
+                        FROM YTA, [USER]
+                        WHERE YTA.IDUSER = [USER].ID
+                        UNION
+                        select [ADMIN].ID as Cmnd_cccd, HO as Ho, TEN as Ten, EMAIL as Email,
+	                           SDT as Sdt, QUOCTICH as QuocTich, DIACHI as DiaChi,
+	                           NGSINH as NgSinh, GIOITINH as GioiTinh, 'admin' as PHANLOAI,
+	                           null as IdTo, USERNAME as UserName,null as VaiTro, null as ChuyenKhoa, null as GhiChu
+                        FROM [ADMIN], [USER]
+                        WHERE [ADMIN].IDUSER = [USER].ID
+                        ";
             //return await Task.Run(() =>
             //{
             //    List<StaffInformation> staffInformation = DataProvider.Ins.DB.Database.SqlQuery<StaffInformation>(query).ToList(); ;

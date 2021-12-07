@@ -59,27 +59,42 @@ namespace HospitalManagement.Utils
                 date = System.DateTime.Now;
             CategorizedPatientBuilding categorizedPatientBuilding = new CategorizedPatientBuilding();
             categorizedPatientBuilding.toa = toa;
-            List<BENHNHAN> benhnhan = new List<BENHNHAN>();
-            foreach (TANG tang in categorizedPatientBuilding.toa.TANGs)
+
+            string query = @"
+                    SELECT COUNT(DISTINCT BENHNHAN.CMND_CCCD) AS SoLuong, TINHTRANG as TinhTrang
+                    FROM BENHNHAN, PHONG, TANG
+                    WHERE BENHNHAN.IDPHONG = PHONG.ID
+                    AND PHONG.IDTANG = TANG.ID
+                    AND TANG.IDTOA = {0}
+                    GROUP BY TINHTRANG";
+
+            query = string.Format(query, toa.IDTOA);
+
+            List<StoreData> storeDatas;
+            using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
             {
-                foreach (PHONG phong in tang.PHONGs)
-                {
-                    benhnhan.AddRange(phong.BENHNHANs);
-                }
+                storeDatas = dbContext.Database.SqlQuery<StoreData>(query).ToList();
             }
-            foreach (BENHNHAN x in benhnhan)
+
+            foreach (StoreData storeData in storeDatas)
             {
-                if (x.NGNHAPVIEN < date)
-                {
-                    if (x.TINHTRANG == "Triệu chứng trở nặng")
-                        categorizedPatientBuilding.nang++;
-                    else if (x.TINHTRANG == "Có triệu chứng")
-                        categorizedPatientBuilding.trungbinh++;
-                    else
-                        categorizedPatientBuilding.nhe++;
-                }
+                string TinhTrang = VietnameseSign.convertToUnSign2(storeData.TinhTrang).ToLower();
+                string nang = VietnameseSign.convertToUnSign2("Triệu chứng trở nặng").ToLower();
+                string trungbinh = VietnameseSign.convertToUnSign2("Có triệu chứng").ToLower();
+                if (TinhTrang == nang)
+                    categorizedPatientBuilding.nang = storeData.SoLuong;
+                else if (TinhTrang == trungbinh)
+                    categorizedPatientBuilding.trungbinh = storeData.SoLuong;
+                else
+                    categorizedPatientBuilding.nhe = storeData.SoLuong;
             }
             return categorizedPatientBuilding;
+        }
+
+        private class StoreData
+        {
+            public string TinhTrang { get; set; }
+            public int SoLuong { get; set; }
         }
 
         public int Nang { get => nang; set => nang = value; }
