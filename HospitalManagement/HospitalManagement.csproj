@@ -233,6 +233,7 @@
     <Compile Include="Utils\SelectableItem.cs" />
     <Compile Include="Utils\StaffInformation.cs" />
     <Compile Include="Utils\ToaTK.cs" />
+    <Compile Include="Utils\ValidatorEmail.cs" />
     <Compile Include="Utils\VietnameseSign.cs" />
     <Compile Include="ViewModel\AccountListViewModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />

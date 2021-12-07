@@ -125,6 +125,7 @@ namespace HospitalManagement.Command.AccountListCommand
         {
             if (addNewAccountForm == null) return false;
             List<USER> users = DataProvider.Ins.DB.USERs.ToList();
+
             if (string.IsNullOrWhiteSpace(addNewAccountForm.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
@@ -133,12 +134,20 @@ namespace HospitalManagement.Command.AccountListCommand
                 return false;
             }
 
+            if (!ValidatorEmail.EmailIsValid(addNewAccountForm.txbEmail.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Địa chỉ email không hợp lệ");
+                notifyWindow.ShowDialog();
+                addNewAccountForm.txbEmail.Focus();
+                return false;
+            }
+
             if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
             {
-                if(DataProvider.Ins.DB.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
-                    DataProvider.Ins.DB.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
-                    DataProvider.Ins.DB.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
-                    DataProvider.Ins.DB.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
+                if(db.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
                     notifyWindow.ShowDialog();
@@ -182,16 +191,7 @@ namespace HospitalManagement.Command.AccountListCommand
                     return false;
                 }
             }
-            
 
-            if (!addNewAccountForm.txbEmail.Text.Contains('@'))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Email không hợp lệ!");
-                notifyWindow.ShowDialog();
-                addNewAccountForm.txbEmail.Focus();
-                return false;
-            }
-            
             if (string.IsNullOrWhiteSpace(addNewAccountForm.txbVaiTro.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn vai trò");
