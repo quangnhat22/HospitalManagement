@@ -88,7 +88,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             IDUSER = userInput.ID
                         };
                         userInput.USERNAME = doctorUser.CMND_CCCD;
-                        userInput.ROLE = "doctor";
+                        userInput.ROLE = "bacsi";
                         db.BACSIs.Add(doctorUser);
                     }
                     else
@@ -101,7 +101,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             IDUSER = userInput.ID
                         };
                         userInput.USERNAME = nurseUser.CMND_CCCD;
-                        userInput.ROLE = "nurse";
+                        userInput.ROLE = "yta";
                         db.YTAs.Add(nurseUser);
                     }
 
