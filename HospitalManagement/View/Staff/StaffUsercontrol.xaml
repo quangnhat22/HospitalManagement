@@ -68,10 +68,12 @@
                 Command="{Binding OpenDoctorForm}"
                 VerticalAlignment="Top"
                 Content="Thêm bác sĩ"
+                Visibility="{Binding ButtonVisibility}"
                 Width="110"/>
                 <Button Content="Xóa"
                         Command="{Binding DeleteDoctor}"
                          x:Name="btnDeleteDoctor"
+                        Visibility="{Binding ButtonVisibility}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
                         Margin="15 0 0 0"
@@ -132,12 +134,14 @@
                 <Button 
                     x:Name="btnAddNurse"
                     Command="{Binding OpenNurseForm}"
+                    Visibility="{Binding ButtonVisibility}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Content="Thêm y tá"
                     Width="110"/>
                 <Button Content="Xóa"
                          x:Name="btnDeleteNurse"
+                        Visibility="{Binding ButtonVisibility}"
                         Command="{Binding DeleteNurse}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"

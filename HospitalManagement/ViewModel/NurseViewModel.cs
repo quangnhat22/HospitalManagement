@@ -11,6 +11,7 @@ using HospitalManagement.Command;
 using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
 using HospitalManagement.Command.NurseListCommand;
+using System.Windows;
 
 namespace HospitalManagement.ViewModel
 {
@@ -24,6 +25,7 @@ namespace HospitalManagement.ViewModel
                                                             , "Họ và Tên" };
         private string selectedFilter;
         private string searchBox;
+        private Visibility buttonVisibility;
         public ObservableCollection<SelectableItem<YTA>> Nurses
         {
             get { return nurses; }
@@ -50,6 +52,7 @@ namespace HospitalManagement.ViewModel
                 }
             }
         }
+        public Visibility ButtonVisibility { get => buttonVisibility; set => buttonVisibility = value; }
         public ICommand OpenNurseForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
@@ -64,6 +67,14 @@ namespace HospitalManagement.ViewModel
             SelectedFilter = filterList[0];
             SearchBox = String.Empty;
             IsCheckedAll = false;
+            if (MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
+            {
+                ButtonVisibility = Visibility.Hidden;
+            }
+            else
+            {
+                ButtonVisibility = Visibility.Visible;
+            }
             AllCheckedCommand = new RelayCommand<CheckBox>((p) => { return p == null ? false : true; }, (p) =>
             {
                 bool allcheckbox = (p.IsChecked == true);
