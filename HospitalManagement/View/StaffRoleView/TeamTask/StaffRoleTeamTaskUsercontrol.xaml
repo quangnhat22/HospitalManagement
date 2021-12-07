@@ -62,6 +62,23 @@
                     </Grid>
                 </Viewbox>
                 <Grid Height="330">
+                    <Border Panel.ZIndex="2" Margin="0 5 20 0"
+                            Width="40" 
+                            Height="40" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            CornerRadius="20" 
+                            Background="#FF7F7E"
+                            Visibility="{Binding LeaderTaskVisibility}">
+                        <Button Height="40" 
+                                Width="40" 
+                                Padding="0"
+                                Background="Transparent" 
+                                BorderThickness="0"
+                                Style="{StaticResource MaterialDesignFlatMidBgButton}">
+                            <materialDesign:PackIcon Kind="DeleteOutline" Height="25" Width="25"/>
+                        </Button>
+                    </Border>
                     <DataGrid ItemsSource="{Binding ProgressTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                               AutoGenerateColumns="False" 
                               GridLinesVisibility="None"
@@ -137,7 +154,7 @@
                                                     Height="50"
                                                     Width="260" 
                                                     VerticalAlignment="Center"
-                                                    Margin="10 5"
+                                                    Margin="10 10 10 0"
                                                     BorderThickness="1"
                                                     Style="{StaticResource PriorityBorder}">
                                                 <TextBlock>
@@ -164,16 +181,17 @@
                                                                 Height="40" 
                                                                 HorizontalAlignment="Right" 
                                                                 CornerRadius="20" 
-                                                                Background="#FF7F7E">
+                                                                Background="Transparent">
                                                             <Button Height="40" 
                                                                     Width="40" 
                                                                     Padding="0"
                                                                     Background="Transparent" 
                                                                     BorderThickness="0"
                                                                     Style="{StaticResource MaterialDesignFlatMidBgButton}">
-                                                                <materialDesign:PackIcon Kind="CloseThick" 
-                                                                                         Height="20"
-                                                                                         Width="20"/>
+                                                                <materialDesign:PackIcon Kind="ChevronRight" 
+                                                                                         Height="40"
+                                                                                         Width="40"
+                                                                                         Style="{StaticResource PriorityPackIcon}"/>
                                                             </Button>
                                                         </Border>
                                                     </StackPanel>
@@ -231,7 +249,8 @@
                             ToolTip="Thêm mới"
                             Command="{Binding OpenAddToDoFormCommand}"
                             CommandParameter="{Binding ElementName=staffRoleTeamTask}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            Visibility="{Binding LeaderTaskVisibility}"/>
                         <Button 
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Height="50"

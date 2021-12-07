@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
@@ -20,11 +21,18 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public ICommand ShowTaskInformation { get; set; }
         public ObservableCollection<ProgressTask> ProgressTasks { get => progressTasks; set => progressTasks = value; }
 
+        public USER User = MainWindowViewModel.User;
+        public Visibility LeaderTaskVisibility { get; set; }
+
         public StaffRoleTeamTaskViewModel()
         {
             OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this);
             ShowTaskInformation = new ShowTaskInformationCommand(this);
             LoadTaskList();
+            if (User.ROLE == "leader")
+                LeaderTaskVisibility = Visibility.Visible;
+            else
+                LeaderTaskVisibility = Visibility.Hidden;
         }
 
         public void LoadTaskList()
