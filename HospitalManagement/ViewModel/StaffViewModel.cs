@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -15,6 +16,7 @@ namespace HospitalManagement.ViewModel
     {
         private DoctorViewModel doctorViewModel=new DoctorViewModel();
         private NurseViewModel nurseViewModel=new NurseViewModel();
+        private Visibility buttonVisibility;
         public DoctorViewModel DoctorViewModel
         {
             get { return doctorViewModel; }
@@ -25,9 +27,17 @@ namespace HospitalManagement.ViewModel
             get { return nurseViewModel; }
             set { nurseViewModel = value; OnPropertyChanged("NurseViewModel"); }
         }
-        
+        public Visibility ButtonVisibility { get => buttonVisibility; set => buttonVisibility = value; }
         public StaffViewModel()
         {
+            if (MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
+            {
+                ButtonVisibility = Visibility.Hidden;
+            }
+            else
+            {
+                ButtonVisibility = Visibility.Visible;
+            }
         }
     }
 }

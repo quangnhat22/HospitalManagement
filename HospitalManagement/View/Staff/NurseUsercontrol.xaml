@@ -48,7 +48,9 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.Header>
                             <CheckBox IsThreeState="True" 
-                                  Name="AllSelect" 
+                                  Name="AllSelect"
+                                  Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                            RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
                                   IsChecked="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
                                                         Path=DataContext.IsCheckedAll, 
                                                         UpdateSourceTrigger=PropertyChanged}">
@@ -63,7 +65,9 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Name="abc">
+                                      Name="abc"
+                                    Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                            RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Checked">
                                             <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
@@ -148,9 +152,11 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent" 
+                                <Button Background="Transparent"
                                         Height="25" BorderThickness="0" 
-                                        Padding="0">
+                                        Padding="0"
+                                        Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                            RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
                                     <materialDesign:PackIcon Height="25" Width="25" Foreground="#35a0fe" Kind="PencilBoxOutline"/>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
