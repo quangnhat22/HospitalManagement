@@ -30,87 +30,94 @@ namespace HospitalManagement.Command.AccountListCommand
 
         public void Execute(object parameter)
         {
-            var addNewAccountForm = parameter as AddNewAccountForm;
-            if(Check(addNewAccountForm))
+            try
             {
-                string roleAccount = addNewAccountForm.txbVaiTro.SelectedValue.ToString();
-                string password = CreatePassword(10);
-                var userInput = new USER
+                var addNewAccountForm = parameter as AddNewAccountForm;
+                if (Check(addNewAccountForm))
                 {
-                    USERNAME = string.Empty,
-                    PASSWORD = Encryptor.Hash(password),
-                    ROLE = roleAccount,
-                };
-                
-                if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
-                {
-                    if (checkUsername(userInput.USERNAME))
+                    string roleAccount = addNewAccountForm.txbVaiTro.SelectedValue.ToString();
+                    string password = CreatePassword(10);
+                    var userInput = new USER
                     {
-                        NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
-                        notifyWindowUsername.ShowDialog();
-                        addNewAccountForm.txbGroup.Focus();
-                        return;
+                        USERNAME = string.Empty,
+                        PASSWORD = Encryptor.Hash(password),
+                    };
+
+                    if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
+                    {
+                        if (checkUsername(userInput.USERNAME))
+                        {
+                            NotifyWindow notifyWindowUsername = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại!");
+                            notifyWindowUsername.ShowDialog();
+                            addNewAccountForm.txbGroup.Focus();
+                            return;
+                        }
+                        var adminUser = new ADMIN
+                        {
+                            ID = addNewAccountForm.txbID.Text,
+                            IDUSER = userInput.ID,
+                            EMAIL = addNewAccountForm.txbEmail.Text,
+                        };
+                        userInput.USERNAME = adminUser.ID;
+                        userInput.ROLE = "admin";
+                        db.ADMINs.Add(adminUser);
                     }
-                    var adminUser = new ADMIN
-                    {
-                        ID = addNewAccountForm.txbID.Text,
-                        IDUSER = userInput.ID,
-                        EMAIL = addNewAccountForm.txbEmail.Text,
-                    };
-                    userInput.USERNAME = adminUser.ID;
-                    db.ADMINs.Add(adminUser);
-                }
 
-                else if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
-                {
-                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();    
-                    var leaderUser = new BACSI
+                    else if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
                     {
-                        CMND_CCCD = addNewAccountForm.txbID.Text,
-                        VAITRO = "Nhóm trưởng",
-                        IDTO = int.Parse(groupName),
-                        IDUSER = userInput.ID
-                    };
-                    userInput.USERNAME = leaderUser.CMND_CCCD;
-                    db.BACSIs.Add(leaderUser);
-                }
+                        string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        var leaderUser = new BACSI
+                        {
+                            CMND_CCCD = addNewAccountForm.txbID.Text,
+                            IDTO = int.Parse(groupName),
+                            IDUSER = userInput.ID
+                        };
+                        userInput.USERNAME = leaderUser.CMND_CCCD;
+                        userInput.ROLE = "leader";
+                        db.BACSIs.Add(leaderUser);
+                    }
 
-                else if (addNewAccountForm.txbVaiTro.SelectedIndex == 2)
-                {
-                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
-                    userInput.USERNAME = CreateUsername(groupName);
-                    var doctorUser = new BACSI
+                    else if (addNewAccountForm.txbVaiTro.SelectedIndex == 2)
                     {
-                        CMND_CCCD = addNewAccountForm.txbID.Text,
-                        VAITRO = "Bác sĩ",
-                        IDTO = int.Parse(groupName),
-                        IDUSER = userInput.ID
-                    };
-                    userInput.USERNAME = doctorUser.CMND_CCCD;
-                    db.BACSIs.Add(doctorUser);
-                }
-                else
-                {
-                    string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
-                    var nurseUser = new YTA
+                        string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        userInput.USERNAME = CreateUsername(groupName);
+                        var doctorUser = new BACSI
+                        {
+                            CMND_CCCD = addNewAccountForm.txbID.Text,
+                            IDTO = int.Parse(groupName),
+                            IDUSER = userInput.ID
+                        };
+                        userInput.USERNAME = doctorUser.CMND_CCCD;
+                        userInput.ROLE = "doctor";
+                        db.BACSIs.Add(doctorUser);
+                    }
+                    else
                     {
-                        CMND_CCCD = addNewAccountForm.txbID.Text,
-                        VAITRO = "Y Tá",
-                        IDTO = int.Parse(groupName),
-                        IDUSER = userInput.ID
-                    };
-                    userInput.USERNAME = nurseUser.CMND_CCCD;
-                    db.YTAs.Add(nurseUser);
-                }
+                        string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        var nurseUser = new YTA
+                        {
+                            CMND_CCCD = addNewAccountForm.txbID.Text,
+                            IDTO = int.Parse(groupName),
+                            IDUSER = userInput.ID
+                        };
+                        userInput.USERNAME = nurseUser.CMND_CCCD;
+                        userInput.ROLE = "nurse";
+                        db.YTAs.Add(nurseUser);
+                    }
 
-                db.USERs.Add(userInput);
-                db.SaveChanges();
-                SendEmailAccount(addNewAccountForm, password, userInput);
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký mới thành công!");
-                NotifyWindow notifyWindow1 = new NotifyWindow("Success", "Đã gửi tên đăng nhập, mật khẩu qua\t email đăng ký.");
+                    db.USERs.Add(userInput);
+                    db.SaveChanges();
+                    SendEmailAccount(addNewAccountForm, password, userInput);
+                    NotifyWindow notifyWindow = new NotifyWindow("Success", "Đăng ký mới thành công!");
+                    NotifyWindow notifyWindow1 = new NotifyWindow("Success", "Đã gửi tên đăng nhập, mật khẩu qua\t email đăng ký.");
+                    notifyWindow.ShowDialog();
+                    notifyWindow1.ShowDialog();
+                }
+            }
+            catch
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Vui lòng kiểm tra thông tin");
                 notifyWindow.ShowDialog();
-                notifyWindow1.ShowDialog();
-
             }
         }
         
