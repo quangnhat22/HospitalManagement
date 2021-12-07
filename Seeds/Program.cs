@@ -68,6 +68,15 @@ namespace Seeds
 
         private static void CleanDatabase()
         {
+            //DELETE BACSILIENQUAN
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM BACSILIENQUAN");
+            Console.WriteLine("Delete BACSILIENQUAN Successful");
+            //DELETE YTALIENQUAN
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM YTALIENQUAN");
+            Console.WriteLine("Delete YTALIENQUAN Successful");
+            //DELETE CONGVIEC
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM CONGVIEC");
+            Console.WriteLine("Delete CONGVIEC Successful");
             // Detele YTA
             List<YTA> ytalist = DataProvider.Ins.DB.YTAs.ToList();
             DataProvider.Ins.DB.YTAs.RemoveRange(ytalist);
@@ -243,7 +252,7 @@ namespace Seeds
                             USER user = new USER();
                             user.USERNAME = "staff" + to.ID + (++count);
                             user.PASSWORD = Encryptor.Hash("1");
-                            user.ROLE = "staff";
+                            user.ROLE = "doctor";
                             user.BACSIs.Add(bs);
                             dbContext.USERs.Add(user);
                         }
@@ -253,7 +262,7 @@ namespace Seeds
                         USER user = new USER();
                         user.USERNAME = "staff" + to.ID + (++count);
                         user.PASSWORD = Encryptor.Hash("1");
-                        user.ROLE = "staff";
+                        user.ROLE = "nurse";
                         user.YTAs.Add(yta);
                         dbContext.USERs.Add(user);
                     }
