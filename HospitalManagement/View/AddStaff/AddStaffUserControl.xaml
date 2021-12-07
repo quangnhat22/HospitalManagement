@@ -50,6 +50,7 @@
                     materialDesign:HintAssist.Hint="Tìm kiếm theo"
                     ItemsSource="{Binding FilterList}"
                     SelectedItem="{Binding SelectedFilter}"
+                    Margin="0 0 10 0"
                     Padding="5 5 5 0"
                     Height="30"
                     Width="130">
