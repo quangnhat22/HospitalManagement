@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,13 +20,18 @@ namespace HospitalManagement.Command.TeamTaskCommand
 
         public void Execute(object parameter)
         {
-               
+            ;
         }
 
-        //private DataTable CreateDataTable()
-        //{
-        //    DataTable dataTable = new DataTable();
-        //    dataTable.Columns.Add
-        //}
+        private class ExcelData
+        {
+            public string TIEUDE { get; set; }
+            public string NOIDUNG { get; set; }
+            public DateTime? BATDAU { get; set; }
+            public DateTime? KETTHUC { get; set; }
+            public string DIADIEM { get; set; }
+            public string TINHCHAT { get; set; }
+            public string CMND_CCCD { get; set; }
+        }
     }
 }
