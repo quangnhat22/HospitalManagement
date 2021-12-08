@@ -77,10 +77,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             if (dropInfo.TargetCollection == InvolveMembers)
             {
                 StaffInformation p = (StaffInformation)dropInfo.Data;
-                if(!InvolveMembers.Contains(p))
-                {
-                    InvolveMembers.Add(p);
-                }
+                InvolveMembers.Add(p);
+                Members.Remove(p);
             }
         }
     }
