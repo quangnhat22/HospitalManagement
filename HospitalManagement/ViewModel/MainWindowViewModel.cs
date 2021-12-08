@@ -45,7 +45,7 @@ namespace HospitalManagement.ViewModel
             OpenReportForm = new OpenReportFormCommand();
             LogoutCommand = new LogoutCommand();
             OpenAccountSetting = new OpenAccountWindowCommand();
-            if(User.ROLE == "sudo")
+            if (User.ROLE == "sudo")
             {
                 AdminRolesVisibility = Visibility.Visible;
                 StaffRolesVisibility = Visibility.Collapsed;

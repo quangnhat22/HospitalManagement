@@ -33,51 +33,45 @@ namespace HospitalManagement.Command
             {
                 using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
                 {
-                    List<USER> users = dbContext.USERs?.ToList();
-                    foreach (USER user in users)
+                    USER userChange = dbContext.USERs.Find(MainWindowViewModel.User.ID);
+                    if (userChange.ROLE == "admin")
                     {
-                        if (user.USERNAME == MainWindowViewModel.User.USERNAME && user.PASSWORD == MainWindowViewModel.User.PASSWORD)
+                        var admin = userChange.ADMINs.FirstOrDefault();
+
+                        if (admin != null)
                         {
-                            if (user.ROLE == "admin")
+                            admin.HO = cw.txbLastName.Text;
+                            admin.TEN = cw.txbFistName.Text;
+                            admin.EMAIL = cw.txbEmail.Text;
+                            admin.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                            admin.GIOITINH = (cw.cbSex.Text != "Nam");
+                        }
+                    }
+                    else
+                    {
+                        if (userChange.ROLE == "leader" || userChange.ROLE == "doctor")
+                        {
+                            var doctor = userChange.BACSIs.FirstOrDefault();
+                            if (doctor != null || doctor != default)
                             {
-                                var admin = user.ADMINs.FirstOrDefault();
-                                if (admin != null)
-                                {
-                                    admin.HO = cw.txbLastName.Text;
-                                    admin.TEN = cw.txbFistName.Text;
-                                    admin.EMAIL = cw.txbEmail.Text;
-                                    admin.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                                    admin.GIOITINH = (cw.cbSex.Text != "Nam");
-                                }
+                                doctor.HO = cw.txbLastName.Text;
+                                doctor.TEN = cw.txbFistName.Text;
+                                doctor.EMAIL = cw.txbEmail.Text;
+                                doctor.NGSINH = cw.tbDateTimePicker.SelectedDate;
+                                doctor.GIOITINH = (cw.cbSex.Text != "Nam");
                             }
-                            else
+                        }
+                        else
+                        {
+                            var nurse = userChange.YTAs.FirstOrDefault();
+                            if (nurse != null || nurse != default)
                             {
-                                if (user.ROLE == "leader" || user.ROLE == "doctor")
-                                {
-                                    var doctor = user.BACSIs.FirstOrDefault();
-                                    if (doctor != null || doctor != default)
-                                    {
-                                        doctor.HO = cw.txbLastName.Text;
-                                        doctor.TEN = cw.txbFistName.Text;
-                                        doctor.EMAIL = cw.txbEmail.Text;
-                                        doctor.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                                        doctor.GIOITINH = (cw.cbSex.Text != "Nam");
-                                    }
-                                }
-                                else
-                                {
-                                    var nurse = user.YTAs.FirstOrDefault();
-                                    if (nurse != null || nurse != default)
-                                    {
-                                        nurse.HO = cw.txbLastName.Text;
-                                        nurse.TEN = cw.txbFistName.Text;
-                                        nurse.EMAIL = cw.txbEmail.Text;
-                                        nurse.NGSINH = cw.tbDateTimePicker.DisplayDate;
-                                        nurse.GIOITINH = (cw.cbSex.Text != "Nam");
-                                    }
-                                }
+                                nurse.HO = cw.txbLastName.Text;
+                                nurse.TEN = cw.txbFistName.Text;
+                                nurse.EMAIL = cw.txbEmail.Text;
+                                nurse.NGSINH = cw.tbDateTimePicker.DisplayDate;
+                                nurse.GIOITINH = (cw.cbSex.Text != "Nam");
                             }
-                            break;
                         }
                     }
                     dbContext.SaveChanges();
