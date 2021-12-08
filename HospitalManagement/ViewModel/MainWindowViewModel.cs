@@ -56,12 +56,12 @@ namespace HospitalManagement.ViewModel
                 AdminRolesVisibility = Visibility.Visible;
                 StaffRolesVisibility = Visibility.Collapsed;
             }
-            else
+            else 
             {
                 AdminRolesVisibility = Visibility.Collapsed;
                 StaffRolesVisibility = Visibility.Visible;
             }
-            if(User.ROLE == "staff")
+            if (User.ROLE == "doctor" || User.ROLE == "nurse") 
             {
                 PatientTabVisibility = Visibility.Collapsed;
                 StaffTabVisibility = Visibility.Collapsed;
