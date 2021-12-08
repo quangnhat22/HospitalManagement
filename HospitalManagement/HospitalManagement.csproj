@@ -178,6 +178,7 @@
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ToggleDeleteButtonCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\DeleteTasksCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\ExportTaskToExcelCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\RemoveInvolveMembersCommand.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Utils\DateTimeConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="Utils\ToUtils.cs" />
     <Compile Include="Utils\LineChartInitialization.cs" />
     <Compile Include="Utils\SelectableItem.cs" />
     <Compile Include="Utils\StaffInformation.cs" />
