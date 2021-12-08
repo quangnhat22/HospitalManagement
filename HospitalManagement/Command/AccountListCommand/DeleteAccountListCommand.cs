@@ -36,29 +36,7 @@ namespace HospitalManagement.Command.AccountListCommand
             var selectableItems = accountListViewModel.Users.Where(p => p.IsSelected).Select(x => x.Value);
             foreach (StaffInformation si in selectableItems)
             {
-                if(si.PhanLoai=="Bác Sĩ"||si.PhanLoai=="Tổ Trưởng")
-                {
-                    var bs = DataProvider.Ins.DB.BACSIs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
-                    foreach(BACSI bacSi in bs)
-                    {
-                        foreach(TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == bacSi.IDTO))
-                        {
-                            to.BACSIs.Remove(bacSi);                
-                        }  
-                    }
-                }
-                else if(si.PhanLoai=="Y Tá")
-                {
-                    var yt = DataProvider.Ins.DB.YTAs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
-                    foreach (YTA yTa in yt)
-                    {
-                        foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == yTa.IDTO))
-                        {
-                            to.YTAs.Remove(yTa);   
-                        }
-                    }
-                }
-                else if (si.PhanLoai == "admin")
+                if (si.PhanLoai == "admin")
                 {
                     if (MainWindowViewModel.IsSuperAdmin)
                     {
@@ -73,6 +51,16 @@ namespace HospitalManagement.Command.AccountListCommand
                         NotifyWindow notifyWindow = new NotifyWindow("Error", "Bạn không có quyền hạn thực hiện thao tác này");
                         notifyWindow.ShowDialog();
                     }
+                }
+                else
+                {
+                    var usr = DataProvider.Ins.DB.USERs.Where(p => p.USERNAME == si.UserName);
+                    foreach (USER uSER in usr)
+                    {
+                        uSER.YTAs.Clear();
+                        uSER.BACSIs.Clear();
+                        DataProvider.Ins.DB.USERs.Remove(uSER);
+                    }      
                 }
                 DataProvider.Ins.DB.SaveChanges();
                 accountListViewModel.StaffAccounts.Remove(si);
