@@ -30,66 +30,71 @@ namespace HospitalManagement.ViewModel
         public AccountViewModel()
         {
             OpenChangeAccount = new OpenChangeAccoutWindowCommand();
-            if (MainWindowViewModel.User.ROLE == "admin")
+            using (QUANLYBENHVIENEntities db = new QUANLYBENHVIENEntities())
             {
-                var admin = MainWindowViewModel.User.ADMINs.FirstOrDefault();
-                if (admin != null || admin != default)
+                USER usertemp = db.USERs.Find(MainWindowViewModel.User.ID);
+                if (usertemp.ROLE == "admin")
                 {
-                    HoTen = admin.HO + " " + admin.TEN;
-                    TenDangNhap = admin.USER.USERNAME;
-                    if (admin.NGSINH.HasValue)
+                    var admin = usertemp.ADMINs.FirstOrDefault();
+                    if (admin != null || admin != default)
                     {
-                        DateTime ngsinh = (DateTime)admin.NGSINH;
-                        NgaySinh = ngsinh.ToString("dd/MM/yyyy");
-                    }
-                    if (admin.GIOITINH.HasValue)
-                    {
-                        GioiTinh = admin.GIOITINH.Value;
-                    }
-                    Email = admin.EMAIL;
-                }
-            }   
-            else 
-            {
-                if (MainWindowViewModel.User.ROLE == "leader"|| MainWindowViewModel.User.ROLE == "doctor")
-                {
-                    var doctor = MainWindowViewModel.User.BACSIs.FirstOrDefault();
-                    if (doctor != null || doctor != default)
-                    {
-                        HoTen = doctor.HO + " " + doctor.TEN;
-                        TenDangNhap = doctor.USER.USERNAME;
-                        if (doctor.NGSINH.HasValue)
+                        HoTen = admin.HO + " " + admin.TEN;
+                        TenDangNhap = admin.USER.USERNAME;
+                        if (admin.NGSINH.HasValue)
                         {
-                            DateTime ngsinh = (DateTime)doctor.NGSINH;
+                            DateTime ngsinh = (DateTime)admin.NGSINH;
                             NgaySinh = ngsinh.ToString("dd/MM/yyyy");
                         }
-                        if (doctor.GIOITINH.HasValue)
+                        if (admin.GIOITINH.HasValue)
                         {
-                            GioiTinh = doctor.GIOITINH.Value;
+                            GioiTinh = admin.GIOITINH.Value;
                         }
-                        Email = doctor.EMAIL;
+                        Email = admin.EMAIL;
                     }
                 }
                 else
                 {
-                    var nurse = MainWindowViewModel.User.YTAs.FirstOrDefault();
-                    if (nurse != null || nurse != default)
+                    if (usertemp.ROLE == "leader" || usertemp.ROLE == "doctor")
                     {
-                        HoTen = nurse.HO + " " + nurse.TEN;
-                        TenDangNhap = nurse.USER.USERNAME;
-                        if (nurse.NGSINH.HasValue)
+                        var doctor = usertemp.BACSIs.FirstOrDefault();
+                        if (doctor != null || doctor != default)
                         {
-                            DateTime ngsinh = (DateTime)nurse.NGSINH;
-                            NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                            HoTen = doctor.HO + " " + doctor.TEN;
+                            TenDangNhap = doctor.USER.USERNAME;
+                            if (doctor.NGSINH.HasValue)
+                            {
+                                DateTime ngsinh = (DateTime)doctor.NGSINH;
+                                NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                            }
+                            if (doctor.GIOITINH.HasValue)
+                            {
+                                GioiTinh = doctor.GIOITINH.Value;
+                            }
+                            Email = doctor.EMAIL;
                         }
-                        if (nurse.GIOITINH.HasValue)
+                    }
+                    else
+                    {
+                        var nurse = usertemp.YTAs.FirstOrDefault();
+                        if (nurse != null || nurse != default)
                         {
-                            GioiTinh = nurse.GIOITINH.Value;
+                            HoTen = nurse.HO + " " + nurse.TEN;
+                            TenDangNhap = nurse.USER.USERNAME;
+                            if (nurse.NGSINH.HasValue)
+                            {
+                                DateTime ngsinh = (DateTime)nurse.NGSINH;
+                                NgaySinh = ngsinh.ToString("dd/MM/yyyy");
+                            }
+                            if (nurse.GIOITINH.HasValue)
+                            {
+                                GioiTinh = nurse.GIOITINH.Value;
+                            }
+                            Email = nurse.EMAIL;
                         }
-                        Email = nurse.EMAIL;
                     }
                 }
             }
+            
         }
     }
 }
