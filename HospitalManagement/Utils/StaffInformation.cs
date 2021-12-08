@@ -64,6 +64,10 @@ namespace HospitalManagement.Utils
             this.GhiChu = bacsi.GHICHU;
             this.IdTo = bacsi.IDTO;
             this.userName = bacsi.USER.USERNAME;
+            if(bacsi.USER.ROLE == "doctor")
+                this.PhanLoai = "Bác Sĩ";
+            if (bacsi.USER.ROLE == "leader")
+                this.PhanLoai = "Tổ Trưởng";
         }
 
         public StaffInformation(YTA yta)
