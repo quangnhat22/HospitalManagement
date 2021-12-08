@@ -68,7 +68,8 @@ namespace HospitalManagement.Command.TeamTaskCommand
                     congviec.YTALIENQUANs.Add(lienquan);
                 }
             }
-            congviec.TO = ToUtils.GetTO(MainWindowViewModel.User);
+            int toid = ToUtils.GetTOID(MainWindowViewModel.User);
+            congviec.TO = DataProvider.Ins.DB.TOes.Find(toid);
             DataProvider.Ins.DB.CONGVIECs.Add(congviec);
             DataProvider.Ins.DB.SaveChanges();
             notifyWindow = new NotifyWindow("Success", "Thêm thành công");

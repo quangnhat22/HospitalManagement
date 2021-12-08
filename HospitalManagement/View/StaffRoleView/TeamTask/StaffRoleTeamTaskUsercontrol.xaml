@@ -75,11 +75,12 @@
                                 Padding="0"
                                 Background="Transparent" 
                                 BorderThickness="0"
+                                Command="{Binding DeleteTasksCommand}"
                                 Style="{StaticResource MaterialDesignFlatMidBgButton}">
                             <materialDesign:PackIcon Kind="DeleteOutline" Height="25" Width="25"/>
                         </Button>
                     </Border>
-                    <DataGrid ItemsSource="{Binding ProgressTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGrid ItemsSource="{Binding DeleteTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                               AutoGenerateColumns="False" 
                               GridLinesVisibility="None"
                               HorizontalScrollBarVisibility="Disabled"
@@ -96,6 +97,7 @@
                               SelectionUnit="FullRow"
                               dd:DragDrop.IsDragSource="True"
                               dd:DragDrop.IsDropTarget="True"
+                              dd:DragDrop.DropHandler="{Binding}"
                               dd:DragDrop.UseDefaultDragAdorner="True">
                         <DataGrid.Resources>
                             <ResourceDictionary>
@@ -297,6 +299,7 @@
                             x:Name="lbxTask"
                             Margin="0"
                             dd:DragDrop.IsDropTarget="True"
+                            dd:DragDrop.IsDragSource="True"
                             dd:DragDrop.DropHandler="{Binding}" 
                             Height="652">
                             <ListBox.ItemContainerStyle>

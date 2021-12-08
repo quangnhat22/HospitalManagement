@@ -9,14 +9,14 @@ namespace HospitalManagement.Utils
 {
     class ToUtils
     {
-        public static TO GetTO(USER user)
+        public static int GetTOID(USER user)
         {
             if(user.ROLE == "doctor" || user.ROLE == "leader")
             {
                 BACSI bacsi = user.BACSIs.FirstOrDefault();
                 if(bacsi != null || bacsi != default(BACSI))
                 {
-                    return bacsi.TO;
+                    return bacsi.TO.ID;
                 }
             }
             else if (user.ROLE == "nurse")
@@ -24,10 +24,10 @@ namespace HospitalManagement.Utils
                 YTA yta = user.YTAs.FirstOrDefault();
                 if (yta != null || yta != default(YTA))
                 {
-                    return yta.TO;
+                    return yta.TO.ID;
                 }
             }
-            return null;
+            return -1;
         }
     }
 }
