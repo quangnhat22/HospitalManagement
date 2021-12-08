@@ -68,7 +68,6 @@ namespace HospitalManagement.Utils
                 this.PhanLoai = "Bác Sĩ";
             if (bacsi.USER.ROLE == "leader")
                 this.PhanLoai = "Tổ Trưởng";
-
         }
 
         public StaffInformation(YTA yta)
