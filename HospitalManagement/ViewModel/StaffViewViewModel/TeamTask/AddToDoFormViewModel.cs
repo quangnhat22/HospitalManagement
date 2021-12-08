@@ -80,6 +80,12 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
                 InvolveMembers.Add(p);
                 Members.Remove(p);
             }
+            else if(dropInfo.TargetCollection == Members)
+            {
+                StaffInformation p = (StaffInformation)dropInfo.Data;
+                Members.Add(p);
+                InvolveMembers.Remove(p);
+            }
         }
     }
 }
