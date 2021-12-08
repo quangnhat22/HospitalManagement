@@ -1,6 +1,7 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
 using HospitalManagement.View;
+using HospitalManagement.ViewModel;
 using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace HospitalManagement.Command.TeamTaskCommand
                     congviec.YTALIENQUANs.Add(lienquan);
                 }
             }
+            congviec.TO = ToUtils.GetTO(MainWindowViewModel.User);
             DataProvider.Ins.DB.CONGVIECs.Add(congviec);
             DataProvider.Ins.DB.SaveChanges();
             notifyWindow = new NotifyWindow("Success", "Thêm thành công");

@@ -37,7 +37,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public void LoadTaskList()
         {
-            List<CONGVIEC> congviecs = DataProvider.Ins.DB.CONGVIECs.ToList();
+            TO to = ToUtils.GetTO(MainWindowViewModel.User);
+            List<CONGVIEC> congviecs = to.CONGVIECs.ToList();
             List<ProgressTask> progressTasksList = ProgressTask.ChangeToListProgressTask(congviecs);
             ProgressTasks = new ObservableCollection<ProgressTask>(progressTasksList);
         }

@@ -247,6 +247,7 @@
     <Compile Include="Utils\DateTimeConverter.cs" />
     <Compile Include="Utils\EmailProcessing.cs" />
     <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="Utils\ToUtils.cs" />
     <Compile Include="Utils\LineChartInitialization.cs" />
     <Compile Include="Utils\SelectableItem.cs" />
     <Compile Include="Utils\StaffInformation.cs" />
