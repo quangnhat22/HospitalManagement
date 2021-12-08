@@ -54,6 +54,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public AddToDoFormViewModel()
         {
+            TaskType = taskTypes[0];
             InvolveMembers = new ObservableCollection<StaffInformation>();
             AddTaskCommand = new AddTaskCommand(this);
             RemoveInvolveMembersCommand = new RemoveInvolveMembersCommand(this);

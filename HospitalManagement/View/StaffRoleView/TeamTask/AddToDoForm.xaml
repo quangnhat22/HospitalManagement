@@ -156,13 +156,11 @@
                                               IsReadOnly="True"
                                               ItemsSource="{Binding TaskTypes}"
                                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                              materialDesign:HintAssist.Hint="Tính chất công việc" 
                                               Width="320"
                                               Padding="20 10"
                                               Margin="-8 0 0 0"
-                                              Text="{Binding TaskType}"
                                               HorizontalAlignment="Center" 
-                                              SelectedValue="Bình thường"/>
+                                              SelectedValue="{Binding TaskType}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Thành viên tham gia" Margin="10"/>
