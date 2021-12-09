@@ -25,6 +25,8 @@ namespace HospitalManagement.View
         {
             InitializeComponent();
             this.DataContext = new PatientInformationViewModel(bn);
+            PatientInformationViewModel informationViewModel = new PatientInformationViewModel(bn);
+            Closing += informationViewModel.OnWindowClosing;
         }
     }
 }
