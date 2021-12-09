@@ -57,8 +57,16 @@
                             Foreground="black"
                             materialDesign:CalendarAssist.HeaderBackground="{DynamicResource MaterialDesignPaper}"
                             materialDesign:CalendarAssist.HeaderForeground="Black"
+                            SelectedDate="{Binding SelectedDate}"
                             CalendarDayButtonStyle="{StaticResource CustomCalendarDayButton}"
-                            CalendarButtonStyle="{StaticResource CustomCalendarButton}" />
+                            CalendarButtonStyle="{StaticResource CustomCalendarButton}" 
+                            >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedDatesChanged">
+                                    <i:InvokeCommandAction Command="{Binding LoadTaskListByDateCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Calendar>
                     </Grid>
                 </Viewbox>
                 <Grid Height="330">

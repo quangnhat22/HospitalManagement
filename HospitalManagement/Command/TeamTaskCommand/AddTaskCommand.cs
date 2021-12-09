@@ -76,7 +76,8 @@ namespace HospitalManagement.Command.TeamTaskCommand
             notifyWindow.ShowDialog();
             if(addToDoFormViewModel.Owner != null)
             {
-                addToDoFormViewModel.Owner.ProgressTasks.Add(new ProgressTask(congviec));
+                StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel = addToDoFormViewModel.Owner as StaffRoleTeamTaskViewModel;
+                staffRoleTeamTaskViewModel.LoadTaskList();
             }
         }
 
