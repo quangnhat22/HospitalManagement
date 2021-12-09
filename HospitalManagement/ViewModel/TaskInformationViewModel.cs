@@ -35,6 +35,7 @@ namespace HospitalManagement.ViewModel
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
+        public ICommand SaveChange { get; set; }
         public TaskInformationViewModel(CONGVIEC cv)
         {
             this.Task = cv;
@@ -53,6 +54,7 @@ namespace HospitalManagement.ViewModel
                 staffInformation = new StaffInformation(yt.YTA);
                 InvolveMembers.Add(staffInformation);
             }
+            SaveChange = new SaveChangeTaskInformationCommand();
         }
     }
 }

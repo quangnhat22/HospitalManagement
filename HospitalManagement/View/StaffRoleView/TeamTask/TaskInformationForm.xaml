@@ -70,7 +70,7 @@
                                 TextWrapping="Wrap"
                                 MinWidth="280"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="{Binding Task.TIEUDE}"
+                                Text="{Binding Task.TIEUDE, Mode=OneWay}"
                                 AcceptsReturn="True"
                                 VerticalScrollBarVisibility="Hidden"
                                 SpellCheck.IsEnabled="True"
@@ -133,7 +133,7 @@
                                     Width="320"
                                     Padding="20 10"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding Task.DIADIEM}"
+                                    Text="{Binding Task.DIADIEM, Mode=OneWay}"
                                     AcceptsReturn="true"
                                     VerticalScrollBarVisibility="Hidden"
                                     SpellCheck.IsEnabled="true"
@@ -144,7 +144,7 @@
                                     TextWrapping="Wrap"
                                     IsReadOnly="True"
                                     MinWidth="280"
-                                    Text="{Binding Task.NOIDUNG}"
+                                    Text="{Binding Task.NOIDUNG, Mode=OneWay}"
                                     TextAlignment="Left"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     AcceptsReturn="True"
@@ -166,9 +166,9 @@
                                               Width="320"
                                               Padding="20 10"
                                               Margin="-8 0 0 0"
-                                              Text="{Binding Task.TINHCHAT}"
+                                              Text="{Binding Task.TINHCHAT, Mode=OneWay}"
                                               HorizontalAlignment="Center" 
-                                              SelectedValue="{Binding Task.TINHCHAT}"/>
+                                              SelectedValue="{Binding Task.TINHCHAT, Mode=OneWay}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Thành viên tham gia" Margin="10"/>
@@ -413,6 +413,8 @@
                             VerticalAlignment="Center" Margin="60,2,60,3">
                     <Button
                         x:Name="btnOK"
+                        Command="{Binding SaveChange}"
+                        CommandParameter="{Binding ElementName=taskInforWindow}"
                         Width="120"
                         Height="45"
                         Visibility="Collapsed"
