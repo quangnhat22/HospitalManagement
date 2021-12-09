@@ -7,7 +7,7 @@
         xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         x:Name="ChangeNurseInformationFormWindow"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
@@ -19,6 +19,10 @@
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="WhiteSmoke">
         <StackPanel Orientation="Vertical">
             <Grid Height="100">

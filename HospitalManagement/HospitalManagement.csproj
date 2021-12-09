@@ -128,7 +128,6 @@
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
     <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
-    <Compile Include="Command\DoctorListCommand\ChangeDoctorInformationClosingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
