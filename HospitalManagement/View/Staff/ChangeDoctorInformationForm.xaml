@@ -20,12 +20,10 @@
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
-    <!--<i:Interaction.Triggers>
+    <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding CloseWindow}" 
-                                   CommandParameter="{Binding ElementName=ChangeDoctorInformationFormWindow}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>-->
+    </i:Interaction.Triggers>
     <Grid Background="WhiteSmoke">
         <StackPanel Orientation="Vertical">
             <Grid Height="100">

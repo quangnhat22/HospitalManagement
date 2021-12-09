@@ -26,6 +26,8 @@ namespace HospitalManagement.View.Staff
         {
             InitializeComponent();
             this.DataContext = new DoctorInformationViewModel(bs);
+            DoctorInformationViewModel informationViewModel = new DoctorInformationViewModel(bs);
+            Closing += informationViewModel.OnWindowClosing;
         }
 
         
