@@ -20,9 +20,11 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         private ObservableCollection<ProgressTask> deleteTasks;
 
         private ObservableCollection<ProgressTask> progressTasks;
+        private DateTime selectedDate;
         public ICommand OpenAddToDoFormCommand { get; set; }
         public ICommand ShowTaskInformation { get; set; }
         public ICommand DeleteTasksCommand { get; set; }
+        public ICommand LoadTaskListByDateCommand { get; set; }
         public ObservableCollection<ProgressTask> DeleteTasks
         {
             get
@@ -51,12 +53,15 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public USER User = MainWindowViewModel.User;
         public Visibility LeaderTaskVisibility { get; set; }
+        public DateTime SelectedDate { get => selectedDate; set => selectedDate = value; }
 
         public StaffRoleTeamTaskViewModel()
         {
+            SelectedDate = System.DateTime.Now;
             OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this);
             ShowTaskInformation = new ShowTaskInformationCommand(this);
             DeleteTasksCommand = new DeleteTasksCommand(this);
+            LoadTaskListByDateCommand = new LoadTaskListByDateCommand(this);
             LoadTaskList();
             if (User.ROLE == "leader")
                 LeaderTaskVisibility = Visibility.Visible;
@@ -66,12 +71,22 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         public void LoadTaskList()
         {
+
             int toid = ToUtils.GetTOID(MainWindowViewModel.User);
-            TO to = DataProvider.Ins.DB.TOes.Find(toid);
-            List<CONGVIEC> congviecs = to.CONGVIECs.ToList();
-            List<ProgressTask> progressTasksList = ProgressTask.ChangeToListProgressTask(congviecs);
-            ProgressTasks = new ObservableCollection<ProgressTask>(progressTasksList);
-            DeleteTasks = new ObservableCollection<ProgressTask>();
+            if(toid != -1)
+            {
+                TO to = DataProvider.Ins.DB.TOes.Find(toid);
+                string query = @"
+                            SELECT * FROM CONGVIEC 
+                            WHERE IDTO = {0} 
+                            AND CONGVIEC.BATDAU <= '{1}-{2}-{3}'
+                            AND CONGVIEC.KETTHUC >= '{1}-{2}-{3}'";
+                query = String.Format(query, toid, SelectedDate.Year, SelectedDate.Month, SelectedDate.Day);
+                List<CONGVIEC> congviecs = DataProvider.Ins.DB.Database.SqlQuery<CONGVIEC>(query).ToList();
+                List<ProgressTask> progressTasksList = ProgressTask.ChangeToListProgressTask(congviecs);
+                ProgressTasks = new ObservableCollection<ProgressTask>(progressTasksList);
+                DeleteTasks = new ObservableCollection<ProgressTask>();
+            }
         }
 
         void IDropTarget.DragOver(IDropInfo dropInfo)

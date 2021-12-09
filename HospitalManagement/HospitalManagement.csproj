@@ -180,6 +180,7 @@
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\DeleteTasksCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\ExportTaskToExcelCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\LoadTaskListByDateCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\RemoveInvolveMembersCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\ShowTaskInformationCommand.cs" />
