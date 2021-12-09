@@ -25,6 +25,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public ICommand ShowTaskInformation { get; set; }
         public ICommand DeleteTasksCommand { get; set; }
         public ICommand LoadTaskListByDateCommand { get; set; }
+        public ICommand ExportTaskToExcelCommand { get; set; }
         public ObservableCollection<ProgressTask> DeleteTasks
         {
             get
@@ -61,6 +62,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             OpenAddToDoFormCommand = new OpenAddToDoFormCommand(this);
             ShowTaskInformation = new ShowTaskInformationCommand(this);
             DeleteTasksCommand = new DeleteTasksCommand(this);
+            ExportTaskToExcelCommand = new ExportTaskToExcelCommand(this);
             LoadTaskListByDateCommand = new LoadTaskListByDateCommand(this);
             LoadTaskList();
             if (User.ROLE == "leader")

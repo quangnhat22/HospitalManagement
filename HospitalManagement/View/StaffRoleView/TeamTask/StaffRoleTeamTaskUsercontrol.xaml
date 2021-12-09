@@ -271,6 +271,7 @@
                             materialDesign:ButtonAssist.CornerRadius="25"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
                             Background="#35a0fe"
+                            Command="{Binding ExportTaskToExcelCommand}"
                             ToolTip="Hoàn tất đăng ký">
                             <Button.Content>
                                 <materialDesign:PackIcon 

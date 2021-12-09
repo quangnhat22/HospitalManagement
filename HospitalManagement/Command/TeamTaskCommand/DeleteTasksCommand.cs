@@ -29,9 +29,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
         {
             foreach(ProgressTask congviec in staffRoleTeamTaskViewModel.DeleteTasks)
             {
-                DataProvider.Ins.DB.BACSILIENQUANs.RemoveRange(congviec.Value.BACSILIENQUANs);
-                DataProvider.Ins.DB.YTALIENQUANs.RemoveRange(congviec.Value.YTALIENQUANs);
-                DataProvider.Ins.DB.CONGVIECs.Remove(congviec.Value);
+                int idCongViec = congviec.Value.ID;
+                DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM BACSILIENQUAN WHERE IDCONGVIEC = " + idCongViec);
+                DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM YTALIENQUAN WHERE IDCONGVIEC = " + idCongViec);
+                DataProvider.Ins.DB.Database.ExecuteSqlCommand("DELETE FROM CONGVIEC WHERE ID = " + idCongViec);
             }
             DataProvider.Ins.DB.SaveChanges();
             staffRoleTeamTaskViewModel.LoadTaskList();
