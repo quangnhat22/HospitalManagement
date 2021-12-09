@@ -40,7 +40,8 @@ namespace HospitalManagement.Command.TeamTaskCommand
                 xLWorksheet.Column("G").Style.Alignment.WrapText = true;
                 xLWorksheet.Column("G").Width = 64;
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                if(saveFileDialog.ShowDialog() == true)
+                saveFileDialog.Filter = "Excel Workbook (*.xlsm) | *.xlsm";
+                if (saveFileDialog.ShowDialog() == true)
                 {
                     try
                     {
