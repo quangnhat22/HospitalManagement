@@ -40,6 +40,7 @@ namespace HospitalManagement.Command
             if(Check(doctorForm))
             {
                 string gioiTinh = doctorForm.cbxGioiTinh.SelectedValue as string;
+                string a = doctorForm.txbNGSinh.Text;
                 var doctorInput = new BACSI
                 {
                     HO = doctorForm.txbHo.Text,
@@ -47,7 +48,7 @@ namespace HospitalManagement.Command
                     SDT = doctorForm.txbSDT.Text,
                     EMAIL = doctorForm.txbEmail.Text,
                     DIACHI = doctorForm.txbDiaChi.Text,
-                    NGSINH = doctorForm.txbNGSinh.DisplayDate,
+                    NGSINH = doctorForm.txbNGSinh.SelectedDate,
                     GIOITINH = (gioiTinh == "Nam"),
                     QUOCTICH = doctorForm.txbQuocTich.Text,
                     CMND_CCCD = doctorForm.txbCMND_CCCD.Text,

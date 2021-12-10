@@ -48,7 +48,7 @@ namespace HospitalManagement.Command
                     SDT = nurseForm.txbSDT.Text,
                     EMAIL = nurseForm.txbEmail.Text,
                     DIACHI = nurseForm.txbDiaChi.Text,
-                    NGSINH = nurseForm.txbNGSinh.DisplayDate,
+                    NGSINH = nurseForm.txbNGSinh.SelectedDate,
                     GIOITINH = (gioiTinh == "Nam"),
                     QUOCTICH = nurseForm.txbQuocTich.Text,
                     CMND_CCCD = nurseForm.txbCMND_CCCD.Text,
