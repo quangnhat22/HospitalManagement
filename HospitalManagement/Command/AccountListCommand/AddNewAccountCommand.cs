@@ -61,7 +61,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             EMAIL = addNewAccountForm.txbEmail.Text,
                             GIOITINH = false as bool?
                         };
-                        userInput.USERNAME = adminUser.ID;
+                        userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
                         userInput.ROLE = "admin";
                         db.ADMINs.Add(adminUser);
                     }
