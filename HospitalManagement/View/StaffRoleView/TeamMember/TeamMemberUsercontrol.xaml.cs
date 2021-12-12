@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,7 @@ namespace HospitalManagement.View.StaffRoleView.TeamMember
         {
             InitializeComponent();
             USER user = MainWindowViewModel.User;
-            var leader = user.BACSIs.FirstOrDefault();
-            if (leader != null || leader != default(BACSI))
-            {
-                this.DataContext = new TeamMemberViewModel(leader.TO.ID);
-            }
+            this.DataContext = new TeamMemberViewModel(ToUtils.GetTOID(user));
         }
     }
 }
