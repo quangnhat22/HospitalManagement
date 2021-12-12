@@ -642,6 +642,7 @@
     <Resource Include="Images\first-aid-kit.png" />
     <Resource Include="Images\Background.jpg" />
     <Resource Include="Images\editUserimage.png" />
+    <Resource Include="Images\hello.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
