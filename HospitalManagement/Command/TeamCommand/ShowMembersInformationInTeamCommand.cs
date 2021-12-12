@@ -11,6 +11,7 @@ using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.Staff;
 using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
+using static HospitalManagement.ViewModel.TeamMemberViewModel;
 
 namespace HospitalManagement.Command.TeamCommand
 {
@@ -50,48 +51,40 @@ namespace HospitalManagement.Command.TeamCommand
         public void Execute(object parameter)
         {
             int index = (int)parameter;
-            StaffInformation member;
+            
             if (isTeamMemberCalled)
-                member = teamMemberViewModel.StaffInformations[index];
-            else
-                member= teamViewmodel.Members[index];
-            if (member.PhanLoai== "Tổ Trưởng"|| member.PhanLoai == "Bác Sĩ")
             {
-                BACSI bs = new BACSI();
-                bs.CMND_CCCD = member.Cmnd_cccd;
-                bs.HO = member.Ho;
-                bs.TEN = member.Ten;
-                bs.SDT = member.Sdt;
-                bs.EMAIL = member.Email;
-                bs.QUOCTICH = member.QuocTich;
-                bs.DIACHI = member.DiaChi;
-                bs.NGSINH = member.NgSinh;
-                bs.GIOITINH = member.GioiTinh;
-                bs.VAITRO = member.VaiTro;
-                bs.CHUYENKHOA = member.ChuyenKhoa;
-                bs.GHICHU = member.GhiChu;
-                bs.IDTO = member.IdTo;
-                DoctorInformationForm dif = new DoctorInformationForm(bs);
-                dif.Show();
+                StaffInformationWithTaskProgress member;
+                member = teamMemberViewModel.StaffInformations[index];
+                if (member.Value.PhanLoai == "Tổ Trưởng" || member.Value.PhanLoai == "Bác Sĩ")
+                {
+                    BACSI bs = DataProvider.Ins.DB.BACSIs.Find(member.Value.Cmnd_cccd);
+                    DoctorInformationForm dif = new DoctorInformationForm(bs);
+                    dif.Show();
+                }
+                else
+                {
+                    YTA yta = DataProvider.Ins.DB.YTAs.Find(member.Value.Cmnd_cccd);
+                    NurseInformationForm nif = new NurseInformationForm(yta);
+                    nif.Show();
+                }
             }
             else
             {
-                YTA yta = new YTA();
-                yta.CMND_CCCD = member.Cmnd_cccd;
-                yta.HO = member.Ho;
-                yta.TEN = member.Ten;
-                yta.SDT = member.Sdt;
-                yta.EMAIL = member.Email;
-                yta.QUOCTICH = member.QuocTich;
-                yta.DIACHI = member.DiaChi;
-                yta.NGSINH = member.NgSinh;
-                yta.GIOITINH = member.GioiTinh;
-                yta.VAITRO = member.VaiTro;
-                yta.CHUYENKHOA = member.ChuyenKhoa;
-                yta.GHICHU = member.GhiChu;
-                yta.IDTO = member.IdTo;
-                NurseInformationForm nif = new NurseInformationForm(yta);
-                nif.Show();
+                StaffInformation member;
+                member = teamViewmodel.Members[index];
+                if (member.PhanLoai == "Tổ Trưởng" || member.PhanLoai == "Bác Sĩ")
+                {
+                    BACSI bs = DataProvider.Ins.DB.BACSIs.Find(member.Cmnd_cccd);
+                    DoctorInformationForm dif = new DoctorInformationForm(bs);
+                    dif.Show();
+                }
+                else
+                {
+                    YTA yta = DataProvider.Ins.DB.YTAs.Find(member.Cmnd_cccd);
+                    NurseInformationForm nif = new NurseInformationForm(yta);
+                    nif.Show();
+                }
             }
         }
     }
