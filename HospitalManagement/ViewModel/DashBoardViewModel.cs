@@ -24,7 +24,7 @@ namespace HospitalManagement.ViewModel
     {
         private int staffCount;
         private int patientCount;
-        private int bedCount;
+        private int? bedCount;
         private DashBoard dab;
         private DateTime columnChartDate;
         private Visibility progressBarVisibility;
@@ -33,7 +33,7 @@ namespace HospitalManagement.ViewModel
         //get information for card
         public int StaffCount { get => staffCount; set => staffCount = value; }
         public int PatientCount { get => patientCount; set => patientCount = value; }
-        public int BedCount { get => bedCount; set => bedCount = value; }
+        public int? BedCount { get => bedCount; set => bedCount = value; }
 
         public int SelectedIndex { get; set; }
 
@@ -80,9 +80,11 @@ namespace HospitalManagement.ViewModel
 
             SelectedIndex = 0;
 
-            StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count();
+            StaffCount = DataProvider.Ins.DB.BACSIs.Count() + DataProvider.Ins.DB.YTAs.Count() + DataProvider.Ins.DB.ADMINs.Count();
             PatientCount = DataProvider.Ins.DB.BENHNHANs.Count();
-            BedCount = DataProvider.Ins.DB.PHONGs.Count() * 6;
+            bedCount = 0;
+            var roomList = DataProvider.Ins.DB.PHONGs.ToList() ;
+            roomList.ForEach(x => bedCount += x.SUCCHUA);
 
             #region "Initial Stacked Column Chart"
             ProgressBarVisibility = Visibility.Visible;
@@ -95,26 +97,32 @@ namespace HospitalManagement.ViewModel
                                     {
                                         new StackedColumnSeries
                                         {
+                                            Title = "Trở nặng",
                                             Values = ToaTK.NangList,
                                             StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                                            DataLabels = true
+                                            DataLabels = true,
+                                            Fill = new SolidColorBrush(Color.FromRgb(224, 46, 68))
                                         },
                                         new StackedColumnSeries
                                         {
+                                            Title = "Có triệu chứng",
                                             Values = ToaTK.TrungBinhList,
                                             StackMode = StackMode.Values,
-                                            DataLabels = true
+                                            DataLabels = true,
+                                            Fill = new SolidColorBrush(Color.FromRgb(255,129,0))
                                         },
                                         new StackedColumnSeries
                                         {
+                                            Title = "Không có triệu chứng",
                                             Values = ToaTK.NheList,
                                             StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                                            DataLabels = true
+                                            DataLabels = true,
+                                            Fill = new SolidColorBrush(Color.FromRgb(7,210,0))
                                         },
                                     };
                 ProgressBarVisibility = Visibility.Collapsed;
                 ColumnChartVisibility = Visibility.Visible;
-            });      
+            });
             #endregion
             #region "Initial Line Chart"
             LineLabels = new List<string>();
@@ -122,7 +130,7 @@ namespace HospitalManagement.ViewModel
             {
                 new LineSeries
                 {
-                    Title = "Bệnh nhân trung bình",
+                    Title = "Số bệnh nhân trong tháng",
                     Values = GenerateLive(),
                     LabelPoint = point => ": " + point.Y + " người",
                 },

@@ -18,7 +18,7 @@ namespace HospitalManagement.Utils
         private string quocTich;
         private string diaChi;
         private DateTime? ngSinh;
-        private bool gioiTinh;
+        private bool? gioiTinh;
         private string vaiTro;
         private string chuyenKhoa;
         private string ghiChu;
@@ -35,7 +35,7 @@ namespace HospitalManagement.Utils
         public string QuocTich { get => quocTich; set => quocTich = value; }
         public string DiaChi { get => diaChi; set => diaChi = value; }
         public DateTime? NgSinh { get => ngSinh; set => ngSinh = value; }
-        public bool GioiTinh { get => gioiTinh; set => gioiTinh = value; }
+        public bool? GioiTinh { get => gioiTinh; set => gioiTinh = value; }
         public string VaiTro { get => vaiTro; set => vaiTro = value; }
         public string ChuyenKhoa { get => chuyenKhoa; set => chuyenKhoa = value; }
         public string GhiChu { get => ghiChu; set => ghiChu = value; }
