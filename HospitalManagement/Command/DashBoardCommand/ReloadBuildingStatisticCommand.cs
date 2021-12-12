@@ -35,27 +35,7 @@ namespace HospitalManagement.Command.DashBoardCommand
         {
             ToaTK toaTK = new ToaTK();
             toaTK.thongKeBenhNhanTheoToa(dashBoardViewModel.ColumnChartDate);
-            dashBoardViewModel.SeriesCollection = new SeriesCollection
-            {
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.NangList,
-                    StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                    DataLabels = true
-                },
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.TrungBinhList,
-                    StackMode = StackMode.Values,
-                    DataLabels = true
-                },
-                new StackedColumnSeries
-                {
-                    Values = ToaTK.NheList,
-                    StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
-                    DataLabels = true
-                },
-            };
+            dashBoardViewModel.GenerateColumnChart();
         }
     }
 }
