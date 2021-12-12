@@ -320,6 +320,9 @@
     <Compile Include="View\Others\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Others\FirstLoginWindow.xaml.cs">
+      <DependentUpon>FirstLoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Others\ThankyouWindow.xaml.cs">
       <DependentUpon>ThankyouWindow.xaml</DependentUpon>
     </Compile>
@@ -427,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\FirstLoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

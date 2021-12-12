@@ -35,7 +35,7 @@
                                 BasedOn="{StaticResource MaterialDesignCalendarDayButton}">
                                 <Setter
                                     Property="materialDesign:CalendarAssist.SelectionColor"
-                                    Value="#B2F39B" />
+                                    Value="#35a0fe" />
                                 <Setter
                                     Property="materialDesign:CalendarAssist.SelectionForegroundColor"
                                     Value="Black" />
@@ -46,7 +46,7 @@
                                 BasedOn="{StaticResource MaterialDesignCalendarButton}">
                                 <Setter
                                     Property="materialDesign:CalendarAssist.SelectionColor"
-                                    Value="#B2F39B" />
+                                    Value="#35a0fe" />
                                 <Setter
                                     Property="materialDesign:CalendarAssist.SelectionForegroundColor"
                                     Value="Black" />
@@ -281,7 +281,7 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <Border BorderThickness="0 2 0 0" BorderBrush="#2AE2BE">
+                    <Border BorderThickness="0 2 0 0" >
                         <Border.Resources>
                             <Style TargetType="{x:Type Border}" x:Key="PriorityBackground">
                                 <Style.Triggers>
