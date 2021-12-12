@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Model;
+using HospitalManagement.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,58 +51,85 @@ namespace HospitalManagement.Utils
         }
         public StaffInformation(BACSI bacsi)
         {
-            this.Cmnd_cccd = bacsi.CMND_CCCD;
-            this.Ho = bacsi.HO;
-            this.Ten = bacsi.TEN;
-            this.Email = bacsi.EMAIL;
-            this.Sdt = bacsi.SDT;
-            this.QuocTich = bacsi.QUOCTICH;
-            this.DiaChi = bacsi.DIACHI;
-            this.NgSinh = bacsi.NGSINH;
-            this.GioiTinh = bacsi.GIOITINH.HasValue ? bacsi.GIOITINH.Value : false;
-            this.VaiTro = bacsi.VAITRO;
-            this.ChuyenKhoa = bacsi.CHUYENKHOA;
-            this.GhiChu = bacsi.GHICHU;
-            this.IdTo = bacsi.IDTO;
-            this.userName = bacsi.USER.USERNAME;
-            if(bacsi.USER.ROLE == "doctor")
-                this.PhanLoai = "Bác Sĩ";
-            if (bacsi.USER.ROLE == "leader")
-                this.PhanLoai = "Tổ Trưởng";
+            try
+            {
+                this.Cmnd_cccd = bacsi.CMND_CCCD;
+                this.Ho = bacsi.HO;
+                this.Ten = bacsi.TEN;
+                this.Email = bacsi.EMAIL;
+                this.Sdt = bacsi.SDT;
+                this.QuocTich = bacsi.QUOCTICH;
+                this.DiaChi = bacsi.DIACHI;
+                this.NgSinh = bacsi.NGSINH;
+                this.GioiTinh = bacsi.GIOITINH.HasValue ? bacsi.GIOITINH.Value : false;
+                this.VaiTro = bacsi.VAITRO;
+                this.ChuyenKhoa = bacsi.CHUYENKHOA;
+                this.GhiChu = bacsi.GHICHU;
+                this.IdTo = bacsi.IDTO;
+                this.userName = bacsi.USER.USERNAME;
+                if (bacsi.USER.ROLE == "doctor")
+                    this.PhanLoai = "Bác Sĩ";
+                if (bacsi.USER.ROLE == "leader")
+                    this.PhanLoai = "Tổ Trưởng";
+            }
+            catch
+            {
+                NotifyWindow ntf = new NotifyWindow("Error", "Đã xảy ra lỗi!");
+                ntf.ShowDialog();
+                return;
+            }
         }
 
         public StaffInformation(YTA yta)
         {
-            this.Cmnd_cccd = yta.CMND_CCCD;
-            this.Ho = yta.HO;
-            this.Ten = yta.TEN;
-            this.Email = yta.EMAIL;
-            this.Sdt = yta.SDT;
-            this.QuocTich = yta.QUOCTICH;
-            this.DiaChi = yta.DIACHI;
-            this.NgSinh = yta.NGSINH;
-            this.GioiTinh = yta.GIOITINH.HasValue ? yta.GIOITINH.Value : false;
-            this.VaiTro = yta.VAITRO;
-            this.ChuyenKhoa = yta.CHUYENKHOA;
-            this.GhiChu = yta.GHICHU;
-            this.IdTo = yta.IDTO;
-            this.userName = yta.USER.USERNAME;
-            this.PhanLoai = "Y Tá";
+            try
+            {
+                this.Cmnd_cccd = yta.CMND_CCCD;
+                this.Ho = yta.HO;
+                this.Ten = yta.TEN;
+                this.Email = yta.EMAIL;
+                this.Sdt = yta.SDT;
+                this.QuocTich = yta.QUOCTICH;
+                this.DiaChi = yta.DIACHI;
+                this.NgSinh = yta.NGSINH;
+                this.GioiTinh = yta.GIOITINH.HasValue ? yta.GIOITINH.Value : false;
+                this.VaiTro = yta.VAITRO;
+                this.ChuyenKhoa = yta.CHUYENKHOA;
+                this.GhiChu = yta.GHICHU;
+                this.IdTo = yta.IDTO;
+                this.userName = yta.USER.USERNAME;
+                this.PhanLoai = "Y Tá";
+            }
+            catch
+            {
+                NotifyWindow ntf = new NotifyWindow("Error", "Đã xảy ra lỗi!");
+                ntf.ShowDialog();
+                return;
+            }
         }
 
         public StaffInformation(ADMIN admin)
         {
-            this.Cmnd_cccd = admin.ID;
-            this.Ho = admin.HO;
-            this.Ten = admin.TEN;
-            this.Email = admin.EMAIL;
-            this.Sdt = admin.SDT;
-            this.QuocTich = admin.QUOCTICH;
-            this.DiaChi = admin.DIACHI;
-            this.NgSinh = admin.NGSINH;
-            this.GioiTinh = admin.GIOITINH.HasValue ? admin.GIOITINH.Value : false;
-            this.UserName = admin.USER.USERNAME;
-            this.PhanLoai = "admin";
+            try
+            {
+                this.Cmnd_cccd = admin.ID;
+                this.Ho = admin.HO;
+                this.Ten = admin.TEN;
+                this.Email = admin.EMAIL;
+                this.Sdt = admin.SDT;
+                this.QuocTich = admin.QUOCTICH;
+                this.DiaChi = admin.DIACHI;
+                this.NgSinh = admin.NGSINH;
+                this.GioiTinh = admin.GIOITINH.HasValue ? admin.GIOITINH.Value : false;
+                this.UserName = admin.USER.USERNAME;
+                this.PhanLoai = "admin";
+            }
+            catch
+            {
+                NotifyWindow ntf = new NotifyWindow("Error", "Đã xảy ra lỗi!");
+                ntf.ShowDialog();
+                return;
+            }
         }
 
         public async static Task<List<StaffInformation>> InitAccountList()
