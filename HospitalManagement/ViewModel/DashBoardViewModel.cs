@@ -85,12 +85,16 @@ namespace HospitalManagement.ViewModel
             bedCount = 0;
             var roomList = DataProvider.Ins.DB.PHONGs.ToList() ;
             roomList.ForEach(x => bedCount += x.SUCCHUA);
+            GenerateColumnChart();
+        }
 
+        public void GenerateColumnChart()
+        {
             #region "Initial Stacked Column Chart"
             ProgressBarVisibility = Visibility.Visible;
             ColumnChartVisibility = Visibility.Collapsed;
             ToaTK toaTK = new ToaTK();
-            toaTK.thongKeBenhNhanTheoToa().GetAwaiter().OnCompleted(()=> 
+            toaTK.thongKeBenhNhanTheoToa().GetAwaiter().OnCompleted(() =>
             {
                 Labels = ToaTK.LabelList;
                 SeriesCollection = new SeriesCollection

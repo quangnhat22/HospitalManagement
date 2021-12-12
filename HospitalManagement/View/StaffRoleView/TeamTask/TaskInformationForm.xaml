@@ -182,8 +182,10 @@
                                     x:Name="lbxMember"
                                     Margin="0 0 0 20"
                                     Height="150"
+                                    dd:DragDrop.IsDragSource="True"
                                     dd:DragDrop.IsDropTarget="True"
-                                    dd:DragDrop.DropHandler="{Binding}">
+                                    dd:DragDrop.DropHandler="{Binding}"
+                                    dd:DragDrop.UseDefaultDragAdorner="True">
                                         <ListBox.ItemContainerStyle>
                                             <Style TargetType="ListBoxItem">
                                                 <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -245,11 +247,12 @@
                         Fill="Black"
                         Width="1"/>
                     </Grid>
-                    <Grid Grid.Column="2" Visibility="Collapsed">
+                    <Grid Grid.Column="2" Visibility="Visible">
                         <DataGrid 
                         x:Name="dtgMembers"
                         ItemsSource="{Binding Members, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                         AutoGenerateColumns="False" 
+                        Visibility="Hidden"
                         GridLinesVisibility="None"
                         HorizontalScrollBarVisibility="Disabled"
                         VerticalScrollBarVisibility="Hidden"
@@ -265,6 +268,7 @@
                         dd:DragDrop.IsDragSource="True"
                         dd:DragDrop.IsDropTarget="True"
                         dd:DragDrop.UseDefaultDragAdorner="True"
+                        dd:DragDrop.DropHandler="{Binding}"
                         Background="White">
 
                             <DataGrid.Resources>
