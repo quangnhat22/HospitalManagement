@@ -27,6 +27,10 @@ namespace HospitalManagement.View.StaffRoleView.TeamTask
         {
             InitializeComponent();
             this.DataContext = new TaskInformationViewModel(cv);
+            if (MainWindowViewModel.User?.ROLE != "leader")
+            {
+                btnEdit.IsEnabled = false;
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
