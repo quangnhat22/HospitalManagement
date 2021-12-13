@@ -70,7 +70,7 @@
                                 TextWrapping="Wrap"
                                 MinWidth="280"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                Text="{Binding Task.TIEUDE, Mode=OneWay}"
+                                Text="{Binding SubjectText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 AcceptsReturn="True"
                                 VerticalScrollBarVisibility="Hidden"
                                 SpellCheck.IsEnabled="True"
@@ -87,12 +87,12 @@
                                         HorizontalAlignment="Left"
                                         Margin="10"
                                         Width="160"
-                                        SelectedDate="{Binding StartDate, Mode=OneWay}"
+                                        SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         materialDesign:HintAssist.Hint="Ngày bắt đầu"
                                         Padding="20 10"
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     <materialDesign:TimePicker
-                                    SelectedTime="{Binding StartTime.TimeOfDay, Mode=OneWay}"
+                                    SelectedTime="{Binding StartHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      IsEnabled="False"
                                     x:Name="tpStart"
                                     Width="150" 
@@ -108,11 +108,11 @@
                                     Margin="10"
                                         Padding="20 10"
                                     Width="160"
-                                    SelectedDate="{Binding EndDate, Mode=OneWay}"
+                                    SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     materialDesign:HintAssist.Hint="Ngày kết thúc"
                                     Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                                     <materialDesign:TimePicker
-                                    SelectedTime="{Binding EndTime.TimeOfDay, Mode=OneWay}"
+                                    SelectedTime="{Binding EndHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     IsEnabled="False"
                                     x:Name="tpEnd"
                                     Width="150" 
@@ -133,7 +133,7 @@
                                     Width="320"
                                     Padding="20 10"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding Task.DIADIEM, Mode=OneWay}"
+                                    Text="{Binding LocationText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     AcceptsReturn="true"
                                     VerticalScrollBarVisibility="Hidden"
                                     SpellCheck.IsEnabled="true"
@@ -144,7 +144,7 @@
                                     TextWrapping="Wrap"
                                     IsReadOnly="True"
                                     MinWidth="280"
-                                    Text="{Binding Task.NOIDUNG, Mode=OneWay}"
+                                    Text="{Binding InfoText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     TextAlignment="Left"
                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                     AcceptsReturn="True"
@@ -166,9 +166,9 @@
                                               Width="320"
                                               Padding="20 10"
                                               Margin="-8 0 0 0"
-                                              Text="{Binding Task.TINHCHAT, Mode=OneWay}"
+                                              Text="{Binding TaskType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                               HorizontalAlignment="Center" 
-                                              SelectedValue="{Binding Task.TINHCHAT, Mode=OneWay}"/>
+                                              SelectedValue="{Binding TaskType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical">
                                     <Label Content="Thành viên tham gia" Margin="10"/>

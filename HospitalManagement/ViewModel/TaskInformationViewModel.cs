@@ -11,18 +11,26 @@ using HospitalManagement.Utils;
 using System.Collections.ObjectModel;
 using GongSolutions.Wpf.DragDrop;
 using System.Windows;
+using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 
 namespace HospitalManagement.ViewModel
 {
     class TaskInformationViewModel : INotifyPropertyChanged, IDropTarget
     {
-        private CONGVIEC task;
+        private string subjectText;
+        private string infoText;
+        private string locationText;
         private DateTime startDate;
         private DateTime startHour;
         private DateTime endDate;
         private DateTime endHour;
+        private StaffRoleTeamTaskViewModel owner;
+        private List<string> taskTypes = new List<string> { "Bình thường", "Ưu tiên", "Nguy cấp" };
+        private string taskType;
         private ObservableCollection<StaffInformation> members = new ObservableCollection<StaffInformation>();
         private ObservableCollection<StaffInformation> involveMembers = new ObservableCollection<StaffInformation>();
+        private QUANLYBENHVIENEntities dbContext;
+        private CONGVIEC congviec;
         public ObservableCollection<StaffInformation> InvolveMembers
         {
             get => involveMembers;
@@ -41,13 +49,6 @@ namespace HospitalManagement.ViewModel
                 OnPropertyChanged("Members");
             }
         }
-        private List<string> taskTypes = new List<string> { "Bình thường", "Ưu tiên", "Nguy cấp" };
-        public CONGVIEC Task { get => task; set => task = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public DateTime StartHour { get => startHour; set => startHour = value; }
-        public DateTime EndHour { get => endHour; set => endHour = value; }
-        public List<string> TaskTypes { get => taskTypes; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -56,45 +57,73 @@ namespace HospitalManagement.ViewModel
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
         public ICommand SaveChange { get; set; }
-
+        public string SubjectText { get => subjectText; set => subjectText = value; }
+        public string InfoText { get => infoText; set => infoText = value; }
+        public string LocationText { get => locationText; set => locationText = value; }
+        public DateTime StartDate { get => startDate; set => startDate = value; }
+        public DateTime StartHour { get => startHour; set => startHour = value; }
+        public DateTime EndDate { get => endDate; set => endDate = value; }
+        public DateTime EndHour { get => endHour; set => endHour = value; }
+        internal StaffRoleTeamTaskViewModel Owner { get => owner; set => owner = value; }
+        public List<string> TaskTypes { get => taskTypes; set => taskTypes = value; }
+        public string TaskType
+        {
+            get => taskType;
+            set
+            {
+                taskType = value;
+                OnPropertyChanged("TaskType");
+            }
+        }
+        public QUANLYBENHVIENEntities DbContext { get => dbContext; set => dbContext = value; }
+        public CONGVIEC Congviec { get => congviec; set => congviec = value; }
 
         public TaskInformationViewModel(CONGVIEC cv)
         {
-            this.Task = DataProvider.Ins.DB.CONGVIECs.Find(cv.ID);
-            int idTo = ToUtils.GetTOID(MainWindowViewModel.User);
-            TO to = DataProvider.Ins.DB.TOes.Find(idTo);
-            foreach(BACSI bs in to.BACSIs)
+            dbContext = new QUANLYBENHVIENEntities();
+            this.Congviec = dbContext.CONGVIECs.Find(cv.ID);
+            LoadInfo(cv.ID);
+            SaveChange = new SaveChangeTaskInformationCommand(this);
+        }
+
+        private void LoadInfo(int IDCONGVIEC)
+        {
+            using (QUANLYBENHVIENEntities context = new QUANLYBENHVIENEntities())
             {
-                StaffInformation staff = new StaffInformation(bs);
-                Members.Add(staff);
+                CONGVIEC cv = context.CONGVIECs.Find(IDCONGVIEC);
+                SubjectText = cv.TIEUDE;
+                StartDate = StartHour = cv.BATDAU.HasValue ?  cv.BATDAU.Value : DateTime.Now;
+                EndDate = EndHour = cv.KETTHUC.HasValue ?  cv.KETTHUC.Value : DateTime.Now;
+                LocationText = cv.DIADIEM;
+                InfoText = cv.NOIDUNG;
+                TaskType = cv.TINHCHAT;
+                foreach(BACSI bs in cv.TO.BACSIs)
+                {
+                    Members.Add(new StaffInformation(bs));
+                }
+                foreach (YTA yta in cv.TO.YTAs)
+                {
+                    Members.Add(new StaffInformation(yta));
+                }
+                foreach(BACSILIENQUAN bslq in cv.BACSILIENQUANs)
+                {
+                    StaffInformation staff = Members.Where(p => p.Cmnd_cccd == bslq.CMND_CCCD).FirstOrDefault();
+                    if(staff != null && staff != default(StaffInformation))
+                    {
+                        Members.Remove(staff);
+                        InvolveMembers.Add(staff);
+                    }
+                }
+                foreach (YTALIENQUAN ytlq  in cv.YTALIENQUANs)
+                {
+                    StaffInformation staff = Members.Where(p => p.Cmnd_cccd == ytlq.CMND_CCCD).FirstOrDefault();
+                    if (staff != null && staff != default(StaffInformation))
+                    {
+                        Members.Remove(staff);
+                        InvolveMembers.Add(staff);
+                    }
+                }
             }
-            foreach (YTA yta in to.YTAs)
-            {
-                StaffInformation staff = new StaffInformation(yta);
-                Members.Add(staff);
-            }
-            DateTime StartTime = Task.BATDAU.Value;
-            DateTime EndTime = Task.KETTHUC.Value;
-            StartDate = new DateTime(StartTime.Year, StartTime.Month, StartTime.Day);
-            EndDate = new DateTime(EndTime.Year, EndTime.Month, EndTime.Day);
-            StaffInformation staffInformation;
-            foreach (BACSILIENQUAN bs in Task.BACSILIENQUANs)
-            {
-                staffInformation = new StaffInformation(bs.BACSI);
-                InvolveMembers.Add(staffInformation);
-                StaffInformation member = Members.Where(p => p.Cmnd_cccd == staffInformation.Cmnd_cccd).FirstOrDefault();
-                if(member != null || member != default(StaffInformation))
-                    Members.Remove(member);
-            }
-            foreach (YTALIENQUAN yt in Task.YTALIENQUANs)
-            {
-                staffInformation = new StaffInformation(yt.YTA);
-                InvolveMembers.Add(staffInformation);
-                StaffInformation member = Members.Where(p => p.Cmnd_cccd == staffInformation.Cmnd_cccd).FirstOrDefault();
-                if (member != null || member != default(StaffInformation))
-                    Members.Remove(member);
-            }
-            SaveChange = new SaveChangeTaskInformationCommand();
         }
 
         void IDropTarget.DragOver(IDropInfo dropInfo)

@@ -36,13 +36,11 @@ namespace HospitalManagement.View.AddStaff
         private void txbVaiTro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (txbVaiTro.SelectedIndex == 0)
-            {
-                this.userName.Visibility = Visibility.Visible;  
-                this.stackPannelGroupBox.Visibility = Visibility.Collapsed;
+            { 
+                this.stackPannelGroupBox.Visibility = Visibility.Hidden;
             }
             else 
             {
-                this.userName.Visibility = Visibility.Collapsed;
                 this.stackPannelGroupBox.Visibility = Visibility.Visible;
             }
         }
