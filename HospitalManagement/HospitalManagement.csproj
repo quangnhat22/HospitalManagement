@@ -267,6 +267,7 @@
     <Compile Include="ViewModel\DoctorFormViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
+    <Compile Include="ViewModel\FirstLoginViewModel.cs" />
     <Compile Include="ViewModel\ForgotPasswordFormViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -642,6 +643,7 @@
     <Resource Include="Images\first-aid-kit.png" />
     <Resource Include="Images\Background.jpg" />
     <Resource Include="Images\editUserimage.png" />
+    <Resource Include="Images\hello.png" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
