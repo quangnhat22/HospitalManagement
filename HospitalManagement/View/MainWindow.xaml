@@ -14,7 +14,9 @@
         TextOptions.TextRenderingMode="Auto"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        FontFamily="{DynamicResource MaterialDesignFont}" 
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen"
         x:Name="mainwindow">
     <Window.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
