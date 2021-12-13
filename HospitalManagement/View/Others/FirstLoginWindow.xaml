@@ -70,6 +70,8 @@
                     BorderBrush="#35a0fe"
                     materialDesign:ButtonAssist.CornerRadius="10"
                     Background="#35a0fe"
+                    Command="{Binding OpenChangeAccountWindowCommand}" 
+                    CommandParameter="{Binding ElementName=firstLoginWindow}"
                     />
             </StackPanel>
         </Grid>
