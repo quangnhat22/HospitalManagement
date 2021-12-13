@@ -124,24 +124,11 @@
                         materialDesign:HintAssist.Hint="E-mail"
                 />
                 </StackPanel>
-                <StackPanel
-                    x:Name="userName"
-                    Visibility="Visible"
-                    Orientation="Horizontal" 
-                    Margin="0 24 0 0">
-                    <Border Style="{StaticResource borderStyle}">
-                        <materialDesign:PackIcon Kind="Account" Style="{StaticResource styleIcon }"/>
-                    </Border>
-                    <TextBox x:Name="txbTenDangNhap"
-                    Style="{StaticResource textboxStyle}"
-                    materialDesign:HintAssist.Hint="Tên đăng nhập"
-                />
-                </StackPanel>
                 <StackPanel 
                     x:Name="stackPannelGroupBox"
                     Orientation="Horizontal" 
                     Margin="0 24 0 0"
-                    Visibility="Collapsed">
+                    Visibility="Hidden">
                     <Border Style="{StaticResource borderStyle}">
                         <materialDesign:PackIcon Kind="AccountGroup" Style="{StaticResource styleIcon}"/>
                     </Border>
