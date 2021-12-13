@@ -42,7 +42,7 @@ namespace HospitalManagement.Command.TeamTaskCommand
                 YTA yta = MainWindowViewModel.User?.YTAs.FirstOrDefault();
                 if (yta != null && yta != default(YTA))
                 {
-                    YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(congviec.ID, MainWindowViewModel.User?.ID);
+                    YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(congviec.ID, yta.CMND_CCCD);
                     return ytlq != null;
                 }
                 return false;
@@ -73,7 +73,7 @@ namespace HospitalManagement.Command.TeamTaskCommand
                 YTA yta = MainWindowViewModel.User?.YTAs.FirstOrDefault();
                 if (yta != null && yta != default(YTA))
                 {
-                    YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(congviec.ID, MainWindowViewModel.User?.ID);
+                    YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(congviec.ID, yta.CMND_CCCD);
                     if(ytlq != null)
                     {
                         ytlq.TIENDO = !(ytlq.TIENDO.HasValue ? ytlq.TIENDO.Value : false);
