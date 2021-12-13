@@ -12,7 +12,7 @@ namespace HospitalManagement.ViewModel.AddAccountVM
 {
     public class AddNewAccountViewModel : BaseViewModel
     {
-        private List<String> accountList = new List<string> { "Quản lý nhân sự", "Nhóm trưởng", "Bác sĩ", "Y tá"};
+        private List<String> accountList;
         private string selectedAccount;
         private List<int> groupList = new List<int>();
         private string selectedGroup;
@@ -24,6 +24,14 @@ namespace HospitalManagement.ViewModel.AddAccountVM
 
         public AddNewAccountViewModel()
         {
+            if(MainWindowViewModel.User.ROLE == "sudo")
+            {
+                accountList = new List<string> { "Quản lý nhân sự", "Nhóm trưởng", "Bác sĩ", "Y tá" };
+            }
+            else
+            {
+                accountList = new List<string> {"Nhóm trưởng", "Bác sĩ", "Y tá" };
+            }
             AddNewAccountCommand = new AddNewAccountCommand();
             SelectedAccount = AccountList[0];
             var groupListData = DataProvider.Ins.DB.TOes.ToList().ConvertAll(itemGroup => itemGroup.ID);
