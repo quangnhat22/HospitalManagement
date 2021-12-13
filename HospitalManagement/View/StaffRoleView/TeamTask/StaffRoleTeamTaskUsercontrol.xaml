@@ -422,6 +422,9 @@
                                                                FontWeight="SemiBold"
                                                                Style="{StaticResource PriorityForeground}"/>
                                                     </Border>
+                                                    <TextBlock Text="{Binding Value.ID}" 
+                                                               Visibility="Collapsed"
+                                                               x:Name="TaskID"/>
                                                     <TextBlock Text="{Binding Value.TIEUDE}"
                                                            FontWeight="Bold"
                                                            FontSize="15"
@@ -516,7 +519,9 @@
                                                         </StackPanel>
                                                         <ToggleButton Content="{materialDesign:PackIcon Kind=CheckOutline, Size=21}"
                                                                       Style="{StaticResource PriorityToggleButton}"
-                                                                      IsChecked="True" 
+                                                                      IsChecked="{Binding IsCurrentUserComplete, Mode=OneWay}"
+                                                                      Command="{Binding Path=DataContext.CheckToggleButtonTaskCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                                                      CommandParameter="{Binding ElementName=TaskID, Path=Text}"
                                                                       Height="40"
                                                                       Width="40"
                                                                       HorizontalAlignment="Right"/>

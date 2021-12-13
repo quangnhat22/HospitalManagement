@@ -175,6 +175,7 @@
     <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
     <Compile Include="Command\TeamCommand\ToggleDeleteButtonCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\CheckToggleButtonTaskCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\DeleteTasksCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\ExportTaskToExcelCommand.cs" />
     <Compile Include="Command\TeamTaskCommand\LoadTaskListByDateCommand.cs" />
