@@ -1,7 +1,9 @@
 ﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.StaffRoleView.TeamTask;
 using HospitalManagement.ViewModel;
+using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,13 @@ namespace HospitalManagement.Command
 {
     internal class SaveChangeTaskInformationCommand : ICommand
     {
+        private TaskInformationViewModel taskInformationViewModel;
+
+        public SaveChangeTaskInformationCommand(TaskInformationViewModel taskInformationViewModel)
+        {
+            this.taskInformationViewModel = taskInformationViewModel;
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -31,25 +40,69 @@ namespace HospitalManagement.Command
             TaskInformationForm taskForm = parameter as TaskInformationForm;
             if (Check(taskForm))
             {
-                BindingExpression beSubject = taskForm.txbSubject.GetBindingExpression(TextBox.TextProperty);
-                beSubject.UpdateSource();
-                BindingExpression beStart = taskForm.dpStart.GetBindingExpression(DatePicker.TextProperty);
-                beStart.UpdateSource();
-                BindingExpression beTimeStart = taskForm.tpStart.GetBindingExpression(TimePicker.TextProperty);
-                beTimeStart.UpdateSource();
-                BindingExpression beEnd = taskForm.dpEnd.GetBindingExpression(DatePicker.TextProperty);
-                beEnd.UpdateSource();
-                BindingExpression beTimeEnd = taskForm.tpStart.GetBindingExpression(TimePicker.TextProperty);
-                beTimeEnd.UpdateSource();
-                BindingExpression beLocation = taskForm.txbLocation.GetBindingExpression(TextBox.TextProperty);
-                beLocation.UpdateSource();
-                BindingExpression beBody = taskForm.txbBody.GetBindingExpression(TextBox.TextProperty);
-                beBody.UpdateSource();
-                BindingExpression beType = taskForm.cbType.GetBindingExpression(ComboBox.TextProperty);
-                beType.UpdateSource();
-                DataProvider.Ins?.DB?.SaveChanges();
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
-                notifyWindow.ShowDialog();
+                NotifyWindow notifyWindow;
+                try
+                {
+
+
+                    using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                    {
+                        CONGVIEC congviec = dbContext.CONGVIECs.Find(taskInformationViewModel.Congviec.ID);
+                        congviec.TIEUDE = taskInformationViewModel.SubjectText;
+                        congviec.NOIDUNG = taskInformationViewModel.InfoText;
+                        congviec.DIADIEM = taskInformationViewModel.LocationText;
+                        DateTime start = GenerateDatetimeFromDateAndHour(taskInformationViewModel.StartDate, taskInformationViewModel.StartHour);
+                        congviec.BATDAU = start;
+                        DateTime end = GenerateDatetimeFromDateAndHour(taskInformationViewModel.EndDate, taskInformationViewModel.EndHour);
+                        congviec.KETTHUC = end;
+                        if (DateTime.Compare(start, end) > 0)
+                        {
+                            notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời điểm kết thúc!");
+                            notifyWindow.ShowDialog();
+                            return;
+                        }
+                        congviec.TINHCHAT = taskInformationViewModel.TaskType;
+                        congviec.BACSILIENQUANs.Clear();
+                        congviec.YTALIENQUANs.Clear();
+                        foreach (StaffInformation staffInformation in taskInformationViewModel.InvolveMembers)
+                        {
+                            BACSI bs = dbContext.BACSIs.Find(staffInformation.Cmnd_cccd);
+                            YTA yta = dbContext.YTAs.Find(staffInformation.Cmnd_cccd);
+                            if (bs != null)
+                            {
+                                BACSILIENQUAN lienquan = new BACSILIENQUAN();
+                                lienquan.BACSI = bs;
+                                lienquan.CONGVIEC = congviec;
+                                lienquan.TIENDO = false;
+                                congviec.BACSILIENQUANs.Add(lienquan);
+                            }
+                            else if (yta != null)
+                            {
+                                YTALIENQUAN lienquan = new YTALIENQUAN();
+                                lienquan.YTA = yta;
+                                lienquan.CONGVIEC = congviec;
+                                lienquan.TIENDO = false;
+                                congviec.YTALIENQUANs.Add(lienquan);
+                            }
+                        }
+                        int toid = ToUtils.GetTOID(MainWindowViewModel.User);
+                        congviec.TO = dbContext.TOes.Find(toid);
+                        dbContext.SaveChanges();
+                        DataProvider.Ins.DB = new QUANLYBENHVIENEntities();
+                        notifyWindow = new NotifyWindow("Success", "Sửa thành công");
+                        notifyWindow.ShowDialog();
+                        if (taskInformationViewModel.Owner != null)
+                        {
+                            StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel = taskInformationViewModel.Owner as StaffRoleTeamTaskViewModel;
+                            staffRoleTeamTaskViewModel.LoadTaskList();
+                        }
+                    }
+                }
+                catch
+                {
+                    notifyWindow = new NotifyWindow("Danger", "Có lỗi xảy ra");
+                    notifyWindow.ShowDialog();
+                }
             }
         }
         public bool Check(TaskInformationForm tif)
@@ -74,7 +127,7 @@ namespace HospitalManagement.Command
 
             if (DateTime.Compare((DateTime)tif.dpStart.SelectedDate, (DateTime)tif.dpEnd.SelectedDate) > 0)
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời\n"+"                  điểm kết thúc");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời\n" + "                  điểm kết thúc");
                 notifyWindow.ShowDialog();
                 tif.dpStart.Focus();
                 return false;
@@ -95,7 +148,7 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (tif.lbxMember.Items.Count==0)
+            if (tif.lbxMember.Items.Count == 0)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn thành viên tham gia");
                 notifyWindow.ShowDialog();
@@ -103,6 +156,17 @@ namespace HospitalManagement.Command
                 return false;
             }
             return true;
+        }
+
+        private DateTime GenerateDatetimeFromDateAndHour(DateTime date, DateTime hour)
+        {
+            int Year = date.Year;
+            int Month = date.Month;
+            int Day = date.Day;
+            int Hour = hour.Hour;
+            int Minute = hour.Minute;
+            int Second = hour.Second;
+            return new DateTime(Year, Month, Day, Hour, Minute, Second);
         }
     }
 }
