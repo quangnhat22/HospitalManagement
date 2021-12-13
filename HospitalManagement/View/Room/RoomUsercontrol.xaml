@@ -103,8 +103,9 @@
             </ListBox>
             <StackPanel HorizontalAlignment="Right" 
                         VerticalAlignment="Center"
-                        Margin="0 0 10 0">
-                <StackPanel Orientation="Horizontal" Visibility="{Binding SuperAdminRolesVisibility}">
+                        Margin="0 0 10 0"
+                        Visibility="{Binding SuperAdminRolesVisibility}">
+                <StackPanel Orientation="Horizontal" >
                     <Button Style="{StaticResource MaterialDesignFlatAccentBgButton}"
                             x:Name="btnAddBuilding"
                             ToolTip="Tạo mới toà"
