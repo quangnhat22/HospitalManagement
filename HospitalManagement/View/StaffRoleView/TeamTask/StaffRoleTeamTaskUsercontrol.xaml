@@ -256,7 +256,7 @@
                             BorderBrush="#35a0fe"
                             materialDesign:ButtonAssist.CornerRadius="25"
                             Background="#35a0fe"
-                            ToolTip="Thêm mới"
+                            ToolTip="Thêm công việc cần làm"
                             Command="{Binding OpenAddToDoFormCommand}"
                             CommandParameter="{Binding ElementName=staffRoleTeamTask}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
@@ -267,12 +267,12 @@
                             Width="50"
                             Margin="5"
                             BorderThickness="25"
-                            BorderBrush="#35a0fe"
+                            BorderBrush="#1D6F42"
                             materialDesign:ButtonAssist.CornerRadius="25"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                            Background="#35a0fe"
+                            Background="#1D6F42"
                             Command="{Binding ExportTaskToExcelCommand}"
-                            ToolTip="Hoàn tất đăng ký">
+                            ToolTip="Xuất excel">
                             <Button.Content>
                                 <materialDesign:PackIcon 
                                     Kind="TableArrowLeft" 
