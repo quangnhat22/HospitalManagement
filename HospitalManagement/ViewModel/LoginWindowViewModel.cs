@@ -15,11 +15,7 @@ namespace HospitalManagement.ViewModel
      public class LoginWindowViewModel :BaseViewModel
      {
         public DataProvider db;
-        public ICommand OpenMainWindow { 
-            get ; 
-            set ; }
-        public ICommand OpenSignUpForm { get; set; }
-        public ICommand OpenReportForm { get; set; }
+        public ICommand OpenMainWindow { get ; set ; }
         public ICommand OpenForgotPasswordForm { get; set; }
 
         public string Username { get; set; }
@@ -29,7 +25,6 @@ namespace HospitalManagement.ViewModel
         {
             this.db = new DataProvider();
             OpenMainWindow = new LoginWindowCommand(this);
-            OpenSignUpForm = new OpenSignUpFormCommand();
             OpenForgotPasswordForm = new OpenForgotPasswordFormCommand();
         }
     }

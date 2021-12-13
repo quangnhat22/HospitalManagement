@@ -156,7 +156,6 @@
     <Compile Include="Command\NurseListCommand\OpenNurseFormCommand.cs" />
     <Compile Include="Command\PatientListCommand\OpenPatientFormCommand.cs" />
     <Compile Include="Command\ReportFormCommand\OpenReportFormCommand.cs" />
-    <Compile Include="Command\LoginCommand\OpenSignUpFormCommand.cs" />
     <Compile Include="Command\LoginCommand\RecoverAccountCommand.cs" />
     <Compile Include="Command\LoginCommand\ResendEmailRecoverCommand.cs" />
     <Compile Include="Command\AccountCommand\SaveChangeAccountCommand.cs" />
@@ -167,7 +166,6 @@
     <Compile Include="Command\ShowAboutCommand.cs" />
     <Compile Include="Command\NurseListCommand\ShowNurseInfomationCommand.cs" />
     <Compile Include="Command\PatientListCommand\ShowPatientInfomationCommand.cs" />
-    <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
     <Compile Include="Command\RoomCommand\ShowPatientsInformationInRoomCommand.cs" />
     <Compile Include="Command\RoomCommand\ShowPatientsInRoomCommand.cs" />
     <Compile Include="Command\TeamCommand\AddTeamCommand.cs" />
@@ -282,7 +280,6 @@
     <Compile Include="ViewModel\ReportFormViewModel.cs" />
     <Compile Include="ViewModel\RoomUsercontrolViewModel.cs" />
     <Compile Include="ViewModel\RoomViewModel.cs" />
-    <Compile Include="ViewModel\SignUpFormViewModel.cs" />
     <Compile Include="ViewModel\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
     <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
@@ -381,9 +378,6 @@
     </Compile>
     <Compile Include="View\Others\ReportForm.xaml.cs">
       <DependentUpon>ReportForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Login\SignUpWindow.xaml.cs">
-      <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Room\RoomUsercontrol.xaml.cs">
       <DependentUpon>RoomUsercontrol.xaml</DependentUpon>
@@ -536,10 +530,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ReportForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Login\SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -69,7 +69,7 @@
                             BorderBrush="#35a0fe"
                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="15">
                         <Button 
                             Command="{Binding OpenForgotPasswordForm}"
                             CommandParameter="{Binding ElementName= loginWindow}"
@@ -94,7 +94,7 @@
                             IsTabStop="False">
                         </Button>
                     </StackPanel>
-                    <StackPanel Margin="10" HorizontalAlignment="Center">
+                    <StackPanel Margin="25" HorizontalAlignment="Center">
                         <Button
                             Command="{Binding OpenMainWindow}"
                             x:Name="btnLogin"
@@ -108,29 +108,6 @@
                             ToolTip="Đăng nhập"
                             Content="Đăng nhập">
                         </Button>
-                    </StackPanel>
-                    <StackPanel Margin="10" HorizontalAlignment="Center">
-                        <Button 
-                            Command="{Binding OpenSignUpForm}"
-                            CommandParameter="{Binding ElementName= loginWindow}"
-                            x:Name="btnSignUp" 
-                            FocusVisualStyle="{x:Null}"
-                            Content="Đăng ký" 
-                            ToolTip="Chưa có tài khoản? Hãy đăng ký"
-                            HorizontalAlignment="Center" 
-                            Height="24" 
-                            Width="120" 
-                            VerticalAlignment="Top" 
-                            Padding="0" 
-                            HorizontalContentAlignment="Center" 
-                            VerticalContentAlignment="Center" 
-                            FontSize="14" 
-                            Foreground="#ff7f4d" 
-                            FontWeight="Medium" 
-                            Cursor="Hand"
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            IsTabStop="False"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
