@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel.AddAccountVM;
+﻿using HospitalManagement.ViewModel;
+using HospitalManagement.ViewModel.AddAccountVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +36,19 @@ namespace HospitalManagement.View.AddStaff
 
         private void txbVaiTro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (txbVaiTro.SelectedIndex == 0)
-            { 
-                this.stackPannelGroupBox.Visibility = Visibility.Hidden;
-            }
-            else 
+            if (MainWindowViewModel.User.ROLE == "sudo")
             {
-                this.stackPannelGroupBox.Visibility = Visibility.Visible;
+                if (txbVaiTro.SelectedIndex == 0)
+                {
+                    this.stackPannelGroupBox.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    this.stackPannelGroupBox.Visibility = Visibility.Visible;
+                }
             }
+            else
+                this.stackPannelGroupBox.Visibility = Visibility.Visible;
         }
     }
 }

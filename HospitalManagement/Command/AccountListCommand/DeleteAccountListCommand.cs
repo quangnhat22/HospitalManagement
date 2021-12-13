@@ -39,30 +39,22 @@ namespace HospitalManagement.Command.AccountListCommand
             {
                 if (!MainWindowViewModel.IsSuperAdmin)
                 {
-                    NotifyWindow adminNotifyWindow = new NotifyWindow("Error", "Bạn không có quyền hạn thực hiện thao tác này");
+                    NotifyWindow adminNotifyWindow = new NotifyWindow("Error", "Bạn không có quyền hạn thực hiện thao\n                           tác này");
                     adminNotifyWindow.ShowDialog();
                 }
-            }
-            else if (selectableItems.Any())
-            {
-                notifyWindow = new NotifyWindow("Warning", "Thao tác này sẽ xóa nhân viên tương ứng\n               Bạn có muốn tiếp tục?", "Visible");
-                notifyWindow.ShowDialog();
-                if (notifyWindow.Result == MessageBoxResult.OK)
+                else
                 {
                     foreach (StaffInformation si in selectableItems)
                     {
                         if (si.PhanLoai == "admin")
                         {
-                            if (MainWindowViewModel.IsSuperAdmin)
+                            var ad = DataProvider.Ins.DB.ADMINs.Where(p => p.ID == si.Cmnd_cccd);
+                            foreach (ADMIN adMin in ad)
                             {
-                                var ad = DataProvider.Ins.DB.ADMINs.Where(p => p.ID == si.Cmnd_cccd);
-                                foreach (ADMIN adMin in ad)
-                                {
-                                    DataProvider.Ins.DB.ADMINs.Remove(adMin);
-                                }
-                                DataProvider.Ins.DB.SaveChanges();
-                                accountListViewModel.StaffAccounts.Remove(si);
+                                DataProvider.Ins.DB.ADMINs.Remove(adMin);
                             }
+                            DataProvider.Ins.DB.SaveChanges();
+                            accountListViewModel.StaffAccounts.Remove(si);
                         }
                         else
                         {
@@ -85,7 +77,37 @@ namespace HospitalManagement.Command.AccountListCommand
                                 DataProvider.Ins.DB.SaveChanges();
                             }
                             accountListViewModel.StaffAccounts.Remove(si);
-                        }  
+                        }
+                    }
+                }
+            }
+            else if (selectableItems.Any())
+            {
+                notifyWindow = new NotifyWindow("Warning", "Thao tác này sẽ xóa nhân viên tương ứng\n               Bạn có muốn tiếp tục?", "Visible");
+                notifyWindow.ShowDialog();
+                if (notifyWindow.Result == MessageBoxResult.OK)
+                {
+                    foreach (StaffInformation si in selectableItems)
+                    {
+                        if (si.PhanLoai == "yta")
+                        {
+                            var yt = DataProvider.Ins.DB.YTAs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
+                            foreach (YTA yTA in yt)
+                            {
+                                DataProvider.Ins.DB.YTAs.Remove(yTA);
+                            }
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+                        else
+                        {
+                            var bs = DataProvider.Ins.DB.BACSIs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
+                            foreach (BACSI bACSI in bs)
+                            {
+                                DataProvider.Ins.DB.BACSIs.Remove(bACSI);
+                            }
+                            DataProvider.Ins.DB.SaveChanges();
+                        }
+                        accountListViewModel.StaffAccounts.Remove(si); 
                     }            
                 }
             }
