@@ -85,12 +85,16 @@ namespace HospitalManagement.ViewModel
             bedCount = 0;
             var roomList = DataProvider.Ins.DB.PHONGs.ToList() ;
             roomList.ForEach(x => bedCount += x.SUCCHUA);
+            GenerateColumnChart();
+        }
 
+        public void GenerateColumnChart()
+        {
             #region "Initial Stacked Column Chart"
             ProgressBarVisibility = Visibility.Visible;
             ColumnChartVisibility = Visibility.Collapsed;
             ToaTK toaTK = new ToaTK();
-            toaTK.thongKeBenhNhanTheoToa().GetAwaiter().OnCompleted(()=> 
+            toaTK.thongKeBenhNhanTheoToa().GetAwaiter().OnCompleted(() =>
             {
                 Labels = ToaTK.LabelList;
                 SeriesCollection = new SeriesCollection
@@ -101,7 +105,7 @@ namespace HospitalManagement.ViewModel
                                             Values = ToaTK.NangList,
                                             StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
                                             DataLabels = true,
-                                            Fill = new SolidColorBrush(Color.FromRgb(224, 46, 68))
+                                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#f03e3e"))
                                         },
                                         new StackedColumnSeries
                                         {
@@ -109,7 +113,7 @@ namespace HospitalManagement.ViewModel
                                             Values = ToaTK.TrungBinhList,
                                             StackMode = StackMode.Values,
                                             DataLabels = true,
-                                            Fill = new SolidColorBrush(Color.FromRgb(255,129,0))
+                                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffd43b"))
                                         },
                                         new StackedColumnSeries
                                         {
@@ -117,7 +121,7 @@ namespace HospitalManagement.ViewModel
                                             Values = ToaTK.NheList,
                                             StackMode = StackMode.Values, // this is not necessary, values is the default stack mode
                                             DataLabels = true,
-                                            Fill = new SolidColorBrush(Color.FromRgb(7,210,0))
+                                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#40c057"))
                                         },
                                     };
                 ProgressBarVisibility = Visibility.Collapsed;

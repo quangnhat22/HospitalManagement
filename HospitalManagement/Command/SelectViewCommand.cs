@@ -50,14 +50,14 @@ namespace HospitalManagement.Command
                 }
                 if (tag == "Rooms")
                 {
-                    if (MainWindowViewModel.User.ROLE == "admin" || MainWindowViewModel.User.ROLE == "sudo")
+                    if (MainWindowViewModel.User?.ROLE == "admin" || MainWindowViewModel.User?.ROLE == "sudo")
                         mainWindowViewModel.SelectedViewModel = new SwitchRoomViewModel();
                     else
                         mainWindowViewModel.SelectedViewModel = new SwitchStaffViewRoomViewModel();
                 }
                 if (tag == "Teams")
                 {
-                    if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "staff")
+                    if (MainWindowViewModel.User?.ROLE == "leader" || MainWindowViewModel.User?.ROLE == "doctor" || MainWindowViewModel.User?.ROLE == "nurse")
                         mainWindowViewModel.SelectedViewModel = new SwithStaffViewTeamMemberViewModel();
                     else
                         mainWindowViewModel.SelectedViewModel = new SwitchTeamViewModel();

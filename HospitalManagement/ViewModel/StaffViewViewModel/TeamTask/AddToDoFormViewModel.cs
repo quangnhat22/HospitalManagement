@@ -75,17 +75,20 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
-            if (dropInfo.TargetCollection == InvolveMembers)
+            if(dropInfo.TargetCollection != dropInfo.DragInfo.SourceCollection)
             {
-                StaffInformation p = (StaffInformation)dropInfo.Data;
-                InvolveMembers.Add(p);
-                Members.Remove(p);
-            }
-            else if(dropInfo.TargetCollection == Members)
-            {
-                StaffInformation p = (StaffInformation)dropInfo.Data;
-                Members.Add(p);
-                InvolveMembers.Remove(p);
+                if (dropInfo.TargetCollection == InvolveMembers)
+                {
+                    StaffInformation p = (StaffInformation)dropInfo.Data;
+                    InvolveMembers.Add(p);
+                    Members.Remove(p);
+                }
+                else if (dropInfo.TargetCollection == Members)
+                {
+                    StaffInformation p = (StaffInformation)dropInfo.Data;
+                    Members.Add(p);
+                    InvolveMembers.Remove(p);
+                }
             }
         }
     }

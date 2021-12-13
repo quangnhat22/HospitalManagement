@@ -32,52 +32,62 @@ namespace HospitalManagement.Command.TeamTaskCommand
         public void Execute(object parameter)
         {
             NotifyWindow notifyWindow;
-            CONGVIEC congviec = new CONGVIEC();
-            congviec.TIEUDE = addToDoFormViewModel.SubjectText;
-            congviec.NOIDUNG = addToDoFormViewModel.InfoText;
-            congviec.DIADIEM = addToDoFormViewModel.LocationText;
-            DateTime start = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.StartDate, addToDoFormViewModel.StartHour);
-            congviec.BATDAU = start;
-            DateTime end = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.EndDate, addToDoFormViewModel.EndHour);
-            congviec.KETTHUC = end;
-            if(DateTime.Compare(start, end) > 0)
+            try
             {
-                notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời điểm kết thúc!");
+
+
+                CONGVIEC congviec = new CONGVIEC();
+                congviec.TIEUDE = addToDoFormViewModel.SubjectText;
+                congviec.NOIDUNG = addToDoFormViewModel.InfoText;
+                congviec.DIADIEM = addToDoFormViewModel.LocationText;
+                DateTime start = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.StartDate, addToDoFormViewModel.StartHour);
+                congviec.BATDAU = start;
+                DateTime end = GenerateDatetimeFromDateAndHour(addToDoFormViewModel.EndDate, addToDoFormViewModel.EndHour);
+                congviec.KETTHUC = end;
+                if (DateTime.Compare(start, end) > 0)
+                {
+                    notifyWindow = new NotifyWindow("Warning", "Thời điểm bắt đầu phải sớm hơn thời điểm kết thúc!");
+                    notifyWindow.ShowDialog();
+                    return;
+                }
+                congviec.TINHCHAT = addToDoFormViewModel.TaskType;
+                foreach (StaffInformation staffInformation in addToDoFormViewModel.InvolveMembers)
+                {
+                    BACSI bs = DataProvider.Ins.DB.BACSIs.Find(staffInformation.Cmnd_cccd);
+                    YTA yta = DataProvider.Ins.DB.YTAs.Find(staffInformation.Cmnd_cccd);
+                    if (bs != null)
+                    {
+                        BACSILIENQUAN lienquan = new BACSILIENQUAN();
+                        lienquan.BACSI = bs;
+                        lienquan.CONGVIEC = congviec;
+                        lienquan.TIENDO = false;
+                        congviec.BACSILIENQUANs.Add(lienquan);
+                    }
+                    else if (yta != null)
+                    {
+                        YTALIENQUAN lienquan = new YTALIENQUAN();
+                        lienquan.YTA = yta;
+                        lienquan.CONGVIEC = congviec;
+                        lienquan.TIENDO = false;
+                        congviec.YTALIENQUANs.Add(lienquan);
+                    }
+                }
+                int toid = ToUtils.GetTOID(MainWindowViewModel.User);
+                congviec.TO = DataProvider.Ins.DB.TOes.Find(toid);
+                DataProvider.Ins.DB.CONGVIECs.Add(congviec);
+                DataProvider.Ins.DB.SaveChanges();
+                notifyWindow = new NotifyWindow("Success", "Thêm thành công");
                 notifyWindow.ShowDialog();
-                return;
-            }
-            congviec.TINHCHAT = addToDoFormViewModel.TaskType;
-            foreach(StaffInformation staffInformation in addToDoFormViewModel.InvolveMembers)
-            {
-                BACSI bs = DataProvider.Ins.DB.BACSIs.Find(staffInformation.Cmnd_cccd);
-                YTA yta = DataProvider.Ins.DB.YTAs.Find(staffInformation.Cmnd_cccd);
-                if(bs != null)
+                if (addToDoFormViewModel.Owner != null)
                 {
-                    BACSILIENQUAN lienquan = new BACSILIENQUAN();
-                    lienquan.BACSI = bs;
-                    lienquan.CONGVIEC = congviec;
-                    lienquan.TIENDO = false;
-                    congviec.BACSILIENQUANs.Add(lienquan);
-                }
-                else if (yta != null)
-                {
-                    YTALIENQUAN lienquan = new YTALIENQUAN();
-                    lienquan.YTA = yta;
-                    lienquan.CONGVIEC = congviec;
-                    lienquan.TIENDO = false;
-                    congviec.YTALIENQUANs.Add(lienquan);
+                    StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel = addToDoFormViewModel.Owner as StaffRoleTeamTaskViewModel;
+                    staffRoleTeamTaskViewModel.LoadTaskList();
                 }
             }
-            int toid = ToUtils.GetTOID(MainWindowViewModel.User);
-            congviec.TO = DataProvider.Ins.DB.TOes.Find(toid);
-            DataProvider.Ins.DB.CONGVIECs.Add(congviec);
-            DataProvider.Ins.DB.SaveChanges();
-            notifyWindow = new NotifyWindow("Success", "Thêm thành công");
-            notifyWindow.ShowDialog();
-            if(addToDoFormViewModel.Owner != null)
+            catch
             {
-                StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel = addToDoFormViewModel.Owner as StaffRoleTeamTaskViewModel;
-                staffRoleTeamTaskViewModel.LoadTaskList();
+                notifyWindow = new NotifyWindow("Danger", "Có lỗi xảy ra");
+                notifyWindow.ShowDialog();
             }
         }
 

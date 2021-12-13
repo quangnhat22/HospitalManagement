@@ -81,8 +81,17 @@ namespace HospitalManagement.Command
 
         private bool CheckAuthentication(string username, string password)
         {
-            string hashPassword = Encryptor.Hash(password);
-            return DataProvider.Ins.DB.USERs.Where(p => p.USERNAME == username && p.PASSWORD == hashPassword).Count() > 0;
+            try
+            {
+                string hashPassword = Encryptor.Hash(password);
+                return DataProvider.Ins.DB.USERs.Where(p => p.USERNAME == username && p.PASSWORD == hashPassword).Count() > 0;
+            }
+            catch
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Danger", "Không thể kết nói tới server");
+                notifyWindow.ShowDialog();
+                return false;
+            }
         }
     }
 }

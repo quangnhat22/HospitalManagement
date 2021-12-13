@@ -100,19 +100,22 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
         void IDropTarget.Drop(IDropInfo dropInfo)
         {
-            if (dropInfo.TargetCollection == DeleteTasks)
+            if(dropInfo.TargetCollection != dropInfo.DragInfo.SourceCollection)
             {
-                ProgressTask p = (ProgressTask)dropInfo.Data;
-                DeleteTasks.Add(p);
-                var needRemove = ProgressTasks.SingleOrDefault<ProgressTask>(ptemp => ptemp.Value.ID == p.Value.ID);
-                ProgressTasks.Remove(needRemove);
-            }
-            else if (dropInfo.TargetCollection == ProgressTasks)
-            {
-                ProgressTask p = (ProgressTask)dropInfo.Data;
-                var needRemove = DeleteTasks.SingleOrDefault<ProgressTask>(ptemp => ptemp.Value.ID == p.Value.ID);
-                DeleteTasks.Remove(needRemove);
-                ProgressTasks.Add(p);
+                if (dropInfo.TargetCollection == DeleteTasks)
+                {
+                    ProgressTask p = (ProgressTask)dropInfo.Data;
+                    DeleteTasks.Add(p);
+                    var needRemove = ProgressTasks.SingleOrDefault<ProgressTask>(ptemp => ptemp.Value.ID == p.Value.ID);
+                    ProgressTasks.Remove(needRemove);
+                }
+                else if (dropInfo.TargetCollection == ProgressTasks)
+                {
+                    ProgressTask p = (ProgressTask)dropInfo.Data;
+                    var needRemove = DeleteTasks.SingleOrDefault<ProgressTask>(ptemp => ptemp.Value.ID == p.Value.ID);
+                    DeleteTasks.Remove(needRemove);
+                    ProgressTasks.Add(p);
+                }
             }
         }
     }

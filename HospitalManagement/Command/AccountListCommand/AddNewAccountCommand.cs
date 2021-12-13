@@ -17,6 +17,7 @@ namespace HospitalManagement.Command.AccountListCommand
     public class AddNewAccountCommand : ICommand
     {
         private static QUANLYBENHVIENEntities db = new QUANLYBENHVIENEntities();
+        private string groupName;
         public event EventHandler CanExecuteChanged
         {
             add { }
@@ -33,10 +34,11 @@ namespace HospitalManagement.Command.AccountListCommand
             try
             {
                 var addNewAccountForm = parameter as AddNewAccountForm;
-                if (Check(addNewAccountForm))
+                if (check(addNewAccountForm))
                 {
                     string roleAccount = addNewAccountForm.txbVaiTro.SelectedValue.ToString();
-                    string password = CreatePassword(10);
+                    string password = createPassword(10);
+
                     var userInput = new USER
                     {
                         USERNAME = string.Empty,
@@ -59,14 +61,23 @@ namespace HospitalManagement.Command.AccountListCommand
                             EMAIL = addNewAccountForm.txbEmail.Text,
                             GIOITINH = false as bool?
                         };
-                        userInput.USERNAME = adminUser.ID;
+                        userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
                         userInput.ROLE = "admin";
                         db.ADMINs.Add(adminUser);
                     }
 
                     else if (addNewAccountForm.txbVaiTro.SelectedIndex == 1)
                     {
-                        string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+
+                        if(checkLeaderTeam(addNewAccountForm))
+                        {
+                            NotifyWindow ntf = new NotifyWindow("Warning", "Tổ này đã có nhóm trưởng");
+                            ntf.ShowDialog();
+                            addNewAccountForm.txbEmail.Focus();
+                            return;
+                        }
+
                         var leaderUser = new BACSI
                         {
                             CMND_CCCD = addNewAccountForm.txbID.Text,
@@ -81,7 +92,9 @@ namespace HospitalManagement.Command.AccountListCommand
 
                     else if (addNewAccountForm.txbVaiTro.SelectedIndex == 2)
                     {
+
                         string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
                         var doctorUser = new BACSI
                         {
                             CMND_CCCD = addNewAccountForm.txbID.Text,
@@ -90,12 +103,12 @@ namespace HospitalManagement.Command.AccountListCommand
                             GIOITINH = false as bool?
                         };
                         userInput.USERNAME = doctorUser.CMND_CCCD;
-                        userInput.ROLE = "bacsi";
+                        userInput.ROLE = "doctor";
                         db.BACSIs.Add(doctorUser);
                     }
                     else
                     {
-                        string groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
+                        groupName = addNewAccountForm.txbGroup.SelectedItem.ToString();
                         var nurseUser = new YTA
                         {
                             CMND_CCCD = addNewAccountForm.txbID.Text,
@@ -104,7 +117,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             GIOITINH = false as bool?
                         };
                         userInput.USERNAME = nurseUser.CMND_CCCD;
-                        userInput.ROLE = "yta";
+                        userInput.ROLE = "nurse";
                         db.YTAs.Add(nurseUser);
                     }
 
@@ -125,7 +138,7 @@ namespace HospitalManagement.Command.AccountListCommand
             }
         }
         
-        public bool Check(AddNewAccountForm addNewAccountForm)
+        public bool check(AddNewAccountForm addNewAccountForm)
         {
             if (addNewAccountForm == null) return false;
             List<USER> users = DataProvider.Ins.DB.USERs.ToList();
@@ -146,18 +159,20 @@ namespace HospitalManagement.Command.AccountListCommand
                 return false;
             }
 
-            if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
-            {
-                if(db.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
+            if (db.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
                     db.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
                     db.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
                     db.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
-                    notifyWindow.ShowDialog();
-                    addNewAccountForm.txbID.Focus();
-                    return false;
-                }
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
+                notifyWindow.ShowDialog();
+                addNewAccountForm.txbID.Focus();
+                return false;
+            }
+
+            if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
+            {
+                
 
                 //if (string.IsNullOrWhiteSpace(addNewAccountForm.txbTenDangNhap.Text))
                 //{
@@ -206,12 +221,38 @@ namespace HospitalManagement.Command.AccountListCommand
             return true;
         }
 
+        public bool checkLeaderTeam(AddNewAccountForm addNewAccountForm)
+        {
+            List<USER> usersTeam = new List<USER>();
+            string query = @"SELECT IDTO, ROLE
+                             FROM BACSI BS, [USER] U
+                               WHERE BS.IDUSER = U.ID";
+            List<TeamRole> teamRoleList = db.Database.SqlQuery<TeamRole>(query).ToList();  
+            foreach (var bacsi in teamRoleList)
+            {
+                if (bacsi.IDTO == int.Parse(groupName) as int?)
+                    if (bacsi.ROLE == "leader")
+                        return true;
+            }
+            return false;
+        }
+
+        class TeamRole
+        {
+            private int? iDTO;
+            private string rOLE;
+
+            public int? IDTO { get => iDTO; set => iDTO = value; }
+            public string ROLE { get => rOLE; set => rOLE = value; }
+        }
+
+
         public bool checkUsername(string usernameStaff)
         {
             return db.USERs.Any(x=> x.USERNAME == usernameStaff);
         }
 
-        public string CreatePassword(int length)
+        public string createPassword(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             StringBuilder res = new StringBuilder();
@@ -246,6 +287,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                                                     emailPassword, emailSubject, emailBody);
             emailProcessing.sendEmail();
         }
+
 
     }
 }

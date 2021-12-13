@@ -316,6 +316,7 @@
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Left" 
                                     Margin="60,20,0,0">
+                                    <TextBlock Text="Dữ liệu đến ngày " Margin="0 10 10 0"/>
                                     <DatePicker Width="90"
                                                 x:Name="datepicker"
                                                 SelectedDate="{Binding ColumnChartDate}">

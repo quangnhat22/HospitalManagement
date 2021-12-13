@@ -36,6 +36,8 @@ namespace HospitalManagement.Command
             int index = (int)parameter;
             CONGVIEC cv = staffRoleTeamTaskViewModel.ProgressTasks[index].Value;
             TaskInformationForm taskInformationForm = new TaskInformationForm(cv);
+            TaskInformationViewModel taskInformationViewModel = taskInformationForm.DataContext as TaskInformationViewModel;
+            taskInformationViewModel.Owner = staffRoleTeamTaskViewModel;
             taskInformationForm.Show();
         }
     }
