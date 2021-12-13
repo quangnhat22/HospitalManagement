@@ -26,6 +26,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public ICommand DeleteTasksCommand { get; set; }
         public ICommand LoadTaskListByDateCommand { get; set; }
         public ICommand ExportTaskToExcelCommand { get; set; }
+        public ICommand CheckToggleButtonTaskCommand { get; set; }
         public ObservableCollection<ProgressTask> DeleteTasks
         {
             get
@@ -64,7 +65,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             DeleteTasksCommand = new DeleteTasksCommand(this);
             ExportTaskToExcelCommand = new ExportTaskToExcelCommand(this);
             LoadTaskListByDateCommand = new LoadTaskListByDateCommand(this);
-            LoadTaskList();
+            CheckToggleButtonTaskCommand = new CheckToggleButtonTaskCommand(this)
+;            LoadTaskList();
             if (User.ROLE == "leader")
                 LeaderTaskVisibility = Visibility.Visible;
             else
@@ -128,6 +130,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public CONGVIEC Value { get => value; set => this.value = value; }
         public int NumberCompletedPeople { get => CaculateNumberCompletedPeople(); }
         public int NumberInvolvePeople { get => CaculateNumberInvolvePeople(); }
+
+        public bool IsCurrentUserComplete { get => isCurrentUserComplete(); }
         public ProgressTask(CONGVIEC value)
         {
             Value = value;
@@ -150,6 +154,41 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
                 return Value.BACSILIENQUANs.Count + Value.YTALIENQUANs.Count;
             }
             return 0;
+        }
+
+        private bool isCurrentUserComplete()
+        {
+            try
+            {
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                {
+                    if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
+                    {
+                        BACSI bs = MainWindowViewModel.User?.BACSIs.FirstOrDefault();
+                        if (bs != null && bs != default(BACSI))
+                        {
+                            BACSILIENQUAN bslq = dbContext.BACSILIENQUANs.Find(Value.ID, bs.CMND_CCCD);
+                            if (bslq != null)
+                                return bslq.TIENDO.HasValue ? bslq.TIENDO.Value : false;
+                        }
+                    }
+                    else if (MainWindowViewModel.User?.ROLE == "nurse")
+                    {
+                        YTA yta = MainWindowViewModel.User?.YTAs.FirstOrDefault();
+                        if (yta != null && yta != default(YTA))
+                        {
+                            YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, MainWindowViewModel.User?.ID);
+                            if (ytlq != null)
+                                return ytlq.TIENDO.HasValue ? ytlq.TIENDO.Value : false;
+                        }
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static List<ProgressTask> ChangeToListProgressTask(List<CONGVIEC> congviecs)
