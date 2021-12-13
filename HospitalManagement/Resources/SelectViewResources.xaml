@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:HospitalManagement.ViewModel"
+                    xmlns:view="clr-namespace:HospitalManagement.View"
+                    xmlns:viewroom="clr-namespace:HospitalManagement.View.Room"
+                    xmlns:viewstaff="clr-namespace:HospitalManagement.View.Staff"
+                    xmlns:switchview="clr-namespace:HospitalManagement.View.EmptyView"
+                    xmlns:viewteam="clr-namespace:HospitalManagement.View.Team"
+                    xmlns:viewaddstaff="clr-namespace:HospitalManagement.View.AddStaff"
+                    xmlns:viewstaffviewroom="clr-namespace:HospitalManagement.View.StaffRoleView.Room"
+                    xmlns:viewstaffteamtask="clr-namespace:HospitalManagement.View.StaffRoleView.TeamTask"
+                    xmlns:viewstaffteammember="clr-namespace:HospitalManagement.View.StaffRoleView.TeamMember"
+                    xmlns:viewdoctor="c">
+    <DataTemplate DataType="{x:Type switchview:SwitchDashboardViewModel}">
+        <view:DashBoard></view:DashBoard>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchPatientViewModel}">
+        <view:Patient></view:Patient>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchRoomViewModel}">
+        <viewroom:RoomUsercontrol></viewroom:RoomUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchStaffViewModel}">
+        <viewstaff:StaffUsercontrol></viewstaff:StaffUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchTeamViewModel}">
+        <viewteam:TeamUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchAddStaffViewModel}">
+        <viewaddstaff:AddStaffUserControl/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchStaffViewRoomViewModel}">
+        <viewstaffviewroom:StaffRoleViewRoomUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwitchStaffViewTeamTaskViewModel}">
+        <viewstaffteamtask:StaffRoleTeamTaskUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type switchview:SwithStaffViewTeamMemberViewModel}">
+        <viewstaffteammember:TeamMemberUsercontrol/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:DoctorViewModel}">
+        <viewstaff:DoctorUsercontrol></viewstaff:DoctorUsercontrol>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:NurseViewModel}">
+        <viewstaff:NurseUsercontrol></viewstaff:NurseUsercontrol>
+    </DataTemplate>
+    
+</ResourceDictionary>

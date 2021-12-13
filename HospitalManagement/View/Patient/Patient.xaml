@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="HospitalManagement.View.Patient"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HospitalManagement.View" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:utils="clr-namespace:HospitalManagement.Utils"
+             x:Name="patientListUC"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchPatientCommand}"/>
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Margin="50 30 40 30">
+            <TextBlock Text="Danh sách bệnh nhân"
+                   FontSize="20"
+                   Margin="0 0 0 0"
+                   FontWeight="Bold"
+                   Foreground="#08AEEA"/>
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 0 0 0">
+                <ComboBox
+                    x:Name="OutlinedComboBox"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                    IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                    materialDesign:HintAssist.Hint="Tìm kiếm theo"
+                    ItemsSource="{Binding FilterList}"
+                    SelectedItem="{Binding SelectedFilter}"
+                    Padding="5 5 5 0"
+                    Height="30"
+                    Width="130">
+                </ComboBox>
+                <TextBox
+                            Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            x:Name="txbSearchBox"
+                            Padding="3 5 0 0"
+                            Margin="10 8 10 6"
+                            Width="400"
+                            Height="30"
+                            materialDesign:HintAssist.Hint="Tìm kiếm"
+                            BorderBrush="#35a0fe"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}">
+                </TextBox>
+                <Button
+                    Margin="-16 0 20 0"
+                    Padding="8"
+                    Command="{Binding SearchPatientCommand}">
+                    <Button.Content>
+                        <materialDesign:PackIcon 
+                            Kind="Search"/>
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="Button" 
+                               BasedOn="{StaticResource MaterialDesignFlatLightBgButton}"></Style>
+                    </Button.Style>
+                </Button>
+                <Button
+                x:Name="btnAddDoctor"
+                Command="{Binding OpenPatientForm}"
+                CommandParameter="{Binding ElementName=patientListUC}"
+                Content="Thêm bệnh nhân"
+                Visibility="{Binding ButtonVisibility}"
+                Width="140"/>
+                <Button Content="Xóa"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="15 0 0 0"
+                        Visibility="{Binding ButtonVisibility}"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                                     Path=DataContext.DeletePatientCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
+                            <Setter Property="Background" Value="#dc3545"></Setter>
+                            <Setter Property="Foreground" Value="#f1f1f1"></Setter>
+                            <Setter Property="BorderBrush" Value="#dc3545"></Setter>
+                            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+            <Grid>
+                <Border BorderBrush="White" BorderThickness="2"></Border>
+                <DataGrid x:Name="dtgPatientList" Margin="2"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  Height="550"
+                  HeadersVisibility="All"
+                  ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="FontSize" Value="16"/>
+                        </Style>
+                        <Style x:Key="ElementStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="FontSize" Value="13"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                            <Setter Property="Height" Value="46"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <CheckBox IsThreeState="True" 
+                                  Name="AllSelect"
+                                  Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                                    RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                        Path=DataContext.IsCheckedAll, 
+                                                        UpdateSourceTrigger=PropertyChanged}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.AllCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=AllSelect }"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                                    RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                          Name="abc">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Checked">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=abc }"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="Unchecked">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}, Path=DataContext.SingleCheckedCommand}"
+                                                           CommandParameter="{Binding ElementName=abc }"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.CMND_CCCD}" IsReadOnly="True"
+                                                    Header="CMND"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.HO}" IsReadOnly="True"
+                                                    Header="Họ"
+                                                    Width="100"
+                                                    ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.TEN}" 
+                                                   IsReadOnly="True"
+                                                   Header="Tên"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.GIOITINH, Converter={StaticResource BooleanToSexConverter}}"
+                                                   Header="Giới tính"
+                                                   IsReadOnly="True"
+                                                   Width="100"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                                                   Header="Ngày sinh"
+                                                   IsReadOnly="True"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.NGNHAPVIEN, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                                                   Header="Ngày nhập viện"
+                                                   IsReadOnly="True"
+                                                   Width="150"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.TINHTRANG}"
+                                                   Header="Tình trạng"
+                                                   IsReadOnly="True"
+                                                   Width="180"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                        <materialDesign:DataGridTextColumn Binding="{Binding Value.IDPHONG}"
+                                                   Header="Phòng"
+                                                   IsReadOnly="True"
+                                                   Width="90"
+                                                   ElementStyle="{StaticResource ElementStyle}"
+                                                   EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                        </materialDesign:DataGridTextColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Text="Thông tin"/>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Xem chi tiết" 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                                     Path=DataContext.ShowPatientInfomationCommand}"
+                                                                   CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="Transparent" 
+                                        Height="25" BorderThickness="0" 
+                                        Padding="0"
+                                        Visibility="{Binding Path=DataContext.ButtonVisibility, 
+                                                    RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
+                                        <materialDesign:PackIcon Height="25" Width="25" Foreground="#35a0fe" Kind="PencilBoxOutline"/>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
+                                                                            Path=DataContext.OpenChangePatientForm}"
+                                                               CommandParameter="{Binding ElementName=dtgPatientList, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

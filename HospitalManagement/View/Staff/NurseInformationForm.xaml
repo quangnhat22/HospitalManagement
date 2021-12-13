@@ -1,0 +1,208 @@
+﻿<Window x:Class="HospitalManagement.View.Staff.NurseInformationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalManagement.View.Staff"
+        xmlns:utils="clr-namespace:HospitalManagement.Utils"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="NurseInformationForm" Height="640" Width="550">
+    <Window.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </Window.Resources>
+    <Border BorderBrush="#35a0fe" BorderThickness="4" CornerRadius="10,10,10,10" >
+        <Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Border Background="White" CornerRadius="8 8 0 0"></Border>
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="150" Margin="0,10,0,0">
+                            <Image Source="/Images/medical-team.png" Height="150" Width="150"/>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Y tá" 
+                                   Foreground="Black" 
+                                   FontSize="20" 
+                                   HorizontalAlignment="Center"
+                                   />
+                            <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Nurse.HO" />
+                                        <Binding Path="Nurse.TEN" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Height="380">
+                            <StackPanel>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2.8*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Chuyên khoa:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding Nurse.CHUYENKHOA}" />
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Vai trò:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.VAITRO}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="ID Tổ:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.IDTO}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Ngày sinh:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.NGSINH, StringFormat={}{0:d}, ConverterCulture='vi-VN'}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.GIOITINH, Converter={StaticResource BooleanToSexConverter}}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.QUOCTICH}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.CMND_CCCD}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Số điện thoại:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Nurse.SDT}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                    </TextBlock>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding Nurse.EMAIL}"/>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Địa chỉ liên lạc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding Nurse.DIACHI}"/>
+                                </Grid>
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="4.75*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Ghi chú:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding Nurse.GHICHU}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+
+
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Background="White" CornerRadius="0 0 8 8"></Border>
+                    <Button Height="50" Width="100" Style="{StaticResource MaterialDesignRaisedButton}"                    
+                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

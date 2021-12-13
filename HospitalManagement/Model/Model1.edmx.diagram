@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4ce77d68555c4ab2bba01b573dda9052" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.ADMIN" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSI" Width="1.5" PointX="7.5" PointY="5.25" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BACSILIENQUAN" Width="1.5" PointX="9.75" PointY="11.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.BENHNHAN" Width="1.5" PointX="7.5" PointY="10.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.CONGVIEC" Width="1.5" PointX="7.5" PointY="16.875" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.PHONG" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TANG" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TO" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.TOA" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.USER" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTA" Width="1.5" PointX="10.5" PointY="6.25" />
+        <EntityTypeShape EntityType="QUANLYBENHVIENModel.YTALIENQUAN" Width="1.5" PointX="12.75" PointY="12.125" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.ADMIN_USER_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BACSI_IDTO_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BACSI_USER_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BACSILIENQUAN_BACSI_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BACSILIENQUAN_CONGVIEC_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.CONVIEC_TO_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.YTALIENQUAN_CONGVIEC_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.TANG_IDTOA_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.TO_IDTANG_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.YTA_IDTO_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.YTA_USER_FK" />
+        <AssociationConnector Association="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

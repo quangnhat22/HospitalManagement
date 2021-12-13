@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +37,64 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.95.4\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="GongSolutions.WPF.DragDrop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=91f1945125b7a587, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.2.4.3\lib\net47\GongSolutions.WPF.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="ShowMeTheXAML, Version=2.0.0.62, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +113,392 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Command\BuildingCommand\ChangeBuildingCommand.cs" />
+    <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
+    <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
+    <Compile Include="Command\AccountCommand\SaveChangePasswordCommand.cs" />
+    <Compile Include="Command\AccountListCommand\AddNewAccountCommand.cs" />
+    <Compile Include="Command\AccountListCommand\DeleteAccountListCommand.cs" />
+    <Compile Include="Command\AccountListCommand\OpenAddNewAccountForm.cs" />
+    <Compile Include="Command\AccountListCommand\SearchAccountListCommand.cs" />
+    <Compile Include="Command\BuildingCommand\AddOrDeleteBuildingCommand.cs" />
+    <Compile Include="Command\BuildingCommand\AddBuildingCommand.cs" />
+    <Compile Include="Command\CloseWindowCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
+    <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
+    <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\SearchDoctorCommand.cs" />
+    <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
+    <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />
+    <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
+    <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
+    <Compile Include="Command\NurseListCommand\SearchNurseCommand.cs" />
+    <Compile Include="Command\RoomCommand\OpenRoomWindowCommand.cs" />
+    <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
+    <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />
+    <Compile Include="Command\LoginCommand\ForgotPasswordValidationCommand.cs" />
+    <Compile Include="Command\LoginCommand\LoginWindowCommand.cs" />
+    <Compile Include="Command\LogoutCommand.cs" />
+    <Compile Include="Command\NotifyWindowCommand.cs" />
+    <Compile Include="Command\AccountCommand\OpenAccountWindowCommand.cs" />
+    <Compile Include="Command\AccountCommand\OpenChangeAccountWindowCommand.cs" />
+    <Compile Include="Command\AccountCommand\OpenChangePasswordWindowCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\OpenDoctorFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\OpenChangePatientFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\SaveChangePatientInformationCommand.cs" />
+    <Compile Include="Command\ReportFormCommand\OpenFileImageDialogCommand.cs" />
+    <Compile Include="Command\LoginCommand\OpenForgotPasswordFormCommand.cs" />
+    <Compile Include="Command\LoginCommand\OpenLoginWindowCommand.cs" />
+    <Compile Include="Command\NurseListCommand\OpenNurseFormCommand.cs" />
+    <Compile Include="Command\PatientListCommand\OpenPatientFormCommand.cs" />
+    <Compile Include="Command\ReportFormCommand\OpenReportFormCommand.cs" />
+    <Compile Include="Command\LoginCommand\OpenSignUpFormCommand.cs" />
+    <Compile Include="Command\LoginCommand\RecoverAccountCommand.cs" />
+    <Compile Include="Command\LoginCommand\ResendEmailRecoverCommand.cs" />
+    <Compile Include="Command\AccountCommand\SaveChangeAccountCommand.cs" />
+    <Compile Include="Command\PatientListCommand\SearchPatientCommand.cs" />
+    <Compile Include="Command\ReportFormCommand\SendEmailReportCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\ShowDoctorInfomationCommand.cs" />
+    <Compile Include="Command\RoomCommand\RoomProgressBarCommand.cs" />
+    <Compile Include="Command\ShowAboutCommand.cs" />
+    <Compile Include="Command\NurseListCommand\ShowNurseInfomationCommand.cs" />
+    <Compile Include="Command\PatientListCommand\ShowPatientInfomationCommand.cs" />
+    <Compile Include="Command\LoginCommand\SignUpValidationCommand.cs" />
+    <Compile Include="Command\RoomCommand\ShowPatientsInformationInRoomCommand.cs" />
+    <Compile Include="Command\RoomCommand\ShowPatientsInRoomCommand.cs" />
+    <Compile Include="Command\TeamCommand\AddTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ChangeBuildingTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\DeleteTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ShowMembersInformationInTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ShowMembersInTeamCommand.cs" />
+    <Compile Include="Command\TeamCommand\ToggleDeleteButtonCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\AddTaskCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\DeleteTasksCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\ExportTaskToExcelCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\LoadTaskListByDateCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\OpenAddToDoFormCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\RemoveInvolveMembersCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\SaveChangeTaskInformationCommand.cs" />
+    <Compile Include="Command\TeamTaskCommand\ShowTaskInformationCommand.cs" />
+    <Compile Include="Model\ADMIN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BACSI.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BACSILIENQUAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BENHNHAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CONGVIEC.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataProvider.cs" />
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PHONG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TOA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\USER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\YTA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\YTALIENQUAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BooleanToSexConverter.cs" />
+    <Compile Include="Utils\DateTimeConverter.cs" />
+    <Compile Include="Utils\EmailProcessing.cs" />
+    <Compile Include="Utils\Encryptor.cs" />
+    <Compile Include="Utils\ToUtils.cs" />
+    <Compile Include="Utils\LineChartInitialization.cs" />
+    <Compile Include="Utils\SelectableItem.cs" />
+    <Compile Include="Utils\StaffInformation.cs" />
+    <Compile Include="Utils\ToaTK.cs" />
+    <Compile Include="Utils\ValidatorEmail.cs" />
+    <Compile Include="Utils\VietnameseSign.cs" />
+    <Compile Include="ViewModel\AccountListViewModel.cs" />
+    <Compile Include="ViewModel\AccountViewModel.cs" />
+    <Compile Include="ViewModel\AddAccountVM\AddNewAccountViewModel.cs" />
+    <Compile Include="ViewModel\AddAccountVM\UpdateInformationViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModel\DashBoardViewModel.cs" />
+    <Compile Include="ViewModel\DoctorFormViewModel.cs" />
+    <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
+    <Compile Include="ViewModel\DoctorViewModel.cs" />
+    <Compile Include="ViewModel\FirstLoginViewModel.cs" />
+    <Compile Include="ViewModel\ForgotPasswordFormViewModel.cs" />
+    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
+    <Compile Include="ViewModel\NurseFormViewModel.cs" />
+    <Compile Include="ViewModel\NurseInformationViewModel.cs" />
+    <Compile Include="ViewModel\NurseViewModel.cs" />
+    <Compile Include="ViewModel\PatientFormViewModel.cs" />
+    <Compile Include="ViewModel\PatientInformationViewModel.cs" />
+    <Compile Include="ViewModel\PatientViewModel.cs" />
+    <Compile Include="ViewModel\RecoverAccountViewModel.cs" />
+    <Compile Include="ViewModel\ReportFormViewModel.cs" />
+    <Compile Include="ViewModel\RoomUsercontrolViewModel.cs" />
+    <Compile Include="ViewModel\RoomViewModel.cs" />
+    <Compile Include="ViewModel\SignUpFormViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\StaffViewRoomUCViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\TeamTask\AddToDoFormViewModel.cs" />
+    <Compile Include="ViewModel\StaffViewViewModel\TeamTask\StaffRoleTeamTaskViewModel.cs" />
+    <Compile Include="ViewModel\TaskInformationViewModel.cs" />
+    <Compile Include="ViewModel\TeamMemberViewModel.cs" />
+    <Compile Include="ViewModel\TeamViewmodel.cs" />
+    <Compile Include="View\AddStaff\AddNewAccountForm.xaml.cs">
+      <DependentUpon>AddNewAccountForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddStaff\AddStaffUserControl.xaml.cs">
+      <DependentUpon>AddStaffUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmptyView\SwitchAddStaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchDashboardViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchPatientViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchRoomViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewRoomViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchStaffViewTeamTaskViewModel.cs" />
+    <Compile Include="View\EmptyView\SwitchTeamViewModel.cs" />
+    <Compile Include="View\EmptyView\SwithStaffViewTeamMemberViewModel.cs" />
+    <Compile Include="View\Login\RecoverAccountWindow.xaml.cs">
+      <DependentUpon>RecoverAccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DashBoard.xaml.cs" />
+    <Compile Include="View\Others\AccountWindow.xaml.cs">
+      <DependentUpon>AccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\ChangeAccountWindow.xaml.cs">
+      <DependentUpon>ChangeAccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\FirstLoginWindow.xaml.cs">
+      <DependentUpon>FirstLoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\ThankyouWindow.xaml.cs">
+      <DependentUpon>ThankyouWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\UpdateInformationUserFirst.xaml.cs">
+      <DependentUpon>UpdateInformationUserFirst.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\ChangePatientInformationForm.xaml.cs">
+      <DependentUpon>ChangePatientInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Room\Room.xaml.cs">
+      <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleViewRoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml.cs">
+      <DependentUpon>TeamMemberUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml.cs">
+      <DependentUpon>AddToDoForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml.cs">
+      <DependentUpon>StaffRoleTeamTaskUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StaffRoleView\TeamTask\TaskInformationForm.xaml.cs">
+      <DependentUpon>TaskInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\ChangeDoctorInformationForm.xaml.cs">
+      <DependentUpon>ChangeDoctorInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\ChangeNurseInformationForm.xaml.cs">
+      <DependentUpon>ChangeNurseInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\DoctorForm.xaml.cs">
+      <DependentUpon>DoctorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\DoctorInformationForm.xaml.cs">
+      <DependentUpon>DoctorInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\ForgotPasswordWindow.xaml.cs">
+      <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\NotifyWindow.xaml.cs">
+      <DependentUpon>NotifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\Patient.xaml.cs" />
+    <Compile Include="View\Patient\PatientForm.xaml.cs">
+      <DependentUpon>PatientForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\PatientInformationForm.xaml.cs">
+      <DependentUpon>PatientInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Others\ReportForm.xaml.cs">
+      <DependentUpon>ReportForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Room\RoomUsercontrol.xaml.cs">
+      <DependentUpon>RoomUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\DoctorUsercontrol.xaml.cs">
+      <DependentUpon>DoctorUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\NurseForm.xaml.cs">
+      <DependentUpon>NurseForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\NurseInformationForm.xaml.cs">
+      <DependentUpon>NurseInformationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\NurseUsercontrol.xaml.cs">
+      <DependentUpon>NurseUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\StaffUsercontrol.xaml.cs">
+      <DependentUpon>StaffUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Team\TeamUsercontrol.xaml.cs">
+      <DependentUpon>TeamUsercontrol.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AddStaff\AddNewAccountForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddStaff\AddStaffUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\RecoverAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\AccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ChangeAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\FirstLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ThankyouWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\UpdateInformationUserFirst.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Patient\ChangePatientInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Room\Room.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\Room\StaffRoleViewRoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamMember\TeamMemberUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\AddToDoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\StaffRoleTeamTaskUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StaffRoleView\TeamTask\TaskInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\ChangeDoctorInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\ChangeNurseInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\DoctorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\DoctorInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\ForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,10 +506,71 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Command\SelectViewCommand.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\SelectViewResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DashBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Others\NotifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Patient\Patient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Patient\PatientForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Patient\PatientInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Others\ReportForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Room\RoomUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\DoctorUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\NurseForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\NurseInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\NurseUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\StaffUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Team\TeamUsercontrol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +590,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,5 +606,66 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hospital bed_512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\patient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\medical-team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loginForm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo\FHMS-logos.jpeg" />
+    <Resource Include="Images\Logo\FHMS-logos_black.png" />
+    <Resource Include="Images\Logo\FHMS-logos_transparent.png" />
+    <Resource Include="Images\Logo\FHMS-logos_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\doctoravatar.png" />
+    <Resource Include="Images\nurse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\profile.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\thankyouimg.png" />
+    <Resource Include="Images\first-aid-kit.png" />
+    <Resource Include="Images\Background.jpg" />
+    <Resource Include="Images\editUserimage.png" />
+    <Resource Include="Images\hello.png" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.2.0.0\build\net472\ShowMeTheXAML.MSBuild.targets')" />
 </Project>

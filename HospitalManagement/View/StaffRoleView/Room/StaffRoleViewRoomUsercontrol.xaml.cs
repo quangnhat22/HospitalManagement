@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using HospitalManagement.Utils;
+using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +16,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HospitalManagement
+namespace HospitalManagement.View.StaffRoleView.Room
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StaffRoleViewRoomUsercontrol.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StaffRoleViewRoomUsercontrol : UserControl
     {
-        public MainWindow()
+        public StaffRoleViewRoomUsercontrol()
         {
             InitializeComponent();
+            USER user = MainWindowViewModel.User;
+                this.DataContext = new RoomViewModel(ToUtils.GetTOID(user));
         }
     }
 }

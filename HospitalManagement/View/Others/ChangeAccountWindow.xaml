@@ -1,0 +1,279 @@
+﻿<Window x:Class="HospitalManagement.View.Others.ChangeAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalManagement.View.Others"
+        xmlns:utils="clr-namespace:HospitalManagement.Utils"
+        mc:Ignorable="d"
+        x:Name="changeAccountWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="DoctorInformationForm" Height="600" Width="1000">
+    <Window.Resources>
+        <utils:DateTimeConverter x:Key="DateTimeConverter"/>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter"/>
+    </Window.Resources>
+    <Border 
+        BorderBrush="#35a0fe" 
+        BorderThickness="4" 
+        CornerRadius="10,10,10,10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Border 
+                    BorderBrush="#35a0fe" 
+                    Background="#35a0fe" 
+                    CornerRadius="2 2 0 0"  
+                    BorderThickness="0"/>
+                <TextBlock 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Foreground="White"
+                        FontSize="25" FontFamily="Inter"
+                        FontWeight="DemiBold">
+                        CHỈNH SỬA THÔNG TIN TÀI KHOẢN
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Images/profile.png" Height="300"/>
+                    <Button 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                            ToolTip="MaterialDesignFloatingActionMiniButton"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="293,287,67,115">
+                        <materialDesign:PackIcon Kind="Pencil"/>
+                    </Button>
+                    <Grid Grid.Column="1" VerticalAlignment="Center">
+                        <StackPanel>
+                            <Grid Width="600" 
+                                Height="auto" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Top" 
+                                Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130"></ColumnDefinition>
+                                        <ColumnDefinition Width="170"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        Text="Họ:" 
+                                        VerticalAlignment="Center" 
+                                        Foreground="#35a0fe" 
+                                        FontSize="20" 
+                                        HorizontalAlignment="Right" 
+                                        Margin="0,0,10,0">
+                                    </TextBlock>
+                                    <TextBox 
+                                        Grid.Column="1"
+                                        x:Name="txbLastName"
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Left" 
+                                        Width="150" FontSize="20" 
+                                        materialDesign:HintAssist.Hint="Nhập Họ"
+                                        Text="{Binding Ho}"
+                                        Foreground="Black" 
+                                        TextAlignment="Left"/>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                        <ColumnDefinition Width="220"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock 
+                                        Text="Tên:" 
+                                        VerticalAlignment="Center" 
+                                        Foreground="#35a0fe" 
+                                        FontSize="20" 
+                                        HorizontalAlignment="Right" 
+                                        Margin="0,0,10,0">
+                                    </TextBlock>
+                                    <TextBox 
+                                        Grid.Column="1"
+                                        x:Name="txbFistName"
+                                        VerticalAlignment="Center" 
+                                        HorizontalAlignment="Left" 
+                                        Width="150" FontSize="20" 
+                                        materialDesign:HintAssist.Hint="Nhập Tên"
+                                        Text="{Binding Ten}"
+                                        Foreground="Black" 
+                                        TextAlignment="Left" />
+                                </Grid>
+                            </Grid>
+                            <Grid 
+                                Width="600" 
+                                Height="auto" 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Top" 
+                                Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="Ngày sinh:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    Margin="0,0,10,0">
+                                </TextBlock>
+                                <DatePicker 
+                                    x:Name="tbDateTimePicker"
+                                    Grid.Column="1" 
+                                    Margin="0,0,0,0" 
+                                    Width="200" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    materialDesign:HintAssist.Hint="Chọn ngày"
+                                    SelectedDate="{Binding NgaySinhDatePicker,StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
+                                    Grid.Row ="1" 
+                                    FontSize="20" 
+                                    Foreground="Black">
+                                </DatePicker>
+                            </Grid>
+                            <Grid Width="600" 
+                                  Height="auto" 
+                                  HorizontalAlignment="Center" 
+                                  VerticalAlignment="Top" 
+                                  Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="Giới tính:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    Margin="0,0,10,0">
+                                </TextBlock>
+                                <ComboBox 
+                                    x:Name="cbSex"
+                                    Grid.Column="1" 
+                                    Width="160" 
+                                    HorizontalAlignment="Left" 
+                                    Foreground="Black" 
+                                    FontFamily="Inter" 
+                                    FontSize="20"
+                                    materialDesign:HintAssist.Hint="Chọn giới tính"  
+                                    Text="{Binding GioiTinh,  
+                                            Converter={StaticResource BooleanToSexConverter}}"
+                                    IsEditable="True"
+                                    Grid.ColumnSpan="2">
+                                    <ComboBoxItem
+                            Content="Nam" />
+                                    <ComboBoxItem
+                            Content="Nữ" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                    <ColumnDefinition Width="400"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="Email:" 
+                                    VerticalAlignment="Center" 
+                                    Foreground="#35a0fe" FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    Margin="0,0,10,0">
+                                </TextBlock>
+                                <TextBox 
+                                    x:Name="txbEmail"
+                                    Text="{Binding Email}"
+                                    TextWrapping="Wrap"
+                                    Grid.Column="1" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Left" 
+                                    Width="350" FontSize="20" 
+                                    materialDesign:HintAssist.Hint="Email" 
+                                    Foreground="Black" TextAlignment="Left" Grid.ColumnSpan="2" />
+                            </Grid>
+                            <Grid Width="600" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="Password:" 
+                                    Foreground="#35a0fe" 
+                                    FontSize="20" 
+                                    HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" 
+                                    Margin="0,0,10,0">
+                                </TextBlock>
+                                <Button 
+                                    Command="{Binding OpenChangePasswordWindow}" 
+                                    Grid.Column="1" Margin="0,5,0,5"
+                                    Height="40" 
+                                    Width="200" 
+                                    Style="{StaticResource MaterialDesignRaisedButton}"                    
+                                    materialDesign:ButtonAssist.CornerRadius="10" 
+                                    ToolTip="Thay đổi mật khẩu" 
+                                    Content="Thay đổi mật khẩu" 
+                                    FontSize="20" 
+                                    VerticalAlignment="Top" 
+                                   />
+                                
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Border Background="White" CornerRadius="0 0 8 8"></Border>
+                    <Button
+                        Height="60" 
+                        Width="150" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"  
+                        Command="{Binding SaveChangeAccount}"
+                        CommandParameter="{Binding ElementName=changeAccountWindow}"
+                        materialDesign:ButtonAssist.CornerRadius="10" 
+                        Content="Xác nhận" 
+                        FontSize="20" 
+                        VerticalAlignment="Top" 
+                        Margin="557,0,285,0" 
+                        />
+                    <Button 
+                        Height="60" 
+                        Width="150" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"     
+                        Command="{Binding ReturnAccountWindow}"
+                        CommandParameter="{Binding ElementName=changeAccountWindow}"
+                        materialDesign:ButtonAssist.CornerRadius="10"  
+                        Content="Hủy" 
+                        FontSize="20" 
+                        VerticalAlignment="Top" 
+                        Margin="321,0,521,0" Click="Button_Click" 
+                        />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

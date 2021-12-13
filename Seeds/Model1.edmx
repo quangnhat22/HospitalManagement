@@ -1,0 +1,1035 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QUANLYBENHVIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDUSER" Type="int" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BACSI">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="VAITRO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUYENKHOA" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTO" Type="int" />
+          <Property Name="IDUSER" Type="int" />
+        </EntityType>
+        <EntityType Name="BACSILIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="int" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TIENDO" Type="bit" />
+        </EntityType>
+        <EntityType Name="BENHNHAN">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="MABENHNHAN" Type="nvarchar" MaxLength="20" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="GIUONGBENH" Type="nvarchar" MaxLength="20" />
+          <Property Name="NGNHAPVIEN" Type="smalldatetime" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="TINHTRANG" Type="nvarchar(max)" />
+          <Property Name="BENHNEN" Type="nvarchar(max)" />
+          <Property Name="IDPHONG" Type="int" />
+        </EntityType>
+        <EntityType Name="CONGVIEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTO" Type="int" />
+          <Property Name="TIEUDE" Type="nvarchar" MaxLength="256" />
+          <Property Name="NOIDUNG" Type="nvarchar(max)" />
+          <Property Name="BATDAU" Type="smalldatetime" />
+          <Property Name="KETTHUC" Type="smalldatetime" />
+          <Property Name="DIADIEM" Type="nvarchar" MaxLength="1024" />
+          <Property Name="TINHCHAT" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOPHONG" Type="int" />
+          <Property Name="SUCCHUA" Type="int" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOTANG" Type="int" />
+          <Property Name="SLPHONG" Type="int" />
+          <Property Name="IDTOA" Type="int" />
+        </EntityType>
+        <EntityType Name="TO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOTOA" Type="int" />
+          <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="SLTANG" Type="int" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="32" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="YTA">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HO" Type="nvarchar" MaxLength="100" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
+          <Property Name="DIACHI" Type="nvarchar(max)" />
+          <Property Name="NGSINH" Type="smalldatetime" />
+          <Property Name="GIOITINH" Type="bit" />
+          <Property Name="VAITRO" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUYENKHOA" Type="nvarchar" MaxLength="100" />
+          <Property Name="GHICHU" Type="nvarchar(max)" />
+          <Property Name="IDTO" Type="int" />
+          <Property Name="IDUSER" Type="int" />
+        </EntityType>
+        <EntityType Name="YTALIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="int" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TIENDO" Type="bit" />
+        </EntityType>
+        <Association Name="ADMIN_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSI_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSI_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_BACSI_FK">
+          <End Role="BACSI" Type="Self.BACSI" Multiplicity="1" />
+          <End Role="BACSILIENQUAN" Type="Self.BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BACSI">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_CONGVIEC_FK">
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="1" />
+          <End Role="BACSILIENQUAN" Type="Self.BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BENHNHAN_IDPHONG_FK">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="BENHNHAN" Type="Self.BENHNHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BENHNHAN">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONVIEC_TO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CONGVIEC">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PHONG_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Role="TOA" Type="Self.TOA" Multiplicity="0..1" />
+          <End Role="TANG" Type="Self.TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_IDTANG_FK">
+          <End Role="TANG" Type="Self.TANG" Multiplicity="0..1" />
+          <End Role="TO" Type="Self.TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_IDTO_FK">
+          <End Role="TO" Type="Self.TO" Multiplicity="0..1" />
+          <End Role="YTA" Type="Self.YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_USER_FK">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="YTA" Type="Self.YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTALIENQUAN_CONGVIEC_FK">
+          <End Role="CONGVIEC" Type="Self.CONGVIEC" Multiplicity="1" />
+          <End Role="YTALIENQUAN" Type="Self.YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTALIENQUAN_YTA_FK">
+          <End Role="YTA" Type="Self.YTA" Multiplicity="1" />
+          <End Role="YTALIENQUAN" Type="Self.YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YTA">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLYBENHVIENModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BACSI" EntityType="Self.BACSI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BACSILIENQUAN" EntityType="Self.BACSILIENQUAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BENHNHAN" EntityType="Self.BENHNHAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONGVIEC" EntityType="Self.CONGVIEC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TANG" EntityType="Self.TANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TO" EntityType="Self.TO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TOA" EntityType="Self.TOA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YTA" EntityType="Self.YTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YTALIENQUAN" EntityType="Self.YTALIENQUAN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ADMIN_USER_FK" Association="Self.ADMIN_USER_FK">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="BACSI_IDTO_FK" Association="Self.BACSI_IDTO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="BACSI" EntitySet="BACSI" />
+          </AssociationSet>
+          <AssociationSet Name="BACSI_USER_FK" Association="Self.BACSI_USER_FK">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="BACSI" EntitySet="BACSI" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_BACSI_FK" Association="Self.BACSILIENQUAN_BACSI_FK">
+            <End Role="BACSI" EntitySet="BACSI" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUAN" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_CONGVIEC_FK" Association="Self.BACSILIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUAN" />
+          </AssociationSet>
+          <AssociationSet Name="BENHNHAN_IDPHONG_FK" Association="Self.BENHNHAN_IDPHONG_FK">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="BENHNHAN" EntitySet="BENHNHAN" />
+          </AssociationSet>
+          <AssociationSet Name="CONVIEC_TO_FK" Association="Self.CONVIEC_TO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
+          </AssociationSet>
+          <AssociationSet Name="PHONG_IDTANG_FK" Association="Self.PHONG_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANG" />
+            <End Role="PHONG" EntitySet="PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="Self.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOA" />
+            <End Role="TANG" EntitySet="TANG" />
+          </AssociationSet>
+          <AssociationSet Name="TO_IDTANG_FK" Association="Self.TO_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANG" />
+            <End Role="TO" EntitySet="TO" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_IDTO_FK" Association="Self.YTA_IDTO_FK">
+            <End Role="TO" EntitySet="TO" />
+            <End Role="YTA" EntitySet="YTA" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_USER_FK" Association="Self.YTA_USER_FK">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="YTA" EntitySet="YTA" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_CONGVIEC_FK" Association="Self.YTALIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIEC" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUAN" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_YTA_FK" Association="Self.YTALIENQUAN_YTA_FK">
+            <End Role="YTA" EntitySet="YTA" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUAN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLYBENHVIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QUANLYBENHVIENEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="QUANLYBENHVIENModel.ADMIN" />
+          <EntitySet Name="BACSIs" EntityType="QUANLYBENHVIENModel.BACSI" />
+          <EntitySet Name="BACSILIENQUANs" EntityType="QUANLYBENHVIENModel.BACSILIENQUAN" />
+          <EntitySet Name="BENHNHANs" EntityType="QUANLYBENHVIENModel.BENHNHAN" />
+          <EntitySet Name="CONGVIECs" EntityType="QUANLYBENHVIENModel.CONGVIEC" />
+          <EntitySet Name="PHONGs" EntityType="QUANLYBENHVIENModel.PHONG" />
+          <EntitySet Name="sysdiagrams" EntityType="QUANLYBENHVIENModel.sysdiagram" />
+          <EntitySet Name="TANGs" EntityType="QUANLYBENHVIENModel.TANG" />
+          <EntitySet Name="TOes" EntityType="QUANLYBENHVIENModel.TO" />
+          <EntitySet Name="TOAs" EntityType="QUANLYBENHVIENModel.TOA" />
+          <EntitySet Name="USERs" EntityType="QUANLYBENHVIENModel.USER" />
+          <EntitySet Name="YTAs" EntityType="QUANLYBENHVIENModel.YTA" />
+          <EntitySet Name="YTALIENQUANs" EntityType="QUANLYBENHVIENModel.YTALIENQUAN" />
+          <AssociationSet Name="ADMIN_USER_FK" Association="QUANLYBENHVIENModel.ADMIN_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="ADMIN" EntitySet="ADMINs" />
+          </AssociationSet>
+          <AssociationSet Name="BACSI_IDTO_FK" Association="QUANLYBENHVIENModel.BACSI_IDTO_FK">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="BACSI" EntitySet="BACSIs" />
+          </AssociationSet>
+          <AssociationSet Name="BACSI_USER_FK" Association="QUANLYBENHVIENModel.BACSI_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="BACSI" EntitySet="BACSIs" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_BACSI_FK" Association="QUANLYBENHVIENModel.BACSILIENQUAN_BACSI_FK">
+            <End Role="BACSI" EntitySet="BACSIs" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUANs" />
+          </AssociationSet>
+          <AssociationSet Name="BACSILIENQUAN_CONGVIEC_FK" Association="QUANLYBENHVIENModel.BACSILIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+            <End Role="BACSILIENQUAN" EntitySet="BACSILIENQUANs" />
+          </AssociationSet>
+          <AssociationSet Name="BENHNHAN_IDPHONG_FK" Association="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="BENHNHAN" EntitySet="BENHNHANs" />
+          </AssociationSet>
+          <AssociationSet Name="CONVIEC_TO_FK" Association="QUANLYBENHVIENModel.CONVIEC_TO_FK">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_CONGVIEC_FK" Association="QUANLYBENHVIENModel.YTALIENQUAN_CONGVIEC_FK">
+            <End Role="CONGVIEC" EntitySet="CONGVIECs" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUANs" />
+          </AssociationSet>
+          <AssociationSet Name="PHONG_IDTANG_FK" Association="QUANLYBENHVIENModel.PHONG_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANGs" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="TANG_IDTOA_FK" Association="QUANLYBENHVIENModel.TANG_IDTOA_FK">
+            <End Role="TOA" EntitySet="TOAs" />
+            <End Role="TANG" EntitySet="TANGs" />
+          </AssociationSet>
+          <AssociationSet Name="TO_IDTANG_FK" Association="QUANLYBENHVIENModel.TO_IDTANG_FK">
+            <End Role="TANG" EntitySet="TANGs" />
+            <End Role="TO" EntitySet="TOes" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_IDTO_FK" Association="QUANLYBENHVIENModel.YTA_IDTO_FK">
+            <End Role="TO" EntitySet="TOes" />
+            <End Role="YTA" EntitySet="YTAs" />
+          </AssociationSet>
+          <AssociationSet Name="YTA_USER_FK" Association="QUANLYBENHVIENModel.YTA_USER_FK">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="YTA" EntitySet="YTAs" />
+          </AssociationSet>
+          <AssociationSet Name="YTALIENQUAN_YTA_FK" Association="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK">
+            <End Role="YTA" EntitySet="YTAs" />
+            <End Role="YTALIENQUAN" EntitySet="YTALIENQUANs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDUSER" Type="Int32" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="ADMIN" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="BACSI">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="VAITRO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYENKHOA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTO" Type="Int32" />
+          <Property Name="IDUSER" Type="Int32" />
+          <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="BACSI" ToRole="TO" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.BACSI_USER_FK" FromRole="BACSI" ToRole="USER" />
+          <NavigationProperty Name="BACSILIENQUANs" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN_BACSI_FK" FromRole="BACSI" ToRole="BACSILIENQUAN" />
+        </EntityType>
+        <EntityType Name="BACSILIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="Int32" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TIENDO" Type="Boolean" />
+          <NavigationProperty Name="BACSI" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN_BACSI_FK" FromRole="BACSILIENQUAN" ToRole="BACSI" />
+          <NavigationProperty Name="CONGVIEC" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN_CONGVIEC_FK" FromRole="BACSILIENQUAN" ToRole="CONGVIEC" />
+        </EntityType>
+        <EntityType Name="BENHNHAN">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MABENHNHAN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="GIUONGBENH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NGNHAPVIEN" Type="DateTime" Precision="0" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TINHTRANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BENHNEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDPHONG" Type="Int32" />
+          <NavigationProperty Name="PHONG" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="BENHNHAN" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="CONGVIEC">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTO" Type="Int32" />
+          <Property Name="TIEUDE" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NOIDUNG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BATDAU" Type="DateTime" Precision="0" />
+          <Property Name="KETTHUC" Type="DateTime" Precision="0" />
+          <Property Name="DIADIEM" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="TINHCHAT" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BACSILIENQUANs" Relationship="QUANLYBENHVIENModel.BACSILIENQUAN_CONGVIEC_FK" FromRole="CONGVIEC" ToRole="BACSILIENQUAN" />
+          <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.CONVIEC_TO_FK" FromRole="CONGVIEC" ToRole="TO" />
+          <NavigationProperty Name="YTALIENQUANs" Relationship="QUANLYBENHVIENModel.YTALIENQUAN_CONGVIEC_FK" FromRole="CONGVIEC" ToRole="YTALIENQUAN" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOPHONG" Type="Int32" />
+          <Property Name="SUCCHUA" Type="Int32" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTANG" Type="Int32" />
+          <NavigationProperty Name="BENHNHANs" Relationship="QUANLYBENHVIENModel.BENHNHAN_IDPHONG_FK" FromRole="PHONG" ToRole="BENHNHAN" />
+          <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="PHONG" ToRole="TANG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TANG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOTANG" Type="Int32" />
+          <Property Name="SLPHONG" Type="Int32" />
+          <Property Name="IDTOA" Type="Int32" />
+          <NavigationProperty Name="PHONGs" Relationship="QUANLYBENHVIENModel.PHONG_IDTANG_FK" FromRole="TANG" ToRole="PHONG" />
+          <NavigationProperty Name="TOA" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TANG" ToRole="TOA" />
+          <NavigationProperty Name="TOes" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TANG" ToRole="TO" />
+        </EntityType>
+        <EntityType Name="TO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTANG" Type="Int32" />
+          <NavigationProperty Name="BACSIs" Relationship="QUANLYBENHVIENModel.BACSI_IDTO_FK" FromRole="TO" ToRole="BACSI" />
+          <NavigationProperty Name="CONGVIECs" Relationship="QUANLYBENHVIENModel.CONVIEC_TO_FK" FromRole="TO" ToRole="CONGVIEC" />
+          <NavigationProperty Name="TANG" Relationship="QUANLYBENHVIENModel.TO_IDTANG_FK" FromRole="TO" ToRole="TANG" />
+          <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="TO" ToRole="YTA" />
+        </EntityType>
+        <EntityType Name="TOA">
+          <Key>
+            <PropertyRef Name="IDTOA" />
+          </Key>
+          <Property Name="IDTOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOTOA" Type="Int32" />
+          <Property Name="DISPLAYNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SLTANG" Type="Int32" />
+          <NavigationProperty Name="TANGs" Relationship="QUANLYBENHVIENModel.TANG_IDTOA_FK" FromRole="TOA" ToRole="TANG" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ADMINs" Relationship="QUANLYBENHVIENModel.ADMIN_USER_FK" FromRole="USER" ToRole="ADMIN" />
+          <NavigationProperty Name="BACSIs" Relationship="QUANLYBENHVIENModel.BACSI_USER_FK" FromRole="USER" ToRole="BACSI" />
+          <NavigationProperty Name="YTAs" Relationship="QUANLYBENHVIENModel.YTA_USER_FK" FromRole="USER" ToRole="YTA" />
+        </EntityType>
+        <EntityType Name="YTA">
+          <Key>
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="CMND_CCCD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGSINH" Type="DateTime" Precision="0" />
+          <Property Name="GIOITINH" Type="Boolean" />
+          <Property Name="VAITRO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUYENKHOA" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IDTO" Type="Int32" />
+          <Property Name="IDUSER" Type="Int32" />
+          <NavigationProperty Name="TO" Relationship="QUANLYBENHVIENModel.YTA_IDTO_FK" FromRole="YTA" ToRole="TO" />
+          <NavigationProperty Name="USER" Relationship="QUANLYBENHVIENModel.YTA_USER_FK" FromRole="YTA" ToRole="USER" />
+          <NavigationProperty Name="YTALIENQUANs" Relationship="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK" FromRole="YTA" ToRole="YTALIENQUAN" />
+        </EntityType>
+        <EntityType Name="YTALIENQUAN">
+          <Key>
+            <PropertyRef Name="IDCONGVIEC" />
+            <PropertyRef Name="CMND_CCCD" />
+          </Key>
+          <Property Name="IDCONGVIEC" Type="Int32" Nullable="false" />
+          <Property Name="CMND_CCCD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TIENDO" Type="Boolean" />
+          <NavigationProperty Name="CONGVIEC" Relationship="QUANLYBENHVIENModel.YTALIENQUAN_CONGVIEC_FK" FromRole="YTALIENQUAN" ToRole="CONGVIEC" />
+          <NavigationProperty Name="YTA" Relationship="QUANLYBENHVIENModel.YTALIENQUAN_YTA_FK" FromRole="YTALIENQUAN" ToRole="YTA" />
+        </EntityType>
+        <Association Name="ADMIN_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.ADMIN" Role="ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSI_IDTO_FK">
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSI_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSI">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_BACSI_FK">
+          <End Type="QUANLYBENHVIENModel.BACSI" Role="BACSI" Multiplicity="1" />
+          <End Type="QUANLYBENHVIENModel.BACSILIENQUAN" Role="BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BACSI">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BACSILIENQUAN_CONGVIEC_FK">
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="1" />
+          <End Type="QUANLYBENHVIENModel.BACSILIENQUAN" Role="BACSILIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BACSILIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BENHNHAN_IDPHONG_FK">
+          <End Type="QUANLYBENHVIENModel.PHONG" Role="PHONG" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.BENHNHAN" Role="BENHNHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BENHNHAN">
+              <PropertyRef Name="IDPHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONVIEC_TO_FK">
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CONGVIEC">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTALIENQUAN_CONGVIEC_FK">
+          <End Type="QUANLYBENHVIENModel.CONGVIEC" Role="CONGVIEC" Multiplicity="1" />
+          <End Type="QUANLYBENHVIENModel.YTALIENQUAN" Role="YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONGVIEC">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="IDCONGVIEC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PHONG_IDTANG_FK">
+          <End Type="QUANLYBENHVIENModel.TANG" Role="TANG" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.PHONG" Role="PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TANG_IDTOA_FK">
+          <End Type="QUANLYBENHVIENModel.TOA" Role="TOA" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TANG" Role="TANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TOA">
+              <PropertyRef Name="IDTOA" />
+            </Principal>
+            <Dependent Role="TANG">
+              <PropertyRef Name="IDTOA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TO_IDTANG_FK">
+          <End Type="QUANLYBENHVIENModel.TANG" Role="TANG" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TANG">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TO">
+              <PropertyRef Name="IDTANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_IDTO_FK">
+          <End Type="QUANLYBENHVIENModel.TO" Role="TO" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.YTA" Role="YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTA_USER_FK">
+          <End Type="QUANLYBENHVIENModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="QUANLYBENHVIENModel.YTA" Role="YTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="YTA">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="YTALIENQUAN_YTA_FK">
+          <End Type="QUANLYBENHVIENModel.YTA" Role="YTA" Multiplicity="1" />
+          <End Type="QUANLYBENHVIENModel.YTALIENQUAN" Role="YTALIENQUAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YTA">
+              <PropertyRef Name="CMND_CCCD" />
+            </Principal>
+            <Dependent Role="YTALIENQUAN">
+              <PropertyRef Name="CMND_CCCD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLYBENHVIENModelStoreContainer" CdmEntityContainer="QUANLYBENHVIENEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BACSIs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BACSI">
+              <MappingFragment StoreEntitySet="BACSI">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="IDTO" ColumnName="IDTO" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="CHUYENKHOA" ColumnName="CHUYENKHOA" />
+                <ScalarProperty Name="VAITRO" ColumnName="VAITRO" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BACSILIENQUANs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BACSILIENQUAN">
+              <MappingFragment StoreEntitySet="BACSILIENQUAN">
+                <ScalarProperty Name="TIENDO" ColumnName="TIENDO" />
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+                <ScalarProperty Name="IDCONGVIEC" ColumnName="IDCONGVIEC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BENHNHANs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.BENHNHAN">
+              <MappingFragment StoreEntitySet="BENHNHAN">
+                <ScalarProperty Name="IDPHONG" ColumnName="IDPHONG" />
+                <ScalarProperty Name="BENHNEN" ColumnName="BENHNEN" />
+                <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="NGNHAPVIEN" ColumnName="NGNHAPVIEN" />
+                <ScalarProperty Name="GIUONGBENH" ColumnName="GIUONGBENH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="MABENHNHAN" ColumnName="MABENHNHAN" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONGVIECs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.CONGVIEC">
+              <MappingFragment StoreEntitySet="CONGVIEC">
+                <ScalarProperty Name="TINHCHAT" ColumnName="TINHCHAT" />
+                <ScalarProperty Name="DIADIEM" ColumnName="DIADIEM" />
+                <ScalarProperty Name="KETTHUC" ColumnName="KETTHUC" />
+                <ScalarProperty Name="BATDAU" ColumnName="BATDAU" />
+                <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+                <ScalarProperty Name="TIEUDE" ColumnName="TIEUDE" />
+                <ScalarProperty Name="IDTO" ColumnName="IDTO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="SUCCHUA" ColumnName="SUCCHUA" />
+                <ScalarProperty Name="SOPHONG" ColumnName="SOPHONG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TANGs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TANG">
+              <MappingFragment StoreEntitySet="TANG">
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
+                <ScalarProperty Name="SLPHONG" ColumnName="SLPHONG" />
+                <ScalarProperty Name="SOTANG" ColumnName="SOTANG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOes">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TO">
+              <MappingFragment StoreEntitySet="TO">
+                <ScalarProperty Name="IDTANG" ColumnName="IDTANG" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TOAs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.TOA">
+              <MappingFragment StoreEntitySet="TOA">
+                <ScalarProperty Name="SLTANG" ColumnName="SLTANG" />
+                <ScalarProperty Name="DISPLAYNAME" ColumnName="DISPLAYNAME" />
+                <ScalarProperty Name="SOTOA" ColumnName="SOTOA" />
+                <ScalarProperty Name="IDTOA" ColumnName="IDTOA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YTAs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.YTA">
+              <MappingFragment StoreEntitySet="YTA">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="IDTO" ColumnName="IDTO" />
+                <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+                <ScalarProperty Name="CHUYENKHOA" ColumnName="CHUYENKHOA" />
+                <ScalarProperty Name="VAITRO" ColumnName="VAITRO" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+                <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="HO" ColumnName="HO" />
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YTALIENQUANs">
+            <EntityTypeMapping TypeName="QUANLYBENHVIENModel.YTALIENQUAN">
+              <MappingFragment StoreEntitySet="YTALIENQUAN">
+                <ScalarProperty Name="TIENDO" ColumnName="TIENDO" />
+                <ScalarProperty Name="CMND_CCCD" ColumnName="CMND_CCCD" />
+                <ScalarProperty Name="IDCONGVIEC" ColumnName="IDCONGVIEC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

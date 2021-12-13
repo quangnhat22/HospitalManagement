@@ -1,0 +1,445 @@
+﻿<UserControl x:Class="HospitalManagement.View.DashBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:HospitalManagement.View"
+             x:Name="dab"
+              mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            Background="White"
+            TextElement.FontWeight="Medium"
+            TextElement.FontSize="14"
+            FontFamily="{materialDesign:MaterialDesignFont}"
+             d:DesignHeight="760" d:DesignWidth="1387">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="materialDesign:PackIcon">
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="Height" Value="30"/>
+            </Style>
+        </Grid.Resources>
+
+        <WrapPanel Grid.Row="0" Margin="0 10 0 0" HorizontalAlignment="Center" Background="White">
+            <!--Pannel-->
+            <Border BorderBrush="White" BorderThickness="5" Margin="20 0" CornerRadius="15">
+                <materialDesign:Card
+                        UniformCornerRadius="15"
+                        Background="#47deb2"
+                        HorizontalAlignment="Left" 
+                        Width="320"
+                        Height="150"
+                        BorderThickness="5"
+                        Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Text="Nhân viên"
+                                HorizontalAlignment="Left"
+                                Margin="15,20,0,0" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Top" 
+                                FontSize="36" 
+                                Foreground="white" 
+                                FontWeight="Medium"/>
+                            <TextBlock 
+                                x:Name="txbRevenueThisMonth"
+                                Grid.Row="1"
+                                Text="{Binding StaffCount}"
+                                HorizontalAlignment="Center"
+                                Margin="5,0.8,0,4.8" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="40" 
+                                FontWeight="Bold" 
+                                Foreground="white" />
+                            <TextBlock
+                                Text="{Binding ThisMonth}"
+                                Grid.Row="2"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,0,0" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="16" 
+                                FontWeight="Medium" 
+                                Foreground="White" />
+                        </Grid>
+                        <Grid 
+                                Width="100" 
+                                Height="100"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="20 0 0 0">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="/Images/doctor.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </Border>
+            <Border BorderBrush="White" BorderThickness="5" Margin="20 0" CornerRadius="15">
+                <materialDesign:Card
+                        UniformCornerRadius="15"
+                        Background="#8cb7ff"
+                        HorizontalAlignment="Left" 
+                        Width="320"
+                        Height="150"
+                        BorderThickness="5"
+                        Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Text="Bệnh nhân"
+                                HorizontalAlignment="Left"
+                                Margin="15,20,0,0" 
+                                VerticalAlignment="Top" 
+                                FontSize="36" 
+                                Foreground="white" 
+                                FontWeight="Medium"/>
+                            <TextBlock 
+                                Grid.Row="1"
+                                Text="{Binding PatientCount}"
+                                HorizontalAlignment="Center"
+                                Margin="5,0.8,0,4.8" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="40" 
+                                FontWeight="Bold" 
+                                Foreground="white" />
+                            <!--<TextBlock
+                                Text="{Binding ThisMonth}"
+                                Grid.Row="2"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,0,0" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="16" 
+                                FontWeight="Medium" 
+                                Foreground="White" />-->
+                        </Grid>
+                        <Grid 
+                                Width="100" 
+                                Height="100"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="/Images/patient.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </Border>
+            <Border BorderBrush="White" BorderThickness="5" Margin="20 0" CornerRadius="15">
+                <materialDesign:Card
+                        UniformCornerRadius="15"
+                        Background="#f9b1b4"
+                        HorizontalAlignment="Left" 
+                        Width="320"
+                        Height="150"
+                        BorderThickness="5"
+                        Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Text="Số giường"
+                                HorizontalAlignment="Left"
+                                Margin="15,20,0,0" 
+                                VerticalAlignment="Top" 
+                                FontSize="36" 
+                                Foreground="white" 
+                                FontWeight="Medium"/>
+                            <TextBlock 
+                                Grid.Row="1"
+                                Text="{Binding BedCount}"
+                                HorizontalAlignment="Center"
+                                Margin="5,0.8,0,4.8" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="40" 
+                                FontWeight="Bold" 
+                                Foreground="white" />
+                            <TextBlock
+                                Text="{Binding ThisMonth}"
+                                Grid.Row="2"
+                                HorizontalAlignment="Left"
+                                Margin="20,0,0,0" 
+                                TextWrapping="Wrap" 
+                                VerticalAlignment="Center" 
+                                FontSize="16" 
+                                FontWeight="Medium" 
+                                Foreground="White" />
+                        </Grid>
+                        <Grid 
+                                Width="100" 
+                                Height="100"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                            <Rectangle>
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="/Images/hospital bed_512.png" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </Border>
+        </WrapPanel>
+        <StackPanel Grid.Row="1" Background="#F6F6F8" Orientation="Horizontal">
+            <!--live chart-->
+            <materialDesign:Card Margin="40 20 30 20" UniformCornerRadius="20" Width="841">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Margin="20" HorizontalAlignment="Left" FontWeight="SemiBold" Text="Tình trạng bệnh nhân" FontSize="18"></TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#42A5F4"/>
+                            <TextBlock Text="Gained" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" Margin="5 0 10 0"/>
+                            <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#F55F54"/>
+                            <TextBlock Text="Lost" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" Margin="5 0 10 0"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--chart-->
+                    <lvc:CartesianChart Series="{Binding SeriesCollect}" Foreground="Black" Height="200" Width="829">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding Labels}" Separator="{x:Static lvc:DefaultAxes.CleanSeparator}" />
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis LabelFormatter="{Binding Formatter}" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="40 20 30 20" UniformCornerRadius="20" Width="400">
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Margin="20" HorizontalAlignment="Left" FontWeight="SemiBold" Text="Số giường bệnh" FontSize="18"></TextBlock>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#42A5F4"/>
+                            <TextBlock Text="Gained" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" Margin="5 0 10 0"/>
+                            <TextBlock FontWeight="ExtraBold" FontSize="14" Text="&#xF06C;" FontFamily="wingdings" VerticalAlignment="Center" Foreground="#F55F54"/>
+                            <TextBlock Text="Lost" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" Margin="5 0 10 0"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--chart-->
+                    <!--DataContext="{StaticResource ReportVM}"-->
+                    <lvc:PieChart 
+                            x:Name="lvcPieChart"
+                            Series="{Binding PieSeriesCollection}"
+                            LegendLocation="None"  
+                            Hoverable="True"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top"
+                            Width="200"
+                            Height="200" 
+                            Margin="0,-10,0,0" 
+                            HoverPushOut="10"
+                            FontSize="16"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+        </StackPanel>
+        <Grid Grid.Row="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7.5*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="10">
+                <materialDesign:Card Margin="30,0,30,10" 
+                                     UniformCornerRadius="20">
+                    <StackPanel Margin="0,0,-0.2,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                        <TextBlock
+                                Grid.Row="0"
+                                Text="Tình trạng bệnh nhân"
+                                FontSize="30"
+                                HorizontalAlignment="Center"
+                                Margin="0 15 0 10"/>
+                        <Grid 
+                            Grid.Row="1"
+                            Height="520" 
+                            Margin="0,0,0,0">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style x:Key="CleanSeparator" TargetType="lvc:Separator">
+                                        <Setter Property="IsEnabled" Value="False"></Setter>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+
+                                <StackPanel 
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left" 
+                                    Margin="60,20,0,0">
+                                    <TextBlock Text="Dữ liệu đến ngày " Margin="0 10 10 0"/>
+                                    <DatePicker Width="90"
+                                                x:Name="datepicker"
+                                                SelectedDate="{Binding ColumnChartDate}">
+                                        <DatePicker.Resources>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </Style>
+                                        </DatePicker.Resources>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectedDateChanged">
+                                                <i:InvokeCommandAction Command="{Binding ReloadBuildingStatisticCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </DatePicker>
+                                    <Button 
+                                            Click="Button_Click">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Grid Background="{TemplateBinding Background}">
+                                                                <ContentPresenter />
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <materialDesign:PackIcon HorizontalAlignment="Center"
+                                                                 VerticalAlignment="Center"
+                                                                 Kind="Calendar" 
+                                                                 Width="15" 
+                                                                 Height="auto"/>
+
+                                    </Button>
+                                </StackPanel>
+                                <ProgressBar Width="100"
+                                             Height="100"
+                                             VerticalAlignment="Center"
+                                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                             Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             IsIndeterminate="True" />
+                                <TextBlock Text="Đang tải" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Visibility="{Binding ProgressBarVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <lvc:CartesianChart 
+                                        x:Name="lvcColumnChart" 
+                                        Series="{Binding SeriesCollection}" 
+                                        LegendLocation="Bottom"
+                                        Width="780" 
+                                        Height="339" 
+                                        HorizontalAlignment="Center" 
+                                        VerticalAlignment="Top"
+                                        Margin="0,100,0,0" 
+                                        
+                                        Visibility="{Binding ColumnChartVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    >
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis 
+                                            Title="{Binding AxisXTitle, Mode=TwoWay}" 
+                                            Labels="{Binding Labels}" 
+                                            FontSize="14">
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Step="1"/>
+                                            </lvc:Axis.Separator>
+                                        </lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis 
+                                            Title="{Binding AxisYTitle, Mode=TwoWay}" 
+                                            LabelFormatter="{Binding Formatter}"
+                                            FontSize="14"/>
+                                    </lvc:CartesianChart.AxisY>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger 
+                                            EventName="Initialized">
+                                            <i:InvokeCommandAction 
+                                                Command="{Binding InitColumnChartCommand}" 
+                                                CommandParameter="{Binding ElementName=dab}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </lvc:CartesianChart>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </materialDesign:Card>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid Grid.Row="0" Margin="0">
+                    <materialDesign:Card 
+                        Margin="5,10,15,20" 
+                        UniformCornerRadius="20">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Text="Trung bình bệnh nhân"
+                                FontSize="30"
+                                HorizontalAlignment="Center"
+                                Margin="0 15 0 10"/>
+                            <Grid Grid.Row="1">
+                                <lvc:CartesianChart Series="{Binding LineChartSeriesCollection}"
+                                                    LegendLocation="Bottom"
+                                                    Margin="10 0 10 0">
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis Title="Người" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisY>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis Title="Tháng" Labels="{Binding LineLabels}"></lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                </lvc:CartesianChart>
+                            </Grid>
+                        </Grid>
+
+                    </materialDesign:Card>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
