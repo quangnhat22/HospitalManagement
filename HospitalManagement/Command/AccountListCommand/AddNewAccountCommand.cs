@@ -61,7 +61,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             EMAIL = addNewAccountForm.txbEmail.Text,
                             GIOITINH = false as bool?
                         };
-                        userInput.USERNAME = addNewAccountForm.txbTenDangNhap.Text;
+                        userInput.USERNAME = adminUser.ID;
                         userInput.ROLE = "admin";
                         db.ADMINs.Add(adminUser);
                     }
@@ -143,6 +143,33 @@ namespace HospitalManagement.Command.AccountListCommand
             if (addNewAccountForm == null) return false;
             List<USER> users = DataProvider.Ins.DB.USERs.ToList();
 
+            if (string.IsNullOrWhiteSpace(addNewAccountForm.txbVaiTro.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn vai trò");
+                notifyWindow.ShowDialog();
+                addNewAccountForm.txbVaiTro.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(addNewAccountForm.txbID.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND/CCCD");
+                notifyWindow.ShowDialog();
+                addNewAccountForm.txbID.Focus();
+                return false;
+            }
+
+            if (db.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
+                    db.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
+                notifyWindow.ShowDialog();
+                addNewAccountForm.txbID.Focus();
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(addNewAccountForm.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
@@ -159,48 +186,7 @@ namespace HospitalManagement.Command.AccountListCommand
                 return false;
             }
 
-            if (db.BACSIs.Find(addNewAccountForm.txbID.Text) != null ||
-                    db.YTAs.Find(addNewAccountForm.txbID.Text) != null ||
-                    db.ADMINs.Find(addNewAccountForm.txbID.Text) != null ||
-                    db.BENHNHANs.Find(addNewAccountForm.txbID.Text) != null)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "CMND/CCCD đã tồn tại");
-                notifyWindow.ShowDialog();
-                addNewAccountForm.txbID.Focus();
-                return false;
-            }
-
-            if (addNewAccountForm.txbVaiTro.SelectedIndex == 0)
-            {
-                
-
-                //if (string.IsNullOrWhiteSpace(addNewAccountForm.txbTenDangNhap.Text))
-                //{
-                //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
-                //    notifyWindow.ShowDialog();
-                //    addNewAccountForm.txbTenDangNhap.Focus();
-                //    return false;
-                //}
-
-                if (string.IsNullOrWhiteSpace(addNewAccountForm.txbID.Text))
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND/CCCD");
-                    notifyWindow.ShowDialog();
-                    addNewAccountForm.txbID.Focus();
-                    return false;
-                }
-                //foreach (USER user in users)
-                //{
-                //    if (user.USERNAME == addNewAccountForm.txbTenDangNhap.Text)
-                //    {
-                //        NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tên đăng nhập này đã tồn tại");
-                //        notifyWindow.ShowDialog();
-                //        addNewAccountForm.txbTenDangNhap.Focus();
-                //        return false;
-                //    }
-                //}
-            }
-            else
+            if (addNewAccountForm.txbVaiTro.SelectedIndex != 0)
             {
                 if (string.IsNullOrWhiteSpace(addNewAccountForm.txbGroup.Text))
                 {
@@ -211,13 +197,6 @@ namespace HospitalManagement.Command.AccountListCommand
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(addNewAccountForm.txbVaiTro.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn vai trò");
-                notifyWindow.ShowDialog();
-                addNewAccountForm.txbVaiTro.Focus();
-                return false;
-            }
             return true;
         }
 
