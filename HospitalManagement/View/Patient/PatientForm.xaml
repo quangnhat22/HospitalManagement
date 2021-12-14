@@ -114,8 +114,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <ComboBox x:Name="cbxGioiTinh" Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
-                        materialDesign:HintAssist.Hint="Chọn giới tính"                       
-                        IsEditable="True">
+                        materialDesign:HintAssist.Hint="Chọn giới tính"
+                        IsEditable="False">
                         <ComboBoxItem
                             Content="Nam" />
                         <ComboBoxItem
@@ -164,7 +164,7 @@
                     <TextBlock Text="Tình trạng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                     <ComboBox x:Name="cbxTinhTrang" Margin="0,0,0,5" Grid.Row="1" Width="250" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
                         materialDesign:HintAssist.Hint="Chọn tình trạng"                       
-                        IsEditable="True">
+                        IsEditable="False">
                         <ComboBoxItem
                             Content="Không triệu chứng" />
                         <ComboBoxItem
@@ -179,15 +179,33 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="ID phòng" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbIDPhong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" materialDesign:HintAssist.Hint="Nhập ID phòng" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <ComboBox x:Name="cbxIDPhong" 
+                              Margin="0,0,0,5" 
+                              HorizontalAlignment="Left"
+                              IsEditable="False"
+                              Width="150" 
+                              materialDesign:HintAssist.Hint="Chọn ID phòng" 
+                              Foreground="Black"                               
+                              FontSize="20" 
+                              Grid.Row="1"
+                              ItemsSource="{Binding ListIDPhong}"
+                              SelectionChanged="cbxIDPhong_SelectionChanged"
+                              />
                 </Grid>
-                <Grid Width="150" HorizontalAlignment="Left" Margin="50,10,0,0">
+                <Grid Width="160" HorizontalAlignment="Left" Margin="50,10,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Số giường" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbSoGiuong" Margin="0,0,0,5" HorizontalAlignment="Left" Width="150" materialDesign:HintAssist.Hint="Nhập số giường" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                    <ComboBox x:Name="cbxSoGiuong" 
+                              Margin="0,0,0,5" 
+                              HorizontalAlignment="Left" 
+                              Width="160" 
+                              materialDesign:HintAssist.Hint="Chọn số giường" 
+                              Foreground="Black"                            
+                              FontSize="20" 
+                              Grid.Row="1" />
                 </Grid>
             </StackPanel>
             <StackPanel Height="190" Orientation="Horizontal">
