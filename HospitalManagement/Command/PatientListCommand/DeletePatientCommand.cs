@@ -40,11 +40,11 @@ namespace HospitalManagement.Command
                 NotifyWindow notifyWindow;
                 if (selectableItems.Count() == 1)
                 {
-                    notifyWindow = new NotifyWindow("Warning", "Bạn có chắc chắn muốn xoá bệnh nhân này?", "Visible", 400);
+                    notifyWindow = new NotifyWindow("Check", "Bạn có chắc chắn muốn xoá bệnh nhân này?", "Visible", 400);
                 }    
                 else
                 {
-                    notifyWindow = new NotifyWindow("Warning", "Bạn có chắc chắn muốn xoá những bệnh nhân này?", "Visible", 400);
+                    notifyWindow = new NotifyWindow("Check", "Bạn có chắc chắn muốn xoá những bệnh nhân này?", "Visible", 400);
                 }    
                 notifyWindow.ShowDialog();
                 if (notifyWindow.Result == System.Windows.MessageBoxResult.OK)

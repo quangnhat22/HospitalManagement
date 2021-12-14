@@ -105,7 +105,6 @@
                             materialDesign:ButtonAssist.CornerRadius="10"
                             BorderThickness="2"
                             BorderBrush="#35a0fe"
-                            ToolTip="Đăng nhập"
                             Content="Đăng nhập">
                         </Button>
                     </StackPanel>

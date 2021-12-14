@@ -105,6 +105,7 @@
             <DataGrid 
                   x:Name="dtgAccountList"
                   CanUserAddRows="False"
+                  IsReadOnly="True"
                   Height="550"
                   Visibility="{Binding DataGridVisibility}"
                   AutoGenerateColumns="False"

@@ -31,12 +31,12 @@ namespace HospitalManagement.Command
             w.txtMessage.Text = w.Title.ToString();
             if (w.Tag.ToString() == "Success")
                 SetProperties(w, "#2FDD92", "CheckboxMarkedCircleOutline");
-            else
-                if (w.Tag.ToString() == "Warning")
-                    SetProperties(w, "#FEB721", "AlertCircleOutline");
-                else
-                    if (w.Tag.ToString() == "Error")
-                        SetProperties(w, "#F6416C", "AlertOutline");
+            else if (w.Tag.ToString() == "Warning")
+                SetProperties(w, "#FEB721", "AlertCircleOutline");
+            else if (w.Tag.ToString() == "Error")
+                SetProperties(w, "#F6416C", "AlertOutline");
+            else if (w.Tag.ToString() == "Check")
+                SetProperties(w, "#ff6b6b", "ChatAlertOutline");
         }
 
         public void SetProperties(NotifyWindow w, string colorCode, string iconName)
@@ -48,7 +48,7 @@ namespace HospitalManagement.Command
             w.btnCancel.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.btnCancel.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
             w.Icon.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(colorCode);
-            w.ToolTip = iconName;
+            w.Title = iconName;
         }
     }
 }
