@@ -37,6 +37,8 @@ namespace HospitalManagement.ViewModel
             get { return staffInformations; }
             set { staffInformations = value; OnPropertyChanged("StaffInformations"); }
         }
+
+
         public TO To { get => to; set => to = value; }
         public BACSI ToTruong { get => toTruong; set => toTruong = value; }
         public ICommand ShowMemberInformation { get; set; }

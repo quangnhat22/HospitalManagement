@@ -113,7 +113,7 @@
                                             Padding="5"                                            
                                             BorderThickness="2"
                                             Margin="0 30 0 0"
-                                            Tag="{Binding GioiTinh, Converter={StaticResource BooleanToSexConverter}}"
+                                            Tag="{Binding Value.GioiTinh, Converter={StaticResource BooleanToSexConverter}}"
                                             Style="{StaticResource SexBorder}">
                                         <Border.Resources>
                                             <Style TargetType="{x:Type Image}" x:Key="TypeAvatar">
@@ -235,8 +235,8 @@
                     <TextBlock Text="{Binding StaffInformations.Count}"></TextBlock>
                 </WrapPanel>
                 <WrapPanel>
-                    <TextBlock Text="Số lượng công việc còn lại: " FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding To.USER.CONGVIECs.Count}"></TextBlock>
+                    <TextBlock Text="Số lượng công việc: " FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding To.CONGVIECs.Count}"></TextBlock>
                 </WrapPanel>
             </StackPanel>
         </Grid>
