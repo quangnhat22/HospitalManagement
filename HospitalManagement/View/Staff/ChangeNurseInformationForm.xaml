@@ -15,6 +15,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
+        ResizeMode="CanMinimize" 
         Title="NurseForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />

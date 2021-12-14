@@ -121,25 +121,37 @@ namespace HospitalManagement.ViewModel
             AddOrDeleteBuildingCommand = new AddOrDeleteBuildingCommand(this);
         }
 
-        private async void LoadData()
+        //private async void LoadData()
+        //{
+        //    await Task.Run(async () =>
+        //    {
+        //        buildings = await Task.Run(() =>
+        //        {
+        //            using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+        //            {
+        //                return dbContext.TOAs.ToList();
+        //            }
+        //        });
+        //        currentBuilding = 0;
+        //        currentBuildingName = buildings[0].DISPLAYNAME;
+        //        newBuildingName = "";
+        //        canMoveForward = Buildings.Count > 1 ? true : false;
+        //        selectedBuildingName = buildings[0].DISPLAYNAME;
+        //        addVisibility = "Collapsed";
+        //        deleteVisibility = "Collapsed";
+        //    });
+        //}
+
+        private void LoadData()
         {
-            await Task.Run(async () =>
-            {
-                buildings = await Task.Run(() =>
-                {
-                    using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
-                    {
-                        return dbContext.TOAs.ToList();
-                    }
-                });
-                currentBuilding = 0;
-                currentBuildingName = buildings[0].DISPLAYNAME;
-                newBuildingName = "";
-                canMoveForward = Buildings.Count > 1 ? true : false;
-                selectedBuildingName = buildings[0].DISPLAYNAME;
-                addVisibility = "Collapsed";
-                deleteVisibility = "Collapsed";
-            });
+            buildings = DataProvider.Ins.DB.TOAs.ToList();
+            currentBuilding = 0;
+            currentBuildingName = buildings[0].DISPLAYNAME;
+            newBuildingName = "";
+            canMoveForward = Buildings.Count > 1 ? true : false;
+            selectedBuildingName = buildings[0].DISPLAYNAME;
+            addVisibility = "Collapsed";
+            deleteVisibility = "Collapsed";
         }
     }
 } 

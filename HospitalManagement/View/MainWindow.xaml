@@ -153,7 +153,7 @@
                         <ListViewItem Height="60" 
                                       Tag="Home">
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="ViewDashboard" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Trang chủ" VerticalAlignment="Center" Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>
@@ -175,9 +175,16 @@
                         </ListViewItem>
                         <ListViewItem Height="60"
                                       Tag="Rooms">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="BunkBed" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Phòng" VerticalAlignment="Center"  Margin="20 10"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding AdminRolesVisibility}">
+                                    <materialDesign:PackIcon Kind="HospitalBuilding" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Tòa" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding StaffRolesVisibility}">
+                                    <materialDesign:PackIcon Kind="BunkBed" Height="25" Width="25" Margin="10"/>
+                                    <TextBlock Text="Phòng" VerticalAlignment="Center"  Margin="20 10"/>
+                                </StackPanel>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem Height="60"
@@ -199,7 +206,7 @@
                                       Tag="TeamTask"
                                       Visibility="{Binding StaffRolesVisibility}">
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Subtasks" Height="25" Width="25" Margin="10"/>
+                                <materialDesign:PackIcon Kind="ClipboardList" Height="25" Width="25" Margin="10"/>
                                 <TextBlock Text="Công việc" VerticalAlignment="Center"  Margin="20 10"/>
                             </StackPanel>
                         </ListViewItem>

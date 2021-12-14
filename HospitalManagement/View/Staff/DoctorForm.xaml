@@ -14,6 +14,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
+        ResizeMode="CanMinimize" 
         Title="DoctorForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">

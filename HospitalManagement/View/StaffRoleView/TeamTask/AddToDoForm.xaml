@@ -208,10 +208,6 @@
                                                                     </MultiBinding>
                                                                 </TextBlock.Text>
                                                             </TextBlock>
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Text="CMND:" FontSize="8" Margin="2"/>
-                                                                <TextBlock Text="{Binding Cmnd_cccd}" FontSize="8" Margin="2"/>
-                                                            </StackPanel>
                                                         </StackPanel>
                                                     </materialDesign:Chip.Content>
                                                     <materialDesign:Chip.Icon>

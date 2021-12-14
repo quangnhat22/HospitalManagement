@@ -74,7 +74,6 @@
                             <Grid Height="10" 
                               Background="#FFE0EBFD"/>
                             <Button Style="{StaticResource MaterialDesignOutlinedButton}"
-                                ToolTip="MaterialDesignOutlinedButton"
                                 Height="50"
                                 Background="White" BorderBrush="#FFE0EBFD" Foreground="#FF80A8E5">
                                 <i:Interaction.Triggers>
