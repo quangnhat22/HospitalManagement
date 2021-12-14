@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 {
-    internal class StaffRoleTeamTaskViewModel : BaseViewModel, IDropTarget
+    public class StaffRoleTeamTaskViewModel : BaseViewModel, IDropTarget
     {
         private ObservableCollection<ProgressTask> deleteTasks;
 
@@ -66,14 +66,11 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
             ExportTaskToExcelCommand = new ExportTaskToExcelCommand(this);
             LoadTaskListByDateCommand = new LoadTaskListByDateCommand(this);
             CheckToggleButtonTaskCommand = new CheckToggleButtonTaskCommand(this)
-;            LoadTaskList();
-            if (User.ROLE == "leader")
-                LeaderTaskVisibility = Visibility.Visible;
-            else
-                LeaderTaskVisibility = Visibility.Hidden;
+;           LoadTaskList();
+            LeaderTaskVisibility = Visibility.Visible;
         }
 
-        public void LoadTaskList()
+        public virtual void LoadTaskList()
         {
 
             int toid = ToUtils.GetTOID(MainWindowViewModel.User);
@@ -122,6 +119,76 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         }
     }
 
+    public class StaffRoleTeamTaskViewModelStaff : StaffRoleTeamTaskViewModel
+    {
+        public StaffRoleTeamTaskViewModelStaff() : base()
+        {
+            LeaderTaskVisibility = Visibility.Hidden;
+        }
+
+        public override void LoadTaskList()
+        {
+            int toid = ToUtils.GetTOID(MainWindowViewModel.User);
+            if (toid != -1)
+            {
+                TO to = DataProvider.Ins.DB.TOes.Find(toid);
+                string query = string.Empty;
+                string querydoctor = @"
+                            SELECT * 
+                            FROM CONGVIEC, BACSILIENQUAN
+                            WHERE CONGVIEC.ID = BACSILIENQUAN.IDCONGVIEC
+                            AND CMND_CCCD = {0}
+                            AND CONGVIEC.BATDAU <= '{1}-{2}-{3}'
+                            AND CONGVIEC.KETTHUC >= '{1}-{2}-{3}'";
+                string querynurse = @"
+                            SELECT * 
+                            FROM CONGVIEC, YTALIENQUAN
+                            WHERE CONGVIEC.ID = YTALIENQUAN.IDCONGVIEC
+                            AND CMND_CCCD = {0}
+                            AND CONGVIEC.BATDAU <= '{1}-{2}-{3}'
+                            AND CONGVIEC.KETTHUC >= '{1}-{2}-{3}'";
+                if (MainWindowViewModel.User.ROLE == "doctor")
+                {
+                    BACSI bacsi = MainWindowViewModel.User.BACSIs.FirstOrDefault();
+                    try
+                    {
+                        query = String.Format(querydoctor, bacsi.CMND_CCCD, SelectedDate.Year, SelectedDate.Month, SelectedDate.Day);
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err);
+                    }
+                }
+                else if (MainWindowViewModel.User.ROLE == "nurse")
+                {
+                    YTA yta = MainWindowViewModel.User.YTAs.FirstOrDefault();
+                    try
+                    {
+                        query = String.Format(querynurse, yta.CMND_CCCD, SelectedDate.Year, SelectedDate.Month, SelectedDate.Day);
+                    }
+                    catch (Exception err)
+                    {
+                        Console.WriteLine(err);
+                    }
+                }
+                List<CONGVIEC> congviecs;
+                List<ProgressTask> progressTasksList;
+                try
+                {
+                    congviecs = DataProvider.Ins.DB.Database.SqlQuery<CONGVIEC>(query).ToList();
+                    progressTasksList = ProgressTask.ChangeToListProgressTask(congviecs);
+                    ProgressTasks = new ObservableCollection<ProgressTask>(progressTasksList);
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(err);
+                }
+                DeleteTasks = new ObservableCollection<ProgressTask>();
+            }
+        }
+    }
+
+
     public class ProgressTask
     {
         private CONGVIEC value;
@@ -132,6 +199,36 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public int NumberInvolvePeople { get => CaculateNumberInvolvePeople(); }
 
         public bool IsCurrentUserComplete { get => isCurrentUserComplete(); }
+        public Visibility ToggleButtonVisibility { get => isToggleVisible();  }
+
+        private Visibility isToggleVisible()
+        {
+            using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+            {
+                if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
+                {
+                    BACSI bacsi = MainWindowViewModel.User.BACSIs.FirstOrDefault();
+                    if (bacsi != null && bacsi != default(BACSI))
+                    {
+                        BACSILIENQUAN bslq = dbContext.BACSILIENQUANs.Find(Value.ID, bacsi.CMND_CCCD);
+                        if (bslq != null)
+                            return Visibility.Visible;
+                    }
+                }
+                if (MainWindowViewModel.User.ROLE == "nurse")
+                {
+                    YTA yta = MainWindowViewModel.User.YTAs.FirstOrDefault();
+                    if (yta != null && yta != default(YTA))
+                    {
+                        YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, yta.CMND_CCCD);
+                        if (ytlq != null)
+                            return Visibility.Visible;
+                    }
+                }
+                return Visibility.Hidden;
+            }
+        }
+
         public ProgressTask(CONGVIEC value)
         {
             Value = value;
@@ -177,7 +274,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
                         YTA yta = MainWindowViewModel.User?.YTAs.FirstOrDefault();
                         if (yta != null && yta != default(YTA))
                         {
-                            YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, MainWindowViewModel.User?.ID);
+                            YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, yta.CMND_CCCD);
                             if (ytlq != null)
                                 return ytlq.TIENDO.HasValue ? ytlq.TIENDO.Value : false;
                         }
