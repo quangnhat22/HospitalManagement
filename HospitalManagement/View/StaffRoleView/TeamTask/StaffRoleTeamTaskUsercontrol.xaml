@@ -282,24 +282,6 @@
                         </Button>
                     </StackPanel>
                     <Border BorderThickness="0 2 0 0" >
-                        <Border.Resources>
-                            <Style TargetType="{x:Type Border}" x:Key="PriorityBackground">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
-                                        <Setter Property="Background" Value="#C9F9EB"/>
-                                        <Setter Property="BorderBrush" Value="#2AE2BE"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
-                                        <Setter Property="Background" Value="#FFF3D9"/>
-                                        <Setter Property="BorderBrush" Value="#FEB721"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
-                                        <Setter Property="Background" Value="#FFEAE9"/>
-                                        <Setter Property="BorderBrush" Value="#FF7F7E"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Resources>
                         <ListBox ItemsSource="{Binding ProgressTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                             ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -326,210 +308,242 @@
                             </ListBox.ItemContainerStyle>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Style="{StaticResource PriorityBackground}"
-                                            BorderThickness="2"
-                                            CornerRadius="20"  
-                                            Background="White" 
-                                            HorizontalAlignment="Left" 
-                                            VerticalAlignment="Center"
-                                            Margin="50 20 0 30" 
-                                            Cursor="Hand">
-                                        
-                                        <Border.Effect>
-                                            <DropShadowEffect 
-                                                BlurRadius="20" 
-                                                Direction="-90"
-                                                RenderingBias="Performance" 
-                                                ShadowDepth="2" 
-                                                Color="#EEEEEE"/>
-                                        </Border.Effect>
+                                    <Border>
                                         <Border.Resources>
-                                            <Style TargetType="{x:Type Border}" x:Key="PriorityBackground">
+                                            <Style TargetType="Border" x:Key="PriorityOuterBorder">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
-                                                        <Setter Property="Background" Value="#C9F9EB"/>
+                                                        <Setter Property="BorderBrush" Value="#2AE2BE"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
-                                                        <Setter Property="Background" Value="#FFF3D9"/>
+                                                        <Setter Property="BorderBrush" Value="#FEB721"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
-                                                        <Setter Property="Background" Value="#FFEAE9"/>
                                                         <Setter Property="BorderBrush" Value="#FF7F7E"/>
-                                                        <Setter Property="BorderThickness" Value="1"/>
                                                     </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                            <Style TargetType="{x:Type Label}" x:Key="PriorityForeground">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
-                                                        <Setter Property="Foreground" Value="#2AE2BE"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
-                                                        <Setter Property="Foreground" Value="#FEB721"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
-                                                        <Setter Property="Foreground" Value="#FF7F7E"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                            <Style TargetType="{x:Type Border}" x:Key="PriorityBorder">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
-                                                        <Setter Property="Background" Value="#2AE2BE"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
-                                                        <Setter Property="Background" Value="#FEB721"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
-                                                        <Setter Property="Background" Value="#FF7F7E"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                            <Style TargetType="{x:Type ToggleButton}" x:Key="PriorityToggleButton" BasedOn="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
-                                                        <Setter Property="Foreground" Value="#2AE2BE"/>
-                                                        <Setter Property="Background" Value="#C9F9EB"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
-                                                        <Setter Property="Foreground" Value="#FEB721"/>
-                                                        <Setter Property="Background" Value="#FFF3D9"/>
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
-                                                        <Setter Property="Foreground" Value="#FF7F7E"/>
-                                                        <Setter Property="Background" Value="#FFEAE9"/>
+                                                    <DataTrigger Binding="{Binding IsCurrentUserComplete, Mode=OneWay}" Value="True">
+                                                        <Setter Property="BorderBrush" Value="#BBB3B4"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Border.Resources>
-                                        <TextBlock>
-                                            <TextBlock.InputBindings>
-                                                <MouseBinding Gesture="LeftDoubleClick" 
-                                                              Command="{Binding ElementName=staffRoleTeamTask, Path=DataContext.ShowTaskInformation}" 
-                                                              CommandParameter="{Binding ElementName=lbxTask, Path=SelectedIndex}"/>
-                                            </TextBlock.InputBindings>
-                                            <StackPanel Background="Transparent" Width="280" Height="250">
-                                                <StackPanel>
-                                                    <Border Margin="15"  
-                                                        CornerRadius="8"
-                                                        Style="{StaticResource PriorityBackground}">
-                                                        <Label x:Name="lbPriority"
-                                                               Padding="5"
-                                                               Margin="5 0 0 0"
-                                                               VerticalAlignment="Center"
-                                                               Content="{Binding Value.TINHCHAT}"
-                                                               Background="Transparent"
-                                                               FontWeight="SemiBold"
-                                                               Style="{StaticResource PriorityForeground}"/>
-                                                    </Border>
-                                                    <TextBlock Text="{Binding Value.ID}" 
-                                                               Visibility="Collapsed"
-                                                               x:Name="TaskID"/>
-                                                    <TextBlock Text="{Binding Value.TIEUDE}"
-                                                           FontWeight="Bold"
-                                                           FontSize="15"
-                                                           Margin="15 0 10 10"/>
-                                                    <StackPanel Orientation="Horizontal" Margin="15 0">
-                                                        <materialDesign:PackIcon Kind="MapMarker" 
-                                                                                 Margin="0 5 5 5" 
-                                                                                 VerticalAlignment="Center"/>
-                                                        <TextBlock Margin="0"
-                                                                   FontSize="14"
-                                                                   TextWrapping="Wrap"
+                                        <!--<Border.Effect>
+                                            <DropShadowEffect 
+                                                    BlurRadius="20" 
+                                                    Direction="-90"
+                                                    RenderingBias="Performance" 
+                                                    ShadowDepth="2" 
+                                                    Color="#EEEEEE"/>
+                                        </Border.Effect>-->
+                                        <Border Style="{StaticResource PriorityOuterBorder}"
+                                                BorderThickness="2"
+                                                CornerRadius="20"  
+                                                HorizontalAlignment="Left" 
+                                                VerticalAlignment="Center"
+                                                Margin="50 20 0 30" 
+                                                Cursor="Hand">
+                                            <Border.Resources>
+                                                <Style TargetType="{x:Type Border}" x:Key="PriorityTypeBorder">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
+                                                            <Setter Property="Background" Value="#C9F9EB"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
+                                                            <Setter Property="Background" Value="#FFF3D9"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
+                                                            <Setter Property="Background" Value="#FFEAE9"/>
+                                                            <Setter Property="BorderBrush" Value="#FF7F7E"/>
+                                                            <Setter Property="BorderThickness" Value="1"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsCurrentUserComplete, Mode=OneWay}" Value="True">
+                                                            <Setter Property="Background" Value="#E4E1E2"/>
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="{x:Type Label}" x:Key="PriorityForeground">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
+                                                            <Setter Property="Foreground" Value="#2AE2BE"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
+                                                            <Setter Property="Foreground" Value="#FEB721"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
+                                                            <Setter Property="Foreground" Value="#FF7F7E"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsCurrentUserComplete, Mode=OneWay}" Value="True">
+                                                            <Setter Property="Foreground" Value="#685A5A"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="{x:Type Border}" x:Key="PriorityBorder">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
+                                                            <Setter Property="Background" Value="#2AE2BE"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
+                                                            <Setter Property="Background" Value="#FEB721"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
+                                                            <Setter Property="Background" Value="#FF7F7E"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsCurrentUserComplete, Mode=OneWay}" Value="True">
+                                                            <Setter Property="Background" Value="#BBB3B4"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                                <Style TargetType="{x:Type ToggleButton}" x:Key="PriorityToggleButton" BasedOn="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Bình thường">
+                                                            <Setter Property="Foreground" Value="#2AE2BE"/>
+                                                            <Setter Property="Background" Value="#C9F9EB"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Ưu tiên">
+                                                            <Setter Property="Foreground" Value="#FEB721"/>
+                                                            <Setter Property="Background" Value="#FFF3D9"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Content, ElementName=lbPriority}" Value="Nguy cấp">
+                                                            <Setter Property="Foreground" Value="#FF7F7E"/>
+                                                            <Setter Property="Background" Value="#FFEAE9"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsCurrentUserComplete, Mode=OneWay}" Value="True">
+                                                            <Setter Property="Background" Value="#E4E1E2"/>
+                                                            <Setter Property="Foreground" Value="#685A5A"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Resources>
+                                            <TextBlock>
+                                                <TextBlock.InputBindings>
+                                                    <MouseBinding Gesture="LeftDoubleClick" 
+                                                                  Command="{Binding ElementName=staffRoleTeamTask, Path=DataContext.ShowTaskInformation}" 
+                                                                  CommandParameter="{Binding ElementName=lbxTask, Path=SelectedIndex}"/>
+                                                </TextBlock.InputBindings>
+                                                <StackPanel Background="Transparent" Width="280" Height="250">
+                                                    <StackPanel>
+                                                        <Border Margin="15"  
+                                                            CornerRadius="8"
+                                                            Style="{StaticResource PriorityTypeBorder}">
+                                                            <Label x:Name="lbPriority"
+                                                                   Padding="5"
+                                                                   Margin="5 0 0 0"
                                                                    VerticalAlignment="Center"
-                                                                   Text="{Binding Value.DIADIEM}"/>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" Margin="15 0">
-                                                        <Label Content="Bắt đầu: " 
-                                                               Margin="0" 
-                                                               FontSize="14" 
-                                                               FontWeight="SemiBold"
-                                                               VerticalContentAlignment="Center"/>
-                                                        <TextBlock FontSize="13" 
-                                                                   FontWeight="Regular" 
-                                                                   Text="{Binding Value.BATDAU}"
-                                                                   VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" Margin="15 0">
-                                                        <Label Content="Kết thúc: " 
-                                                               Margin="0" 
-                                                               FontSize="14" 
-                                                               FontWeight="SemiBold" 
-                                                               VerticalContentAlignment="Center"/>
-                                                        <TextBlock FontSize="13" 
-                                                                   FontWeight="Regular" 
-                                                                   Text="{Binding Value.KETTHUC}"
-                                                                   VerticalAlignment="Center"/>
-                                                    </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5 0 0">
-                                                        <Border Width="220" 
-                                                                Height="4"
-                                                                CornerRadius="2"
-                                                                Margin="15 0 10 0"
-                                                                Style="{StaticResource PriorityBorder}">
-                                                            <ProgressBar HorizontalAlignment="Left"
-                                                                         VerticalAlignment="Center"
-                                                                         BorderThickness="0"
-                                                                         Value="{Binding NumberCompletedPeople, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                         Maximum="{Binding NumberInvolvePeople, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                         Background="{x:Null}"/>
+                                                                   Content="{Binding Value.TINHCHAT}"
+                                                                   Background="Transparent"
+                                                                   FontWeight="SemiBold"
+                                                                   Style="{StaticResource PriorityForeground}"/>
                                                         </Border>
-                                                        <TextBlock FontSize="10"
-                                                                   FontWeight="Bold"
-                                                                   HorizontalAlignment="Right" 
-                                                                   VerticalAlignment="Center">
-                                                            <TextBlock.Text>
-                                                                <MultiBinding StringFormat="{}{0}/{1}">
-                                                                    <Binding Path="NumberCompletedPeople" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"/>
-                                                                    <Binding Path="NumberInvolvePeople" />
-                                                                </MultiBinding>
-                                                            </TextBlock.Text>
-                                                        </TextBlock>
-                                                    </StackPanel>
-                                                    <Grid Margin="25 15 15 0">
-                                                        <StackPanel Orientation="Horizontal"
-                                                                    HorizontalAlignment="Left">
-                                                            <Border CornerRadius="20" 
-                                                                    Height="40" 
-                                                                    Width="40" 
-                                                                    Margin="-10 0 0 0">
-                                                                <Border.Background>
-                                                                    <ImageBrush Stretch="UniformToFill"
-                                                                                ImageSource="/HospitalManagement;component/Images/man.png"/>
-                                                                </Border.Background>
-                                                            </Border>
-                                                            <Border CornerRadius="20" 
-                                                                    Height="40" 
-                                                                    Width="40" 
-                                                                    Margin="-10 0 0 0">
-                                                                <Border.Background>
-                                                                    <ImageBrush Stretch="UniformToFill" 
-                                                                                ImageSource="/HospitalManagement;component/Images/profile.png"/>
-                                                                </Border.Background>
-                                                            </Border>
-                                                            <Border CornerRadius="20" 
-                                                                    Height="40" 
-                                                                    Width="40" 
-                                                                    Margin="-10 0 0 0">
-                                                                <Border.Background>
-                                                                    <ImageBrush Stretch="UniformToFill" 
-                                                                                ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
-                                                                </Border.Background>
-                                                            </Border>
+                                                        <TextBlock Text="{Binding Value.ID}" 
+                                                                   Visibility="Collapsed"
+                                                                   x:Name="TaskID"/>
+                                                        <TextBlock Text="{Binding Value.TIEUDE}"
+                                                               FontWeight="Bold"
+                                                               FontSize="15"
+                                                               Margin="15 0 10 10"/>
+                                                        <StackPanel Orientation="Horizontal" Margin="15 0">
+                                                            <materialDesign:PackIcon Kind="MapMarker" 
+                                                                                     Margin="0 5 5 5" 
+                                                                                     VerticalAlignment="Center"/>
+                                                            <TextBlock Margin="0"
+                                                                       FontSize="14"
+                                                                       TextWrapping="Wrap"
+                                                                       VerticalAlignment="Center"
+                                                                       Text="{Binding Value.DIADIEM}"/>
                                                         </StackPanel>
-                                                        <ToggleButton Content="{materialDesign:PackIcon Kind=CheckOutline, Size=21}"
-                                                                      Style="{StaticResource PriorityToggleButton}"
-                                                                      IsChecked="{Binding IsCurrentUserComplete, Mode=OneWay}"
-                                                                      Command="{Binding Path=DataContext.CheckToggleButtonTaskCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
-                                                                      CommandParameter="{Binding ElementName=TaskID, Path=Text}"
-                                                                      Visibility="{Binding ToggleButtonVisibility}"
-                                                                      Height="40"
-                                                                      Width="40"
-                                                                      HorizontalAlignment="Right"/>
-                                                    </Grid>
+                                                        <StackPanel Orientation="Horizontal" Margin="15 0">
+                                                            <Label Content="Bắt đầu: " 
+                                                                   Margin="0" 
+                                                                   FontSize="14" 
+                                                                   FontWeight="SemiBold"
+                                                                   VerticalContentAlignment="Center"/>
+                                                            <TextBlock FontSize="13" 
+                                                                       FontWeight="Regular" 
+                                                                       Text="{Binding Value.BATDAU}"
+                                                                       VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" Margin="15 0">
+                                                            <Label Content="Kết thúc: " 
+                                                                   Margin="0" 
+                                                                   FontSize="14" 
+                                                                   FontWeight="SemiBold" 
+                                                                   VerticalContentAlignment="Center"/>
+                                                            <TextBlock FontSize="13" 
+                                                                       FontWeight="Regular" 
+                                                                       Text="{Binding Value.KETTHUC}"
+                                                                       VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5 0 0">
+                                                            <Border Width="220" 
+                                                                    Height="4"
+                                                                    CornerRadius="2"
+                                                                    Margin="15 0 10 0"
+                                                                    Style="{StaticResource PriorityBorder}">
+                                                                <ProgressBar HorizontalAlignment="Left"
+                                                                             VerticalAlignment="Center"
+                                                                             BorderThickness="0"
+                                                                             Value="{Binding NumberCompletedPeople, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                             Maximum="{Binding NumberInvolvePeople, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                             Background="{x:Null}"/>
+                                                            </Border>
+                                                            <TextBlock FontSize="10"
+                                                                       FontWeight="Bold"
+                                                                       HorizontalAlignment="Right" 
+                                                                       VerticalAlignment="Center">
+                                                                <TextBlock.Text>
+                                                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                                                        <Binding Path="NumberCompletedPeople" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"/>
+                                                                        <Binding Path="NumberInvolvePeople" />
+                                                                    </MultiBinding>
+                                                                </TextBlock.Text>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <Grid Margin="25 15 15 0">
+                                                            <StackPanel Orientation="Horizontal"
+                                                                        HorizontalAlignment="Left">
+                                                                <Border CornerRadius="20" 
+                                                                        Height="40" 
+                                                                        Width="40" 
+                                                                        Margin="-10 0 0 0">
+                                                                    <Border.Background>
+                                                                        <ImageBrush Stretch="UniformToFill"
+                                                                                    ImageSource="/HospitalManagement;component/Images/man.png"/>
+                                                                    </Border.Background>
+                                                                </Border>
+                                                                <Border CornerRadius="20" 
+                                                                        Height="40" 
+                                                                        Width="40" 
+                                                                        Margin="-10 0 0 0">
+                                                                    <Border.Background>
+                                                                        <ImageBrush Stretch="UniformToFill" 
+                                                                                    ImageSource="/HospitalManagement;component/Images/profile.png"/>
+                                                                    </Border.Background>
+                                                                </Border>
+                                                                <Border CornerRadius="20" 
+                                                                        Height="40" 
+                                                                        Width="40" 
+                                                                        Margin="-10 0 0 0">
+                                                                    <Border.Background>
+                                                                        <ImageBrush Stretch="UniformToFill" 
+                                                                                    ImageSource="/HospitalManagement;component/Images/doctoravatar.png"/>
+                                                                    </Border.Background>
+                                                                </Border>
+                                                            </StackPanel>
+                                                            <ToggleButton Content="{materialDesign:PackIcon Kind=CheckOutline, Size=21}"
+                                                                          Style="{StaticResource PriorityToggleButton}"
+                                                                          IsChecked="{Binding IsCurrentUserComplete, Mode=OneWay}"
+                                                                          Command="{Binding Path=DataContext.CheckToggleButtonTaskCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                                                                          CommandParameter="{Binding ElementName=TaskID, Path=Text}"
+                                                                          Visibility="{Binding ToggleButtonVisibility}"
+                                                                          Height="40"
+                                                                          Width="40"
+                                                                          HorizontalAlignment="Right"/>
+                                                        </Grid>
+                                                    </StackPanel>
                                                 </StackPanel>
-                                            </StackPanel>
-                                        </TextBlock>
+                                            </TextBlock>
+                                        </Border>
                                     </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
