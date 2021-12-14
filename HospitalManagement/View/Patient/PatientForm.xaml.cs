@@ -34,11 +34,14 @@ namespace HospitalManagement.View
             listIDGiuong.Clear();
             cbxSoGiuong.ItemsSource = null;
             PHONG p = DataProvider.Ins.DB.PHONGs.Find(cbxIDPhong.SelectedItem);
-            for(int i = 0; i < p.SUCCHUA; i ++)
+            if (p != null)
             {
-                listIDGiuong.Add(i + 1);
-            }
-            cbxSoGiuong.ItemsSource = listIDGiuong;
+                for (int i = 0; i < p.SUCCHUA; i++)
+                {
+                    listIDGiuong.Add(i + 1);
+                }
+                cbxSoGiuong.ItemsSource = listIDGiuong;
+            }             
         }
     }
 }
