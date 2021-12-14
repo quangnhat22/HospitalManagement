@@ -522,6 +522,7 @@
                                                                       IsChecked="{Binding IsCurrentUserComplete, Mode=OneWay}"
                                                                       Command="{Binding Path=DataContext.CheckToggleButtonTaskCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
                                                                       CommandParameter="{Binding ElementName=TaskID, Path=Text}"
+                                                                      Visibility="{Binding ToggleButtonVisibility}"
                                                                       Height="40"
                                                                       Width="40"
                                                                       HorizontalAlignment="Right"/>

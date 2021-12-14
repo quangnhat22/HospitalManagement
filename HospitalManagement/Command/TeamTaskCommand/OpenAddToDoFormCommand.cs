@@ -16,8 +16,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
 
         public OpenAddToDoFormCommand(StaffRoleTeamTaskViewModel staffRoleTeamTaskViewModel)
         {
-            this.staffRoleTeamTaskViewModel = staffRoleTeamTaskViewModel;
+            this.StaffRoleTeamTaskViewModel = staffRoleTeamTaskViewModel;
         }
+
+        public StaffRoleTeamTaskViewModel StaffRoleTeamTaskViewModel { get => staffRoleTeamTaskViewModel; set => staffRoleTeamTaskViewModel = value; }
 
         public event EventHandler CanExecuteChanged
         {
@@ -35,7 +37,7 @@ namespace HospitalManagement.Command.TeamTaskCommand
             Window window = parameter as Window;
             AddToDoForm addToDoForm = new AddToDoForm();
             AddToDoFormViewModel addToDoFormViewModel = addToDoForm.DataContext as AddToDoFormViewModel;
-            addToDoFormViewModel.Owner = staffRoleTeamTaskViewModel;
+            addToDoFormViewModel.Owner = StaffRoleTeamTaskViewModel;
             Application.Current.MainWindow = addToDoForm;
             addToDoForm.Show();
         }
