@@ -13,7 +13,7 @@
         TextElement.FontFamily="Intern"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="LoginWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
