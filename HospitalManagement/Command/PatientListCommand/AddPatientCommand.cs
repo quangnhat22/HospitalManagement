@@ -87,6 +87,14 @@ namespace HospitalManagement.Command
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(pf.txbMaBN.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mã bệnh nhân");
+                notifyWindow.ShowDialog();
+                pf.txbMaBN.Focus();
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(pf.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
@@ -257,8 +265,6 @@ namespace HospitalManagement.Command
                 pf.cbxSoGiuong.Focus();
                 return false;
             }
-               
-
             return true;
         }
         private bool CheckCombobox(string text, ComboBox cbx)

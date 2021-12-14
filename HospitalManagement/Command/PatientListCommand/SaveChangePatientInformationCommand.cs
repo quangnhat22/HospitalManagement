@@ -51,9 +51,9 @@ namespace HospitalManagement.Command
                 beBenhNen.UpdateSource();
                 BindingExpression beTinhTrang = patientForm.cbxTinhTrang.GetBindingExpression(ComboBox.TextProperty);
                 beTinhTrang.UpdateSource();
-                BindingExpression beIDPhong = patientForm.txbIDPhong.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beIDPhong = patientForm.cbxIDPhong.GetBindingExpression(ComboBox.TextProperty);
                 beIDPhong.UpdateSource();
-                BindingExpression beSoGiuong = patientForm.txbSoGiuong.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beSoGiuong = patientForm.cbxSoGiuong.GetBindingExpression(ComboBox.TextProperty);
                 beSoGiuong.UpdateSource();
                 BindingExpression beGhiChu = patientForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
@@ -128,15 +128,6 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(pf.txbCMND_CCCD.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập CMND_CCCD");
-                notifyWindow.ShowDialog();
-                pf.txbCMND_CCCD.Focus();
-                return false;
-            }
-
-
             if (string.IsNullOrWhiteSpace(pf.txbNGNhapVien.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn ngày nhập viện");
@@ -159,37 +150,63 @@ namespace HospitalManagement.Command
                 pf.cbxTinhTrang.Focus();
                 return false;
             }
-
-
-            if (string.IsNullOrWhiteSpace(pf.txbSoGiuong.Text))
+            if (string.IsNullOrWhiteSpace(pf.cbxSoGiuong.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập số giường");
                 notifyWindow.ShowDialog();
                 pf.cbxTinhTrang.Focus();
                 return false;
             }
-            //Kiểm tra MaBN
-            //Kiem tra phong
-            try
+            
+            if (pf.txbNGSinh.SelectedDate > DateTime.Now)
             {
-                int idPhong = int.Parse(pf.txbIDPhong.Text);
-                var checkPHONG = DataProvider.Ins.DB.PHONGs.Any(x => x.ID == idPhong);
-                if (checkPHONG == false)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Phòng không tồn tại");
-                    notifyWindow.ShowDialog();
-                    pf.txbIDPhong.Focus();
-                    return false;
-                }
-            }
-            catch (FormatException)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Phòng là một số nguyên dương");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
                 notifyWindow.ShowDialog();
-                pf.txbIDPhong.Focus();
+                pf.txbNGSinh.Focus();
+                return false;
+            }
+            if (pf.txbNGSinh.SelectedDate >= pf.txbNGNhapVien.SelectedDate || pf.txbNGNhapVien.SelectedDate > DateTime.Now)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày nhập viện không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.txbNGNhapVien.Focus();
+                return false;
+            }
+            if (!CheckCombobox(pf.cbxIDPhong.Text, pf.cbxIDPhong))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID phòng không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.cbxIDPhong.Focus();
+                return false;
+            }
+            if (!CheckCombobox(pf.cbxSoGiuong.Text, pf.cbxSoGiuong))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Số giường không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.cbxSoGiuong.Focus();
+                return false;
+            }
+            //Kiem tra phong
+            int idPhong = int.Parse(pf.cbxIDPhong.Text);
+            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.IDPHONG == idPhong && x.GIUONGBENH == pf.cbxSoGiuong.Text && x.CMND_CCCD != pf.txbCMND_CCCD.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Giường bệnh đã có bệnh nhân");
+                notifyWindow.ShowDialog();
+                pf.cbxSoGiuong.Focus();
                 return false;
             }
             return true;
+        }
+        private bool CheckCombobox(string text, ComboBox cbx)
+        {
+            foreach (var item in cbx.Items)
+            {
+                if (item.ToString() == text)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
