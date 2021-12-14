@@ -15,12 +15,16 @@ namespace HospitalManagement.ViewModel
     {
         public DataProvider db;
         private PatientViewModel patientViewModel;
+        private List<int> listIDPhong = new List<int>();
         public ICommand AddPatient { get; set; }
+        public List<int> ListIDPhong { get => listIDPhong; set => listIDPhong = value; }
         public PatientFormViewModel(PatientViewModel patientViewModel)
         {
             db = new DataProvider();
             this.patientViewModel = patientViewModel;
             AddPatient = new AddPatientCommand(this, this.patientViewModel);
+            var groupListData = DataProvider.Ins.DB.PHONGs.ToList().ConvertAll(itemGroup => itemGroup.ID);
+            ListIDPhong.AddRange(groupListData);
         }
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
@@ -56,8 +60,8 @@ namespace HospitalManagement.ViewModel
                     if (patientForm.txbHo.Text != NullToString(bn.HO) || patientForm.txbTen.Text != NullToString(bn.TEN) || patientForm.txbBenhNen.Text != NullToString(bn.BENHNEN) ||
                         patientForm.txbQuocTich.Text != NullToString(bn.QUOCTICH) || patientForm.txbDiaChi.Text != NullToString(bn.DIACHI) || patientForm.txbEmail.Text != NullToString(bn.EMAIL) ||
                          patientForm.txbGhiChu.Text != NullToString(bn.GHICHU) || patientForm.txbSDT.Text != NullToString(bn.SDT) || patientForm.cbxTinhTrang.Text != NullToString(bn.TINHTRANG) ||
-                          gioitinh != (bool)bn.GIOITINH || patientForm.txbNGSinh.Text != dateBirth || patientForm.txbNGNhapVien.Text != dateNV || patientForm.txbIDPhong.Text != bn.IDPHONG.ToString() ||
-                           patientForm.txbSoGiuong.Text != bn.GIUONGBENH)
+                          gioitinh != (bool)bn.GIOITINH || patientForm.txbNGSinh.Text != dateBirth || patientForm.txbNGNhapVien.Text != dateNV || patientForm.cbxIDPhong.Text != bn.IDPHONG.ToString() ||
+                           patientForm.cbxSoGiuong.Text != bn.GIUONGBENH)
                     {
                         return true;
                     }
@@ -77,7 +81,7 @@ namespace HospitalManagement.ViewModel
                         patientForm.txbQuocTich.Text != string.Empty || patientForm.txbDiaChi.Text != string.Empty || patientForm.txbEmail.Text != string.Empty ||
                          patientForm.txbGhiChu.Text != string.Empty || patientForm.txbSDT.Text != string.Empty || patientForm.cbxTinhTrang.Text != string.Empty ||
                           patientForm.cbxGioiTinh.Text != string.Empty || patientForm.txbNGSinh.Text != string.Empty || patientForm.txbNGNhapVien.Text != string.Empty || 
-                          patientForm.txbIDPhong.Text != string.Empty || patientForm.txbSoGiuong.Text != string.Empty)
+                          patientForm.cbxIDPhong.Text != string.Empty || patientForm.cbxSoGiuong.Text != string.Empty)
                 {
                     return true;
                 }

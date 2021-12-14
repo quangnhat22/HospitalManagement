@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace HospitalManagement.Command
@@ -55,8 +56,8 @@ namespace HospitalManagement.Command
                     NGNHAPVIEN = patientForm.txbNGNhapVien.SelectedDate,
                     BENHNEN = patientForm.txbBenhNen.Text,
                     TINHTRANG = patientForm.cbxTinhTrang.Text,
-                    IDPHONG = Convert.ToInt32(patientForm.txbIDPhong.Text),
-                    GIUONGBENH = patientForm.txbSoGiuong.Text,
+                    IDPHONG = Convert.ToInt32(patientForm.cbxIDPhong.Text),
+                    GIUONGBENH = patientForm.cbxSoGiuong.Text,
                     GHICHU = patientForm.txbGhiChu.Text,
                 };
                 DataProvider.Ins.DB.BENHNHANs.Add(patientInput);
@@ -83,6 +84,14 @@ namespace HospitalManagement.Command
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
                 pf.txbTen.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(pf.txbMaBN.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mã bệnh nhân");
+                notifyWindow.ShowDialog();
+                pf.txbMaBN.Focus();
                 return false;
             }
 
@@ -164,13 +173,20 @@ namespace HospitalManagement.Command
                 pf.cbxTinhTrang.Focus();
                 return false;
             }
-            
 
-            if (string.IsNullOrWhiteSpace(pf.txbSoGiuong.Text))
+            if (string.IsNullOrWhiteSpace(pf.cbxIDPhong.Text))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập số giường");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn ID phòng");
                 notifyWindow.ShowDialog();
-                pf.cbxTinhTrang.Focus();
+                pf.cbxIDPhong.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(pf.cbxSoGiuong.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn số giường");
+                notifyWindow.ShowDialog();
+                pf.cbxSoGiuong.Focus();
                 return false;
             }
             //Kiểm tra MaBN
@@ -182,7 +198,7 @@ namespace HospitalManagement.Command
                 return false;
                 
             }
-            //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
+            //Kiểm tra CMND 
             if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.CMND_CCCD == pf.txbCMND_CCCD.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
@@ -204,27 +220,63 @@ namespace HospitalManagement.Command
                 pf.txbCMND_CCCD.Focus();
                 return false;
             }
-            //Kiem tra phong
-            try
+            if (DataProvider.Ins.DB.ADMINs.Any(x => x.ID == pf.txbCMND_CCCD.Text))
             {
-                int idPhong = int.Parse(pf.txbIDPhong.Text);
-                var checkPHONG = DataProvider.Ins.DB.PHONGs.Any(x => x.ID == idPhong);
-                if (checkPHONG == false)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Phòng không tồn tại");
-                    notifyWindow.ShowDialog();
-                    pf.txbIDPhong.Focus();
-                    return false;
-                }
-            }
-            catch (FormatException)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Phòng là một số nguyên dương");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Trùng mã CMND_CCCD");
                 notifyWindow.ShowDialog();
-                pf.txbIDPhong.Focus();
+                pf.txbCMND_CCCD.Focus();
+                return false;
+            }
+            if (pf.txbNGSinh.SelectedDate > DateTime.Now)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.txbNGSinh.Focus();
+                return false;
+            }
+            if (pf.txbNGSinh.SelectedDate >= pf.txbNGNhapVien.SelectedDate || pf.txbNGNhapVien.SelectedDate > DateTime.Now)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày nhập viện không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.txbNGNhapVien.Focus();
+                return false;
+            }
+            //Kiem tra giuong
+            if (!CheckCombobox(pf.cbxIDPhong.Text, pf.cbxIDPhong))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID phòng không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.cbxIDPhong.Focus();
+                return false;
+            }
+            if (!CheckCombobox(pf.cbxSoGiuong.Text, pf.cbxSoGiuong))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Số giường không hợp lệ");
+                notifyWindow.ShowDialog();
+                pf.cbxSoGiuong.Focus();
+                return false;
+            }
+            //Kiem tra giuong
+            int idPhong = int.Parse(pf.cbxIDPhong.Text);
+            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.IDPHONG == idPhong && x.GIUONGBENH == pf.cbxSoGiuong.Text))
+            {                
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Giường bệnh đã có bệnh nhân");
+                notifyWindow.ShowDialog();
+                pf.cbxSoGiuong.Focus();
                 return false;
             }
             return true;
+        }
+        private bool CheckCombobox(string text, ComboBox cbx)
+        {
+            foreach (var item in cbx.Items)
+            {
+                if (item.ToString() == text)
+                {
+                    return true;
+                }    
+            }
+            return false;
         }
     }
 }
