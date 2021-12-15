@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:HospitalManagement.View.Others"
         Title="MainWindow" Height="810" Width="1447"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -13,243 +14,263 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" 
         ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen"
-        x:Name="mainwindow">
+        AllowsTransparency="True"
+        x:Name="mainwindow" 
+        WindowStyle="None"
+        Background="Transparent">
     <Window.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" 
-              Width="1383" Height="733" Margin="0,0,-0.2,0">
-            <UserControl Content="{Binding SelectedViewModel}" Margin="10,10,0,0"></UserControl>
-        </Grid>
-        <Grid Height="50" VerticalAlignment="Top">
-            <Grid.Background>
-                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                    <GradientStop Color="#35a0fe" Offset="1"/>
-                    <GradientStop Color="#35a0fe" Offset="0.093"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <materialDesign:PopupBox
-                HorizontalAlignment="Right" Margin="0,0,19.8,0"
-                                     PlacementMode="BottomAndAlignRightEdges">
-                <materialDesign:PopupBox.ToggleContent>
-                    <materialDesign:PackIcon Kind="ArrowDownDropCircleOutline" Width="30" Height="auto"
-                                             Foreground="White" FontWeight="ExtraLight"></materialDesign:PackIcon>
-                </materialDesign:PopupBox.ToggleContent>
-                <StackPanel>
-                    <Button Command="{Binding OpenAccountSetting}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"
-                                                     Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Tài khoản</TextBlock>
-                        </StackPanel>
-                    </Button>
-                    <Button Command="{Binding ShowAboutCommand}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
-                                                     Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Về FHMS</TextBlock>
-                        </StackPanel>
-                    </Button>
-                    <Button Command="{Binding OpenReportForm}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 -5"
-                                                     Width="25" Height="auto"></materialDesign:PackIcon>
-                            <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Đóng góp</TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </materialDesign:PopupBox>
-        </Grid>
-        <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left"  
-          ClipToBounds="True"
-          ScrollViewer.CanContentScroll="False" MouseLeave="GridNavigate_MouseLeave">
-            <Grid.Resources>
-                <Storyboard x:Key="MenuOpen" x:Name="OpenStoryBoard">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"></EasingDoubleKeyFrame>
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="0"></EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"></EasingDoubleKeyFrame>
-                    </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-                <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"></EasingDoubleKeyFrame>
-                    </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="1"></EasingDoubleKeyFrame>
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"></EasingDoubleKeyFrame>
-                    </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-            </Grid.Resources>
-            <Grid.Triggers>
-                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnOpenMenu">
-                    <BeginStoryboard Storyboard="{StaticResource MenuOpen}"></BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnCloseMenu">
-                    <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
-                </EventTrigger>
-            </Grid.Triggers>
-            <Grid>
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#35a0fe" Offset="0.2"/>
-                        <GradientStop Color="#b2eeff" Offset="1"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid x:Name="Logo" Opacity="0">
-                        <materialDesign:PackIcon Kind="HospitalBoxOutline" 
-                                                 Foreground="White"
-                                                 VerticalAlignment="Top"
-                                                 Margin=" 5 0 0 0"
-                                                 Width="50"
-                                                 Height="auto"
-                                                 x:Name="LogoIcon"
-                                                 />
+    <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="#4dabf7">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=mainWindow}"></uc:ControlBarUC>
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="0 0 10 10">
+                <Grid Background="Transparent">
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                              Width="1383" Height="733" Margin="0,0,0,0"
+                              Background="Transparent">
+                        <Border CornerRadius="0 0 10 10" Background="White" >
+                            <UserControl Margin="0 0 5 5" Content="{Binding SelectedViewModel}" Background="Transparent" />
+                        </Border>
                     </Grid>
-                    <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
-                        Background="{x:Null}" BorderBrush="{x:Null}"
-                        Foreground="White"
-                        Visibility="Collapsed"
-                        Click="Btn_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-                    <Button x:Name="BtnOpenMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
-                        Background="{x:Null}" BorderBrush="{x:Null}" 
-                        Foreground="White"
-                        Click="Btn_Click">
-                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Button>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <ListView x:Name="ListViewNavigate"
-                        Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem"
-                                   BasedOn="{StaticResource MaterialDesignListBoxItem}">
-                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding SelectViewCommand}" 
-                                                       CommandParameter="{Binding ElementName=ListViewNavigate, Path=SelectedItem}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <ListViewItem Height="60" 
-                                      Tag="Home">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Trang chủ" VerticalAlignment="Center" Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="Staff"
-                                      Visibility="{Binding StaffTabVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Doctor" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Nhân viên" VerticalAlignment="Center" Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="Patient"
-                                      Visibility="{Binding PatientTabVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Bệnh Nhân" VerticalAlignment="Center"  Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="Rooms">
+                    <Grid Height="50" VerticalAlignment="Top">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                <GradientStop Color="#35a0fe" Offset="1"/>
+                                <GradientStop Color="#35a0fe" Offset="0.093"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <materialDesign:PopupBox
+                            HorizontalAlignment="Right" Margin="0,0,19.8,0"
+                                                 PlacementMode="BottomAndAlignRightEdges">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="ArrowDownDropCircleOutline" Width="30" Height="auto"
+                                                         Foreground="White" FontWeight="ExtraLight"></materialDesign:PackIcon>
+                            </materialDesign:PopupBox.ToggleContent>
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal" Visibility="{Binding AdminRolesVisibility}">
-                                    <materialDesign:PackIcon Kind="HospitalBuilding" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Tòa" VerticalAlignment="Center"  Margin="20 10"/>
-                                </StackPanel>
+                                <Button Command="{Binding OpenAccountSetting}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="AccountCogOutline" Margin="5 0 5 0"
+                                                                 Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Tài khoản</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button Command="{Binding ShowAboutCommand}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
+                                                                 Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Về FHMS</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button Command="{Binding OpenReportForm}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 -5"
+                                                                 Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Đóng góp</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
+                    </Grid>
+                    <Grid x:Name="GridNavigate" Width="60" HorizontalAlignment="Left"  
+                      ClipToBounds="True"
+                      ScrollViewer.CanContentScroll="False" MouseLeave="GridNavigate_MouseLeave">
+                        <Grid.Resources>
+                            <Storyboard x:Key="MenuOpen" x:Name="OpenStoryBoard">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"></EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"></EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"></EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="MenuClose" x:Name="CloseStoryBoard">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigate">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="{Binding RelativeSource={RelativeSource AncestorType=Grid, Mode=FindAncestor}, Path=Width}"></EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"></EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Opacity)" Storyboard.TargetName="Logo">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="1"></EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"></EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Grid.Resources>
+                        <Grid.Triggers>
+                            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnOpenMenu">
+                                <BeginStoryboard Storyboard="{StaticResource MenuOpen}"></BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="BtnCloseMenu">
+                                <BeginStoryboard Storyboard="{StaticResource MenuClose}"></BeginStoryboard>
+                            </EventTrigger>
+                        </Grid.Triggers>
+                        <Border CornerRadius="0 0 0 10">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#35a0fe" Offset="0.2"/>
+                                    <GradientStop Color="#b2eeff" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid Background="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="60"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid x:Name="Logo" Opacity="0">
+                                        <materialDesign:PackIcon Kind="HospitalBoxOutline" 
+                                                                 Foreground="White"
+                                                                 VerticalAlignment="Top"
+                                                                 Margin=" 5 0 0 0"
+                                                                 Width="50"
+                                                                 Height="auto"
+                                                                 x:Name="LogoIcon"
+                                                                 />
+                                    </Grid>
+                                    <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                                        Background="{x:Null}" BorderBrush="{x:Null}"
+                                        Foreground="White"
+                                        Visibility="Collapsed"
+                                        Click="Btn_Click">
+                                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Button>
+                                    <Button x:Name="BtnOpenMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                                        Background="{x:Null}" BorderBrush="{x:Null}" 
+                                        Foreground="White"
+                                        Click="Btn_Click">
+                                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Button>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <ListView x:Name="ListViewNavigate"
+                                        Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem"
+                                                   BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectViewCommand}" 
+                                                                       CommandParameter="{Binding ElementName=ListViewNavigate, Path=SelectedItem}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <ListViewItem Height="60" 
+                                                      Tag="Home">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Trang chủ" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="Staff"
+                                                      Visibility="{Binding StaffTabVisibility}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Doctor" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Nhân viên" VerticalAlignment="Center" Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="Patient"
+                                                      Visibility="{Binding PatientTabVisibility}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Account" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Bệnh Nhân" VerticalAlignment="Center"  Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="Rooms">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal" Visibility="{Binding AdminRolesVisibility}">
+                                                    <materialDesign:PackIcon Kind="HospitalBuilding" Height="25" Width="25" Margin="10"/>
+                                                    <TextBlock Text="Tòa" VerticalAlignment="Center"  Margin="20 10"/>
+                                                </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Visibility="{Binding StaffRolesVisibility}">
-                                    <materialDesign:PackIcon Kind="BunkBed" Height="25" Width="25" Margin="10"/>
-                                    <TextBlock Text="Phòng" VerticalAlignment="Center"  Margin="20 10"/>
-                                </StackPanel>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="Teams">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Tổ" VerticalAlignment="Center"  Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="AddStaff"
-                                      Visibility="{Binding AdminRolesVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="AccountPlus" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Thêm nhân sự" VerticalAlignment="Center"  Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                        <ListViewItem Height="60"
-                                      Tag="TeamTask"
-                                      Visibility="{Binding StaffRolesVisibility}">
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="ClipboardList" Height="25" Width="25" Margin="10"/>
-                                <TextBlock Text="Công việc" VerticalAlignment="Center"  Margin="20 10"/>
-                            </StackPanel>
-                        </ListViewItem>
-                    </ListView>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <Button
-                            x:Name="btnLogin"
-                            Width="auto"
-                            Height="45"
-                            Background="#35a0fe"
-                            Style="{StaticResource MaterialDesignFlatButton}"
-                            BorderThickness="2"
-                            BorderBrush="#35a0fe"
-                            Margin="5 0 5 -3"
-                            HorizontalContentAlignment="Stretch"
-                            Foreground="White"
-                            Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}">
-                        <Button.Content>
-                            <Grid>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        <ColumnDefinition></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="0">
-                                        <materialDesign:PackIcon Kind="Logout" 
-                                                                 Height="25" 
-                                                                 Width="25" 
-                                                                 Margin="-3 0 -13 0"/>
-                                    </Grid>
-                                    <Grid Grid.Column="1">
-                                        <TextBlock Text="Đăng xuất" 
-                                                   VerticalAlignment="Center" 
-                                                   Visibility="Visible" 
-                                                   Margin="43 0 0 0"/>
-                                    </Grid>
+                                                <StackPanel Orientation="Horizontal" Visibility="{Binding StaffRolesVisibility}">
+                                                    <materialDesign:PackIcon Kind="BunkBed" Height="25" Width="25" Margin="10"/>
+                                                    <TextBlock Text="Phòng" VerticalAlignment="Center"  Margin="20 10"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="Teams">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="AccountGroup" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Tổ" VerticalAlignment="Center"  Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="AddStaff"
+                                                      Visibility="{Binding AdminRolesVisibility}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="AccountPlus" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Thêm nhân sự" VerticalAlignment="Center"  Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                        <ListViewItem Height="60"
+                                                      Tag="TeamTask"
+                                                      Visibility="{Binding StaffRolesVisibility}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="ClipboardList" Height="25" Width="25" Margin="10"/>
+                                                <TextBlock Text="Công việc" VerticalAlignment="Center"  Margin="20 10"/>
+                                            </StackPanel>
+                                        </ListViewItem>
+                                    </ListView>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Button
+                                            x:Name="btnLogin"
+                                            Width="auto"
+                                            Height="45"
+                                            Background="#35a0fe"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            BorderThickness="2"
+                                            BorderBrush="#35a0fe"
+                                            Margin="5 0 5 -3"
+                                            HorizontalContentAlignment="Stretch"
+                                            Foreground="White"
+                                            Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainwindow}">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                        <ColumnDefinition></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0">
+                                                        <materialDesign:PackIcon Kind="Logout" 
+                                                                                 Height="25" 
+                                                                                 Width="25" 
+                                                                                 Margin="-3 0 -13 0"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="1">
+                                                        <TextBlock Text="Đăng xuất" 
+                                                                   VerticalAlignment="Center" 
+                                                                   Visibility="Visible" 
+                                                                   Margin="43 0 0 0"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
                                 </Grid>
                             </Grid>
-                        </Button.Content>
-                    </Button>
+                        </Border>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Border>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

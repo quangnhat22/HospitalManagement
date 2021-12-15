@@ -16,10 +16,11 @@ namespace HospitalManagement.ViewModel
      class DoctorInformationViewModel : INotifyPropertyChanged
     {
         private BACSI doctor;        
-        public BACSI Doctor { get => doctor; set => doctor = value;}       
+        public BACSI Doctor { get => doctor; set => doctor = value;}
+        private List<int> listIDTo = new List<int>();
         public ICommand SaveChange { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public List<int> ListIDTo { get => listIDTo; set => listIDTo = value; }
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(name));
@@ -28,6 +29,8 @@ namespace HospitalManagement.ViewModel
         {
             this.Doctor = bs;
             SaveChange = new SaveChangeDoctorInformationCommand();
+            var groupListData = DataProvider.Ins.DB.TOes.ToList().ConvertAll(itemGroup => itemGroup.ID);
+            ListIDTo.AddRange(groupListData);
         }
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
@@ -57,7 +60,7 @@ namespace HospitalManagement.ViewModel
             if (doctorForm.txbHo.Text != NullToString(bs.HO) || doctorForm.txbTen.Text != NullToString(bs.TEN) || doctorForm.txbChuyenKhoa.Text != NullToString(bs.CHUYENKHOA) ||
                 doctorForm.txbQuocTich.Text != NullToString(bs.QUOCTICH) || doctorForm.txbDiaChi.Text != NullToString(bs.DIACHI) || doctorForm.txbEmail.Text != NullToString(bs.EMAIL) ||
                  doctorForm.txbGhiChu.Text != NullToString(bs.GHICHU) || doctorForm.txbSDT.Text != NullToString(bs.SDT) || doctorForm.txbVaiTro.Text != NullToString(bs.VAITRO) ||
-                 doctorForm.txbIDTO.Text != bs.IDTO.ToString() || gioitinh != (bool)bs.GIOITINH || doctorForm.txbNGSinh.Text != date)
+                 doctorForm.cbxIDTO.Text != bs.IDTO.ToString() || gioitinh != (bool)bs.GIOITINH || doctorForm.txbNGSinh.Text != date)
             {
                 return true;
             }

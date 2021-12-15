@@ -26,7 +26,7 @@
     <Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding OpenMainWindow}"></KeyBinding>
     </Window.InputBindings>
-    <Border CornerRadius="10">
+    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#4dabf7">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
