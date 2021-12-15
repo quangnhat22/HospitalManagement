@@ -176,7 +176,16 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox Text="{Binding Nurse.IDTO, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbIDTO"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <ComboBox Text="{Binding Nurse.IDTO, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                                          x:Name="cbxIDTO"  
+                                          Margin="0,0,0,5" 
+                                          HorizontalAlignment="Left" 
+                                          Width="200" 
+                                          Foreground="Black"  
+                                          FontSize="20"
+                                          IsEditable="True"
+                                          ItemsSource="{Binding ListIDTo}"
+                                          Grid.Row="1" />
                             </Grid>
                         </StackPanel>
                         <StackPanel Height="190" Orientation="Horizontal">

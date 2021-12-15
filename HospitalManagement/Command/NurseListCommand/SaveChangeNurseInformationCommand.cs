@@ -50,7 +50,7 @@ namespace HospitalManagement.Command
                 beChuyenKhoa.UpdateSource();
                 BindingExpression beVaiTro = nurseForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
                 beVaiTro.UpdateSource();
-                BindingExpression beIDTO = nurseForm.txbIDTO.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beIDTO = nurseForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
                 beIDTO.UpdateSource();
                 BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
@@ -143,35 +143,33 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbIDTO.Text))
+            if (string.IsNullOrWhiteSpace(cnf.cbxIDTO.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
                 notifyWindow.ShowDialog();
-                cnf.txbVaiTro.Focus();
+                cnf.cbxIDTO.Focus();
                 return false;
             }
-
-            try
+            if (!CheckCombobox(cnf.cbxIDTO.Text, cnf.cbxIDTO))
             {
-                int idTo = int.Parse(cnf.txbIDTO.Text);
-                var checkTO = DataProvider.Ins.DB.TOes.Any(x => x.ID == idTo);
-                if (checkTO == false)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
-                    notifyWindow.ShowDialog();
-                    cnf.txbIDTO.Focus();
-                    return false;
-                }
-            }
-            catch (FormatException)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Tổ là một số nguyên dương");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
                 notifyWindow.ShowDialog();
-                cnf.txbIDTO.Focus();
+                cnf.cbxIDTO.Focus();
                 return false;
             }
 
             return true;
+        }
+        private bool CheckCombobox(string text, ComboBox cbx)
+        {
+            foreach (var item in cbx.Items)
+            {
+                if (item.ToString() == text)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
