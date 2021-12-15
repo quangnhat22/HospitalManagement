@@ -1,6 +1,7 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
 using HospitalManagement.View;
+using HospitalManagement.View.Others;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -62,11 +63,21 @@ namespace HospitalManagement.Command
 
         private void LoginSuccessful()
         {
-            MainWindowViewModel.User = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
+            USER user = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == loginWindowViewModel.Username).First();
             Window window = Application.Current.MainWindow as Window;
-            MainWindow mainWindow = new MainWindow();
-            Application.Current.MainWindow = new MainWindow();
-            Application.Current.MainWindow.Show();
+            if (isFirstTimeLogin(user))
+            {
+                FirstLoginWindow firstLoginWindow = new FirstLoginWindow();
+                Application.Current.MainWindow = firstLoginWindow;
+                Application.Current.MainWindow.Show();
+            }
+            else
+            {
+                MainWindowViewModel.User = user;
+                MainWindow mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
+                Application.Current.MainWindow.Show();
+            }
             window.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>
             {
@@ -92,6 +103,45 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();
                 return false;
             }
+        }
+
+        private bool isFirstTimeLogin(USER user)
+        {
+            if (user.ROLE == "doctor" || user.ROLE == "leader")
+            {
+                BACSI bacsi = user.BACSIs.FirstOrDefault();
+                if (isAllArgumentsNull(bacsi.HO, bacsi.TEN, bacsi.SDT, bacsi.EMAIL, bacsi.QUOCTICH, bacsi.DIACHI))
+                {
+                    return true;
+                }
+            }
+            else if (user.ROLE == "nurse")
+            {
+                YTA yta = user.YTAs.FirstOrDefault();
+                if (isAllArgumentsNull(yta.HO, yta.TEN, yta.SDT, yta.EMAIL, yta.QUOCTICH, yta.DIACHI))
+                {
+                    return true;
+                }
+            }
+            else if (user.ROLE == "admin")
+            {
+                ADMIN admin = user.ADMINs.FirstOrDefault();
+                if (isAllArgumentsNull(admin.HO, admin.TEN, admin.SDT, admin.EMAIL, admin.QUOCTICH, admin.DIACHI))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool isAllArgumentsNull(params Object[] args)
+        {
+            foreach (Object o in args)
+            {
+                if (o != null)
+                    return false;
+            }
+            return true;
         }
     }
 }
