@@ -24,7 +24,7 @@
     <Window.Resources>
         <ResourceDictionary Source="/Resources/SelectViewResources.xaml"></ResourceDictionary>
     </Window.Resources>
-    <Border CornerRadius="10" Background="White">
+    <Border CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="#4dabf7">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
