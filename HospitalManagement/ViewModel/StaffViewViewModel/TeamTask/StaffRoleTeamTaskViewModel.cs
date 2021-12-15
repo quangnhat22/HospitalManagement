@@ -189,7 +189,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
     }
 
 
-    public class ProgressTask
+    public class ProgressTask: BaseViewModel
     {
         private CONGVIEC value;
 
@@ -199,6 +199,10 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public int NumberInvolvePeople { get => CaculateNumberInvolvePeople(); }
 
         public bool IsCurrentUserComplete { get => isCurrentUserComplete(); }
+        public void InvokeIsCurrentUserCompletePropertyChanged()
+        {
+            OnPropertyChanged("IsCurrentUserComplete");
+        }
         public Visibility ToggleButtonVisibility { get => isToggleVisible();  }
 
         private Visibility isToggleVisible()
