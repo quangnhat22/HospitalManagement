@@ -30,7 +30,7 @@ namespace HospitalManagement.ViewModel
         {
             if (isFormChange(sender))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Bệnh nhân mới chưa được thêm có chắc chắn muốn thoát?", "Visible", 500);
+                NotifyWindow notifyWindow = new NotifyWindow("Check", "Bệnh nhân mới chưa được thêm có chắc chắn muốn thoát?", "Visible", 500);
                 notifyWindow.ShowDialog();
                 if (notifyWindow.Result == System.Windows.MessageBoxResult.Cancel)
                 {
@@ -61,7 +61,7 @@ namespace HospitalManagement.ViewModel
                         patientForm.txbQuocTich.Text != NullToString(bn.QUOCTICH) || patientForm.txbDiaChi.Text != NullToString(bn.DIACHI) || patientForm.txbEmail.Text != NullToString(bn.EMAIL) ||
                          patientForm.txbGhiChu.Text != NullToString(bn.GHICHU) || patientForm.txbSDT.Text != NullToString(bn.SDT) || patientForm.cbxTinhTrang.Text != NullToString(bn.TINHTRANG) ||
                           gioitinh != (bool)bn.GIOITINH || patientForm.txbNGSinh.Text != dateBirth || patientForm.txbNGNhapVien.Text != dateNV || patientForm.cbxIDPhong.Text != bn.IDPHONG.ToString() ||
-                           patientForm.cbxSoGiuong.Text != bn.GIUONGBENH)
+                           patientForm.cbxSoGiuong.Text != bn.GIUONGBENH || patientForm.txbMaBN.Text != NullToString(bn.MABENHNHAN))
                     {
                         return true;
                     }
@@ -81,7 +81,7 @@ namespace HospitalManagement.ViewModel
                         patientForm.txbQuocTich.Text != string.Empty || patientForm.txbDiaChi.Text != string.Empty || patientForm.txbEmail.Text != string.Empty ||
                          patientForm.txbGhiChu.Text != string.Empty || patientForm.txbSDT.Text != string.Empty || patientForm.cbxTinhTrang.Text != string.Empty ||
                           patientForm.cbxGioiTinh.Text != string.Empty || patientForm.txbNGSinh.Text != string.Empty || patientForm.txbNGNhapVien.Text != string.Empty || 
-                          patientForm.cbxIDPhong.Text != string.Empty || patientForm.cbxSoGiuong.Text != string.Empty)
+                          patientForm.cbxIDPhong.Text != string.Empty || patientForm.cbxSoGiuong.Text != string.Empty || patientForm.txbMaBN.Text != string.Empty)
                 {
                     return true;
                 }
