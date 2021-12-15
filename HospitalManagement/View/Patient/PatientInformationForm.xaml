@@ -34,6 +34,31 @@
                         <Grid Height="150" Margin="0,10,0,0">
                             <Image Source="/Images/man.png" Height="150" Width="150"/>
                         </Grid>
+                        <Border>
+                            <Border.Resources>
+                                <Style TargetType="{x:Type materialDesign:PackIcon}" x:Key="ColorStyle">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Triệu chứng trở nặng">
+                                            <Setter Property="Foreground" Value="#FF7F7E"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Có triệu chứng">
+                                            <Setter Property="Foreground" Value="#FEB721"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Không triệu chứng">
+                                            <Setter Property="Foreground" Value="#2AE2BE"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Resources>
+                            <Grid Height="40" Margin="290,-45,0,0">
+                                <materialDesign:PackIcon Kind="CheckboxBlankCircle" 
+                                                        x:Name="sttDot"
+                                                        Height="40"
+                                                        Style="{StaticResource ColorStyle}"
+                                                        Width="40"/>
+                            </Grid>
+                        </Border>
+                        
                         <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                 <TextBlock.Text>
@@ -163,16 +188,6 @@
                                                     TextWrapping="Wrap" 
                                                     Foreground="Black"
                                                     Text="{Binding BenhNhan.BENHNEN}" />
-                                </Grid>
-                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Tình trạng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
-                                    </TextBlock>
-                                    <TextBlock Text="{Binding BenhNhan.TINHTRANG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                                    </TextBlock>
                                 </Grid>
                                 <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
