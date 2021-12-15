@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View"
+        xmlns:uc="clr-namespace:HospitalManagement.View.Others"
         mc:Ignorable="d"
         x:Name="loginWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -14,102 +15,122 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         ResizeMode="CanMinimize"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="Transparent"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="LoginWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="LoginWindow" 
+        Height="450" 
+        Width="800" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True">
     <Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding OpenMainWindow}"></KeyBinding>
     </Window.InputBindings>
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
-                <GradientStop Color="#35a0fe" Offset="1"/>
-                <GradientStop Color="#c2e2ff" Offset="0"/>
-            </LinearGradientBrush>
-
-        </Grid.Background>
-        <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 115 0" Background="#fff"/>
-
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Width="350" >
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="/Images/loginForm.png" Width="300" Height="300" VerticalAlignment="Top" Margin="0 55 0 0" Stretch="Fill" ></Image>
-                </Grid>
-            </StackPanel>
-            <StackPanel Margin="50 0 0 0">
-                <StackPanel  Margin="20 20 0 0">
-                    <TextBlock 
-                        Text="Đăng nhập" 
-                        Margin="10 0 10 20" 
-                        TextAlignment="Center"
-                        FontSize="38"
-                        FontWeight="Bold"
-                        Foreground="#35a0fe"></TextBlock>
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <materialDesign:PackIcon Kind="User" Width="25" Height="25" Margin="0 5 0 0"/>
-                        <TextBox
-                            Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            x:Name="txtUser"
-                            Margin="10 0"
-                            Width="250"
-                            materialDesign:HintAssist.Hint="Tên đăng nhập"
-                            BorderBrush="#35a0fe"
-                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10">
-                        <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Margin="0 5 0 0"/>
-                        <PasswordBox
-                            x:Name="txtPassword"
-                            PasswordChanged="txtPassword_PasswordChanged"
-                            Margin="10 0"
-                            Width="250"
-                            materialDesign:HintAssist.Hint="Mật khẩu"
-                            materialDesign:HintAssist.Foreground="#35a0fe"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#35a0fe"
-                            BorderBrush="#35a0fe"
-                            Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="15">
-                        <Button 
-                            Command="{Binding OpenForgotPasswordForm}"
-                            CommandParameter="{Binding ElementName= loginWindow}"
-                            x:Name="btnForgetPassword" 
-                            Content="Quên mật khẩu?" 
-                            HorizontalAlignment="Left" 
-                            Height="24"
-                            Width="120" 
+    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#4dabf7">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=loginWindow}"></uc:ControlBarUC>
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
+                        <GradientStop Color="#35a0fe" Offset="1"/>
+                        <GradientStop Color="#c2e2ff" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid Background="Transparent">
+                    <Border Height="390" 
                             VerticalAlignment="Top" 
-                            Padding="0" 
-                            HorizontalContentAlignment="Right" 
-                            VerticalContentAlignment="Center" 
-                            FontSize="13" 
-                            Margin="165,0,0,0" 
-                            FontWeight="Medium" 
-                            FontStyle="Italic"
-                            Foreground="#ff7f4d"
-                            Cursor="Hand" 
-                            FocusVisualStyle="{x:Null}"
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            IsTabStop="False">
-                        </Button>
+                            CornerRadius="0 0 115 0" 
+                            Background="White" 
+                            Margin="0 -1 0 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Width="350" >
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="/Images/loginForm.png" Width="300" Height="300" VerticalAlignment="Top" Margin="0 55 0 0" Stretch="Fill" ></Image>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Margin="50 0 0 0">
+                            <StackPanel  Margin="20 20 0 0">
+                                <TextBlock 
+                                    Text="Đăng nhập" 
+                                    Margin="10 0 10 20" 
+                                    TextAlignment="Center"
+                                    FontSize="38"
+                                    FontWeight="Bold"
+                                    Foreground="#35a0fe"></TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <materialDesign:PackIcon Kind="User" Width="25" Height="25" Margin="0 5 0 0"/>
+                                    <TextBox
+                                        Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        x:Name="txtUser"
+                                        Margin="10 0"
+                                        Width="250"
+                                        materialDesign:HintAssist.Hint="Tên đăng nhập"
+                                        BorderBrush="#35a0fe"
+                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10">
+                                    <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Margin="0 5 0 0"/>
+                                    <PasswordBox
+                                        x:Name="txtPassword"
+                                        PasswordChanged="txtPassword_PasswordChanged"
+                                        Margin="10 0"
+                                        Width="250"
+                                        materialDesign:HintAssist.Hint="Mật khẩu"
+                                        materialDesign:HintAssist.Foreground="#35a0fe"
+                                        materialDesign:TextFieldAssist.UnderlineBrush="#35a0fe"
+                                        BorderBrush="#35a0fe"
+                                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="15">
+                                    <Button 
+                                        Command="{Binding OpenForgotPasswordForm}"
+                                        CommandParameter="{Binding ElementName= loginWindow}"
+                                        x:Name="btnForgetPassword" 
+                                        Content="Quên mật khẩu?" 
+                                        HorizontalAlignment="Left" 
+                                        Height="24"
+                                        Width="120" 
+                                        VerticalAlignment="Top" 
+                                        Padding="0" 
+                                        HorizontalContentAlignment="Right" 
+                                        VerticalContentAlignment="Center" 
+                                        FontSize="13" 
+                                        Margin="165,0,0,0" 
+                                        FontWeight="Medium" 
+                                        FontStyle="Italic"
+                                        Foreground="#ff7f4d"
+                                        Cursor="Hand" 
+                                        FocusVisualStyle="{x:Null}"
+                                        Background="{x:Null}" 
+                                        BorderBrush="{x:Null}" 
+                                        IsTabStop="False">
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Margin="25" HorizontalAlignment="Center">
+                                    <Button
+                                        Command="{Binding OpenMainWindow}"
+                                        x:Name="btnLogin"
+                                        Width="120"
+                                        Height="45"
+                                        Background="#35a0fe"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        materialDesign:ButtonAssist.CornerRadius="10"
+                                        BorderThickness="2"
+                                        BorderBrush="#35a0fe"
+                                        Content="Đăng nhập">
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Margin="25" HorizontalAlignment="Center">
-                        <Button
-                            Command="{Binding OpenMainWindow}"
-                            x:Name="btnLogin"
-                            Width="120"
-                            Height="45"
-                            Background="#35a0fe"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="10"
-                            BorderThickness="2"
-                            BorderBrush="#35a0fe"
-                            Content="Đăng nhập">
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

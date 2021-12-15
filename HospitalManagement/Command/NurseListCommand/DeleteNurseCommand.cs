@@ -1,5 +1,6 @@
 ﻿using HospitalManagement.Model;
 using HospitalManagement.Utils;
+using HospitalManagement.View;
 using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -33,17 +34,36 @@ namespace HospitalManagement.Command
         public void Execute(object parameter)
         {
             var selectableItems = nurseViewModel.Nurses.Where(p => p.IsSelected).Select(x => x.Value);
-            foreach (YTA yt in selectableItems)
+            if (selectableItems.Count() > 0)
             {
-                foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == yt.IDTO))
+                NotifyWindow notifyWindow;
+                if (selectableItems.Count() == 1)
                 {
-                    to.YTAs.Remove(yt);
+                    notifyWindow = new NotifyWindow("Check", "Bạn có chắc chắn muốn xoá y tá này?", "Visible", 400);
                 }
-                DataProvider.Ins.DB.YTAs.Remove(yt);
+                else
+                {
+                    notifyWindow = new NotifyWindow("Check", "Bạn có chắc chắn muốn xoá những y tá này?", "Visible", 400);
+                }
+                notifyWindow.ShowDialog();
+                if (notifyWindow.Result == System.Windows.MessageBoxResult.OK)
+                {
+
+                    foreach (YTA yt in selectableItems)
+                    {
+                        foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == yt.IDTO))
+                        {
+                            to.YTAs.Remove(yt);
+                        }
+                        DataProvider.Ins.DB.YTAs.Remove(yt);
+                    }
+                    DataProvider.Ins.DB.SaveChanges();
+                    nurseViewModel.IsCheckedAll = false;
+                    nurseViewModel.Nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
+                    notifyWindow = new NotifyWindow("Success", "Đã xóa thành công!");
+                    notifyWindow.Show();
+                }
             }
-            DataProvider.Ins.DB.SaveChanges();
-            nurseViewModel.IsCheckedAll = false;
-            nurseViewModel.Nurses = SelectableItem<YTA>.GetSelectableItems(DataProvider.Ins.DB.YTAs.ToList());
         }
     }
 }

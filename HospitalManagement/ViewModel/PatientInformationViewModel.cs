@@ -38,7 +38,7 @@ namespace HospitalManagement.ViewModel
         {
             if (isFormChange(sender))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Thông tin bệnh nhân có sự thay đổi bạn có chắc chắn muốn thoát?", "Visible", 500);
+                NotifyWindow notifyWindow = new NotifyWindow("Check", "Thông tin bệnh nhân có sự thay đổi bạn có chắc chắn muốn thoát?", "Visible", 500);
                 notifyWindow.ShowDialog();
                 if (notifyWindow.Result == System.Windows.MessageBoxResult.Cancel)
                 {
