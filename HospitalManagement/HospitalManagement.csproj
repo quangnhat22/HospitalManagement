@@ -359,6 +359,9 @@
     <Compile Include="View\StaffRoleView\TeamTask\TaskInformationForm.xaml.cs">
       <DependentUpon>TaskInformationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Staff\AdminForm.xaml.cs">
+      <DependentUpon>AdminForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Staff\ChangeDoctorInformationForm.xaml.cs">
       <DependentUpon>ChangeDoctorInformationForm.xaml</DependentUpon>
     </Compile>
@@ -480,6 +483,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StaffRoleView\TeamTask\TaskInformationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\AdminForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
