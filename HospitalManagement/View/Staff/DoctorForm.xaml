@@ -8,169 +8,182 @@
         x:Name="DoctorFormWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
         ResizeMode="CanMinimize" 
-        Title="DoctorForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen">
+        Title="DoctorForm" Height="760" Width="1387" WindowStartupLocation="CenterScreen"
+        xmlns:uc="clr-namespace:HospitalManagement.View.Others"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid Background="WhiteSmoke">
-        <StackPanel Orientation="Vertical">
-            <Grid Height="100">
-                <TextBlock 
+    <Border CornerRadius="10" BorderThickness="1" BorderBrush="#4dabf7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <uc:ControlBarUC Tag="{Binding Title, ElementName=loginWindow}"></uc:ControlBarUC>
+            </Grid>
+            <Border Grid.Row="1" CornerRadius="0 0 10 10" Background="WhiteSmoke">
+                <Grid Background="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Height="100">
+                            <TextBlock 
                     HorizontalAlignment="Left" 
                     Text="Thông tin bác sĩ" VerticalAlignment="Center" Margin="100,0,0,0" 
                     Foreground="#35a0fe" 
                     TextAlignment="Center" 
                     FontSize="30 px" 
                     FontWeight="Bold" />
-            </Grid>
-            <StackPanel Height="250" Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" Width="900">
-                    <StackPanel Height="250" Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Width="900">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid Width="200" HorizontalAlignment="Left" Margin="100,13,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox x:Name="txbHo" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập họ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                                </Grid>
-                                <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox x:Name="txbTen" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                        </Grid>
+                        <StackPanel Height="250" Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Width="900">
+                                <StackPanel Height="250" Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Width="900">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid Width="200" HorizontalAlignment="Left" Margin="100,13,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                                <TextBox x:Name="txbHo" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập họ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                            </Grid>
+                                            <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                                <TextBox x:Name="txbTen" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                            </Grid>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                                <TextBox x:Name="txbSDT" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                            </Grid>
+                                            <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                                <TextBox x:Name="txbEmail" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                            </Grid>
+                                        </StackPanel>
+                                        <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                            <TextBox x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Width="400">
+                                <Grid>
+
+                                    <Image Height="220" Width="200" Source="/Images/doctoravatar.png" Margin="82,-10,118,39.6" />
+                                    <Button 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                            ToolTip="MaterialDesignFloatingActionMiniButton"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
+                                        <materialDesign:PackIcon Kind="Pencil"/>
+                                    </Button>
                                 </Grid>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Grid Width="300" HorizontalAlignment="Left" Margin="100,16,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox x:Name="txbSDT" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                                </Grid>
-                                <Grid Width="420" HorizontalAlignment="Left" Margin="60,16,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                    <TextBox x:Name="txbEmail" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                                </Grid>
-                            </StackPanel>
-                            <Grid Width="600" HorizontalAlignment="Left" Margin="100,15,0,0">
+                        </StackPanel>
+                        <StackPanel Height="85" Orientation="Horizontal">
+                            <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <DatePicker x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                             </Grid>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Width="400">
-                    <Grid>
-
-                        <Image Height="220" Width="200" Source="/Images/doctoravatar.png" Margin="82,-10,118,39.6" />
-                        <Button 
-                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniButton"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
-                            <materialDesign:PackIcon Kind="Pencil"/>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Height="85" Orientation="Horizontal">
-                <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <DatePicker x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
-                </Grid>
-                <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <ComboBox x:Name="cbxGioiTinh"  Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
+                            <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <ComboBox x:Name="cbxGioiTinh"  Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
                         materialDesign:HintAssist.Hint="Chọn giới tính"                       
                         IsEditable="True">
-                        <ComboBoxItem
+                                    <ComboBoxItem
                             Content="Nam" />
-                        <ComboBoxItem
+                                    <ComboBoxItem
                             Content="Nữ" />
-                    </ComboBox>
-                </Grid>
-                <Grid Width="200" HorizontalAlignment="Left" Margin="80,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbQuocTich"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập quốc tịch" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập CMND/CCCD" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-            </StackPanel>
-            <StackPanel Height="85" Orientation="Horizontal">
-                <Grid Width="400" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbChuyenKhoa" Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-                <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbVaiTro" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-                <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <TextBox x:Name="txbIDTO" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập ID Tổ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
-                </Grid>
-            </StackPanel>
-            <StackPanel Height="190" Orientation="Horizontal">
-                <Grid Width="680" HorizontalAlignment="Left" Margin="100,20,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                    <StackPanel Grid.Row="1">
-                        <TextBox x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
+                                </ComboBox>
+                            </Grid>
+                            <Grid Width="200" HorizontalAlignment="Left" Margin="80,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox x:Name="txbQuocTich"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập quốc tịch" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                            <Grid Width="300" HorizontalAlignment="Left" Margin="80,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập CMND/CCCD" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Height="85" Orientation="Horizontal">
+                            <Grid Width="400" HorizontalAlignment="Left" Margin="100,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Chuyên khoa" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox x:Name="txbChuyenKhoa" Margin="0,0,0,5" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập chuyên khoa" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                            <Grid Width="300" HorizontalAlignment="Left" Margin="100,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Vai trò" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox x:Name="txbVaiTro" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập vai trò" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                            <Grid Width="200" HorizontalAlignment="Left" Margin="100,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <TextBox x:Name="txbIDTO" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập ID Tổ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Height="190" Orientation="Horizontal">
+                            <Grid Width="680" HorizontalAlignment="Left" Margin="100,20,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Ghi chú" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
+                                <StackPanel Grid.Row="1">
+                                    <TextBox x:Name="txbGhiChu" Foreground="Black" FontSize="16"                           
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             VerticalAlignment="Top"
                             Height="100"
@@ -179,17 +192,20 @@
                             VerticalScrollBarVisibility="Auto"
                             materialDesign:HintAssist.Hint="Nhập ghi chú tại đây"
                             />
-                    </StackPanel>
-                </Grid>
-                <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0">
-                    <Grid Height="80" Margin="50,50,0,10">
-                        <Button Command="{Binding AddDoctor}"
+                                </StackPanel>
+                            </Grid>
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0">
+                                <Grid Height="80" Margin="50,50,0,10">
+                                    <Button Command="{Binding AddDoctor}"
                                 CommandParameter="{Binding ElementName=DoctorFormWindow}"
                                 Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
                 materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="30,0,0,0"/>
-                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+            </Border>
+        </Grid>
+    </Border>
 </Window>
