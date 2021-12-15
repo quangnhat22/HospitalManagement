@@ -110,7 +110,7 @@ namespace HospitalManagement.Command
             if (user.ROLE == "doctor" || user.ROLE == "leader")
             {
                 BACSI bacsi = user.BACSIs.FirstOrDefault();
-                if (isAllArgumentsNull(bacsi.HO, bacsi.TEN, bacsi.SDT, bacsi.EMAIL, bacsi.QUOCTICH, bacsi.DIACHI))
+                if (isAllArgumentsNull(bacsi.HO, bacsi.TEN, bacsi.SDT,bacsi.QUOCTICH, bacsi.DIACHI))
                 {
                     return true;
                 }
@@ -118,7 +118,7 @@ namespace HospitalManagement.Command
             else if (user.ROLE == "nurse")
             {
                 YTA yta = user.YTAs.FirstOrDefault();
-                if (isAllArgumentsNull(yta.HO, yta.TEN, yta.SDT, yta.EMAIL, yta.QUOCTICH, yta.DIACHI))
+                if (isAllArgumentsNull(yta.HO, yta.TEN, yta.SDT, yta.QUOCTICH, yta.DIACHI))
                 {
                     return true;
                 }
@@ -126,7 +126,7 @@ namespace HospitalManagement.Command
             else if (user.ROLE == "admin")
             {
                 ADMIN admin = user.ADMINs.FirstOrDefault();
-                if (isAllArgumentsNull(admin.HO, admin.TEN, admin.SDT, admin.EMAIL, admin.QUOCTICH, admin.DIACHI))
+                if (isAllArgumentsNull(admin.HO, admin.TEN, admin.SDT, admin.QUOCTICH, admin.DIACHI))
                 {
                     return true;
                 }
@@ -138,10 +138,10 @@ namespace HospitalManagement.Command
         {
             foreach (Object o in args)
             {
-                if (o != null)
-                    return false;
+                if (o == null)
+                    return true;
             }
-            return true;
+            return false;
         }
     }
 }

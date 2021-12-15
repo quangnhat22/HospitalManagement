@@ -85,6 +85,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
+                                EMAIL = addNewAccountForm.txbEmail.Text,
                                 GIOITINH = false as bool?
                             };
                             userInput.USERNAME = leaderUser.CMND_CCCD;
@@ -102,6 +103,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
+                                EMAIL = addNewAccountForm.txbEmail.Text,
                                 GIOITINH = false as bool?
                             };
                             userInput.USERNAME = doctorUser.CMND_CCCD;
@@ -116,6 +118,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
+                                EMAIL = addNewAccountForm.txbEmail.Text,
                                 GIOITINH = false as bool?
                             };
                             userInput.USERNAME = nurseUser.CMND_CCCD;
