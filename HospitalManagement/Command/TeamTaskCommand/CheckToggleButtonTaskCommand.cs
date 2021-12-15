@@ -24,9 +24,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
 
         public bool CanExecute(object parameter)
         {
-            if (parameter == null)
+            ProgressTask progressTask = parameter as ProgressTask;
+            if (progressTask == null)
                 return false;
-            int IDCONGVIEC = int.Parse(parameter.ToString());
+            int IDCONGVIEC = progressTask.Value.ID;
             CONGVIEC congviec = dbContext.CONGVIECs.Find(IDCONGVIEC);
             if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
             {
@@ -52,9 +53,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
 
         public void Execute(object parameter)
         {
-            if (parameter == null)
-                return;
-            int IDCONGVIEC = int.Parse(parameter.ToString());
+            ProgressTask progressTask = parameter as ProgressTask;
+            if (progressTask == null)
+                return ;
+            int IDCONGVIEC = progressTask.Value.ID;
             CONGVIEC congviec = dbContext.CONGVIECs.Find(IDCONGVIEC);
             if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
             {
@@ -80,7 +82,10 @@ namespace HospitalManagement.Command.TeamTaskCommand
                     }
                 }
             }
-            dbContext.SaveChangesAsync();
+            
+            dbContext.SaveChangesAsync().ContinueWith((result) => {
+                progressTask.InvokeIsCurrentUserCompletePropertyChanged();
+            });
             DataProvider.Ins.DB = new QUANLYBENHVIENEntities();
         }
     }
