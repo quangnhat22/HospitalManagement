@@ -134,15 +134,14 @@
     <Compile Include="Command\DashBoardCommand\InitColumnChartCommand.cs" />
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
     <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
-    <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DoctorFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SearchDoctorCommand.cs" />
-    <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
+    <Compile Include="Command\NurseListCommand\NurseFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
     <Compile Include="Command\NurseListCommand\SearchNurseCommand.cs" />
     <Compile Include="Command\RoomCommand\OpenRoomWindowCommand.cs" />
@@ -155,13 +154,11 @@
     <Compile Include="Command\AccountCommand\OpenAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\OpenChangeAccountWindowCommand.cs" />
     <Compile Include="Command\AccountCommand\OpenChangePasswordWindowCommand.cs" />
-    <Compile Include="Command\DoctorListCommand\OpenDoctorFormCommand.cs" />
     <Compile Include="Command\PatientListCommand\OpenChangePatientFormCommand.cs" />
     <Compile Include="Command\PatientListCommand\SaveChangePatientInformationCommand.cs" />
     <Compile Include="Command\ReportFormCommand\OpenFileImageDialogCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenForgotPasswordFormCommand.cs" />
     <Compile Include="Command\LoginCommand\OpenLoginWindowCommand.cs" />
-    <Compile Include="Command\NurseListCommand\OpenNurseFormCommand.cs" />
     <Compile Include="Command\PatientListCommand\OpenPatientFormCommand.cs" />
     <Compile Include="Command\ReportFormCommand\OpenReportFormCommand.cs" />
     <Compile Include="Command\LoginCommand\RecoverAccountCommand.cs" />
@@ -272,7 +269,6 @@
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModel\ControlBarUserControlViewmodel.cs" />
     <Compile Include="ViewModel\DashBoardViewModel.cs" />
-    <Compile Include="ViewModel\DoctorFormViewModel.cs" />
     <Compile Include="ViewModel\DoctorInformationViewModel.cs" />
     <Compile Include="ViewModel\DoctorViewModel.cs" />
     <Compile Include="ViewModel\FirstLoginViewModel.cs" />
@@ -280,7 +276,6 @@
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NotifyWindowViewModel.cs" />
-    <Compile Include="ViewModel\NurseFormViewModel.cs" />
     <Compile Include="ViewModel\NurseInformationViewModel.cs" />
     <Compile Include="ViewModel\NurseViewModel.cs" />
     <Compile Include="ViewModel\PatientFormViewModel.cs" />

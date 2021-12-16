@@ -45,7 +45,7 @@ namespace HospitalManagement.Command
             if (user.ROLE == "nurse")
             {
                 YTA yta = user.YTAs.FirstOrDefault();
-                ChangeNurseInformationForm firstLoginWindow = new ChangeNurseInformationForm(yta);
+                NurseForm firstLoginWindow = new NurseForm(yta);
                 Application.Current.MainWindow = firstLoginWindow;
                 Application.Current.MainWindow.Show();
             }

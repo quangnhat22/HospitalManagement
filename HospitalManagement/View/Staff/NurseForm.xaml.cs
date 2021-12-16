@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,12 @@ namespace HospitalManagement.View.Staff
     /// </summary>
     public partial class NurseForm : Window
     {
-        public NurseForm(NurseViewModel nurseViewModel)
+        public NurseForm(YTA yt)
         {
             InitializeComponent();
-            this.DataContext = new NurseFormViewModel(nurseViewModel);
-            NurseFormViewModel informationViewModel = new NurseFormViewModel(nurseViewModel);
-            Closing += informationViewModel.OnWindowClosing;
+            this.DataContext = new NurseInformationViewModel(yt);
+            NurseInformationViewModel informationViewModel = new NurseInformationViewModel(yt);
+            Closing += informationViewModel.OnWindowFormClosing;
         }
     }
 }

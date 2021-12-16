@@ -59,23 +59,8 @@ namespace HospitalManagement.Command
                 beIDTO.UpdateSource();
                 BindingExpression beGhiChu = doctorForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
-                DataProvider.Ins?.DB?.SaveChanges();
-                Window window = System.Windows.Application.Current.MainWindow as Window;
-                MainWindowViewModel.User = FirstLoginViewModel.User;
-                MainWindow mainWindow = new MainWindow();
-                System.Windows.Application.Current.MainWindow = mainWindow;
-                System.Windows.Application.Current.MainWindow.Show();
-                window.Close();
-                Thread windowThread = new Thread(new ThreadStart(() =>
-                {
-                    window.Closed += (s, e) =>
-                    Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
-                    System.Windows.Threading.Dispatcher.Run();
-                }));
-                windowThread.SetApartmentState(ApartmentState.STA);
-                windowThread.IsBackground = true;
-                windowThread.Start();
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
+                DataProvider.Ins?.DB?.SaveChanges();               
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhật thành công");
                 notifyWindow.ShowDialog();                
             }
         }

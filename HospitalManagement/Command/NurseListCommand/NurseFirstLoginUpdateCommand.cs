@@ -1,5 +1,4 @@
 ﻿using HospitalManagement.Model;
-using HospitalManagement.Utils;
 using HospitalManagement.View;
 using HospitalManagement.View.Staff;
 using HospitalManagement.ViewModel;
@@ -14,11 +13,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace HospitalManagement.Command
 {
-    internal class DoctorFirstLoginUpdateCommand : ICommand
+    internal class NurseFirstLoginUpdateCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -32,32 +30,32 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            DoctorForm doctorForm = parameter as DoctorForm;
-            if (Check(doctorForm))
+            NurseForm nurseForm = parameter as NurseForm;
+            if (Check(nurseForm))
             {
-                BindingExpression beHo = doctorForm.txbHo.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beHo = nurseForm.txbHo.GetBindingExpression(TextBox.TextProperty);
                 beHo.UpdateSource();
-                BindingExpression beTen = doctorForm.txbTen.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beTen = nurseForm.txbTen.GetBindingExpression(TextBox.TextProperty);
                 beTen.UpdateSource();
-                BindingExpression beSDT = doctorForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beSDT = nurseForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
                 beSDT.UpdateSource();
-                BindingExpression beEmail = doctorForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beEmail = nurseForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
                 beEmail.UpdateSource();
-                BindingExpression beDiaChi = doctorForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beDiaChi = nurseForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
                 beDiaChi.UpdateSource();
-                BindingExpression beNGSinh = doctorForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
+                BindingExpression beNGSinh = nurseForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
                 beNGSinh.UpdateSource();
-                BindingExpression beGioiTinh = doctorForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
+                BindingExpression beGioiTinh = nurseForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
                 beGioiTinh.UpdateSource();
-                BindingExpression beQuocTich = doctorForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beQuocTich = nurseForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
                 beQuocTich.UpdateSource();
-                BindingExpression beChuyenKhoa = doctorForm.txbChuyenKhoa.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beChuyenKhoa = nurseForm.txbChuyenKhoa.GetBindingExpression(TextBox.TextProperty);
                 beChuyenKhoa.UpdateSource();
-                BindingExpression beVaiTro = doctorForm.cbxVaiTro.GetBindingExpression(ComboBox.TextProperty);
+                BindingExpression beVaiTro = nurseForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
                 beVaiTro.UpdateSource();
-                BindingExpression beIDTO = doctorForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
+                BindingExpression beIDTO = nurseForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
                 beIDTO.UpdateSource();
-                BindingExpression beGhiChu = doctorForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
                 Window window = System.Windows.Application.Current.MainWindow as Window;
@@ -76,114 +74,108 @@ namespace HospitalManagement.Command
                 windowThread.IsBackground = true;
                 windowThread.Start();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhật thành công");
-                notifyWindow.ShowDialog();                
+                notifyWindow.ShowDialog();
             }
         }
-        public bool Check(DoctorForm df)
+        public bool Check(NurseForm nf)
         {
-            if (df == null) return false;
+            if (nf == null) return false;
 
 
-            if (string.IsNullOrWhiteSpace(df.txbHo.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
                 notifyWindow.ShowDialog();
-                df.txbHo.Focus();
+                nf.txbHo.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbTen.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
-                df.txbTen.Focus();
+                nf.txbTen.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbSDT.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
                 notifyWindow.ShowDialog();
-                df.txbSDT.Focus();
+                nf.txbSDT.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(df.txbEmail.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
                 notifyWindow.ShowDialog();
-                df.txbEmail.Focus();
+                nf.txbEmail.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbDiaChi.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
                 notifyWindow.ShowDialog();
-                df.txbDiaChi.Focus();
+                nf.txbDiaChi.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbNGSinh.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
-                df.txbNGSinh.Focus();
+                nf.txbNGSinh.Focus();
                 return false;
             }
 
-            //if (string.IsNullOrWhiteSpace(df.cbxGioiTinh.Text.ToString()))
+            //if (string.IsNullOrWhiteSpace(nf.cbxGioiTinh.Text.ToString()))
             //{
             //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
             //    notifyWindow.ShowDialog();
-            //    df.cbxGioiTinh.Focus();
+            //    nf.cbxGioiTinh.Focus();
             //    return false;
             //}
 
-            if (string.IsNullOrWhiteSpace(df.txbQuocTich.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbQuocTich.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập quốc tịch");
                 notifyWindow.ShowDialog();
-                df.txbQuocTich.Focus();
+                nf.txbQuocTich.Focus();
                 return false;
             }
-            
-            if (string.IsNullOrWhiteSpace(df.txbChuyenKhoa.Text))
+
+            if (string.IsNullOrWhiteSpace(nf.txbChuyenKhoa.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập chuyên Khoa");
                 notifyWindow.ShowDialog();
-                df.txbChuyenKhoa.Focus();
+                nf.txbChuyenKhoa.Focus();
                 return false;
             }
 
-            //if (string.IsNullOrWhiteSpace(df.cbxVaiTro.Text))
+            //if (string.IsNullOrWhiteSpace(nf.txbVaiTro.Text))
             //{
             //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
             //    notifyWindow.ShowDialog();
-            //    df.cbxVaiTro.Focus();
+            //    nf.txbVaiTro.Focus();
             //    return false;
             //}
 
-            //if (string.IsNullOrWhiteSpace(df.cbxIDTO.Text))
+            //if (string.IsNullOrWhiteSpace(nf.cbxIDTO.Text))
             //{
             //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
             //    notifyWindow.ShowDialog();
-            //    df.cbxIDTO.Focus();
+            //    nf.cbxIDTO.Focus();
             //    return false;
             //}
-            if (df.txbNGSinh.SelectedDate > DateTime.Now)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
-                notifyWindow.ShowDialog();
-                df.txbNGSinh.Focus();
-                return false;
-            }
-            //if (!CheckCombobox(df.cbxIDTO.Text, df.cbxIDTO))
+            //if (!CheckCombobox(nf.cbxIDTO.Text, nf.cbxIDTO))
             //{
             //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
             //    notifyWindow.ShowDialog();
-            //    df.cbxIDTO.Focus();
+            //    nf.cbxIDTO.Focus();
             //    return false;
             //}
+
             return true;
         }
         //private bool CheckCombobox(string text, ComboBox cbx)
