@@ -64,18 +64,18 @@
                                         <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Tài khoản</TextBlock>
                                     </StackPanel>
                                 </Button>
-                                <Button Command="{Binding ShowAboutCommand}">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                        <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
-                                                                 Width="25" Height="auto"></materialDesign:PackIcon>
-                                        <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Về FHMS</TextBlock>
-                                    </StackPanel>
-                                </Button>
                                 <Button Command="{Binding OpenReportForm}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <materialDesign:PackIcon Kind="InformationOutline" Margin="5 0 5 -5"
                                                                  Width="25" Height="auto"></materialDesign:PackIcon>
                                         <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Đóng góp</TextBlock>
+                                    </StackPanel>
+                                </Button>
+                                <Button Command="{Binding ShowAboutCommand}">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <materialDesign:PackIcon Kind="HelpCircleOutline" Margin="5 0 5 0"
+                                                                 Width="25" Height="auto"></materialDesign:PackIcon>
+                                        <TextBlock Margin="5 0 5 0" VerticalAlignment="Center">Về FHMS</TextBlock>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
@@ -129,14 +129,14 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
                                     <Grid x:Name="Logo" Opacity="0">
-                                        <materialDesign:PackIcon Kind="HospitalBoxOutline" 
-                                                                 Foreground="White"
-                                                                 VerticalAlignment="Top"
-                                                                 Margin=" 5 0 0 0"
-                                                                 Width="50"
-                                                                 Height="auto"
-                                                                 x:Name="LogoIcon"
-                                                                 />
+                                        <Image 
+                                               Source="/Images/Logo/medica_health_healthcare_sign_icon_143444.ico"
+                                               VerticalAlignment="Top"
+                                               HorizontalAlignment="Center"
+                                               SnapsToDevicePixels="True"
+                                               Margin=" 0 0 10 0"
+                                               Width="50"
+                                               Height="auto"/>      
                                     </Grid>
                                     <Button x:Name="BtnCloseMenu" Height="50" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" 
                                         Background="{x:Null}" BorderBrush="{x:Null}"

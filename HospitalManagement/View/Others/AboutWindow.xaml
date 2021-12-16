@@ -51,11 +51,12 @@
                                              Width="80"
                                              Margin="0 0 20 0"
                                              Height="auto"></materialDesign:PackIcon>
-                    <!--<Image Source="/Images/Logo/FHMS-logos_white.png"
+                    <Image Source="/Images/Logo/medica_health_healthcare_sign_icon_143444.ico"
                            VerticalAlignment="Center"
                            SnapsToDevicePixels="True"
                            Width="auto"
-                           Height="175"/>-->
+                           Height="100"
+                           Margin="0 0 10 0"/>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
@@ -76,7 +77,6 @@
 
                     <TextBlock Text="Nguyễn Đình Nhật Quang"
                                Margin="25,38,0,0"
-                               FontWeight="SemiBold"
                                FontSize="12.8"/>
                     <TextBlock Text="Trần Đình Lộc"
                                Margin="25,53,0,0"

@@ -86,7 +86,8 @@ namespace HospitalManagement.Command.AccountListCommand
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
                                 EMAIL = addNewAccountForm.txbEmail.Text,
-                                GIOITINH = false as bool?
+                                GIOITINH = false as bool?,
+                                VAITRO = "Tổ trưởng"
                             };
                             userInput.USERNAME = leaderUser.CMND_CCCD;
                             userInput.ROLE = "leader";
@@ -104,7 +105,8 @@ namespace HospitalManagement.Command.AccountListCommand
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
                                 EMAIL = addNewAccountForm.txbEmail.Text,
-                                GIOITINH = false as bool?
+                                GIOITINH = false as bool?,
+                                VAITRO = "Thành viên"
                             };
                             userInput.USERNAME = doctorUser.CMND_CCCD;
                             userInput.ROLE = "doctor";
@@ -119,7 +121,8 @@ namespace HospitalManagement.Command.AccountListCommand
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
                                 EMAIL = addNewAccountForm.txbEmail.Text,
-                                GIOITINH = false as bool?
+                                GIOITINH = false as bool?,
+                                VAITRO = "Thành viên"
                             };
                             userInput.USERNAME = nurseUser.CMND_CCCD;
                             userInput.ROLE = "nurse";
@@ -166,7 +169,9 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
-                                GIOITINH = false as bool?
+                                GIOITINH = false as bool?,
+                                EMAIL = addNewAccountForm.txbEmail.Text,
+                                VAITRO = "Tổ trưởng"
                             };
                             userInput.USERNAME = leaderUser.CMND_CCCD;
                             userInput.ROLE = "leader";
@@ -183,7 +188,9 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
-                                GIOITINH = false as bool?
+                                GIOITINH = false as bool?,
+                                EMAIL = addNewAccountForm.txbEmail.Text,
+                                VAITRO = "Thành viên"
                             };
                             userInput.USERNAME = doctorUser.CMND_CCCD;
                             userInput.ROLE = "doctor";
@@ -197,7 +204,9 @@ namespace HospitalManagement.Command.AccountListCommand
                                 CMND_CCCD = addNewAccountForm.txbID.Text,
                                 IDTO = int.Parse(groupName),
                                 IDUSER = userInput.ID,
-                                GIOITINH = false as bool?
+                                EMAIL = addNewAccountForm.txbEmail.Text,
+                                GIOITINH = false as bool?,
+                                VAITRO = "Thành viên"
                             };
                             userInput.USERNAME = nurseUser.CMND_CCCD;
                             userInput.ROLE = "nurse";

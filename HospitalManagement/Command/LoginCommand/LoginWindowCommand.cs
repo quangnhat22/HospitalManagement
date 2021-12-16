@@ -67,6 +67,7 @@ namespace HospitalManagement.Command
             Window window = Application.Current.MainWindow as Window;
             if (isFirstTimeLogin(user))
             {
+                FirstLoginViewModel.User = user;
                 FirstLoginWindow firstLoginWindow = new FirstLoginWindow();
                 Application.Current.MainWindow = firstLoginWindow;
                 Application.Current.MainWindow.Show();
@@ -110,26 +111,37 @@ namespace HospitalManagement.Command
             if (user.ROLE == "doctor" || user.ROLE == "leader")
             {
                 BACSI bacsi = user.BACSIs.FirstOrDefault();
-                if (isAllArgumentsNull(bacsi.HO, bacsi.TEN, bacsi.SDT,bacsi.QUOCTICH, bacsi.DIACHI))
+                if(bacsi != null)
                 {
-                    return true;
-                }
+                    if (isAllArgumentsNull(bacsi.HO, bacsi.TEN, bacsi.SDT, bacsi.QUOCTICH, bacsi.DIACHI))
+                    {
+                        return true;
+                    }
+                }    
+                
             }
             else if (user.ROLE == "nurse")
             {
                 YTA yta = user.YTAs.FirstOrDefault();
-                if (isAllArgumentsNull(yta.HO, yta.TEN, yta.SDT, yta.QUOCTICH, yta.DIACHI))
+                if(yta != null)
                 {
-                    return true;
-                }
+                    if (isAllArgumentsNull(yta.HO, yta.TEN, yta.SDT, yta.QUOCTICH, yta.DIACHI))
+                    {
+                        return true;
+                    }
+                }    
+                
             }
             else if (user.ROLE == "admin")
             {
                 ADMIN admin = user.ADMINs.FirstOrDefault();
-                if (isAllArgumentsNull(admin.HO, admin.TEN, admin.SDT, admin.QUOCTICH, admin.DIACHI))
+                if(admin != null)
                 {
-                    return true;
-                }
+                    if (isAllArgumentsNull(admin.HO, admin.TEN, admin.SDT, admin.QUOCTICH, admin.DIACHI))
+                    {
+                        return true;
+                    }
+                }                  
             }
             return false;
         }

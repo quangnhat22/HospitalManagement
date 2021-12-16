@@ -58,7 +58,7 @@ namespace HospitalManagement.Command
                 BindingExpression beGhiChu = patientForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
-                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhập thành công");
+                NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhật thành công");
                 notifyWindow.ShowDialog();
             }
         }

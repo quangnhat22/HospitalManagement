@@ -41,6 +41,7 @@
                     ItemsSource="{Binding FilterList}"
                     SelectedItem="{Binding SelectedFilter}"
                     Padding="5 5 5 0"
+                    Margin="10 5 0 7"
                     Height="30"
                     Width="130">
                 </ComboBox>
@@ -48,7 +49,7 @@
                             Text="{Binding SearchBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             x:Name="txbSearchBox"
                             Padding="3 5 0 0"
-                            Margin="10 8 10 6"
+                            Margin="10 5 10 7"
                             Width="400"
                             Height="30"
                             materialDesign:HintAssist.Hint="Tìm kiếm"
@@ -56,7 +57,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
                 <Button
-                    Margin="-16 0 20 0"
+                    Margin="-16 5 10 7"
                     Padding="8"
                     Command="{Binding SearchPatientCommand}">
                     <Button.Content>
@@ -74,11 +75,12 @@
                 CommandParameter="{Binding ElementName=patientListUC}"
                 Content="Thêm bệnh nhân"
                 Visibility="{Binding ButtonVisibility}"
+                Margin="10 5 10 7"
                 Width="140"/>
                 <Button Content="Xóa"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Margin="15 0 0 0"
+                        Margin="10 5 0 7"
                         Visibility="{Binding ButtonVisibility}"
                         Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, 
                                                                                      Path=DataContext.DeletePatientCommand}">

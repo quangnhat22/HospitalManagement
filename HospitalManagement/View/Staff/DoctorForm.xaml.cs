@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HospitalManagement.Model;
 using HospitalManagement.ViewModel;
 
 namespace HospitalManagement.View
@@ -20,12 +21,12 @@ namespace HospitalManagement.View
     /// </summary>
     public partial class DoctorForm : Window
     {
-        public DoctorForm(DoctorViewModel doctorViewModel)
+        public DoctorForm(BACSI bs)
         {
             InitializeComponent();
-            this.DataContext = new DoctorFormViewModel(doctorViewModel);
-            DoctorFormViewModel informationViewModel = new DoctorFormViewModel(doctorViewModel);
-            Closing += informationViewModel.OnWindowClosing;
+            this.DataContext = new DoctorInformationViewModel(bs);
+            DoctorInformationViewModel informationViewModel = new DoctorInformationViewModel(bs);
+            Closing += informationViewModel.OnWindowFormClosing;
         }
     }
 }

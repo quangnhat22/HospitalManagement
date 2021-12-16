@@ -16,6 +16,7 @@ namespace HospitalManagement.Command
     internal class RecoverAccountCommand : ICommand
     {
         private RecoverAccountViewModel recoverAccountViewModel;
+        private static QUANLYBENHVIENEntities db = new QUANLYBENHVIENEntities();
 
         public event EventHandler CanExecuteChanged
         {
@@ -38,13 +39,13 @@ namespace HospitalManagement.Command
             RecoverAccountWindow rw = parameter as RecoverAccountWindow;
             if (Check(rw))
             {
-               List<USER> users = recoverAccountViewModel.db.DB.USERs.ToList();
+               List<USER> users = db.USERs.ToList();
                foreach (USER user in users)
                 {
                     if (user.USERNAME == EmailProcessing.emailUserName)
                     {
                         user.PASSWORD = Encryptor.Hash(rw.txbMatKhau.Password);
-                        recoverAccountViewModel.db.DB.SaveChanges();
+                        db.SaveChanges();
                         NotifyWindow notifyWindow = new NotifyWindow("Success", "Khôi phục tài khoản thành công!");
                         notifyWindow.ShowDialog();
                         break;
@@ -60,6 +61,14 @@ namespace HospitalManagement.Command
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập mã xác thực");
                 notifyWindow.ShowDialog();
                 rw.txbMaXacThuc.Focus();
+                return false;
+            }
+
+            if (Convert.ToInt32(rw.txbMaXacThuc.Text) != EmailProcessing.vertificedNumber)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mã xác thực không chính xác");
+                notifyWindow.ShowDialog();
+                rw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
 
@@ -86,14 +95,27 @@ namespace HospitalManagement.Command
                 rw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
-            if (Convert.ToInt32(rw.txbMaXacThuc.Text) != EmailProcessing.vertificedNumber)
+
+            if (checkPassword(rw))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mã xác thực không chính xác");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu mới trùng với mật khẩu cũ!");
                 notifyWindow.ShowDialog();
                 rw.txbNhapLaiMatKhau.Focus();
                 return false;
             }
+
             return true;
+        }
+
+        public bool checkPassword (RecoverAccountWindow rw)
+        {
+            var usersList = db.USERs.ToList();
+            foreach (var user in usersList)
+            {
+                if (user.PASSWORD == Encryptor.Hash(rw.txbMatKhau.Password))
+                    return true;
+            }
+            return false;
         }
     }
 }

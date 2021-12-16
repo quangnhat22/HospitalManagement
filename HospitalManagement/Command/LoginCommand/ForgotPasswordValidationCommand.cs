@@ -77,14 +77,33 @@ namespace HospitalManagement.Command
         public bool Check(ForgotPasswordWindow mw)
         {
             if (mw == null) return false;
-            if (string.IsNullOrWhiteSpace(mw.tbMailAddress.Text) || string.IsNullOrWhiteSpace(mw.tbUsername.Text) || mw.tbMailAddress.Text.Contains('@') == false)
+
+            if (string.IsNullOrWhiteSpace(mw.tbUsername.Text))
             {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ email");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên đăng nhập");
                 notifyWindow.ShowDialog();
                 mw.tbUsername.Focus();
                 return false;
             }
-            var users = forgotPasswordFormViewModel?.db?.DB?.USERs.Where(x => x.USERNAME == mw.tbUsername.Text && x.ADMINs.First().EMAIL == mw.tbMailAddress.Text);
+
+            if (string.IsNullOrWhiteSpace(mw.tbMailAddress.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ email");
+                notifyWindow.ShowDialog();
+                mw.tbMailAddress.Focus();
+                return false;
+            }
+
+            if (!ValidatorEmail.EmailIsValid(mw.tbMailAddress.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Địa chỉ email không hợp lệ");
+                notifyWindow.ShowDialog();
+                mw.tbMailAddress.Focus();
+                return false;
+            }
+
+            var users = DataProvider.Ins.DB.USERs.Where(x => x.USERNAME == mw.tbUsername.Text 
+                                                            && x.ADMINs.FirstOrDefault().EMAIL == mw.tbMailAddress.Text);
             if (users == null || users.Count() == 0)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng kiểm tra lại thông tin nhập!");

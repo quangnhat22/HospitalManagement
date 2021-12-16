@@ -6,14 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace HospitalManagement.Command
 {
-    internal class SaveChangeNurseInformationCommand: ICommand
+    internal class NurseFirstLoginUpdateCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -27,7 +30,7 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            ChangeNurseInformationForm nurseForm = parameter as ChangeNurseInformationForm;
+            NurseForm nurseForm = parameter as NurseForm;
             if (Check(nurseForm))
             {
                 BindingExpression beHo = nurseForm.txbHo.GetBindingExpression(TextBox.TextProperty);
@@ -55,121 +58,136 @@ namespace HospitalManagement.Command
                 BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
+                Window window = System.Windows.Application.Current.MainWindow as Window;
+                MainWindowViewModel.User = FirstLoginViewModel.User;
+                MainWindow mainWindow = new MainWindow();
+                System.Windows.Application.Current.MainWindow = mainWindow;
+                System.Windows.Application.Current.MainWindow.Show();
+                window.Close();
+                Thread windowThread = new Thread(new ThreadStart(() =>
+                {
+                    window.Closed += (s, e) =>
+                    Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Background);
+                    System.Windows.Threading.Dispatcher.Run();
+                }));
+                windowThread.SetApartmentState(ApartmentState.STA);
+                windowThread.IsBackground = true;
+                windowThread.Start();
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Đã cập nhật thành công");
                 notifyWindow.ShowDialog();
             }
         }
-        public bool Check(ChangeNurseInformationForm cnf)
+        public bool Check(NurseForm nf)
         {
-            if (cnf == null) return false;
+            if (nf == null) return false;
 
 
-            if (string.IsNullOrWhiteSpace(cnf.txbHo.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
                 notifyWindow.ShowDialog();
-                cnf.txbHo.Focus();
+                nf.txbHo.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbTen.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
-                cnf.txbTen.Focus();
+                nf.txbTen.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbSDT.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
                 notifyWindow.ShowDialog();
-                cnf.txbSDT.Focus();
+                nf.txbSDT.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(cnf.txbEmail.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
                 notifyWindow.ShowDialog();
-                cnf.txbEmail.Focus();
+                nf.txbEmail.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbDiaChi.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
                 notifyWindow.ShowDialog();
-                cnf.txbDiaChi.Focus();
+                nf.txbDiaChi.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbNGSinh.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
-                cnf.txbNGSinh.Focus();
+                nf.txbNGSinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.cbxGioiTinh.Text.ToString()))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
-                notifyWindow.ShowDialog();
-                cnf.cbxGioiTinh.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(nf.cbxGioiTinh.Text.ToString()))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
+            //    notifyWindow.ShowDialog();
+            //    nf.cbxGioiTinh.Focus();
+            //    return false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(cnf.txbQuocTich.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbQuocTich.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập quốc tịch");
                 notifyWindow.ShowDialog();
-                cnf.txbQuocTich.Focus();
+                nf.txbQuocTich.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbChuyenKhoa.Text))
+            if (string.IsNullOrWhiteSpace(nf.txbChuyenKhoa.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập chuyên Khoa");
                 notifyWindow.ShowDialog();
-                cnf.txbChuyenKhoa.Focus();
+                nf.txbChuyenKhoa.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cnf.txbVaiTro.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
-                notifyWindow.ShowDialog();
-                cnf.txbVaiTro.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(nf.txbVaiTro.Text))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
+            //    notifyWindow.ShowDialog();
+            //    nf.txbVaiTro.Focus();
+            //    return false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(cnf.cbxIDTO.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
-                notifyWindow.ShowDialog();
-                cnf.cbxIDTO.Focus();
-                return false;
-            }
-            if (!CheckCombobox(cnf.cbxIDTO.Text, cnf.cbxIDTO))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
-                notifyWindow.ShowDialog();
-                cnf.cbxIDTO.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(nf.cbxIDTO.Text))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
+            //    notifyWindow.ShowDialog();
+            //    nf.cbxIDTO.Focus();
+            //    return false;
+            //}
+            //if (!CheckCombobox(nf.cbxIDTO.Text, nf.cbxIDTO))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
+            //    notifyWindow.ShowDialog();
+            //    nf.cbxIDTO.Focus();
+            //    return false;
+            //}
 
             return true;
         }
-        private bool CheckCombobox(string text, ComboBox cbx)
-        {
-            foreach (var item in cbx.Items)
-            {
-                if (item.ToString() == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //private bool CheckCombobox(string text, ComboBox cbx)
+        //{
+        //    foreach (var item in cbx.Items)
+        //    {
+        //        if (item.ToString() == text)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }
