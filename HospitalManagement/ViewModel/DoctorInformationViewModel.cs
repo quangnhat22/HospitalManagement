@@ -55,8 +55,12 @@ namespace HospitalManagement.ViewModel
                 gioitinh = true;
             }
             else gioitinh = false;
-            DateTime text = (DateTime)bs.NGSINH;
-            string date = text.ToString("dd/MM/yyyy");
+            string date = "";
+            if(bs.NGSINH != null)
+            {
+                DateTime text = (DateTime)bs.NGSINH;
+                date = text.ToString("dd/MM/yyyy");
+            }              
             if (doctorForm.txbHo.Text != NullToString(bs.HO) || doctorForm.txbTen.Text != NullToString(bs.TEN) || doctorForm.txbChuyenKhoa.Text != NullToString(bs.CHUYENKHOA) ||
                 doctorForm.txbQuocTich.Text != NullToString(bs.QUOCTICH) || doctorForm.txbDiaChi.Text != NullToString(bs.DIACHI) || doctorForm.txbEmail.Text != NullToString(bs.EMAIL) ||
                  doctorForm.txbGhiChu.Text != NullToString(bs.GHICHU) || doctorForm.txbSDT.Text != NullToString(bs.SDT) || doctorForm.txbVaiTro.Text != NullToString(bs.VAITRO) ||

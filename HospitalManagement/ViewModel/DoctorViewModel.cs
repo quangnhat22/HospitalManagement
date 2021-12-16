@@ -69,7 +69,7 @@ namespace HospitalManagement.ViewModel
             IsCheckedAll = false;
             if (MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
             {
-                ButtonVisibility = Visibility.Hidden;
+                ButtonVisibility = Visibility.Collapsed;
             }
             else
             {

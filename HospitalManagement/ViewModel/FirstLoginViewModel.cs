@@ -1,4 +1,7 @@
 ﻿using HospitalManagement.Command;
+using HospitalManagement.Command.DoctorListCommand;
+using HospitalManagement.Model;
+using HospitalManagement.View.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +14,13 @@ namespace HospitalManagement.ViewModel
     internal class FirstLoginViewModel : BaseViewModel
     {
         public ICommand OpenChangeAccountWindowCommand { get; set; }
+        static public USER User;
 
         public FirstLoginViewModel()
         {
-            OpenChangeAccountWindowCommand = new OpenChangeAccoutWindowCommand();
+            OpenChangeAccountWindowCommand = new FirstLoginOpening();
+
+
         }
     }
 }

@@ -41,11 +41,11 @@ namespace HospitalManagement.View.Staff
             {
                 if(tabItem.Tag?.ToString() == "Doctor")
                 {
-                    DoctorStackPanelComponent.Visibility= Visibility.Visible;
+                    DoctorStackPanelComponent.Visibility = Visibility.Visible;
                 }
                 else if(tabItem.Tag?.ToString() == "Nurse")
                 {
-                    NurseStackPanelComponent.Visibility= Visibility.Visible;
+                    NurseStackPanelComponent.Visibility = Visibility.Visible;
                 }
             }
         }

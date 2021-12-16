@@ -51,7 +51,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
                 <Button
-                    Margin="-16 0 20 0"
+                    Margin="-16 0 10 0"
                     Padding="8"
                     Command="{Binding SearchDoctor}">
                     <Button.Content>
@@ -63,21 +63,20 @@
                                BasedOn="{StaticResource MaterialDesignFlatLightBgButton}"></Style>
                     </Button.Style>
                 </Button>
-                <Button
+                <!--<Button
                 x:Name="btnAddDoctor"
                 Command="{Binding OpenDoctorForm}"
                 VerticalAlignment="Top"
                 Content="Thêm bác sĩ"
                 Visibility="{Binding ButtonVisibility}"
-                Width="110"/>
+                Width="110"/>-->
                 <Button Content="Xóa"
                         Command="{Binding DeleteDoctor}"
-                         x:Name="btnDeleteDoctor"
+                        x:Name="btnDeleteDoctor"
                         Visibility="{Binding ButtonVisibility}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Margin="15 0 0 0"
-                       >
+                        Margin="10 0 0 0">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
                             <Setter Property="Background" Value="#dc3545"></Setter>
@@ -119,7 +118,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
                 <Button
-                    Margin="-16 0 20 0"
+                    Margin="-16 0 10 0"
                     Padding="8"
                     Command="{Binding SearchNurse}">
                     <Button.Content>
@@ -131,22 +130,21 @@
                                BasedOn="{StaticResource MaterialDesignFlatLightBgButton}"></Style>
                     </Button.Style>
                 </Button>
-                <Button 
+                <!--<Button 
                     x:Name="btnAddNurse"
                     Command="{Binding OpenNurseForm}"
                     Visibility="{Binding ButtonVisibility}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Content="Thêm y tá"
-                    Width="110"/>
+                    Width="110"/>-->
                 <Button Content="Xóa"
-                         x:Name="btnDeleteNurse"
+                        x:Name="btnDeleteNurse"
                         Visibility="{Binding ButtonVisibility}"
                         Command="{Binding DeleteNurse}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Margin="15 0 0 0"
-                       >
+                        Margin="10 0 0 0">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
                             <Setter Property="Background" Value="#dc3545"></Setter>
