@@ -172,11 +172,3 @@ CREATE TABLE YTALIENQUAN
 )
 
 GO
-
-select * from BACSI ORDER BY IDUSER
-
-select * from [TO]
-
-select * from [USER]
-
-delete from [USER]
