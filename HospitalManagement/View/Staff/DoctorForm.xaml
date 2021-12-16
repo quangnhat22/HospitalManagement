@@ -303,7 +303,7 @@
                             </Grid>
                             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0">
                                 <Grid Height="80" Margin="50,50,0,10">
-                                    <Button Command="{Binding SaveChange}"
+                                    <Button Command="{Binding UpdateInformation}"
                                 CommandParameter="{Binding ElementName = DoctorFormWindow}"
                                 Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
                                 materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="30,0,0,0"/>

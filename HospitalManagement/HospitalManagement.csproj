@@ -136,8 +136,9 @@
     <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\AddDoctorCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
-    <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\DoctorFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SearchDoctorCommand.cs" />
     <Compile Include="Command\NurseListCommand\AddNurseCommand.cs" />
     <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />

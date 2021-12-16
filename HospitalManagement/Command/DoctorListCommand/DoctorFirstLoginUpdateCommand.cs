@@ -18,7 +18,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace HospitalManagement.Command
 {
-    internal class SaveChangeDoctorInformationCommand: ICommand
+    internal class DoctorFirstLoginUpdateCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -32,7 +32,7 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            ChangeDoctorInformationForm doctorForm = parameter as ChangeDoctorInformationForm;
+            DoctorForm doctorForm = parameter as DoctorForm;
             if (Check(doctorForm))
             {
                 BindingExpression beHo = doctorForm.txbHo.GetBindingExpression(TextBox.TextProperty);
@@ -79,7 +79,7 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();                
             }
         }
-        public bool Check(ChangeDoctorInformationForm df)
+        public bool Check(DoctorForm df)
         {
             if (df == null) return false;
 
@@ -131,13 +131,13 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.cbxGioiTinh.Text.ToString()))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
-                notifyWindow.ShowDialog();
-                df.cbxGioiTinh.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(df.cbxGioiTinh.Text.ToString()))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn giới tính");
+            //    notifyWindow.ShowDialog();
+            //    df.cbxGioiTinh.Focus();
+            //    return false;
+            //}
 
             if (string.IsNullOrWhiteSpace(df.txbQuocTich.Text))
             {
@@ -155,21 +155,21 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.cbxVaiTro.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
-                notifyWindow.ShowDialog();
-                df.cbxVaiTro.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(df.cbxVaiTro.Text))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
+            //    notifyWindow.ShowDialog();
+            //    df.cbxVaiTro.Focus();
+            //    return false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(df.cbxIDTO.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
-                notifyWindow.ShowDialog();
-                df.cbxIDTO.Focus();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(df.cbxIDTO.Text))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
+            //    notifyWindow.ShowDialog();
+            //    df.cbxIDTO.Focus();
+            //    return false;
+            //}
             if (df.txbNGSinh.SelectedDate > DateTime.Now)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
@@ -177,25 +177,25 @@ namespace HospitalManagement.Command
                 df.txbNGSinh.Focus();
                 return false;
             }
-            if (!CheckCombobox(df.cbxIDTO.Text, df.cbxIDTO))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
-                notifyWindow.ShowDialog();
-                df.cbxIDTO.Focus();
-                return false;
-            }
+            //if (!CheckCombobox(df.cbxIDTO.Text, df.cbxIDTO))
+            //{
+            //    NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
+            //    notifyWindow.ShowDialog();
+            //    df.cbxIDTO.Focus();
+            //    return false;
+            //}
             return true;
         }
-        private bool CheckCombobox(string text, ComboBox cbx)
-        {
-            foreach (var item in cbx.Items)
-            {
-                if (item.ToString() == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //private bool CheckCombobox(string text, ComboBox cbx)
+        //{
+        //    foreach (var item in cbx.Items)
+        //    {
+        //        if (item.ToString() == text)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

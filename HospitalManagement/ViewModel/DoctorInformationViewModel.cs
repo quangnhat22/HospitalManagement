@@ -18,6 +18,7 @@ namespace HospitalManagement.ViewModel
         private BACSI doctor;        
         public BACSI Doctor { get => doctor; set => doctor = value;}
         private List<int> listIDTo = new List<int>();
+        public ICommand UpdateInformation { get; set; }
         public ICommand SaveChange { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public List<int> ListIDTo { get => listIDTo; set => listIDTo = value; }
@@ -28,6 +29,7 @@ namespace HospitalManagement.ViewModel
         public DoctorInformationViewModel(BACSI bs)
         {
             this.Doctor = bs;
+            UpdateInformation = new DoctorFirstLoginUpdateCommand();
             SaveChange = new SaveChangeDoctorInformationCommand();
             var groupListData = DataProvider.Ins.DB.TOes.ToList().ConvertAll(itemGroup => itemGroup.ID);
             ListIDTo.AddRange(groupListData);
