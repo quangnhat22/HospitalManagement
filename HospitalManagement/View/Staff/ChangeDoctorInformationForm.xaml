@@ -131,8 +131,9 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                                 <ComboBox Text="{Binding Doctor.GIOITINH,Mode=TwoWay, 
-                        UpdateSourceTrigger=Explicit, Converter={StaticResource BooleanToSexConverter}}" x:Name="cbxGioiTinh"  Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                         
-                        IsEditable="True">
+                                    UpdateSourceTrigger=Explicit, 
+                                    Converter={StaticResource BooleanToSexConverter}}" x:Name="cbxGioiTinh"  Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"                                         
+                        IsEditable="False">
                                     <ComboBoxItem
                             Content="Nam" />
                                     <ComboBoxItem
@@ -179,7 +180,16 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="ID Tổ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox Text="{Binding Doctor.IDTO, Mode=TwoWay, UpdateSourceTrigger=Explicit}" x:Name="txbIDTO" Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <ComboBox Text="{Binding Doctor.IDTO, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                                          x:Name="cbxIDTO" 
+                                          Margin="0,0,0,5" 
+                                          HorizontalAlignment="Left" 
+                                          Width="200" 
+                                          Foreground="Black"                                           
+                                          FontSize="20"
+                                          IsEditable="True"
+                                          ItemsSource="{Binding ListIDTo}"
+                                          Grid.Row="1" />
                             </Grid>
                         </StackPanel>
                         <StackPanel Height="190" Orientation="Horizontal">

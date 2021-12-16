@@ -18,11 +18,15 @@ namespace HospitalManagement.ViewModel
 
         public YTA Nurse { get => nurse; set => nurse = value; }
         public event PropertyChangedEventHandler PropertyChanged;
+        private List<int> listIDTo = new List<int>();
         public ICommand SaveChange { get; set; }
+        public List<int> ListIDTo { get => listIDTo; set => listIDTo = value; }
         public NurseInformationViewModel(YTA yt)
         {
             this.Nurse = yt;
             SaveChange = new SaveChangeNurseInformationCommand();
+            var groupListData = DataProvider.Ins.DB.TOes.ToList().ConvertAll(itemGroup => itemGroup.ID);
+            ListIDTo.AddRange(groupListData);
         }      
         protected virtual void OnPropertyChanged(string name)
         {
@@ -58,7 +62,7 @@ namespace HospitalManagement.ViewModel
             if (nurseForm.txbHo.Text != NullToString(yt.HO) || nurseForm.txbTen.Text != NullToString(yt.TEN) || nurseForm.txbChuyenKhoa.Text != NullToString(yt.CHUYENKHOA) ||
                 nurseForm.txbQuocTich.Text != NullToString(yt.QUOCTICH) || nurseForm.txbDiaChi.Text != NullToString(yt.DIACHI) || nurseForm.txbEmail.Text != NullToString(yt.EMAIL) ||
                  nurseForm.txbGhiChu.Text != NullToString(yt.GHICHU) || nurseForm.txbSDT.Text != NullToString(yt.SDT) || nurseForm.txbVaiTro.Text != NullToString(yt.VAITRO) ||
-                 nurseForm.txbIDTO.Text != yt.IDTO.ToString() || gioitinh != (bool)yt.GIOITINH || nurseForm.txbNGSinh.Text != date)
+                 nurseForm.cbxIDTO.Text != yt.IDTO.ToString() || gioitinh != (bool)yt.GIOITINH || nurseForm.txbNGSinh.Text != date)
             {
                 return true;
             }

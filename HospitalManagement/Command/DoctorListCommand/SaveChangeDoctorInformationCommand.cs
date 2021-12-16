@@ -51,7 +51,7 @@ namespace HospitalManagement.Command
                 beChuyenKhoa.UpdateSource();
                 BindingExpression beVaiTro = doctorForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
                 beVaiTro.UpdateSource();
-                BindingExpression beIDTO = doctorForm.txbIDTO.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beIDTO = doctorForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
                 beIDTO.UpdateSource();
                 BindingExpression beGhiChu = doctorForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
                 beGhiChu.UpdateSource();
@@ -144,38 +144,39 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(cdf.txbIDTO.Text))
+            if (string.IsNullOrWhiteSpace(cdf.cbxIDTO.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
                 notifyWindow.ShowDialog();
                 cdf.txbVaiTro.Focus();
                 return false;
             }
-            //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
-            //Kiem tra cmnnd//            
-            //Kiểm tra IDTO//
-            try
+            if (cdf.txbNGSinh.SelectedDate > DateTime.Now)
             {
-                int idTo = int.Parse(cdf.txbIDTO.Text);
-                var checkTO = DataProvider.Ins.DB.TOes.Any(x => x.ID == idTo);
-                if (checkTO == false)
-                {
-                    NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
-                    notifyWindow.ShowDialog();
-                    cdf.txbIDTO.Focus();
-                    return false;
-                }
-            }
-            catch (FormatException)
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Tổ là một số nguyên dương");
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
                 notifyWindow.ShowDialog();
-                cdf.txbIDTO.Focus();
+                cdf.txbNGSinh.Focus();
                 return false;
             }
-
+            if (!CheckCombobox(cdf.cbxIDTO.Text, cdf.cbxIDTO))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
+                notifyWindow.ShowDialog();
+                cdf.cbxIDTO.Focus();
+                return false;
+            }
             return true;
         }
-        
+        private bool CheckCombobox(string text, ComboBox cbx)
+        {
+            foreach (var item in cbx.Items)
+            {
+                if (item.ToString() == text)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
