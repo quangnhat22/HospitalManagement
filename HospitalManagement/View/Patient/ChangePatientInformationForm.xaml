@@ -97,7 +97,7 @@
                                                  TextAlignment="Left" 
                                                  FontSize="20" 
                                                  Grid.Row="1" 
-                                                 IsReadOnly="True" />
+                                                 IsReadOnly="True" IsEnabled="False" />
                                     </Grid>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -234,7 +234,7 @@
                                          TextAlignment="Left" 
                                          FontSize="20" 
                                          Grid.Row="1" 
-                                         IsReadOnly="True"/>
+                                         IsReadOnly="True" IsEnabled="False"/>
                             </Grid>
                         </StackPanel>
                         <StackPanel Height="85" Orientation="Horizontal">

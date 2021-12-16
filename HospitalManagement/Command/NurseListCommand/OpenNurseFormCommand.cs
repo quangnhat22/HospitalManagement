@@ -30,10 +30,10 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            Window window = parameter as Window;
-            var nurseForm = new NurseForm(nurseViewModel);
-            Application.Current.MainWindow = nurseForm;
-            nurseForm.Show();
+            //Window window = parameter as Window;
+            //var nurseForm = new NurseForm(nurseViewModel);
+            //Application.Current.MainWindow = nurseForm;
+            //nurseForm.Show();
         }
     }
 }

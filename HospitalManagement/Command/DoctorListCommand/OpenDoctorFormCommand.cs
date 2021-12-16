@@ -31,10 +31,10 @@ namespace HospitalManagement.Command
 
         public void Execute(object parameter)
         {
-            Window window = parameter as Window;
-            var doctorForm = new DoctorForm(doctorViewModel);
-            Application.Current.MainWindow = doctorForm;
-            doctorForm.Show();
+            //Window window = parameter as Window;
+            //var doctorForm = new DoctorForm(doctorViewModel);
+            //Application.Current.MainWindow = doctorForm;
+            //doctorForm.Show();
         }
     }
 }

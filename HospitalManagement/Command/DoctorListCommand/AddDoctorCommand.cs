@@ -53,8 +53,8 @@ namespace HospitalManagement.Command
                     QUOCTICH = doctorForm.txbQuocTich.Text,
                     CMND_CCCD = doctorForm.txbCMND_CCCD.Text,
                     CHUYENKHOA = doctorForm.txbChuyenKhoa.Text,
-                    VAITRO = doctorForm.txbVaiTro.Text,
-                    IDTO = Convert.ToInt32(doctorForm.txbIDTO.Text),
+                    VAITRO = doctorForm.cbxVaiTro.Text,
+                    IDTO = Convert.ToInt32(doctorForm.cbxIDTO.Text),
                     GHICHU = doctorForm.txbGhiChu.Text,
                 };
                 DataProvider.Ins.DB.BACSIs.Add(doctorInput);
@@ -149,19 +149,19 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(df.txbVaiTro.Text))
+            if (string.IsNullOrWhiteSpace(df.cbxVaiTro.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập vai trò");
                 notifyWindow.ShowDialog();
-                df.txbVaiTro.Focus();
+                df.cbxVaiTro.Focus();
                 return false;
             }
             
-            if (string.IsNullOrWhiteSpace(df.txbIDTO.Text))
+            if (string.IsNullOrWhiteSpace(df.cbxIDTO.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập id tổ");
                 notifyWindow.ShowDialog();
-                df.txbVaiTro.Focus();
+                df.cbxVaiTro.Focus();
                 return false;
             }
             //Kiểm tra CMND nha mày do nó liên quan tới Nurse vs Patient nữa @@//
@@ -190,13 +190,13 @@ namespace HospitalManagement.Command
             //Kiểm tra IDTO//
             try
             {
-                int idTo = int.Parse(df.txbIDTO.Text);
+                int idTo = int.Parse(df.cbxIDTO.Text);
                 var checkTO = DataProvider.Ins.DB.TOes.Any(x => x.ID == idTo);
                 if (checkTO == false)
                 {
                     NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ không tồn tại");
                     notifyWindow.ShowDialog();
-                    df.txbIDTO.Focus();
+                    df.cbxIDTO.Focus();
                     return false;
                 }
             }
@@ -204,7 +204,7 @@ namespace HospitalManagement.Command
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID Tổ là một số nguyên dương");
                 notifyWindow.ShowDialog();
-                df.txbIDTO.Focus();
+                df.cbxIDTO.Focus();
                 return false;
             }
 

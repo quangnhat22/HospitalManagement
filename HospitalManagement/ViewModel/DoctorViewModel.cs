@@ -55,7 +55,7 @@ namespace HospitalManagement.ViewModel
         }
         public Visibility ButtonVisibility { get => buttonVisibility; set => buttonVisibility = value; }
 
-        public ICommand OpenDoctorForm { get; set; }
+        //public ICommand OpenDoctorForm { get; set; }
         public ICommand AllCheckedCommand { get; set; }
         public ICommand SingleCheckedCommand { get; set; }
         public ICommand ShowDoctorInfomationCommand { get; set; }
@@ -95,7 +95,7 @@ namespace HospitalManagement.ViewModel
             });    
             ShowDoctorInfomationCommand = new ShowDoctorInfomationCommand();
             OpenChangeDoctorForm = new OpenChangeDoctorFormCommand();
-            OpenDoctorForm = new OpenDoctorFormCommand(this);
+            //OpenDoctorForm = new OpenDoctorFormCommand(this);
             DeleteDoctor = new DeleteDoctorCommand(this);
             SearchDoctor = new SearchDoctorCommand(this);
         }

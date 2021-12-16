@@ -54,8 +54,8 @@ namespace HospitalManagement.ViewModel
                     string date = text.ToString("dd/MM/yyyy");
                     if (doctorForm.txbHo.Text != NullToString(bs.HO) || doctorForm.txbTen.Text != NullToString(bs.TEN) || doctorForm.txbChuyenKhoa.Text != NullToString(bs.CHUYENKHOA) ||
                         doctorForm.txbQuocTich.Text != NullToString(bs.QUOCTICH) || doctorForm.txbDiaChi.Text != NullToString(bs.DIACHI) || doctorForm.txbEmail.Text != NullToString(bs.EMAIL) ||
-                         doctorForm.txbGhiChu.Text != NullToString(bs.GHICHU) || doctorForm.txbSDT.Text != NullToString(bs.SDT) || doctorForm.txbVaiTro.Text != NullToString(bs.VAITRO) ||
-                         doctorForm.txbIDTO.Text != bs.IDTO.ToString() || gioitinh != (bool)bs.GIOITINH || doctorForm.txbNGSinh.Text != date)
+                         doctorForm.txbGhiChu.Text != NullToString(bs.GHICHU) || doctorForm.txbSDT.Text != NullToString(bs.SDT) || doctorForm.cbxVaiTro.Text != NullToString(bs.VAITRO) ||
+                         doctorForm.cbxIDTO.Text != bs.IDTO.ToString() || gioitinh != (bool)bs.GIOITINH || doctorForm.txbNGSinh.Text != date)
                     {
                         return true;
                     }
@@ -73,8 +73,8 @@ namespace HospitalManagement.ViewModel
             {
                 if (doctorForm.txbHo.Text != string.Empty || doctorForm.txbTen.Text != string.Empty || doctorForm.txbChuyenKhoa.Text != string.Empty ||
                         doctorForm.txbQuocTich.Text != string.Empty || doctorForm.txbDiaChi.Text != string.Empty || doctorForm.txbEmail.Text != string.Empty ||
-                         doctorForm.txbGhiChu.Text != string.Empty || doctorForm.txbSDT.Text != string.Empty || doctorForm.txbVaiTro.Text != string.Empty ||
-                         doctorForm.txbIDTO.Text != string.Empty || doctorForm.cbxGioiTinh.Text != string.Empty || doctorForm.txbNGSinh.Text != string.Empty)
+                         doctorForm.txbGhiChu.Text != string.Empty || doctorForm.txbSDT.Text != string.Empty || doctorForm.cbxVaiTro.Text != string.Empty ||
+                         doctorForm.cbxIDTO.Text != string.Empty || doctorForm.cbxGioiTinh.Text != string.Empty || doctorForm.txbNGSinh.Text != string.Empty)
                 {
                     return true;
                 }

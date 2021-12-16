@@ -1,4 +1,5 @@
 ﻿using HospitalManagement.Model;
+using HospitalManagement.View;
 using HospitalManagement.View.Others;
 using HospitalManagement.View.Staff;
 using HospitalManagement.ViewModel;
@@ -36,7 +37,7 @@ namespace HospitalManagement.Command
             if (user.ROLE == "leader" || user.ROLE == "doctor")
             {
                 BACSI bacsi = user.BACSIs.FirstOrDefault();
-                ChangeDoctorInformationForm firstLoginWindow = new ChangeDoctorInformationForm(bacsi);
+                DoctorForm firstLoginWindow = new DoctorForm(bacsi);
                 Application.Current.MainWindow = firstLoginWindow;
                 Application.Current.MainWindow.Show();
 
