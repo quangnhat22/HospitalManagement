@@ -16,7 +16,7 @@ using System.Windows.Threading;
 
 namespace HospitalManagement.Command
 {
-    internal class NurseFirstLoginUpdateCommand : ICommand
+    internal class AdminFirstLoginCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
@@ -30,33 +30,25 @@ namespace HospitalManagement.Command
         }
         public void Execute(object parameter)
         {
-            NurseForm nurseForm = parameter as NurseForm;
-            if (Check(nurseForm))
+            AdminForm adminForm = parameter as AdminForm;
+            if (Check(adminForm))
             {
-                BindingExpression beHo = nurseForm.txbHo.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beHo = adminForm.txbHo.GetBindingExpression(TextBox.TextProperty);
                 beHo.UpdateSource();
-                BindingExpression beTen = nurseForm.txbTen.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beTen = adminForm.txbTen.GetBindingExpression(TextBox.TextProperty);
                 beTen.UpdateSource();
-                BindingExpression beSDT = nurseForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beSDT = adminForm.txbSDT.GetBindingExpression(TextBox.TextProperty);
                 beSDT.UpdateSource();
-                BindingExpression beEmail = nurseForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beEmail = adminForm.txbEmail.GetBindingExpression(TextBox.TextProperty);
                 beEmail.UpdateSource();
-                BindingExpression beDiaChi = nurseForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beDiaChi = adminForm.txbDiaChi.GetBindingExpression(TextBox.TextProperty);
                 beDiaChi.UpdateSource();
-                BindingExpression beNGSinh = nurseForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
+                BindingExpression beNGSinh = adminForm.txbNGSinh.GetBindingExpression(DatePicker.TextProperty);
                 beNGSinh.UpdateSource();
-                BindingExpression beGioiTinh = nurseForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
+                BindingExpression beGioiTinh = adminForm.cbxGioiTinh.GetBindingExpression(ComboBox.TextProperty);
                 beGioiTinh.UpdateSource();
-                BindingExpression beQuocTich = nurseForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
+                BindingExpression beQuocTich = adminForm.txbQuocTich.GetBindingExpression(TextBox.TextProperty);
                 beQuocTich.UpdateSource();
-                BindingExpression beChuyenKhoa = nurseForm.txbChuyenKhoa.GetBindingExpression(TextBox.TextProperty);
-                beChuyenKhoa.UpdateSource();
-                BindingExpression beVaiTro = nurseForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
-                beVaiTro.UpdateSource();
-                BindingExpression beIDTO = nurseForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
-                beIDTO.UpdateSource();
-                BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
-                beGhiChu.UpdateSource();
                 DataProvider.Ins?.DB?.SaveChanges();
                 Window window = System.Windows.Application.Current.MainWindow as Window;
                 MainWindowViewModel.User = FirstLoginViewModel.User;
@@ -77,82 +69,72 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();
             }
         }
-        public bool Check(NurseForm nf)
+        public bool Check(AdminForm af)
         {
-            if (nf == null) return false;
-
-
-            if (string.IsNullOrWhiteSpace(nf.txbHo.Text))
+            if (af == null) return false;
+            if (string.IsNullOrWhiteSpace(af.txbHo.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập họ");
                 notifyWindow.ShowDialog();
-                nf.txbHo.Focus();
+                af.txbHo.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(nf.txbTen.Text))
+            if (string.IsNullOrWhiteSpace(af.txbTen.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập tên");
                 notifyWindow.ShowDialog();
-                nf.txbTen.Focus();
+                af.txbTen.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(nf.txbSDT.Text))
+            if (string.IsNullOrWhiteSpace(af.txbSDT.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập SDT");
                 notifyWindow.ShowDialog();
-                nf.txbSDT.Focus();
+                af.txbSDT.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(nf.txbEmail.Text))
+            if (string.IsNullOrWhiteSpace(af.txbEmail.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập email");
                 notifyWindow.ShowDialog();
-                nf.txbEmail.Focus();
+                af.txbEmail.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(nf.txbDiaChi.Text))
+            if (string.IsNullOrWhiteSpace(af.txbDiaChi.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
                 notifyWindow.ShowDialog();
-                nf.txbDiaChi.Focus();
+                af.txbDiaChi.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(nf.txbNGSinh.Text))
+            if (string.IsNullOrWhiteSpace(af.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
-                nf.txbNGSinh.Focus();
+                af.txbNGSinh.Focus();
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(nf.txbQuocTich.Text))
+            if (string.IsNullOrWhiteSpace(af.txbQuocTich.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập quốc tịch");
                 notifyWindow.ShowDialog();
-                nf.txbQuocTich.Focus();
+                af.txbQuocTich.Focus();
                 return false;
             }
-
-            if (string.IsNullOrWhiteSpace(nf.txbChuyenKhoa.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập chuyên Khoa");
-                notifyWindow.ShowDialog();
-                nf.txbChuyenKhoa.Focus();
-                return false;
-            }
-
-            if (nf.txbNGSinh.SelectedDate > DateTime.Now)
+            if (af.txbNGSinh.SelectedDate > DateTime.Now)
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
                 notifyWindow.ShowDialog();
-                nf.txbNGSinh.Focus();
+                af.txbNGSinh.Focus();
                 return false;
             }
             return true;
         }
+
     }
 }

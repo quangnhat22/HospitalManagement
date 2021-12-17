@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalManagement.View.Staff"
+        xmlns:utils="clr-namespace:HospitalManagement.Utils"
         mc:Ignorable="d"
         x:Name="AdminFormWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -20,6 +21,9 @@
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True">
+    <Window.Resources>
+        <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
+    </Window.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
         </i:EventTrigger>
@@ -56,7 +60,14 @@
                                                     <RowDefinition></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="Họ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                                <TextBox x:Name="txbHo" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập họ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                                <TextBox x:Name="txbHo"
+                                                         Text="{Binding Admin.HO, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                                         HorizontalAlignment="Left"
+                                                         Width="200" 
+                                                         materialDesign:HintAssist.Hint="Nhập họ" 
+                                                         Foreground="Black" TextAlignment="Left" 
+                                                         FontSize="20" 
+                                                         Grid.Row="1" />
                                             </Grid>
                                             <Grid Width="200" HorizontalAlignment="Left" Margin="50,13,0,0">
                                                 <Grid.RowDefinitions>
@@ -64,7 +75,15 @@
                                                     <RowDefinition></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="Tên" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                                <TextBox x:Name="txbTen" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập tên" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                                <TextBox x:Name="txbTen" 
+                                                         Text="{Binding Admin.TEN, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                                         HorizontalAlignment="Left" 
+                                                         Width="200" 
+                                                         materialDesign:HintAssist.Hint="Nhập tên" 
+                                                         Foreground="Black" 
+                                                         TextAlignment="Left" 
+                                                         FontSize="20" 
+                                                         Grid.Row="1" />
                                             </Grid>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
@@ -74,7 +93,15 @@
                                                     <RowDefinition></RowDefinition>
                                                 </Grid.RowDefinitions>
                                                 <TextBlock Text="Số điện thoại" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                                <TextBox x:Name="txbSDT" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập số điện thoại" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                                <TextBox x:Name="txbSDT" 
+                                                         Text="{Binding Admin.SDT, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                                                         HorizontalAlignment="Left" 
+                                                         Width="400" 
+                                                         materialDesign:HintAssist.Hint="Nhập số điện thoại" 
+                                                         Foreground="Black" 
+                                                         TextAlignment="Left" 
+                                                         FontSize="20" 
+                                                         Grid.Row="1" />
                                             </Grid>
 
                                         </StackPanel>
@@ -84,7 +111,16 @@
                                                 <RowDefinition></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <TextBlock Text="Email" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                            <TextBox x:Name="txbEmail" HorizontalAlignment="Left" Width="400" materialDesign:HintAssist.Hint="Nhập địa chỉ Email" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                            <TextBox x:Name="txbEmail"
+                                                     Text="{Binding Admin.EMAIL, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                                     HorizontalAlignment="Left" 
+                                                     Width="400" 
+                                                     materialDesign:HintAssist.Hint="Nhập địa chỉ Email" 
+                                                     Foreground="Black" 
+                                                     TextAlignment="Left" 
+                                                     FontSize="20" 
+                                                     Grid.Row="1" 
+                                                     IsEnabled="False" />
                                         </Grid>
                                     </StackPanel>
                                 </StackPanel>
@@ -93,8 +129,7 @@
                                 <Grid>
                                     <Image Height="220" Width="200" Source="/Images/medical-team.png" Margin="82,-10,118,39.6" />
                                     <Button 
-                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniButton"
+                            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"                            
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
                                         <materialDesign:PackIcon Kind="Pencil"/>
                                     </Button>
@@ -108,7 +143,15 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <DatePicker x:Name="txbNGSinh" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
+                                <DatePicker x:Name="txbNGSinh"
+                                            Text="{Binding Admin.NGSINH, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                            Margin="0,0,0,5" 
+                                            Width="200" 
+                                            HorizontalAlignment="Left" 
+                                            materialDesign:HintAssist.Hint="Chọn ngày" 
+                                            Grid.Row ="1" 
+                                            FontSize="20" 
+                                            Foreground="Black"/>
                             </Grid>
                             <Grid Width="160" HorizontalAlignment="Left" Margin="200,10,0,0">
                                 <Grid.RowDefinitions>
@@ -116,9 +159,13 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Giới tính" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <ComboBox x:Name="cbxGioiTinh"  Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
+                                <ComboBox x:Name="cbxGioiTinh"  
+                                          Text="{Binding Admin.GIOITINH,Mode=TwoWay, 
+                                    UpdateSourceTrigger=Explicit, 
+                                    Converter={StaticResource BooleanToSexConverter}}"
+                                          Margin="0,0,0,5" Grid.Row="1" Width="160" HorizontalAlignment="Left" Foreground="Black" FontFamily="Inter" FontSize="20"
                         materialDesign:HintAssist.Hint="Chọn giới tính"                       
-                        IsEditable="True">
+                        IsEditable="False">
                                     <ComboBoxItem
                             Content="Nam" />
                                     <ComboBoxItem
@@ -132,7 +179,17 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="CMND/CCCD" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox x:Name="txbCMND_CCCD" Margin="0,0,0,5" HorizontalAlignment="Left" Width="300" materialDesign:HintAssist.Hint="Nhập CMND/CCCD" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" IsEnabled="False" />
+                                <TextBox x:Name="txbCMND_CCCD" 
+                                         Text="{Binding Admin.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Margin="0,0,0,5" 
+                                         HorizontalAlignment="Left" 
+                                         Width="300" 
+                                         materialDesign:HintAssist.Hint="Nhập CMND/CCCD" 
+                                         Foreground="Black" 
+                                         TextAlignment="Left" 
+                                         FontSize="20" 
+                                         Grid.Row="1" 
+                                         IsEnabled="False" />
                             </Grid>
                         </StackPanel>
                         <StackPanel Height="85" Orientation="Horizontal">
@@ -142,7 +199,15 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Địa chỉ" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox x:Name="txbDiaChi" HorizontalAlignment="Left" Width="600" materialDesign:HintAssist.Hint="Nhập địa chỉ" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <TextBox x:Name="txbDiaChi"
+                                         Text="{Binding Admin.DIACHI, Mode=TwoWay, UpdateSourceTrigger=Explicit}" 
+                                         HorizontalAlignment="Left"
+                                         Width="600" 
+                                         materialDesign:HintAssist.Hint="Nhập địa chỉ" 
+                                         Foreground="Black" 
+                                         TextAlignment="Left" 
+                                         FontSize="20" 
+                                         Grid.Row="1" />
                             </Grid>
                             <Grid Width="200" HorizontalAlignment="Left" Margin="260,10,0,0">
                                 <Grid.RowDefinitions>
@@ -150,7 +215,16 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Quốc tịch" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <TextBox x:Name="txbQuocTich"  Margin="0,0,0,5" HorizontalAlignment="Left" Width="200" materialDesign:HintAssist.Hint="Nhập quốc tịch" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
+                                <TextBox x:Name="txbQuocTich"
+                                         Text="{Binding Admin.QUOCTICH, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                         Margin="0,0,0,5" 
+                                         HorizontalAlignment="Left" 
+                                         Width="200" 
+                                         materialDesign:HintAssist.Hint="Nhập quốc tịch"
+                                         Foreground="Black" 
+                                         TextAlignment="Left" 
+                                         FontSize="20" 
+                                         Grid.Row="1" />
                             </Grid>
                         </StackPanel>
                         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0">

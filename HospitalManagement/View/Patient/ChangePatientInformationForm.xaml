@@ -156,7 +156,6 @@
                                     <Image Height="220" Width="200" Source="/images/man.png" Margin="82,-10,118,39.6"  />
                                     <Button 
                                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                                        ToolTip="MaterialDesignFloatingActionMiniButton"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
                                         <materialDesign:PackIcon Kind="Pencil"/>
                                     </Button>

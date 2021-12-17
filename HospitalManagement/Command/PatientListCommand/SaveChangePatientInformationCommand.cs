@@ -169,8 +169,7 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();
                 pf.cbxIDPhong.Focus();
                 return false;
-            }            
-            //Kiem tra phong            
+            }                                  
             return true;
         }
         private bool CheckCombobox(string text, ComboBox cbx)

@@ -120,6 +120,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\AccountCommand\FirstLoginOpening.cs" />
+    <Compile Include="Command\AdminCommand\AdminFirstLoginCommand.cs" />
     <Compile Include="Command\BuildingCommand\ChangeBuildingCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
