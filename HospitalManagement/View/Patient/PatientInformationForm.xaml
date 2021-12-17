@@ -34,11 +34,11 @@
                         <Grid Height="150" Margin="0,10,0,0">
                             <Image Source="/Images/man.png" Height="150" Width="150"/>
                         </Grid>
-                        <!--<Border>
+                        <Border>
                             <Border.Resources>
                                 <Style TargetType="{x:Type materialDesign:PackIcon}" x:Key="ColorStyle">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Triệu chứng trở nặng">
+                                        <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Triệu chứng trở nặng" >
                                             <Setter Property="Foreground" Value="#FF7F7E"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding BenhNhan.TINHTRANG}" Value="Có triệu chứng">
@@ -57,7 +57,7 @@
                                                         Style="{StaticResource ColorStyle}"
                                                         Width="40"/>
                             </Grid>
-                        </Border>-->
+                        </Border>
                         
                         <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
@@ -100,11 +100,10 @@
                                 </Grid>
                                 <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"></ColumnDefinition>
-                                        <ColumnDefinition Width="150"></ColumnDefinition>
-                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -114,7 +113,7 @@
                                         <TextBlock Text="{Binding BenhNhan.PHONG.TANG.TOA.DISPLAYNAME}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
-                                    <Grid Grid.Column="1" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -123,23 +122,15 @@
                                         </TextBlock>
                                         <TextBlock Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                             <TextBlock.Text>
-                                                <MultiBinding StringFormat="{}{0}.{1}">
+                                                <MultiBinding StringFormat="{}{0}.{1} (ID: {2})">
                                                     <Binding Path="BenhNhan.PHONG.TANG.SOTANG" />
                                                     <Binding Path="BenhNhan.PHONG.SOPHONG" />
+                                                    <Binding Path="BenhNhan.IDPHONG" />
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
                                     </Grid>
-                                    <Grid Grid.Column="2" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding BenhNhan.IDPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                                        </TextBlock>
-                                    </Grid>
+                                    
                                 </Grid>
                                 <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
@@ -264,120 +255,10 @@
                 <Grid Grid.Row="1">
                     <Border Background="White" CornerRadius="0 0 8 8"></Border>
                     <Button Height="50" Width="100" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                materialDesign:ButtonAssist.CornerRadius="10" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Grid>
     </Border>
-    <!--<Grid>
-        <StackPanel Orientation="Vertical">
-            <Grid Height="220">
-                <Image Source="/Images/man.png" Height="200" Width="200"/>
-            </Grid>
-            <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <TextBlock Text="Họ và tên" Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Mã bệnh nhân:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="Mã bệnh nhân" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="Số giường" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Quốc tịch:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="Quốc tịch" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="CMND/CCCD:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="CMND/CCCD" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Giới tính:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="Giới tính" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                    <materialDesign:PackIcon Kind="GenderMale" Foreground="Blue" Margin="5,0,0,0"/>
-                    <materialDesign:PackIcon Kind="GenderFeMale" Foreground="Red"/>
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Số điện thoại:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <TextBlock Text="Số điện thoại" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
-                </TextBlock>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Email:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Vertical" Width="180">
-                        <TextBlock
-                            FontSize="18" 
-                            TextWrapping="Wrap" 
-                            Foreground="Black"
-                            Text="Địa chỉ Email" />
-                    </StackPanel>
-                </Viewbox>
-            </Grid>
-            <Grid Width="400" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="190"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Địa chỉ liên lạc:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Right">
-                </TextBlock>
-                <Viewbox Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Vertical" Width="180">
-                        <TextBlock
-                            FontSize="18" 
-                            TextWrapping="Wrap" 
-                            Foreground="Black"
-                            Text="thành phố Kon Tum tỉnh Kon Tum phường alo alo alo lao lao" />
-                    </StackPanel>
-                </Viewbox>
-            </Grid>
-        </StackPanel>
-        <Grid Height="80" VerticalAlignment="Bottom">
-            <Button Height="60" Width="150" Style="{StaticResource MaterialDesignRaisedButton}"
-                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" VerticalAlignment="Top"/>
-        </Grid>
-    </Grid>-->
+    
 </Window>

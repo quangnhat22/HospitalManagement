@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace HospitalManagement.View.Staff
     /// </summary>
     public partial class AdminForm : Window
     {
-        public AdminForm()
+        public AdminForm(ADMIN ad)
         {
             InitializeComponent();
+
         }
     }
 }
