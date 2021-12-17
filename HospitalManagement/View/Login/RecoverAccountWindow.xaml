@@ -54,7 +54,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Border CornerRadius="10" Background="White"/>
+        <Border CornerRadius="10" Background="White" BorderThickness="3" BorderBrush="{StaticResource clrPrimary}"/>
         <StackPanel>
             <Grid Height="50">
                 <Border CornerRadius="10 10 0 0">
@@ -78,11 +78,13 @@
                 x:Name="btnBack"
                 Command="{Binding openForgotPasswordFormCommand}"
                 CommandParameter="{Binding ElementName=recoverAccountWindow}"
-                Margin="8"
+                Margin="11 8"
                 Height="35" Width="35"
                 Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                 ToolTip="MaterialDesignFloatingActionLightButton"
                 Background="#35a0fe"
+                BorderBrush="#35a0fe"
+                materialDesign:ShadowAssist.ShadowDepth="Depth1"
                 HorizontalAlignment="Left">
                 <materialDesign:PackIcon
                     Kind="ArrowLeft"
