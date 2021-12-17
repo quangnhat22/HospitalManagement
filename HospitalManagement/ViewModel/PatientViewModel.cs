@@ -39,6 +39,7 @@ namespace HospitalManagement.ViewModel
         public ICommand SearchPatientCommand { get; set; }
         public ICommand DeletePatientCommand { get; set; }
         public ICommand OpenChangePatientForm { get; set; }
+        public ICommand ExportPatientToExcelCommand { get; set; }
 
         private bool? isCheckedAll;
 
@@ -77,6 +78,7 @@ namespace HospitalManagement.ViewModel
             ShowPatientInfomationCommand = new ShowPatientInfomationCommand();
             DeletePatientCommand = new DeletePatientCommand(this);
             OpenChangePatientForm = new OpenChangePatientFormCommand();
+            ExportPatientToExcelCommand = new ExportPatientToExcelCommand(this);
             if (MainWindowViewModel.User.ROLE == "staff" || MainWindowViewModel.User.ROLE == "leader")
             {
                 ButtonVisibility = Visibility.Collapsed;

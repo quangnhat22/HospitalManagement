@@ -145,6 +145,7 @@
     <Compile Include="Command\NurseListCommand\NurseFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
     <Compile Include="Command\NurseListCommand\SearchNurseCommand.cs" />
+    <Compile Include="Command\PatientListCommand\ExportPatientToExcelCommand.cs" />
     <Compile Include="Command\RoomCommand\OpenRoomWindowCommand.cs" />
     <Compile Include="Command\PatientListCommand\AddPatientCommand.cs" />
     <Compile Include="Command\PatientListCommand\DeletePatientCommand.cs" />

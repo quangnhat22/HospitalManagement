@@ -123,7 +123,7 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
     {
         public StaffRoleTeamTaskViewModelStaff() : base()
         {
-            LeaderTaskVisibility = Visibility.Hidden;
+            LeaderTaskVisibility = Visibility.Collapsed;
         }
 
         public override void LoadTaskList()

@@ -147,7 +147,7 @@
                                                     </Style.Triggers>
                                                 </Style>
                                                 <Style TargetType="{x:Type materialDesign:PackIcon}" x:Key="PriorityPackIcon">
-                                                    <Style.Triggers>
+                                                    <!--<Style.Triggers>
                                                         <DataTrigger Binding="{Binding Value.TINHCHAT}" Value="Bình thường">
                                                             <Setter Property="Foreground" Value="#2AE2BE"/>
                                                         </DataTrigger>
@@ -157,7 +157,7 @@
                                                         <DataTrigger Binding="{Binding Value.TINHCHAT}" Value="Nguy cấp">
                                                             <Setter Property="Foreground" Value="#FF7F7E"/>
                                                         </DataTrigger>
-                                                    </Style.Triggers>
+                                                    </Style.Triggers>-->
                                                 </Style>
                                             </ControlTemplate.Resources>
                                             <Border CornerRadius="25"
@@ -234,53 +234,78 @@
                                  UniformCornerRadius="0"
                                  materialDesign:ShadowAssist.ShadowDepth="Depth1">
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal" Height="80">
+                    <Grid Height="80">
                         <TextBlock Text="Phân chia công việc"
                                    FontSize="30"
                                    FontWeight="SemiBold"
                                    Margin="30 8 0 0"
-                                   VerticalAlignment="Center">
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
                         </TextBlock>
-                        <Grid Width="620"/>
-                        <Button 
-                            Content="+"
-                            FontSize="36"
-                            Padding="0 0 0 0"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            Height="50"
-                            Width="50"
-                            Margin="5"
-                            BorderThickness="25"
-                            BorderBrush="#35a0fe"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            Background="#35a0fe"
-                            ToolTip="Thêm công việc cần làm"
-                            Command="{Binding OpenAddToDoFormCommand}"
-                            CommandParameter="{Binding ElementName=staffRoleTeamTask}"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                            Visibility="{Binding LeaderTaskVisibility}"/>
-                        <Button 
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            Height="50"
-                            Width="50"
-                            Margin="5"
-                            BorderThickness="25"
-                            BorderBrush="#1D6F42"
-                            materialDesign:ButtonAssist.CornerRadius="25"
-                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                            Background="#1D6F42"
-                            Command="{Binding ExportTaskToExcelCommand}"
-                            ToolTip="Xuất excel">
-                            <Button.Content>
-                                <materialDesign:PackIcon 
-                                    Kind="TableArrowLeft" 
-                                    Width="20" 
-                                    Height="20"/>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Right" 
+                                    VerticalAlignment="Center"
+                                    Margin="0 0 20 0">
+                            <Button 
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Height="50"
+                                Width="50"
+                                Margin="5"
+                                BorderThickness="25"
+                                BorderBrush="#35a0fe"
+                                materialDesign:ButtonAssist.CornerRadius="25"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="#35a0fe"
+                                Command="{Binding LoadTaskListByDateCommand}"
+                                ToolTip="Cập nhật công việc"
+                                Padding="0">
+                                <Button.Content>
+                                    <materialDesign:PackIcon 
+                                        Kind="Reload" 
+                                        Width="26" 
+                                        Height="26"/>
+                                </Button.Content>
+                            </Button>
+                            <Button 
+                                Content="+"
+                                FontSize="36"
+                                Padding="0 0 0 0"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Height="50"
+                                Width="50"
+                                Margin="5"
+                                BorderThickness="25"
+                                BorderBrush="#35a0fe"
+                                materialDesign:ButtonAssist.CornerRadius="25"
+                                Background="#35a0fe"
+                                ToolTip="Thêm công việc cần làm"
+                                Command="{Binding OpenAddToDoFormCommand}"
+                                CommandParameter="{Binding ElementName=staffRoleTeamTask}"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Visibility="{Binding LeaderTaskVisibility}"/>
+                            <Button 
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                Height="50"
+                                Width="50"
+                                Margin="5"
+                                BorderThickness="25"
+                                BorderBrush="#1D6F42"
+                                materialDesign:ButtonAssist.CornerRadius="25"
+                                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                Background="#1D6F42"
+                                Command="{Binding ExportTaskToExcelCommand}"
+                                ToolTip="Xuất excel">
+                                <Button.Content>
+                                    <materialDesign:PackIcon 
+                                        Kind="TableArrowLeft" 
+                                        Width="20" 
+                                        Height="20"/>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
                     <Border BorderThickness="0 2 0 0" >
                         <ListBox ItemsSource="{Binding ProgressTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
