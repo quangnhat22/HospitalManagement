@@ -103,19 +103,19 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(af.txbDiaChi.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
-                notifyWindow.ShowDialog();
-                af.txbDiaChi.Focus();
-                return false;
-            }
-
             if (string.IsNullOrWhiteSpace(af.txbNGSinh.Text))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập ngày sinh");
                 notifyWindow.ShowDialog();
                 af.txbNGSinh.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(af.txbDiaChi.Text))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng nhập địa chỉ");
+                notifyWindow.ShowDialog();
+                af.txbDiaChi.Focus();
                 return false;
             }
 
