@@ -28,29 +28,8 @@ namespace HospitalManagement.View
             this.DataContext = new PatientInformationViewModel(bn);
             PatientInformationViewModel informationViewModel = new PatientInformationViewModel(bn);           
             Closing += informationViewModel.OnWindowClosing;
-            PHONG p = DataProvider.Ins.DB.PHONGs.Find(bn.IDPHONG);
-            if (p != null)
-            {
-                for (int i = 0; i < p.SUCCHUA; i++)
-                {
-                    listIDGiuong.Add(i + 1);
-                }
-                cbxSoGiuong.ItemsSource = listIDGiuong;
-            }
+            PHONG p = DataProvider.Ins.DB.PHONGs.Find(bn.IDPHONG);            
         }
-        private void cbxIDPhong_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            listIDGiuong.Clear();
-            cbxSoGiuong.ItemsSource = null;
-            PHONG p = DataProvider.Ins.DB.PHONGs.Find(cbxIDPhong.SelectedItem);
-            if (p != null)
-            {
-                for (int i = 0; i < p.SUCCHUA; i++)
-                {
-                    listIDGiuong.Add(i + 1);
-                }
-                cbxSoGiuong.ItemsSource = listIDGiuong;
-            }
-        }
+        
     }
 }

@@ -147,7 +147,6 @@
                                     <Image Height="220" Width="200" Source="/Images/doctoravatar.png" Margin="82,-10,118,39.6" />
                                     <Button 
                             Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="MaterialDesignFloatingActionMiniButton"
                             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Margin="223,153,137,56.6">
                                         <materialDesign:PackIcon Kind="Pencil"/>
                                     </Button>
@@ -307,7 +306,7 @@
                                     <Button Command="{Binding SaveChange}"
                                 CommandParameter="{Binding ElementName=ChangeDoctorInformationFormWindow}"
                                 Height="70" Width="200" Style="{StaticResource MaterialDesignRaisedButton}"
-                                materialDesign:ButtonAssist.CornerRadius="10" ToolTip="MaterialDesignRaisedButton with Round Corners" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="30,0,0,0"/>
+                                materialDesign:ButtonAssist.CornerRadius="10" Content="Xác nhận" FontSize="20" HorizontalAlignment="Right" Margin="30,0,0,0"/>
                                     
                                 </Grid>
                             </Grid>

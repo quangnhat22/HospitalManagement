@@ -29,19 +29,6 @@ namespace HospitalManagement.View
             PatientFormViewModel informationViewModel = new PatientFormViewModel(patientViewModel);
             Closing += informationViewModel.OnWindowClosing;
         }
-        private void cbxIDPhong_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            listIDGiuong.Clear();
-            cbxSoGiuong.ItemsSource = null;
-            PHONG p = DataProvider.Ins.DB.PHONGs.Find(cbxIDPhong.SelectedItem);
-            if (p != null)
-            {
-                for (int i = 0; i < p.SUCCHUA; i++)
-                {
-                    listIDGiuong.Add(i + 1);
-                }
-                cbxSoGiuong.ItemsSource = listIDGiuong;
-            }             
-        }
+        
     }
 }

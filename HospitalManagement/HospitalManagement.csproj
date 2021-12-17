@@ -120,6 +120,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\AccountCommand\FirstLoginOpening.cs" />
+    <Compile Include="Command\AdminCommand\AdminFirstLoginCommand.cs" />
     <Compile Include="Command\BuildingCommand\ChangeBuildingCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountCommand.cs" />
     <Compile Include="Command\AccountCommand\ReturnAccountWindowCommand.cs" />
@@ -264,6 +265,7 @@
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\AddAccountVM\AddNewAccountViewModel.cs" />
     <Compile Include="ViewModel\AddAccountVM\UpdateInformationViewModel.cs" />
+    <Compile Include="ViewModel\AdminInformationViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ChangeAccountViewModel.cs" />
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />

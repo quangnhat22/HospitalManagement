@@ -193,13 +193,13 @@
                         <materialDesign:DataGridTextColumn Binding="{Binding Value.TINHTRANG}"
                                                    Header="Tình trạng"
                                                    IsReadOnly="True"
-                                                   Width="180"
+                                                   Width="170"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                         <materialDesign:DataGridTextColumn Binding="{Binding Value.IDPHONG}"
-                                                   Header="Phòng"
+                                                   Header="ID Phòng"
                                                    IsReadOnly="True"
-                                                   Width="90"
+                                                   Width="100"
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
                         </materialDesign:DataGridTextColumn>
