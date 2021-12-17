@@ -66,29 +66,54 @@
                                 </Grid>
                                 <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="250"></ColumnDefinition>
-                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Vai trò:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        <TextBlock Text="Tòa:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
                                         </TextBlock>
-                                        <TextBlock Text="{Binding Nurse.VAITRO}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        <TextBlock Text="{Binding Nurse.TO.TANG.TOA.DISPLAYNAME}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
-                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Grid.Column="1" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="ID Tổ:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        <TextBlock Text="Tầng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Nurse.TO.TANG.SOTANG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="2" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="ID Tổ:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
                                         </TextBlock>
                                         <TextBlock Text="{Binding Nurse.IDTO}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
+                                </Grid>
+
+                                <Grid Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="5.25*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Vai trò:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="5,0,0,0"
+                                                    FontSize="18" 
+                                                    TextWrapping="Wrap" 
+                                                    Foreground="Black"
+                                                    Text="{Binding Nurse.VAITRO}" />
                                 </Grid>
                                 <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>

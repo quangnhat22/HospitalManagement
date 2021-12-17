@@ -161,7 +161,7 @@
                                 <TextBlock Text="Ngày nhập viện" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                                 <DatePicker x:Name="txbNGNhapVien" Margin="0,0,0,5" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Chọn ngày" Grid.Row ="1" FontSize="20" Foreground="Black"/>
                             </Grid>
-                            <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
+                            <Grid Width="250" HorizontalAlignment="Left" Margin="80,10,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
@@ -169,7 +169,7 @@
                                 <TextBlock Text="Bệnh nền" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                                 <TextBox x:Name="txbBenhNen" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" materialDesign:HintAssist.Hint="Nhập bệnh nền" Foreground="Black" TextAlignment="Left" FontSize="20" Grid.Row="1" />
                             </Grid>
-                            <Grid Width="250" HorizontalAlignment="Left" Margin="50,10,0,0">
+                            <Grid Width="250" HorizontalAlignment="Left" Margin="80,10,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
@@ -186,7 +186,7 @@
                                     Content="Triệu chứng trở nặng" />
                                 </ComboBox>
                             </Grid>
-                            <Grid Width="150" HorizontalAlignment="Left" Margin="50,10,0,0">
+                            <Grid Width="160" HorizontalAlignment="Left" Margin="80,10,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
@@ -196,30 +196,13 @@
                                       Margin="0,0,0,5" 
                                       HorizontalAlignment="Left"
                                       IsEditable="True"
-                                      Width="150" 
+                                      Width="160" 
                                       materialDesign:HintAssist.Hint="Chọn ID phòng" 
                                       Foreground="Black"                               
                                       FontSize="20" 
                                       Grid.Row="1"
-                                      ItemsSource="{Binding ListIDPhong}"
-                                      SelectionChanged="cbxIDPhong_SelectionChanged"
+                                      ItemsSource="{Binding ListIDPhong}"                                     
                                       />
-                            </Grid>
-                            <Grid Width="160" HorizontalAlignment="Left" Margin="50,10,0,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Số giường" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
-                                <ComboBox x:Name="cbxSoGiuong" 
-                                      Margin="0,0,0,5" 
-                                      HorizontalAlignment="Left" 
-                                      Width="160" 
-                                      IsEditable="True"
-                                      materialDesign:HintAssist.Hint="Chọn số giường" 
-                                      Foreground="Black"                            
-                                      FontSize="20" 
-                                      Grid.Row="1" />
                             </Grid>
                         </StackPanel>
                         <StackPanel Height="190" Orientation="Horizontal">

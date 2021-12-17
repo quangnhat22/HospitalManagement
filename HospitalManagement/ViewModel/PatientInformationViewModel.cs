@@ -13,20 +13,19 @@ namespace HospitalManagement.ViewModel
 {
     class PatientInformationViewModel : INotifyPropertyChanged
     {
-        private BENHNHAN benhnhan;
+        private BENHNHAN benhnhan;       
         private List<int> listIDPhong = new List<int>();
         public ICommand SaveChange { get; set; }
         public List<int> ListIDPhong { get => listIDPhong; set => listIDPhong = value; }
         public PatientInformationViewModel(BENHNHAN bn)
         {
-            this.BenhNhan = bn;
+            this.BenhNhan = bn;           
             SaveChange = new SaveChangePatientInformationCommand();
             var groupListData = DataProvider.Ins.DB.PHONGs.ToList().ConvertAll(itemGroup => itemGroup.ID);
             ListIDPhong.AddRange(groupListData);
         }
 
-        public BENHNHAN BenhNhan { get => benhnhan; set => benhnhan = value; }
-        
+        public BENHNHAN BenhNhan { get => benhnhan; set => benhnhan = value; }      
         public event PropertyChangedEventHandler PropertyChanged;
         
 
@@ -64,8 +63,8 @@ namespace HospitalManagement.ViewModel
             if (patientForm.txbHo.Text != NullToString(bn.HO) || patientForm.txbTen.Text != NullToString(bn.TEN) || patientForm.txbBenhNen.Text != NullToString(bn.BENHNEN) ||
                 patientForm.txbQuocTich.Text != NullToString(bn.QUOCTICH) || patientForm.txbDiaChi.Text != NullToString(bn.DIACHI) || patientForm.txbEmail.Text != NullToString(bn.EMAIL) ||
                  patientForm.txbGhiChu.Text != NullToString(bn.GHICHU) || patientForm.txbSDT.Text != NullToString(bn.SDT) || patientForm.cbxTinhTrang.Text != NullToString(bn.TINHTRANG) ||
-                  gioitinh != (bool)bn.GIOITINH || patientForm.txbNGSinh.Text != dateBirth || patientForm.txbNGNhapVien.Text != dateNV || patientForm.cbxIDPhong.Text != bn.IDPHONG.ToString() ||
-                   patientForm.cbxSoGiuong.Text != bn.GIUONGBENH)
+                  gioitinh != (bool)bn.GIOITINH || patientForm.txbNGSinh.Text != dateBirth || patientForm.txbNGNhapVien.Text != dateNV || patientForm.cbxIDPhong.Text != bn.IDPHONG.ToString())
+                   
             {
                 return true;
             }

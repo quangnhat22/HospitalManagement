@@ -56,8 +56,7 @@ namespace HospitalManagement.Command
                     NGNHAPVIEN = patientForm.txbNGNhapVien.SelectedDate,
                     BENHNEN = patientForm.txbBenhNen.Text,
                     TINHTRANG = patientForm.cbxTinhTrang.Text,
-                    IDPHONG = Convert.ToInt32(patientForm.cbxIDPhong.Text),
-                    GIUONGBENH = patientForm.cbxSoGiuong.Text,
+                    IDPHONG = Convert.ToInt32(patientForm.cbxIDPhong.Text),                    
                     GHICHU = patientForm.txbGhiChu.Text,
                 };
                 DataProvider.Ins.DB.BENHNHANs.Add(patientInput);
@@ -181,14 +180,7 @@ namespace HospitalManagement.Command
                 pf.cbxIDPhong.Focus();
                 return false;
             }
-
-            if (string.IsNullOrWhiteSpace(pf.cbxSoGiuong.Text))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Vui lòng chọn số giường");
-                notifyWindow.ShowDialog();
-                pf.cbxSoGiuong.Focus();
-                return false;
-            }
+            
             //Kiểm tra MaBN
             if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.MABENHNHAN == pf.txbMaBN.Text))
             {           
@@ -248,23 +240,7 @@ namespace HospitalManagement.Command
                 notifyWindow.ShowDialog();
                 pf.cbxIDPhong.Focus();
                 return false;
-            }
-            if (!CheckCombobox(pf.cbxSoGiuong.Text, pf.cbxSoGiuong))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Số giường không hợp lệ");
-                notifyWindow.ShowDialog();
-                pf.cbxSoGiuong.Focus();
-                return false;
-            }
-            //Kiem tra giuong
-            int idPhong = int.Parse(pf.cbxIDPhong.Text);
-            if (DataProvider.Ins.DB.BENHNHANs.Any(x => x.IDPHONG == idPhong && x.GIUONGBENH == pf.cbxSoGiuong.Text))
-            {                
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Giường bệnh đã có bệnh nhân");
-                notifyWindow.ShowDialog();
-                pf.cbxSoGiuong.Focus();
-                return false;
-            }
+            }            
             return true;
         }
         private bool CheckCombobox(string text, ComboBox cbx)

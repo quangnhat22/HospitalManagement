@@ -124,7 +124,7 @@
                                                    ElementStyle="{StaticResource ElementStyle}"
                                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
                     <materialDesign:DataGridTextColumn Binding="{Binding Value.IDTO}"
-                                                   Header="Tổ"
+                                                   Header="ID Tổ"
                                                    IsReadOnly="True"
                                                    Width="80"
                                                    ElementStyle="{StaticResource ElementStyle}"

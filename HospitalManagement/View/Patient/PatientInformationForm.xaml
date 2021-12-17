@@ -34,7 +34,7 @@
                         <Grid Height="150" Margin="0,10,0,0">
                             <Image Source="/Images/man.png" Height="150" Width="150"/>
                         </Grid>
-                        <Border>
+                        <!--<Border>
                             <Border.Resources>
                                 <Style TargetType="{x:Type materialDesign:PackIcon}" x:Key="ColorStyle">
                                     <Style.Triggers>
@@ -57,7 +57,7 @@
                                                         Style="{StaticResource ColorStyle}"
                                                         Width="40"/>
                             </Grid>
-                        </Border>
+                        </Border>-->
                         
                         <Grid Width="auto" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock Foreground="Black" FontSize="20" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
@@ -100,27 +100,44 @@
                                 </Grid>
                                 <Grid  Width="500" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="250"></ColumnDefinition>
-                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                        <TextBlock Text="Tòa:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="20,0,0,0">
                                         </TextBlock>
-                                        <TextBlock Text="{Binding BenhNhan.IDPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        <TextBlock Text="{Binding BenhNhan.PHONG.TANG.TOA.DISPLAYNAME}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
-                                    <Grid Grid.Column="1" Width="250" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Grid Grid.Column="1" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                             <ColumnDefinition Width="auto"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="Số giường:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left" Margin="0,0,0,0">
+                                        <TextBlock Text="Phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
                                         </TextBlock>
-                                        <TextBlock Text="{Binding BenhNhan.GIUONGBENH}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                        <TextBlock Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}.{1}">
+                                                    <Binding Path="BenhNhan.PHONG.TANG.SOTANG" />
+                                                    <Binding Path="BenhNhan.PHONG.SOPHONG" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Column="2" Width="150" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="ID phòng:" Foreground="#35a0fe" FontSize="18" HorizontalAlignment="Left">
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding BenhNhan.IDPHONG}" Foreground="Black" FontSize="18" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Column="1">
                                         </TextBlock>
                                     </Grid>
                                 </Grid>
