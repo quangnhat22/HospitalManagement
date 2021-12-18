@@ -19,16 +19,16 @@
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </UserControl.Resources>
     <StackPanel>
-        <Grid Height="530">
+        <Grid Height="520">
             <StackPanel>
                 <DataGrid x:Name="dtgDoctorList" 
                           Background="White"
-                      CanUserAddRows="False"
-                      AutoGenerateColumns="False"
-                      HeadersVisibility="All"
-                      Height="530"
-                      HorizontalScrollBarVisibility="Disabled"
-                      ItemsSource="{Binding Doctors, Mode=OneWay, UpdateSourceTrigger=Explicit}">
+                          CanUserAddRows="False"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="All"
+                          Height="515"
+                          HorizontalScrollBarVisibility="Disabled"
+                          ItemsSource="{Binding Doctors, Mode=OneWay, UpdateSourceTrigger=Explicit}">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -178,14 +178,16 @@
             </StackPanel>
         </Grid>
         <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                    Height="50"
-                    Width="100"
-                    HorizontalAlignment="Right"
-                    materialDesign:ButtonAssist.CornerRadius="10"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                    ToolTip="Xuất Excel"
-                    Content="Xuất Excel"
-                    Margin="0 20 0 0"
-                    Command="{Binding ExportDoctorToExcelCommand}"/>
+                Background="#0ca678"
+                BorderBrush="#0ca678"
+                Height="50"
+                Width="100"
+                HorizontalAlignment="Right"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                ToolTip="Xuất Excel"
+                Content="Xuất Excel"
+                Margin="0 30 0 0"
+                Command="{Binding ExportDoctorToExcelCommand}"/>
     </StackPanel>
 </UserControl>

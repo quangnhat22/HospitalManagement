@@ -151,12 +151,20 @@
                 <RowDefinition Height="90"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock FontSize="24"
-                       FontWeight="Bold"
-                       Margin="25"
-                       Grid.Row="0"
-                       Text="{Binding CurrentRoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
+            <WrapPanel Grid.Row="0" Margin="25">
+                <TextBlock FontSize="24"
+                                   FontWeight="Bold"
+                                   Text="{Binding CurrentRoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock FontSize="14"
+                                   FontWeight="Regular"
+                                   Margin="5 10 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}(ID: {0})">
+                            <Binding Path="RoomID" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </WrapPanel>
             <DataGrid Grid.Row="1"  
                       x:Name="dtgPatients"
                       ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
