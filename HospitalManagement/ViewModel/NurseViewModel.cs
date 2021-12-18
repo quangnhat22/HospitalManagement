@@ -60,6 +60,7 @@ namespace HospitalManagement.ViewModel
         public ICommand OpenChangeNurseForm { get; set; }
         public ICommand DeleteNurse { get; set; }
         public ICommand SearchNurse { get; set; }
+        public ICommand ExportNurseToExcelCommand { get; set; }
 
 
         public NurseViewModel()
@@ -98,6 +99,7 @@ namespace HospitalManagement.ViewModel
             //OpenNurseForm = new OpenNurseFormCommand(this);
             DeleteNurse = new DeleteNurseCommand(this);
             SearchNurse = new SearchNurseCommand(this);
+            ExportNurseToExcelCommand = new ExportNurseToExcelCommand(this);
         }
     }
 }

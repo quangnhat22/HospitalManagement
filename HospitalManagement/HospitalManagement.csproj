@@ -136,11 +136,13 @@
     <Compile Include="Command\DashBoardCommand\ReloadBuildingStatisticCommand.cs" />
     <Compile Include="Command\BuildingCommand\DeleteBuildingCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DeleteDoctorCommand.cs" />
+    <Compile Include="Command\DoctorListCommand\ExportDoctorToExcelCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SaveChangeDoctorInformationCommand.cs" />
     <Compile Include="Command\DoctorListCommand\OpenChangeDoctorFormCommand.cs" />
     <Compile Include="Command\DoctorListCommand\DoctorFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\DoctorListCommand\SearchDoctorCommand.cs" />
     <Compile Include="Command\NurseListCommand\DeleteNurseCommand.cs" />
+    <Compile Include="Command\NurseListCommand\ExportNurseToExcelCommand.cs" />
     <Compile Include="Command\NurseListCommand\OpenChangeNurseFormCommand.cs" />
     <Compile Include="Command\NurseListCommand\NurseFirstLoginUpdateCommand.cs" />
     <Compile Include="Command\NurseListCommand\SaveChangeNurseInformationCommand.cs" />
