@@ -413,7 +413,6 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         BorderThickness="2"
                         BorderBrush="{StaticResource clrPrimary}"
-                        ToolTip="Đăng nhập"
                         Content="HỦY" Click="btnCancel_Click"/>
                     <Button
                         Command="{Binding AddTaskCommand}"
@@ -426,7 +425,6 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         BorderThickness="2"
                         BorderBrush="{StaticResource clrPrimary}"
-                        ToolTip="Đăng nhập"
                         Content="XÁC NHẬN"/>
                 </StackPanel>
             </Grid>
