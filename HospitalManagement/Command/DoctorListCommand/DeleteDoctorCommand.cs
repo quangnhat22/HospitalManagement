@@ -50,10 +50,11 @@ namespace HospitalManagement.Command.DoctorListCommand
                 {
                     foreach (BACSI bs in selectableItems)
                     {
+                        bs.BACSILIENQUANs.Clear();
                         foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == bs.IDTO))
                         {
                             to.BACSIs.Remove(bs);
-                        }
+                        }                      
                         DataProvider.Ins.DB.BACSIs.Remove(bs);
                     }
                     DataProvider.Ins.DB.SaveChanges();
