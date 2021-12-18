@@ -61,7 +61,6 @@
           <Property Name="DIACHI" Type="nvarchar(max)" />
           <Property Name="NGSINH" Type="smalldatetime" />
           <Property Name="GIOITINH" Type="bit" />
-          <Property Name="GIUONGBENH" Type="nvarchar" MaxLength="20" />
           <Property Name="NGNHAPVIEN" Type="smalldatetime" />
           <Property Name="QUOCTICH" Type="nvarchar" MaxLength="100" />
           <Property Name="GHICHU" Type="nvarchar(max)" />
@@ -540,7 +539,6 @@
           <Property Name="DIACHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NGSINH" Type="DateTime" Precision="0" />
           <Property Name="GIOITINH" Type="Boolean" />
-          <Property Name="GIUONGBENH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="NGNHAPVIEN" Type="DateTime" Precision="0" />
           <Property Name="QUOCTICH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="GHICHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -893,7 +891,6 @@
                 <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
                 <ScalarProperty Name="QUOCTICH" ColumnName="QUOCTICH" />
                 <ScalarProperty Name="NGNHAPVIEN" ColumnName="NGNHAPVIEN" />
-                <ScalarProperty Name="GIUONGBENH" ColumnName="GIUONGBENH" />
                 <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
                 <ScalarProperty Name="NGSINH" ColumnName="NGSINH" />
                 <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />

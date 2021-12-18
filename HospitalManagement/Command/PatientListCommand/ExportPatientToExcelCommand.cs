@@ -84,7 +84,6 @@ namespace HospitalManagement.Command.PatientListCommand
                     DIACHI = benhnhan.DIACHI,
                     NGSINH = benhnhan.NGSINH,
                     GIOITINH = benhnhan.GIOITINH == true?"Nữ":"Nam",
-                    GIUONGBENH = benhnhan.GIUONGBENH,
                     NGNHAPVIEN = benhnhan.NGNHAPVIEN,
                     QUOCTICH = benhnhan.QUOCTICH,
                     GHICHU =  benhnhan.GHICHU,
@@ -108,7 +107,6 @@ namespace HospitalManagement.Command.PatientListCommand
             dataTable.Columns.Add("Địa chỉ");
             dataTable.Columns.Add("Quốc tịch");
             dataTable.Columns.Add("Ngày nhập viện");
-            dataTable.Columns.Add("Giường bệnh");
             dataTable.Columns.Add("Bệnh nền");
             dataTable.Columns.Add("Tình trạng");
             dataTable.Columns.Add("Ghi chú");
@@ -124,7 +122,6 @@ namespace HospitalManagement.Command.PatientListCommand
                                     excelData.DIACHI,
                                     excelData.QUOCTICH,
                                     excelData.NGNHAPVIEN,
-                                    excelData.GIUONGBENH,
                                     excelData.BENHNEN,
                                     excelData.TINHTRANG,
                                     excelData.GHICHU);
@@ -143,7 +140,6 @@ namespace HospitalManagement.Command.PatientListCommand
             public string DIACHI { get; set; }
             public DateTime? NGSINH { get; set; }
             public string GIOITINH { get; set; }
-            public string GIUONGBENH { get; set; }
             public DateTime? NGNHAPVIEN { get; set; }
             public string QUOCTICH { get; set; }
             public string GHICHU { get; set; }
