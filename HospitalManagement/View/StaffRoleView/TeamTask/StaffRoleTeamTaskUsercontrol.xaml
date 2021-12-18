@@ -444,7 +444,7 @@
                                                 <TextBlock.InputBindings>
                                                     <MouseBinding Gesture="LeftDoubleClick" 
                                                                   Command="{Binding ElementName=staffRoleTeamTask, Path=DataContext.ShowTaskInformation}" 
-                                                                  CommandParameter="{Binding ElementName=lbxTask, Path=SelectedIndex}"/>
+                                                                  CommandParameter="{Binding Value.ID}"/>
                                                 </TextBlock.InputBindings>
                                                 <StackPanel Background="Transparent" Width="280" Height="250">
                                                     <StackPanel>
@@ -519,7 +519,7 @@
                                                                 <TextBlock.Text>
                                                                     <MultiBinding StringFormat="{}{0}/{1}">
                                                                         <Binding Path="NumberCompletedPeople" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"/>
-                                                                        <Binding Path="NumberInvolvePeople" />
+                                                                        <Binding Path="NumberInvolvePeople" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"/>
                                                                     </MultiBinding>
                                                                 </TextBlock.Text>
                                                             </TextBlock>

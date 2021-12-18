@@ -191,9 +191,8 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
 
     public class ProgressTask: BaseViewModel
     {
+        private int IDCONGVIEC;
         private CONGVIEC value;
-
-
         public CONGVIEC Value { get => value; set => this.value = value; }
         public int NumberCompletedPeople { get => CaculateNumberCompletedPeople(); }
         public int NumberInvolvePeople { get => CaculateNumberInvolvePeople(); }
@@ -202,59 +201,92 @@ namespace HospitalManagement.ViewModel.StaffViewViewModel.TeamTask
         public void InvokeIsCurrentUserCompletePropertyChanged()
         {
             OnPropertyChanged("IsCurrentUserComplete");
+            OnPropertyChanged("NumberInvolvePeople");
+            OnPropertyChanged("NumberCompletedPeople");
         }
         public Visibility ToggleButtonVisibility { get => isToggleVisible();  }
 
         private Visibility isToggleVisible()
         {
-            using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
-            {
-                if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
+            try
+			{
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
                 {
-                    BACSI bacsi = MainWindowViewModel.User.BACSIs.FirstOrDefault();
-                    if (bacsi != null && bacsi != default(BACSI))
+                    if (MainWindowViewModel.User.ROLE == "leader" || MainWindowViewModel.User.ROLE == "doctor")
                     {
-                        BACSILIENQUAN bslq = dbContext.BACSILIENQUANs.Find(Value.ID, bacsi.CMND_CCCD);
-                        if (bslq != null)
-                            return Visibility.Visible;
+                        BACSI bacsi = MainWindowViewModel.User.BACSIs.FirstOrDefault();
+                        if (bacsi != null && bacsi != default(BACSI))
+                        {
+                            BACSILIENQUAN bslq = dbContext.BACSILIENQUANs.Find(Value.ID, bacsi.CMND_CCCD);
+                            if (bslq != null)
+                                return Visibility.Visible;
+                        }
                     }
-                }
-                if (MainWindowViewModel.User.ROLE == "nurse")
-                {
-                    YTA yta = MainWindowViewModel.User.YTAs.FirstOrDefault();
-                    if (yta != null && yta != default(YTA))
+                    if (MainWindowViewModel.User.ROLE == "nurse")
                     {
-                        YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, yta.CMND_CCCD);
-                        if (ytlq != null)
-                            return Visibility.Visible;
+                        YTA yta = MainWindowViewModel.User.YTAs.FirstOrDefault();
+                        if (yta != null && yta != default(YTA))
+                        {
+                            YTALIENQUAN ytlq = dbContext.YTALIENQUANs.Find(Value.ID, yta.CMND_CCCD);
+                            if (ytlq != null)
+                                return Visibility.Visible;
+                        }
                     }
+                    return Visibility.Hidden;
                 }
+            }
+            catch
+			{
                 return Visibility.Hidden;
             }
         }
 
         public ProgressTask(CONGVIEC value)
         {
+            IDCONGVIEC = value.ID;
             Value = value;
         }
 
         private int CaculateNumberCompletedPeople()
         {
-            if (Value != null)
-            {
-                return Value.BACSILIENQUANs.Where(p => p.TIENDO == true).Count() +
-                                        Value.YTALIENQUANs.Where(p => p.TIENDO == true).Count();
+            try
+			{
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                {
+                    CONGVIEC congviec = dbContext.CONGVIECs.Find(IDCONGVIEC);
+                    if (congviec != null)
+                    {
+                        return congviec.BACSILIENQUANs.Where(p => p.TIENDO == true).Count() +
+                                            congviec.YTALIENQUANs.Where(p => p.TIENDO == true).Count();
+                    }
+                    return 0;
+                }
             }
-            return 0;
+            catch
+			{
+                return 0;
+			}
         }
 
         private int CaculateNumberInvolvePeople()
         {
-            if (Value != null)
-            {
-                return Value.BACSILIENQUANs.Count + Value.YTALIENQUANs.Count;
+           try
+			{
+                using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+                {
+                    CONGVIEC congviec = dbContext.CONGVIECs.Find(IDCONGVIEC);
+                    if (congviec != null)
+                    {
+                        return congviec.BACSILIENQUANs.Count + congviec.YTALIENQUANs.Count;
+                    }
+                    return 0;
+                }
             }
-            return 0;
+            catch
+			{
+                return 0;
+			}
+            
         }
 
         private bool isCurrentUserComplete()
