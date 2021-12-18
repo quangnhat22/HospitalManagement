@@ -100,7 +100,7 @@
                           Background="White"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
-                  Height="530"
+                  Height="520"
                   HeadersVisibility="All"
                   ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
                     <DataGrid.Resources>
@@ -249,6 +249,8 @@
                 </DataGrid>
             </Grid>
             <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                    Background="#0ca678"
+                    BorderBrush="#0ca678"
                     Height="50"
                     Width="100"
                     HorizontalAlignment="Right"
@@ -256,7 +258,7 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
                     ToolTip="Xuất Excel"
                     Content="Xuất Excel"
-                    Margin="0 20 0 0"
+                    Margin="0 30 0 0"
                     Command="{Binding ExportPatientToExcelCommand}"/>
         </StackPanel>
     </Grid>

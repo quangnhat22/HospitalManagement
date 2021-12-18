@@ -13,151 +13,158 @@
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Deactivated="Window_Deactivated">
-    <Border BorderBrush="Black" BorderThickness="1" >
-        <Grid>
+        Deactivated="Window_Deactivated"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Border BorderThickness="4" 
+            BorderBrush="#35a0fe"
+            CornerRadius="10">
+        <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Background="#35a0fe">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <TextBlock Text="FHMS"
-                               Foreground="White"
-                               Margin="25 15 0 0"
+            <Border CornerRadius="8 8 0 0" Background="#35a0fe">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="FHMS"
+                                   Foreground="White"
+                                   Margin="25 15 0 0"
+                                   Width="auto"
+                                   FontSize="31.25"/>
+                        <TextBlock Text="Field Hospital Management Supporter"
+                                   Foreground="White"
+                                   Margin="25 50 0 0"
+                                   Width="auto"
+                                   FontSize="16"/>
+                        <TextBlock Text="Version 1.0.0.0"
+                                   Foreground="White"
+                                   Margin="25 80 0 0"
+                                   Width="auto"
+                                   FontSize="10.24"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <materialDesign:PackIcon Kind="HospitalBox" 
+                                                 Foreground="White"
+                                                 VerticalAlignment="Center"
+                                                 Width="80"
+                                                 Margin="0 0 20 0"
+                                                 Height="auto"></materialDesign:PackIcon>
+                        <Image Source="/Images/Logo/medica_health_healthcare_sign_icon_143444.ico"
+                               VerticalAlignment="Center"
+                               SnapsToDevicePixels="True"
                                Width="auto"
-                               FontSize="31.25"/>
-                    <TextBlock Text="Field Hospital Management Supporter"
-                               Foreground="White"
-                               Margin="25 50 0 0"
-                               Width="auto"
-                               FontSize="16"/>
-                    <TextBlock Text="Version 1.0.0.0"
-                               Foreground="White"
-                               Margin="25 80 0 0"
-                               Width="auto"
-                               FontSize="10.24"/>
+                               Height="100"
+                               Margin="0 0 10 0"/>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Column="2">
-                    <materialDesign:PackIcon Kind="HospitalBox" 
-                                             Foreground="White"
-                                             VerticalAlignment="Center"
-                                             Width="80"
-                                             Margin="0 0 20 0"
-                                             Height="auto"></materialDesign:PackIcon>
-                    <Image Source="/Images/Logo/medica_health_healthcare_sign_icon_143444.ico"
-                           VerticalAlignment="Center"
-                           SnapsToDevicePixels="True"
-                           Width="auto"
-                           Height="100"
-                           Margin="0 0 10 0"/>
+            </Border>
+            <Border Grid.Row="1" Background="White" CornerRadius="0 0 10 10">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock Text="Tác giả"
+                                   FontWeight="Bold"
+                                   Margin="25 15 0 0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock Text="____"
+                                   Margin="25 21 0 0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock Text="Nguyễn Đình Nhật Quang"
+                                   Margin="25,38,0,0"
+                                   FontSize="12.8"/>
+                        <TextBlock Text="Trần Đình Lộc"
+                                   Margin="25,53,0,0"
+                                   FontSize="12.8"/>
+                        <TextBlock Text="Bùi Minh Tuấn"
+                                   Margin="25,68,0,0"
+                                   FontSize="12.8"/>
+                        <TextBlock Text="Đỗ Phú Quang"
+                                   Margin="25,83,0,0"
+                                   FontSize="12.8"/>
+                        <TextBlock Text="Võ Đình Nghĩa"
+                                   Margin="25,98,0,0"
+                                   FontSize="12.8"/>
+
+
+                        <TextBlock Text="Giảng viên hướng dẫn"
+                                   FontWeight="Bold"
+                                   Margin="25,120,0,0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock Text="____"
+                                   Margin="25,126,0,0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock Text="Nguyễn Tấn Toàn"
+                                   Margin="25,144,0,0"
+                                   FontSize="12.8"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <TextBlock Text="Thông tin thêm"
+                                   FontWeight="Bold"
+                                   Margin="15 15 35 0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock Text="____"
+                                   Margin="15 21 35 0"
+                                   FontSize="12.8"/>
+
+                        <TextBlock 
+                                   Margin="15 38 35 0"
+                                   FontSize="12.8">
+                            <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement"
+                                       TextDecorations="None"
+                                       RequestNavigate="Hyperlink_RequestNavigate">
+                                Trang Github của FHMS
+                            </Hyperlink>
+                        </TextBlock>
+                        <TextBlock Text="Email"
+                                   FontWeight="Bold"
+                                   Margin="15 60 45 0"
+                                   FontSize="12.8"/>
+                        <TextBlock Text="____"
+                                   Margin="15 66 45 0"
+                                   FontSize="12.8"/>
+                        <TextBlock 
+                                   Margin="15 84 45 0"
+                                   FontSize="12.8">
+                            <Hyperlink NavigateUri="mailto:hotrofhms@gmail.com"
+                                       TextDecorations="None"
+                                       RequestNavigate="Hyperlink_RequestNavigate"
+                                       >
+                                hotrofhms@gmail.com
+                            </Hyperlink>
+                        </TextBlock>
+                        <Button IsEnabled="True"
+                                x:Name="btnLogin"
+                                Width="90"
+                                Height="33.75"
+                                Background="#35a0fe"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                BorderThickness="2"
+                                BorderBrush="#35a0fe"
+                                FontSize="12.8"
+                                VerticalAlignment="Bottom"
+                                Margin="0 0 20 35"
+                                Content="OK"
+                                Click="btnClose_Click">
+                        </Button>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <TextBlock Text="Tác giả"
-                               FontWeight="Bold"
-                               Margin="25 15 0 0"
-                               FontSize="12.8"/>
-
-                    <TextBlock Text="____"
-                               Margin="25 21 0 0"
-                               FontSize="12.8"/>
-
-                    <TextBlock Text="Nguyễn Đình Nhật Quang"
-                               Margin="25,38,0,0"
-                               FontSize="12.8"/>
-                    <TextBlock Text="Trần Đình Lộc"
-                               Margin="25,53,0,0"
-                               FontSize="12.8"/>
-                    <TextBlock Text="Bùi Minh Tuấn"
-                               Margin="25,68,0,0"
-                               FontSize="12.8"/>
-                    <TextBlock Text="Đỗ Phú Quang"
-                               Margin="25,83,0,0"
-                               FontSize="12.8"/>
-                    <TextBlock Text="Võ Đình Nghĩa"
-                               Margin="25,98,0,0"
-                               FontSize="12.8"/>
-
-
-                    <TextBlock Text="Giảng viên hướng dẫn"
-                               FontWeight="Bold"
-                               Margin="25,120,0,0"
-                               FontSize="12.8"/>
-
-                    <TextBlock Text="____"
-                               Margin="25,126,0,0"
-                               FontSize="12.8"/>
-
-                    <TextBlock Text="Nguyễn Tấn Toàn"
-                               Margin="25,144,0,0"
-                               FontSize="12.8"/>
-                </Grid>
-                <Grid Grid.Column="2">
-                    <TextBlock Text="Thông tin thêm"
-                               FontWeight="Bold"
-                               Margin="15 15 35 0"
-                               FontSize="12.8"/>
-
-                    <TextBlock Text="____"
-                               Margin="15 21 35 0"
-                               FontSize="12.8"/>
-
-                    <TextBlock 
-                               Margin="15 38 35 0"
-                               FontSize="12.8">
-                        <Hyperlink NavigateUri="https://github.com/quangnhat22/HospitalManagement"
-                                   TextDecorations="None"
-                                   RequestNavigate="Hyperlink_RequestNavigate">
-                            Trang Github của FHMS
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBlock Text="Email"
-                               FontWeight="Bold"
-                               Margin="15 60 45 0"
-                               FontSize="12.8"/>
-                    <TextBlock Text="____"
-                               Margin="15 66 45 0"
-                               FontSize="12.8"/>
-                    <TextBlock 
-                               Margin="15 84 45 0"
-                               FontSize="12.8">
-                        <Hyperlink NavigateUri="mailto:hotrofhms@gmail.com"
-                                   TextDecorations="None"
-                                   RequestNavigate="Hyperlink_RequestNavigate"
-                                   >
-                            hotrofhms@gmail.com
-                        </Hyperlink>
-                    </TextBlock>
-                    <Button IsEnabled="True"
-                            x:Name="btnLogin"
-                            Width="90"
-                            Height="33.75"
-                            Background="#35a0fe"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
-                            materialDesign:ButtonAssist.CornerRadius="5"
-                            BorderThickness="2"
-                            BorderBrush="#35a0fe"
-                            FontSize="12.8"
-                            VerticalAlignment="Bottom"
-                            Margin="0 0 20 35"
-                            Content="OK"
-                            Click="btnClose_Click">
-                    </Button>
-                </Grid>
-            </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>
