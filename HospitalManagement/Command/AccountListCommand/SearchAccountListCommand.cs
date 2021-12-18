@@ -65,6 +65,15 @@ namespace HospitalManagement.Command.AccountListCommand
                         }).AsQueryable().ToList()
                         );
                 }
+                else if (RemoveSignString == "ho va ten")
+                {
+                    accountListViewModel.Users = SelectableItem<StaffInformation>.GetSelectableItems(
+                        accountListViewModel.StaffAccounts.Where(delegate (StaffInformation bn)
+                        {
+                            return VietnameseSign.ContainsUnsigned(bn.Ho + " " + bn.Ten, accountListViewModel.SearchBox);
+                        }).AsQueryable().ToList()
+                        );
+                }
                 else if (RemoveSignString == "email")
                 {
                     accountListViewModel.Users = SelectableItem<StaffInformation>.GetSelectableItems(

@@ -32,7 +32,7 @@ namespace HospitalManagement.ViewModel
         }
 
         private bool? isCheckedAll;
-        private List<String> filterList = new List<string> { "CMND/CCCD", "Họ", "Tên", "Email", "Tên đăng nhập", "Tổ" };
+        private List<String> filterList = new List<string> { "CMND/CCCD", "Họ", "Tên", "Họ và Tên", "Email", "Tên đăng nhập", "Tổ" };
         private string selectedFilter;
         private string searchBox;
 
