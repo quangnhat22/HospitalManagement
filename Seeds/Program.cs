@@ -241,6 +241,7 @@ namespace Seeds
                         {
                             HaveLeader = true;
                             USER user = new USER();
+                            bs.VAITRO = "Tổ trưởng";
                             user.USERNAME = "leader" + to.ID;
                             user.PASSWORD = Encryptor.Hash("1");
                             user.ROLE = "leader";
@@ -250,6 +251,7 @@ namespace Seeds
                         else
                         {
                             USER user = new USER();
+                            bs.VAITRO = "Thành viên";
                             user.USERNAME = "staff" + to.ID + (++count);
                             user.PASSWORD = Encryptor.Hash("1");
                             user.ROLE = "doctor";
@@ -260,6 +262,7 @@ namespace Seeds
                     foreach(YTA yta in to.YTAs)
                     {
                         USER user = new USER();
+                        yta.VAITRO = "Thành viên";
                         user.USERNAME = "staff" + to.ID + (++count);
                         user.PASSWORD = Encryptor.Hash("1");
                         user.ROLE = "nurse";
@@ -309,7 +312,6 @@ namespace Seeds
                     bn.DIACHI = RandomInformation.GenerateAddress();
                     bn.GIOITINH = RandomInformation.GenerateGioiTinh();
                     bn.NGSINH = RandomInformation.GenerateDate(1960, 2000);
-                    bn.GIUONGBENH = (i + 1).ToString();
                     bn.NGNHAPVIEN = RandomInformation.GenerateDate(2020, 2021);
                     bn.QUOCTICH = "Việt Nam";
                     bn.TINHTRANG = tinhTrang[random.Next(tinhTrang.Count)];
