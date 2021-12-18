@@ -50,6 +50,11 @@ namespace HospitalManagement.Command
                 beChuyenKhoa.UpdateSource();
                 BindingExpression beVaiTro = nurseForm.txbVaiTro.GetBindingExpression(TextBox.TextProperty);
                 beVaiTro.UpdateSource();
+                YTA yt = DataProvider.Ins.DB.YTAs.Find(nurseForm.txbCMND_CCCD.Text);
+                if(nurseForm.cbxIDTO.Text != yt.IDTO.ToString())
+                {
+                    yt.YTALIENQUANs.Clear();
+                }
                 BindingExpression beIDTO = nurseForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
                 beIDTO.UpdateSource();
                 BindingExpression beGhiChu = nurseForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);

@@ -55,6 +55,19 @@ namespace HospitalManagement.Command
                 beChuyenKhoa.UpdateSource();
                 BindingExpression beVaiTro = doctorForm.cbxVaiTro.GetBindingExpression(ComboBox.TextProperty);
                 beVaiTro.UpdateSource();
+                BACSI bs = DataProvider.Ins.DB.BACSIs.Find(doctorForm.txbCMND_CCCD.Text);
+                if(doctorForm.cbxVaiTro.Text == "Tổ trưởng")
+                {
+                    bs.USER.ROLE = "leader";
+                }    
+                else
+                {
+                    bs.USER.ROLE = "doctor";
+                }
+                if (doctorForm.cbxIDTO.Text != bs.IDTO.ToString())
+                {
+                    bs.BACSILIENQUANs.Clear();
+                }
                 BindingExpression beIDTO = doctorForm.cbxIDTO.GetBindingExpression(ComboBox.TextProperty);
                 beIDTO.UpdateSource();
                 BindingExpression beGhiChu = doctorForm.txbGhiChu.GetBindingExpression(TextBox.TextProperty);
@@ -67,7 +80,7 @@ namespace HospitalManagement.Command
         public bool Check(ChangeDoctorInformationForm df)
         {
             if (df == null) return false;
-
+            
 
             if (string.IsNullOrWhiteSpace(df.txbHo.Text))
             {
@@ -162,11 +175,20 @@ namespace HospitalManagement.Command
                 df.txbNGSinh.Focus();
                 return false;
             }
+               
             if (!CheckCombobox(df.cbxIDTO.Text, df.cbxIDTO))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");
                 notifyWindow.ShowDialog();
                 df.cbxIDTO.Focus();
+                return false;
+            }
+            int idTO = int.Parse(df.cbxIDTO.Text);
+            if (df.cbxVaiTro.Text == "Tổ trưởng" && DataProvider.Ins.DB.BACSIs.Any(x => x.VAITRO == "Tổ trưởng" && x.CMND_CCCD != df.txbCMND_CCCD.Text && x.IDTO == idTO))
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Tổ đã có nhóm trưởng");
+                notifyWindow.ShowDialog();
+                df.cbxVaiTro.Focus();
                 return false;
             }
             return true;
