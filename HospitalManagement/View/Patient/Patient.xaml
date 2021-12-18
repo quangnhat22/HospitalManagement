@@ -22,7 +22,7 @@
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </UserControl.Resources>
     <Grid>
-        <StackPanel Margin="50 30 40 30">
+        <StackPanel Margin="50 30 40 20">
             <TextBlock Text="Danh sách bệnh nhân"
                    FontSize="20"
                    Margin="0 0 0 0"
@@ -57,7 +57,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
                 <Button
-                    Margin="-16 5 10 7"
+                    Margin="-16 5 0 7"
                     Padding="8"
                     Command="{Binding SearchPatientCommand}">
                     <Button.Content>
@@ -75,7 +75,7 @@
                 CommandParameter="{Binding ElementName=patientListUC}"
                 Content="Thêm bệnh nhân"
                 Visibility="{Binding ButtonVisibility}"
-                Margin="10 5 10 7"
+                Margin="20 5 10 7"
                 Width="140"/>
                 <Button Content="Xóa"
                         HorizontalAlignment="Center" 
@@ -97,9 +97,10 @@
             <Grid>
                 <Border BorderBrush="White" BorderThickness="2"></Border>
                 <DataGrid x:Name="dtgPatientList" Margin="2"
+                          Background="White"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False"
-                  Height="550"
+                  Height="530"
                   HeadersVisibility="All"
                   ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
                     <DataGrid.Resources>
@@ -247,6 +248,16 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                    Height="50"
+                    Width="100"
+                    HorizontalAlignment="Right"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    ToolTip="Xuất Excel"
+                    Content="Xuất Excel"
+                    Margin="0 20 0 0"
+                    Command="{Binding ExportPatientToExcelCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

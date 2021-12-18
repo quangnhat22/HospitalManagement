@@ -150,6 +150,13 @@ namespace HospitalManagement.Command
                 cnf.cbxIDTO.Focus();
                 return false;
             }
+            if (cnf.txbNGSinh.SelectedDate > DateTime.Now)
+            {
+                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Ngày sinh không hợp lệ");
+                notifyWindow.ShowDialog();
+                cnf.txbNGSinh.Focus();
+                return false;
+            }
             if (!CheckCombobox(cnf.cbxIDTO.Text, cnf.cbxIDTO))
             {
                 NotifyWindow notifyWindow = new NotifyWindow("Warning", "ID To không hợp lệ");

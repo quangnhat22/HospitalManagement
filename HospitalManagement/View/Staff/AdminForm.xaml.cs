@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,12 @@ namespace HospitalManagement.View.Staff
     /// </summary>
     public partial class AdminForm : Window
     {
-        public AdminForm()
+        public AdminForm(ADMIN ad)
         {
             InitializeComponent();
+            this.DataContext = new AdminInformationViewModel(ad);
+            AdminInformationViewModel informationViewModel = new AdminInformationViewModel(ad);
+            Closing += informationViewModel.OnWindowFormClosing;
         }
     }
 }

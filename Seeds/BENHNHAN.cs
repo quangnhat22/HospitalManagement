@@ -23,7 +23,6 @@ namespace Seeds
         public string DIACHI { get; set; }
         public Nullable<System.DateTime> NGSINH { get; set; }
         public Nullable<bool> GIOITINH { get; set; }
-        public string GIUONGBENH { get; set; }
         public Nullable<System.DateTime> NGNHAPVIEN { get; set; }
         public string QUOCTICH { get; set; }
         public string GHICHU { get; set; }

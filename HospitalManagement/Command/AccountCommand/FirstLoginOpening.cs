@@ -49,6 +49,13 @@ namespace HospitalManagement.Command
                 Application.Current.MainWindow = firstLoginWindow;
                 Application.Current.MainWindow.Show();
             }
+            if (user.ROLE == "admin")
+            {
+                ADMIN admin = user.ADMINs.FirstOrDefault();
+                AdminForm firstLoginWindow = new AdminForm(admin);
+                Application.Current.MainWindow = firstLoginWindow;
+                Application.Current.MainWindow.Show();
+            }    
             window.Close();
             Thread windowThread = new Thread(new ThreadStart(() =>
             {

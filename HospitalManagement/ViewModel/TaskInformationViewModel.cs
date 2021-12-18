@@ -78,11 +78,11 @@ namespace HospitalManagement.ViewModel
         public QUANLYBENHVIENEntities DbContext { get => dbContext; set => dbContext = value; }
         public CONGVIEC Congviec { get => congviec; set => congviec = value; }
 
-        public TaskInformationViewModel(CONGVIEC cv)
+        public TaskInformationViewModel(int IDCONGVIEC)
         {
             dbContext = new QUANLYBENHVIENEntities();
-            this.Congviec = dbContext.CONGVIECs.Find(cv.ID);
-            LoadInfo(cv.ID);
+            this.Congviec = dbContext.CONGVIECs.Find(IDCONGVIEC);
+            LoadInfo(IDCONGVIEC);
             SaveChange = new SaveChangeTaskInformationCommand(this);
         }
 

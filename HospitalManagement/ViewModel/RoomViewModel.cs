@@ -32,7 +32,7 @@ namespace HospitalManagement.ViewModel
         private ObservableCollection<CountedRoom> countedRooms;
         private TANG tang;
         private string currentRoom;
-
+        private string roomID;
 
         public ICommand ShowPatientsInRoom { get; set; }
         public ICommand ShowPatientsInformationInRoomCommand { get; set; }
@@ -63,6 +63,15 @@ namespace HospitalManagement.ViewModel
                 OnPropertyChanged("CurrentRoom");
             }
         }
+        public string RoomID
+        {
+            get => roomID;
+            set
+            {
+                roomID = value;
+                OnPropertyChanged("RoomID");
+            }
+        }
         public TANG Tang { get => tang; set => tang = value; }
         
 
@@ -74,6 +83,7 @@ namespace HospitalManagement.ViewModel
             Tang = DataProvider.Ins.DB.TANGs.Find(idTang);
             CountedRooms = CountedRoom.GetCountedRooms(Tang.PHONGs.ToList());
             CurrentRoom = "Tầng " + Tang.SOTANG;
+            RoomID = idTang.ToString();
         }
 
         void IDropTarget.DragOver(IDropInfo dropInfo)

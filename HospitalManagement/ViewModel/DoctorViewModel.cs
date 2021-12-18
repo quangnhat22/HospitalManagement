@@ -62,6 +62,7 @@ namespace HospitalManagement.ViewModel
         public ICommand OpenChangeDoctorForm { get; set; }
         public ICommand DeleteDoctor { get; set; }
         public ICommand SearchDoctor { get; set; }
+        public ICommand ExportDoctorToExcelCommand { get; set; }
         public DoctorViewModel()
         {
             SelectedFilter = filterList[0];
@@ -98,6 +99,7 @@ namespace HospitalManagement.ViewModel
             //OpenDoctorForm = new OpenDoctorFormCommand(this);
             DeleteDoctor = new DeleteDoctorCommand(this);
             SearchDoctor = new SearchDoctorCommand(this);
+            ExportDoctorToExcelCommand = new ExportDoctorToExcelCommand(this);
         }
     }
 }
