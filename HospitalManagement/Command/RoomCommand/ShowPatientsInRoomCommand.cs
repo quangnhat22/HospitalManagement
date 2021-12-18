@@ -37,6 +37,7 @@ namespace HospitalManagement.Command
             PHONG phong = DataProvider.Ins.DB.PHONGs.Where(p => p.ID == id).First();
             roomViewModel.Patients = new ObservableCollection<BENHNHAN>(phong.BENHNHANs.ToList());
             roomViewModel.CurrentRoom = "Phòng " + phong.TANG.SOTANG.ToString() + "." + phong.SOPHONG.ToString();
+            roomViewModel.RoomID = phong.ID.ToString();
         }
     }
 }

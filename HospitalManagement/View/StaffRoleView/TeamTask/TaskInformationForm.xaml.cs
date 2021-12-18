@@ -23,10 +23,10 @@ namespace HospitalManagement.View.StaffRoleView.TeamTask
     /// </summary>
     public partial class TaskInformationForm : Window
     {
-        public TaskInformationForm(CONGVIEC cv)
+        public TaskInformationForm(int IDCONGVIEC)
         {
             InitializeComponent();
-            this.DataContext = new TaskInformationViewModel(cv);
+            this.DataContext = new TaskInformationViewModel(IDCONGVIEC);
             if (MainWindowViewModel.User?.ROLE != "leader")
             {
                 btnEdit.IsEnabled = false;

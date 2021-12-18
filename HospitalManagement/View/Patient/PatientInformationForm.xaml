@@ -54,6 +54,7 @@
                                 <materialDesign:PackIcon Kind="CheckboxBlankCircle" 
                                                         x:Name="sttDot"
                                                         Height="40"
+                                                        ToolTip="{Binding BenhNhan.TINHTRANG}"
                                                         Style="{StaticResource ColorStyle}"
                                                         Width="40"/>
                             </Grid>
