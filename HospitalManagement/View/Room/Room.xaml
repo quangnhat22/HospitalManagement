@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="Room" Height="760" Width="1387" WindowStartupLocation="CenterScreen"
+        Title="Room" 
+        Height="760" 
+        Width="1387" 
+        WindowStartupLocation="CenterScreen"
         Name="RoomForm"
         xmlns:uc="clr-namespace:HospitalManagement.View.Others"
         Background="Transparent"
@@ -32,13 +35,13 @@
                         <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
                     <ListBox ItemsSource="{Binding CountedRooms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                 Background="White" 
-                 BorderBrush="White"
-                 Margin="0 0 0 20"
-                 dd:DragDrop.IsDropTarget="True"
-                 dd:DragDrop.DropHandler="{Binding}">
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        Background="White" 
+                        BorderBrush="White"
+                        Margin="0 0 0 20"
+                        dd:DragDrop.IsDropTarget="True"
+                        dd:DragDrop.DropHandler="{Binding}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
@@ -181,24 +184,24 @@
                         </WrapPanel>
                         <Border Grid.Row="1" CornerRadius="0 0 10 0" Background="#f8f9fa">
                             <DataGrid  Background="Transparent"  
-                          x:Name="dtgPatients"
-                          ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                          AutoGenerateColumns="False" 
-                          GridLinesVisibility="None"
-                          HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Hidden"
-                          CanUserResizeRows="False" 
-                          CanUserReorderColumns="False" 
-                          CanUserResizeColumns="False" 
-                          CanUserSortColumns="False"  
-                          CanUserAddRows="False"
-                          Padding="0 0 0 20"
-                          VirtualizingPanel.ScrollUnit="Pixel" 
-                          RowDetailsVisibilityMode="Collapsed" 
-                          SelectionUnit="FullRow"
-                          dd:DragDrop.IsDragSource="True"
-                          dd:DragDrop.IsDropTarget="True"
-                          dd:DragDrop.UseDefaultDragAdorner="True">
+                                  x:Name="dtgPatients"
+                                  ItemsSource="{Binding Patients, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  AutoGenerateColumns="False" 
+                                  GridLinesVisibility="None"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  CanUserResizeRows="False" 
+                                  CanUserReorderColumns="False" 
+                                  CanUserResizeColumns="False" 
+                                  CanUserSortColumns="False"  
+                                  CanUserAddRows="False"
+                                  Padding="0 0 0 20"
+                                  VirtualizingPanel.ScrollUnit="Pixel" 
+                                  RowDetailsVisibilityMode="Collapsed" 
+                                  SelectionUnit="FullRow"
+                                  dd:DragDrop.IsDragSource="True"
+                                  dd:DragDrop.IsDropTarget="True"
+                                  dd:DragDrop.UseDefaultDragAdorner="True">
                                 <DataGrid.Resources>
                                     <ResourceDictionary>
                                         <Style TargetType="{x:Type DataGridRow}">
