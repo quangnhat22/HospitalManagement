@@ -22,12 +22,12 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Background="{DynamicResource MaterialDesignPaper}">
             <StackPanel Orientation="Vertical">
                 <Viewbox
                     Margin="5 10 0 0"
                     Height="400">
-                    <Grid>
+                    <Grid Background="{DynamicResource MaterialDesignPaper}">
                         <Grid.Resources>
                             <Style
                                 x:Key="CustomCalendarDayButton"
@@ -147,7 +147,7 @@
                                                     </Style.Triggers>
                                                 </Style>
                                                 <Style TargetType="{x:Type materialDesign:PackIcon}" x:Key="PriorityPackIcon">
-                                                    <!--<Style.Triggers>
+                                                    <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Value.TINHCHAT}" Value="Bình thường">
                                                             <Setter Property="Foreground" Value="#2AE2BE"/>
                                                         </DataTrigger>
@@ -157,7 +157,7 @@
                                                         <DataTrigger Binding="{Binding Value.TINHCHAT}" Value="Nguy cấp">
                                                             <Setter Property="Foreground" Value="#FF7F7E"/>
                                                         </DataTrigger>
-                                                    </Style.Triggers>-->
+                                                    </Style.Triggers>
                                                 </Style>
                                             </ControlTemplate.Resources>
                                             <Border CornerRadius="25"
@@ -232,7 +232,7 @@
         <Grid Grid.Column="1">
             <materialDesign:Card Margin="5 0 0 0" 
                                  UniformCornerRadius="0"
-                                 materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                                 materialDesign:ShadowAssist.ShadowDepth="Depth0">
                 <StackPanel Orientation="Vertical">
                     <Grid Height="80">
                         <TextBlock Text="Phân chia công việc"
@@ -291,10 +291,10 @@
                                 Width="50"
                                 Margin="5"
                                 BorderThickness="25"
-                                BorderBrush="#1D6F42"
+                                BorderBrush="#0ca678"
                                 materialDesign:ButtonAssist.CornerRadius="25"
                                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                                Background="#1D6F42"
+                                Background="#0ca678"
                                 Command="{Binding ExportTaskToExcelCommand}"
                                 ToolTip="Xuất excel">
                                 <Button.Content>
