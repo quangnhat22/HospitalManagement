@@ -17,7 +17,7 @@
         WindowStyle="None" 
         AllowsTransparency="True"
         Background="Transparent"
-        Title="NurseInformationForm" Height="640" Width="550">
+        Title="NurseInformationForm" Height="640" Width="550" Topmost="True">
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
@@ -32,7 +32,7 @@
                     <Border Background="White" CornerRadius="8 8 0 0"></Border>
                     <StackPanel Orientation="Vertical">
                         <Grid Height="150" Margin="0,10,0,0">
-                            <Image Source="/Images/medical-team.png" Height="150" Width="150"/>
+                            <Image Source="/Images/nurse.png" Height="150" Width="150"/>
                         </Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock Text="Y tá" 

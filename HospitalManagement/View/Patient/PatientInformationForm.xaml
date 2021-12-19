@@ -17,7 +17,8 @@
         WindowStyle="None" 
         AllowsTransparency="True"
         Background="Transparent"
-        Title="PatientInformationForm" Height="640" Width="550">
+        Title="PatientInformationForm" Height="640" Width="550"
+        Topmost="True">
     <Window.Resources>
         <utils:BooleanToSexConverter x:Key="BooleanToSexConverter" />
     </Window.Resources>
