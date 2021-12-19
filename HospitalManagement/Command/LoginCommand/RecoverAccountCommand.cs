@@ -96,26 +96,7 @@ namespace HospitalManagement.Command
                 return false;
             }
 
-            if (checkPassword(rw))
-            {
-                NotifyWindow notifyWindow = new NotifyWindow("Warning", "Mật khẩu mới trùng với mật khẩu cũ!");
-                notifyWindow.ShowDialog();
-                rw.txbNhapLaiMatKhau.Focus();
-                return false;
-            }
-
             return true;
-        }
-
-        public bool checkPassword (RecoverAccountWindow rw)
-        {
-            var usersList = db.USERs.ToList();
-            foreach (var user in usersList)
-            {
-                if (user.PASSWORD == Encryptor.Hash(rw.txbMatKhau.Password))
-                    return true;
-            }
-            return false;
         }
     }
 }
