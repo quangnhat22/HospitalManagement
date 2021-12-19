@@ -58,7 +58,7 @@
                     </Grid>
                 </Grid>
             </Border>
-            <Border Grid.Row="1" Background="White" CornerRadius="0 0 10 10">
+            <Border Grid.Row="1" Background="White" CornerRadius="0 0 8 8">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
