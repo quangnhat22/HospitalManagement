@@ -49,22 +49,16 @@
                                    FontSize="10.24"/>
                     </Grid>
                     <Grid Grid.Column="2">
-                        <materialDesign:PackIcon Kind="HospitalBox" 
-                                                 Foreground="White"
-                                                 VerticalAlignment="Center"
-                                                 Width="80"
-                                                 Margin="0 0 20 0"
-                                                 Height="auto"></materialDesign:PackIcon>
                         <Image Source="/Images/Logo/medica_health_healthcare_sign_icon_143444.ico"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Top"
                                SnapsToDevicePixels="True"
                                Width="auto"
                                Height="100"
-                               Margin="0 0 10 0"/>
+                               Margin="5,-3,5,0"/>
                     </Grid>
                 </Grid>
             </Border>
-            <Border Grid.Row="1" Background="White" CornerRadius="0 0 10 10">
+            <Border Grid.Row="1" Background="White" CornerRadius="0 0 8 8">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
