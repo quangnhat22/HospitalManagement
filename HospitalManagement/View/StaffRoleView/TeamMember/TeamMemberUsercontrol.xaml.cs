@@ -26,8 +26,12 @@ namespace HospitalManagement.View.StaffRoleView.TeamMember
         public TeamMemberUsercontrol()
         {
             InitializeComponent();
-            USER user = MainWindowViewModel.User;
-            this.DataContext = new TeamMemberViewModel(ToUtils.GetTOID(user));
+            int idTo;
+            using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+			{
+                idTo = ToUtils.GetTOID(dbContext.USERs.Find(MainWindowViewModel.User.ID));
+			}
+            this.DataContext = new TeamMemberViewModel(idTo);
         }
     }
 }

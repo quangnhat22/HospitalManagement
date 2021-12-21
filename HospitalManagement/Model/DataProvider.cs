@@ -13,6 +13,7 @@ namespace HospitalManagement.Model
         {
             get
             {
+                
                 if (_ins == null)
                     _ins = new DataProvider();
                 return _ins;
