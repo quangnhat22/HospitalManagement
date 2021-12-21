@@ -14,7 +14,6 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{materialDesign:MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Topmost="True"
         WindowStyle="None" 
         AllowsTransparency="True"
         Background="Transparent"
