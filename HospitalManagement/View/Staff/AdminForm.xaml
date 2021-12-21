@@ -144,7 +144,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Ngày sinh" Foreground="#FF83BFF6" FontSize="26" FontWeight="Bold" Grid.Row ="0"></TextBlock>
                                 <DatePicker x:Name="txbNGSinh"
-                                            Text="{Binding Admin.NGSINH, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                                            Text="{Binding Admin.NGSINH, Mode=TwoWay, UpdateSourceTrigger=Explicit, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                             Margin="0,0,0,5" 
                                             Width="200" 
                                             HorizontalAlignment="Left" 
