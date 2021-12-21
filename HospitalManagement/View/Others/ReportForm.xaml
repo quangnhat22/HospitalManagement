@@ -145,31 +145,29 @@
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220 50 0 0">
                         <Button 
-                        Click="btnClose_Click"
-                        Content="HUỶ"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="0 0 20 0"
-                        Height="50"
-                        Width="100"
-                        BorderThickness="2"
-                        BorderBrush="#35a0fe"
-                        materialDesign:ButtonAssist.CornerRadius="10"
-                        Background="White"
-                        Foreground="#35a0fe"
-                        ToolTip="Hủy đăng ký! Quay trở lại đăng nhập"
+                            Click="btnClose_Click"
+                            Content="HUỶ"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Margin="0 0 20 0"
+                            Height="50"
+                            Width="100"
+                            BorderThickness="2"
+                            BorderBrush="#35a0fe"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            Background="White"
+                            Foreground="#35a0fe"
                         />
 
                         <Button Content="GỬI"
-                    Style="{StaticResource MaterialDesignRaisedButton}"
-                    Height="50"
-                    Width="100"
-                    BorderThickness="2"
-                    BorderBrush="#35a0fe"
-                    materialDesign:ButtonAssist.CornerRadius="10"
-                    Background="#35a0fe"
-                    ToolTip="Hoàn tất đăng ký"
-                    Command="{Binding sendEmailReport}"
-                    CommandParameter="{Binding ElementName= reportForm}"/>
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Height="50"
+                            Width="100"
+                            BorderThickness="2"
+                            BorderBrush="#35a0fe"
+                            materialDesign:ButtonAssist.CornerRadius="10"
+                            Background="#35a0fe"
+                            Command="{Binding sendEmailReport}"
+                            CommandParameter="{Binding ElementName= reportForm}"/>
 
                     </StackPanel>
                 </StackPanel>
