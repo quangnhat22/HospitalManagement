@@ -256,8 +256,15 @@
                 </Grid>
                 <Grid Grid.Row="1">
                     <Border Background="White" CornerRadius="0 0 8 8"></Border>
-                    <Button Height="50" Width="100" Style="{StaticResource MaterialDesignRaisedButton}"                    
-                materialDesign:ButtonAssist.CornerRadius="10" Content="OK" FontSize="20" VerticalAlignment="Top" Click="Button_Click"/>
+                    <Button 
+                        Height="50" 
+                        Width="100" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"                    
+                        materialDesign:ButtonAssist.CornerRadius="10" 
+                        Content="OK" 
+                        FontSize="20" 
+                        VerticalAlignment="Top" 
+                        Click="Button_Click"/>
                 </Grid>
             </Grid>
         </Grid>

@@ -21,7 +21,7 @@ namespace HospitalManagement.Command
 
         public bool CanExecute(object parameter)
         {
-            return parameter == null ? false : true;
+            return true;
         }
 
         public void Execute(object parameter)
