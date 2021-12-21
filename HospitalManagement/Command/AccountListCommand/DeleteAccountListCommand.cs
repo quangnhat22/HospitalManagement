@@ -63,6 +63,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 var yt = DataProvider.Ins.DB.YTAs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
                                 foreach (YTA yTA in yt)
                                 {
+                                    yTA.YTALIENQUANs.Clear();
                                     DataProvider.Ins.DB.YTAs.Remove(yTA);
                                 }
                                 DataProvider.Ins.DB.SaveChanges();
@@ -72,6 +73,7 @@ namespace HospitalManagement.Command.AccountListCommand
                                 var bs = DataProvider.Ins.DB.BACSIs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
                                 foreach (BACSI bACSI in bs)
                                 {
+                                    bACSI.BACSILIENQUANs.Clear();
                                     DataProvider.Ins.DB.BACSIs.Remove(bACSI);
                                 }
                                 DataProvider.Ins.DB.SaveChanges();
@@ -83,7 +85,7 @@ namespace HospitalManagement.Command.AccountListCommand
             }
             else if (selectableItems.Any())
             {
-                notifyWindow = new NotifyWindow("Warning", "Thao tác này sẽ xóa nhân viên tương ứng\n               Bạn có muốn tiếp tục?", "Visible");
+                notifyWindow = new NotifyWindow("Check", "Thao tác này sẽ xóa nhân viên tương ứng\n               Bạn có muốn tiếp tục?", "Visible");
                 notifyWindow.ShowDialog();
                 if (notifyWindow.Result == MessageBoxResult.OK)
                 {
@@ -94,6 +96,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             var yt = DataProvider.Ins.DB.YTAs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
                             foreach (YTA yTA in yt)
                             {
+                                yTA.YTALIENQUANs.Clear();
                                 DataProvider.Ins.DB.YTAs.Remove(yTA);
                             }
                             DataProvider.Ins.DB.SaveChanges();
@@ -103,6 +106,7 @@ namespace HospitalManagement.Command.AccountListCommand
                             var bs = DataProvider.Ins.DB.BACSIs.Where(p => p.CMND_CCCD == si.Cmnd_cccd);
                             foreach (BACSI bACSI in bs)
                             {
+                                bACSI.BACSILIENQUANs.Clear();
                                 DataProvider.Ins.DB.BACSIs.Remove(bACSI);
                             }
                             DataProvider.Ins.DB.SaveChanges();

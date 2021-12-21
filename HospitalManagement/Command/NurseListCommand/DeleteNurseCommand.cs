@@ -51,6 +51,7 @@ namespace HospitalManagement.Command
 
                     foreach (YTA yt in selectableItems)
                     {
+                        DataProvider.Ins.DB.USERs.Remove(yt.USER);
                         yt.YTALIENQUANs.Clear();
                         foreach (TO to in DataProvider.Ins.DB.TOes.Where(p => p.ID == yt.IDTO))
                         {
