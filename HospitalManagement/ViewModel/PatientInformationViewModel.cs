@@ -21,8 +21,8 @@ namespace HospitalManagement.ViewModel
         {
             this.BenhNhan = bn;           
             SaveChange = new SaveChangePatientInformationCommand();
-            var groupListData = DataProvider.Ins.DB.PHONGs.ToList().ConvertAll(itemGroup => itemGroup.ID);
-            ListIDPhong.AddRange(groupListData);
+            string query = @"SELECT ID FROM PHONG";
+            ListIDPhong = DataProvider.Ins.DB.Database.SqlQuery<int>(query).ToList();
         }
 
         public BENHNHAN BenhNhan { get => benhnhan; set => benhnhan = value; }      
