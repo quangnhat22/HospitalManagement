@@ -284,25 +284,29 @@
 <details>
     <summary>Đối với người dùng</summary>
 
-  - Liên hệ với nhà phát triển để hỗ trợ kết nối cơ
-  - Hiển thị các thành viển trong tổ
-  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
-  - Xem thông tin của các thành viên trong tổ
+  * Liên hệ với nhà phát triển để được hỗ trợ khởi tạo cơ sở dữ liệu và kết nối đến cơ sở dữ liệu.
+  * Giải nén và chạy file Setup.msi hoặc Setup.exe
+    * Dowload phần mềm tại: 
 
 </details>
 
 <details>
     <summary>Đối với nhà phát triển</summary>
 
-  - Hiển thị thông tin tổ
-  - Hiển thị các thành viển trong tổ
-  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
-  - Xem thông tin của các thành viên trong tổ
+  * Dowload, giải nén phần mềm
+    * Github: https://github.com/quangnhat22/HospitalManagement
+    * Google Drive:
+  * Cài đặt database
+    * Khuyến nghị sử dụng các dịch vụ đám mấy như Azure, AWS,... để sử dụng tất cả tính năng hiện có của chương trình.
+    * Ngoài ra có thể sử dụng SQL Server (Lưu ý: cách này sẽ mất đi tính năng tương tác giữa các user ở các máy tính khác nhau).
+  * Khởi tạo Database bằng cách chạy script chứa trong file TaoCSL.sql
+  * Kết nối với Database vừa tạo bằng cách thay đổi connectionStrings trong file App.config.
 
 </details>
 
 ## 5. Hướng dẫn sử dụng
 
+* Video demo: 
 
 ## 6. Tác giả
 
