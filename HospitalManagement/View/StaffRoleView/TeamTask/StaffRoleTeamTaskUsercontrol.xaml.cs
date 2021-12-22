@@ -1,4 +1,5 @@
-﻿using HospitalManagement.ViewModel;
+﻿using HospitalManagement.Model;
+using HospitalManagement.ViewModel;
 using HospitalManagement.ViewModel.StaffViewViewModel.TeamTask;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,15 @@ namespace HospitalManagement.View.StaffRoleView.TeamTask
         public StaffRoleTeamTaskUsercontrol()
         {
             InitializeComponent();
-            if (MainWindowViewModel.User.ROLE == "leader")
-                this.DataContext = new StaffRoleTeamTaskViewModel();
-            else if (MainWindowViewModel.User.ROLE == "doctor" || MainWindowViewModel.User.ROLE == "nurse")
-                this.DataContext = new StaffRoleTeamTaskViewModelStaff();
+            using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+			{
+                USER user = dbContext.USERs.Find(MainWindowViewModel.User.ID);
+                if (user.ROLE == "leader")
+                    this.DataContext = new StaffRoleTeamTaskViewModel();
+                else if (user.ROLE == "doctor" || MainWindowViewModel.User.ROLE == "nurse")
+                    this.DataContext = new StaffRoleTeamTaskViewModelStaff();
+            }
+            
         }
     }
 }

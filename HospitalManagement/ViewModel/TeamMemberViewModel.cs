@@ -18,10 +18,9 @@ namespace HospitalManagement.ViewModel
     {
         private static List<YTA> nurses;
         private static List<BACSI> doctors;
-        private List<StaffInformationWithTaskProgress> staffInformations=new List<StaffInformationWithTaskProgress>();
+        private List<StaffInformationWithTaskProgress> staffInformations= new List<StaffInformationWithTaskProgress>();
         private TO to;
         private BACSI toTruong;
-        private QUANLYBENHVIENEntities dbContext;
         public List<YTA> Nurses
         {
             get { return nurses; }
@@ -44,32 +43,35 @@ namespace HospitalManagement.ViewModel
         public ICommand ShowMemberInformation { get; set; }
         public TeamMemberViewModel(int idTo)
         {
-            dbContext = new QUANLYBENHVIENEntities();
-            To = dbContext.TOes.Find(idTo);
-            Nurses = To.YTAs.ToList();
-            Doctors = To.BACSIs.ToList();
-            StaffInformationWithTaskProgress staff;
-            foreach (BACSI bACSI in Doctors)
-            {
-                staff = new StaffInformationWithTaskProgress(bACSI);
-                if (staff.Value.PhanLoai == "Tổ Trưởng")
-                    ToTruong = bACSI;
-                StaffInformations.Add(staff);
+            using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+			{
+                To = dbContext.TOes.Find(idTo);
+                Nurses = To.YTAs.ToList();
+                Doctors = To.BACSIs.ToList();
+                StaffInformationWithTaskProgress staff;
+                foreach (BACSI bACSI in Doctors)
+                {
+                    staff = new StaffInformationWithTaskProgress(bACSI);
+                    if (staff.Value.PhanLoai == "Tổ Trưởng")
+                        ToTruong = bACSI;
+                    StaffInformations.Add(staff);
+                }
+                foreach (YTA yTA in Nurses)
+                {
+                    staff = new StaffInformationWithTaskProgress(yTA);
+                    StaffInformations.Add(staff);
+                }
+                ShowMemberInformation = new ShowMembersInformationInTeamCommand(this);
             }
-            foreach (YTA yTA in Nurses)
-            {
-                staff = new StaffInformationWithTaskProgress(yTA);
-                StaffInformations.Add(staff);
-            }
-            ShowMemberInformation = new ShowMembersInformationInTeamCommand(this);
         }
 
         public class StaffInformationWithTaskProgress
         {
             private StaffInformation value;
-
+            private QUANLYBENHVIENEntities dbContext;
             public StaffInformationWithTaskProgress(BACSI value)
             {
+                dbContext = new QUANLYBENHVIENEntities();
                 this.value = new StaffInformation(value);
                 this.assignedTask = value.BACSILIENQUANs.Count;
                 this.completeTask = value.BACSILIENQUANs.Where(p => p.TIENDO == true).Count();
@@ -77,6 +79,7 @@ namespace HospitalManagement.ViewModel
 
             public StaffInformationWithTaskProgress(YTA value)
             {
+                dbContext = new QUANLYBENHVIENEntities();
                 this.value = new StaffInformation(value);
                 this.assignedTask = value.YTALIENQUANs.Count;
                 this.completeTask = value.YTALIENQUANs.Where(p => p.TIENDO == true).Count();

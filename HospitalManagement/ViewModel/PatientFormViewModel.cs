@@ -23,8 +23,8 @@ namespace HospitalManagement.ViewModel
             db = new DataProvider();
             this.patientViewModel = patientViewModel;
             AddPatient = new AddPatientCommand(this, this.patientViewModel);
-            var groupListData = DataProvider.Ins.DB.PHONGs.ToList().ConvertAll(itemGroup => itemGroup.ID);
-            ListIDPhong.AddRange(groupListData);
+            string query = @"SELECT ID FROM PHONG";
+            ListIDPhong = DataProvider.Ins.DB.Database.SqlQuery<int>(query).ToList();
         }
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {

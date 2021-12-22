@@ -45,8 +45,12 @@ namespace HospitalManagement.Command.TeamCommand
             else
             {
                 teamViewmodel.CountedTeams.Remove(countedTeam);
-                DataProvider.Ins.DB.TOes.Remove(countedTeam.Value);
-                DataProvider.Ins.DB.SaveChanges();
+                using(QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+				{
+                    TO to = dbContext.TOes.Find(countedTeam.Value.ID);
+                    dbContext.TOes.Remove(to);
+                    dbContext.SaveChanges();
+                }
                 NotifyWindow notifyWindow = new NotifyWindow("Success", "Xoá thành công tổ " + id.ToString() + "!");
                 notifyWindow.Show();
             }

@@ -307,6 +307,7 @@
                                          Margin="0,0,0,5" 
                                          HorizontalAlignment="Left" 
                                          Width="160"  
+                                          MaxDropDownHeight="150"
                                          Foreground="Black"  
                                          FontSize="20"
                                          ItemsSource="{Binding ListIDPhong}"                                         

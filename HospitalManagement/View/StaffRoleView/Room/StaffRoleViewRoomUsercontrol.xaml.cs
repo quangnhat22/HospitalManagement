@@ -26,8 +26,12 @@ namespace HospitalManagement.View.StaffRoleView.Room
         public StaffRoleViewRoomUsercontrol()
         {
             InitializeComponent();
-            USER user = MainWindowViewModel.User;
-                this.DataContext = new RoomViewModel(ToUtils.GetTOID(user));
+            int idTo;
+            using (QUANLYBENHVIENEntities dbContext = new QUANLYBENHVIENEntities())
+            {
+                idTo = ToUtils.GetTOID(dbContext.USERs.Find(MainWindowViewModel.User.ID));
+            }
+            this.DataContext = new RoomViewModel(idTo);
         }
     }
 }
