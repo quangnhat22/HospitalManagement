@@ -47,8 +47,7 @@
 
 </details>
 
-<details>
-  <summary>Superadmin (Quản trị viên)</summary>
+  ###### Superadmin (Quản trị viên)
 
   <details>
     <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
@@ -116,11 +115,8 @@
 
   </details>
 
-</details>
 
-
-<details>
-  <summary>Admin (Quản lý nhân sự)</summary>
+  ###### Admin (Quản lý nhân sự)
 
   <details>
     <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
@@ -186,10 +182,8 @@
 
   </details>
 
-</details>
 
-<details>
-  <summary>Leader (Tổ trưởng)</summary>
+  ###### Leader (Tổ trưởng)
 
   <details>
     <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
@@ -250,10 +244,8 @@
 
   </details>
 
-</details>
 
-<details>
-  <summary>Member (Thành viên trong tổ)</summary>
+###### Member (Thành viên trong tổ)
 
   <details>
     <summary>Quản lý phòng (do tổ công tác này quản lý)</summary>
@@ -281,7 +273,6 @@
 
   </details>
 
-</details>
 
 #### 3.2 Công nghệ sử dụng
 
