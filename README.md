@@ -303,6 +303,7 @@
     * Ngoài ra có thể sử dụng SQL Server (Lưu ý: cách này sẽ mất đi tính năng tương tác giữa các user ở các máy tính khác nhau).
   * Khởi tạo Database bằng cách chạy script chứa trong file TaoCSL.sql
   * Kết nối với Database vừa tạo bằng cách thay đổi connectionStrings trong file App.config.
+  * Có thể sử dụng project Seeds để tạo dữ liệu giả.
 
 </details>
 
