@@ -39,10 +39,12 @@
 #### 3.1 Chức năng
 <details>
   <summary>Chức năng chung</summary>
-
+ 
+- Đăng nhập
+- Đăng xuất
+- Quên mật khẩu
 - Theo dõi số liệu tổng quan của bệnh viện
 - Thiết lập các thông tin cá nhân của bản thân
-- Đăng nhập, đăng xuất
 - Báo cáo lỗi
 
 </details>
