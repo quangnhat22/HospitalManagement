@@ -6,55 +6,37 @@
 
 ## 1. Mô tả 
 
-  Năm 2021 là một năm khó khăn của đất nước ta khi lâm vào đại dịch lần thứ 4. Trong suốt đợt dịch này, việc các bệnh viện lớn quá tải dẫn đến nhu cầu cấp thiết xây dựng những bệnh viện dã chiến. Việc xây dựng nhanh chóng và nhân sự thay đổi liên tục khiến cho việc quản lý các bệnh viện này rất khó khăn. Một ứng dụng trên desktop nhằm hỗ trợ việc quản lý nhân viên và bệnh nhân sẽ đáp ứng được nhu cầu này và cũng hưởng ứng chủ trương của Nhà Nước là áp dụng công nghệ vào chống dịch.
+  Năm 2021 là một năm khó khăn của đất nước ta khi lâm vào đại dịch lần thứ 4. Trong suốt đợt dịch này, việc các bệnh viện lớn quá tải dẫn đến nhu cầu cấp thiết
+  xây dựng những bệnh viện dã chiến. Việc xây dựng nhanh chóng và nhân sự thay đổi liên tục khiến cho việc quản lý các bệnh viện này rất khó khăn. Một ứng dụng trên desktop nhằm hỗ trợ việc quản lý nhân viên và bệnh nhân sẽ đáp ứng được nhu cầu này và cũng hưởng ứng chủ trương của Nhà Nước là áp dụng công nghệ vào chống dịch.
 
 
-### 2. Mục tiêu 
+### 2. Mục đích, yêu cầu, người dùng hướng tới của đề tài
 
-#### Ứng dụng thực tế 
+#### Mục đích
 
-* Quản trị viên: quản lý doanh thu, nhân viên, tình trạng cơ sở vật chất, phản hồi của khách 
+* Sản phẩm được tạo ra nhằm mục đích hỗ trợ những người quản lý bệnh viện dã chiến dễ dàng hơn. 
 
-* Nhân viên quản lý: giúp nhân viên quản lý dễ dàng, không bị xung đột hay nhầm lẫn , quản lý dịch vụ khác, quản lý được tình trạng thiết bị vật dụng 
+* Sản phẩm được tạo ra nhằm mục đích giúp các bác sĩ có thể làm quen với môi trường làm việc nhanh hơn khi điều chuyển công tác. 
 
-* Nhân viên thu ngân: Thực hiện việc kinh doanh 
+* Hỗ trợ các tổ công tác có thể thực hiện nhiệm vụ nhanh chóng hơn. 
 
-#### Yêu cầu ứng dụng 
+#### Yêu cầu
 
-* Giao diện hợp lý, rõ ràng và thân thiện với người dùng. 
+* UI/UX hợp lý, rõ ràng, thuận tiện cho người sử dụng. 
 
-* Quản lý được lịch trống, tình trạng sân bóng, các mặt hàng phụ trợ và phản hồi của khách hàng. 
+* Ứng dụng có những tính năng cơ bản. 
 
-* Dễ dàng sử dụng. 
+* Phân chia quyền hạn rõ ràng. 
 
+#### Người dùng
 
-## 2. Mục đích và yêu cầu đề tài 
+* Nhân viên quản lý nhân sự
 
-<details>
-  <summary>Mục đích</summary>
+* Nhân viên y tế (bác sĩ, y tá)
 
-- Sản phẩm được tạo ra nhằm mục đích hỗ trợ những người quản lý bệnh viện dã chiến dễ dàng hơn
-- Sản phẩm được tạo ra nhằm mục đích giúp các bác sĩ có thể nắm thông tin bệnh nhân nhanh hơn khi điều chuyển công tác.
-- Hỗ trợ các tổ công tác có thể thực hiện nhiệm vụ nhanh chóng hơn
-</details>
+### 3. Tổng quan sản phẩm
 
-<details>
-  <summary>Mục đích</summary>
-
-- UI/UX hợp lý, rõ ràng, thuận tiện cho người sử dụng
-- Phân chia quyền hạn rõ ràng
-
-</details>
-
-<details>
-  <summary>Người dùng</summary>
-
-- Nhân viên quản lý nhân sự
-- Nhân viên y tế
-
-</details>
-
-## 2. Chức năng
+#### 3.1 Chức năng
 <details>
   <summary>Chức năng chung</summary>
 
@@ -68,65 +50,270 @@
 <details>
   <summary>Superadmin (Quản trị viên)</summary>
 
-- Quản lý toàn bộ danh sách nhân viên trong bệnh viện.
-- Quản lý toàn bộ danh sách bệnh nhân trong bệnh viện.
-- Quản lý các phòng trong bệnh viện.
-- Quản lý các tổ.
-- Quản lý các tài khoản được cấp trong bệnh viện.
-- Quản lý các tòa nhà thuộc về bệnh viện.
+  <details>
+    <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách y tá trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách bệnh nhân trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Thêm
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý tòa</summary>
+
+  - Thêm
+  - Xóa
+  - Xem chi tiết thông tin bệnh nhân
+  - Chuyển bệnh nhân giữa các phòng
+
+  </details>
+
+  <details>
+    <summary>Quản lý các tổ công tác</summary>
+
+  - Thêm
+  - Xóa
+  - Lọc các tổ theo tầng và tòa
+
+  </details>
+
+  <details>
+    <summary>Quản lý các tài khoản được cấp trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Thêm (tài khoản admin, tổ trưởng, bác sĩ, y tá)
+  - Xóa
+
+  </details>
 
 </details>
+
 
 <details>
   <summary>Admin (Quản lý nhân sự)</summary>
 
-- Quản lý toàn bộ danh sách bác sĩ, y tá trong bệnh viện.
-- Quản lý toàn bộ danh sách bệnh nhân trong bệnh viện.
-- Quản lý các phòng trong bệnh viện.
-- Quản lý các tổ.
-- Quản lý các tài khoản được cấp trong bệnh viện.
+  <details>
+    <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách y tá trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách bệnh nhân trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Thêm
+  - Xóa
+  - Xem chi tiết
+  - Sửa
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý tòa</summary>
+
+  - Xem chi tiết thông tin bệnh nhân
+  - Chuyển bệnh nhân giữa các phòng
+
+  </details>
+
+  <details>
+    <summary>Quản lý các tổ công tác</summary>
+
+  - Thêm
+  - Xóa
+  - Lọc các tổ theo tầng và tòa
+
+  </details>
+
+  <details>
+    <summary>Quản lý các tài khoản được cấp trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Thêm (tài khoản tổ trưởng, bác sĩ, y tá)
+  - Xóa
+
+  </details>
 
 </details>
 
 <details>
   <summary>Leader (Tổ trưởng)</summary>
 
-- Theo dõi danh sách bệnh nhân trong bệnh viện.
-- Theo dõi danh sách bác sĩ, y tá trong bệnh viện.
-- Quản lý các bệnh nhân trong tầng tổ mình chịu trách nhiệm.
-- Quản lý các nhiệm vụ giao cho thành viên trong tổ.
-- Xem danh sách thành viên trong tổ.
+  <details>
+    <summary>Quản lý toàn bộ danh sách bác sĩ trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xem chi tiết
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách y tá trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xem chi tiết
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý toàn bộ danh sách bệnh nhân trong bệnh viện</summary>
+
+  - Tìm kiếm
+  - Sắp xếp
+  - Xem chi tiết
+  - Xuất excel
+
+  </details>
+
+  <details>
+    <summary>Quản lý phòng (do tổ công tác này quản lý)</summary>
+
+  - Xem chi tiết thông tin bệnh nhân
+  - Chuyển bệnh nhân giữa các phòng
+
+  </details>
+
+  <details>
+    <summary>Quản lý tổ công tác</summary>
+
+  - Hiển thị thông tin tổ
+  - Hiển thị các thành viển trong tổ
+  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
+  - Xem thông tin của các thành viên trong tổ
+
+  </details>
+
+  <details>
+    <summary>Quản lý phân chia công việc</summary>
+
+  - Thêm công việc
+  - Xóa công Việc
+  - Cập nhập thông tin công việc
+  - Hiển thị các công việc theo ngày
+  - Xuất excel
+
+  </details>
 
 </details>
 
 <details>
-  <summary>Member (Thành viên)</summary>
+  <summary>Member (Thành viên trong tổ)</summary>
 
-- Quản lý các bệnh nhân trong tầng tổ mình chịu trách nhiệm.
-- Xem các nhiệm vụ được giao.
-- Xem danh sách thành viên trong tổ.
+  <details>
+    <summary>Quản lý phòng (do tổ công tác này quản lý)</summary>
+
+  - Xem chi tiết thông tin bệnh nhân
+  - Chuyển bệnh nhân giữa các phòng
+
+  </details>
+
+  <details>
+    <summary>Quản lý tổ công tác</summary>
+
+  - Hiển thị thông tin tổ
+  - Hiển thị các thành viển trong tổ
+  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
+  - Xem thông tin của các thành viên trong tổ
+
+  </details>
+
+  <details>
+    <summary>Quản lý phân chia công việc</summary>
+
+  - Hiển thị các công việc theo ngày
+  - Xuất excel
+
+  </details>
 
 </details>
 
-## 4. Công nghệ sử dụng
-
-<details>
-  <summary>Các công nghệ sử dụng</summary>
+#### 3.2 Công nghệ sử dụng
 
 - Công cụ: Visual Studio, SQL Server Management Studio, Github Desktop, Microsoft SQL Server, Microsoft Azure
 - Ngôn ngữ lập trình: C#, TSQL
 - Thư viện: .NET Framework, MaterialDesignXAML, Show Me The XAML, LiveCharts, GONG WPF Drag Drop, Entity Framework,ClosedXML
+
+## 4. Hướng dẫn cài đặt
+<details>
+    <summary>Đối với người dùng</summary>
+
+  - Liên hệ với nhà phát triển để hỗ trợ kết nối cơ
+  - Hiển thị các thành viển trong tổ
+  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
+  - Xem thông tin của các thành viên trong tổ
+
 </details>
 
-## 5. Hướng dẫn cài đặt
-
-
-## 6. Hướng dẫn sử dụng
-
-
-## 7. Tác giả
-
 <details>
+    <summary>Đối với nhà phát triển</summary>
+
+  - Hiển thị thông tin tổ
+  - Hiển thị các thành viển trong tổ
+  - Hiển thị công việc đã giao, hoàn thành của các thành viên trong tổ.
+  - Xem thông tin của các thành viên trong tổ
+
+</details>
+
+## 5. Hướng dẫn sử dụng
+
+
+## 6. Tác giả
 
 | STT | MSSV     | Họ và tên                                                  | Lớp      | |
 | --- | -------- | ---------------------------------------------------------- | -------- | ------- |
@@ -136,10 +323,8 @@
 | 4   | 20520236 | [Trần Đình Lộc](https://github.com/LocTranDinh)         | KTPM2020 | BE, DevOps |
 | 5   | 20521659 | [Võ Đình Nghĩa](https://github.com/nghia0111)             | KTPM2020 | FE |
 
-</details>
-
 * Sinh viên khoa Công nghệ Phần mềm, trường Đại học Công nghệ Thông tin, Đại học Quốc gia thành phố Hồ Chí Minh.
 
-## 8. Tác giả
+## 7. Giảng viên hướng dẫn
 
 * Thầy Nguyễn Tấn Toàn, giảng viên Khoa Công Nghệ Phần Mềm, trường Đại học Công nghệ Thông tin, Đại học Quốc gia Thành phố Hồ Chí Minh.
