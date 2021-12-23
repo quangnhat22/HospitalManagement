@@ -42,7 +42,7 @@
                         <Grid Height="100">
                             <TextBlock 
                     HorizontalAlignment="Left" 
-                    Text="Cập nhật chông tin y tá" VerticalAlignment="Center" Margin="100,0,0,0" 
+                    Text="Cập nhật thông tin y tá" VerticalAlignment="Center" Margin="100,0,0,0" 
                     Foreground="#35a0fe" 
                     TextAlignment="Center" 
                     FontSize="30 px" 
