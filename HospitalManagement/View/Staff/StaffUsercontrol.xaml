@@ -51,7 +51,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
                 <Button
-                    Margin="-16 0 10 0"
+                    Margin="-16 0 0 0"
                     Padding="8"
                     Command="{Binding SearchDoctor}">
                     <Button.Content>
@@ -76,7 +76,7 @@
                         Visibility="{Binding ButtonVisibility}"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
-                        Margin="10 0 0 0">
+                        Margin="20 0 0 0">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
                             <Setter Property="Background" Value="#dc3545"></Setter>

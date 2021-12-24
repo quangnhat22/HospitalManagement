@@ -148,7 +148,7 @@
                          AcceptsReturn="True"
                          materialDesign:HintAssist.Hint="Tên toà"
                          Width="150"
-                         Margin="0 0 5 0"
+                         Margin="0 0 0 0"
                          BorderBrush="#2AE2BC"
                          Text="{Binding NewBuildingName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
@@ -212,7 +212,7 @@
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
-                    Margin="0 0 108 0">
+                    Margin="0 0 105 0">
             <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                     ToolTip="Đến toà phía trước"
                     x:Name="btnLeft"
@@ -232,7 +232,7 @@
                                          HorizontalAlignment="Center"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
-                    ToolTip="Đến toà phía trước"
+                    ToolTip="Đến toà phía sau"
                     x:Name="btnRight"
                     Height="45"
                     Width="100"
