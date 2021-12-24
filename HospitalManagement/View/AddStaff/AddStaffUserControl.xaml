@@ -83,7 +83,8 @@
                     Command="{Binding OpenAddAccountListForm}"
                     CommandParameter="{Binding ElementName=addStaffUserControl}"
                     Content="Đăng ký tài khoản mới"
-                    Width="200"/>
+                    Width="200"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
                 <Button Content="Xóa"
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Center"
