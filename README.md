@@ -288,7 +288,7 @@
 
   * Liên hệ với nhà phát triển để được hỗ trợ khởi tạo cơ sở dữ liệu và kết nối đến cơ sở dữ liệu.
   * Giải nén và chạy file Setup.msi hoặc Setup.exe
-    * Dowload phần mềm tại: 
+    * Dowload phần mềm tại: https://drive.google.com/drive/u/2/folders/18iDTpAigeWhwV13JjmwNXfZm_JCUT8G3
 
 </details>
 
@@ -297,7 +297,7 @@
 
   * Dowload, giải nén phần mềm
     * Github: https://github.com/quangnhat22/HospitalManagement
-    * Google Drive:
+    * Google Drive: https://drive.google.com/drive/u/2/folders/18iDTpAigeWhwV13JjmwNXfZm_JCUT8G3
   * Cài đặt database
     * Khuyến nghị sử dụng các dịch vụ đám mấy như Azure, AWS,... để sử dụng tất cả tính năng hiện có của chương trình.
     * Ngoài ra có thể sử dụng SQL Server (Lưu ý: cách này sẽ mất đi tính năng tương tác giữa các user ở các máy tính khác nhau).
@@ -309,17 +309,17 @@
 
 ## 5. Hướng dẫn sử dụng
 
-* Video demo: 
+* Video demo: https://youtu.be/Kwr5I1C1UKs
 
 ## 6. Tác giả
 
-| STT | MSSV     | Họ và tên                                                  | Lớp      | |
-| --- | -------- | ---------------------------------------------------------- | -------- | ------- |
-| 1   | 20520719 | [Nguyễn Đình Nhật Quang](https://github.com/quangnhat22)          | KTPM2020 | Leader, FE, DevOps |
-| 2   | 20520342 | [Bùi Minh Tuấn](https://github.com/tuan20520342)             | KTPM2020 | FE, Tester |
-| 3   | 20521800 | [Đỗ Phú Quang](https://github.com/phuquang14722) | KTPM2020 | FE, UI/UX Designer |
-| 4   | 20520236 | [Trần Đình Lộc](https://github.com/LocTranDinh)         | KTPM2020 | BE, DevOps |
-| 5   | 20521659 | [Võ Đình Nghĩa](https://github.com/nghia0111)             | KTPM2020 | FE |
+| STT | MSSV     | Họ và tên                                                  | Lớp      | 
+| --- | -------- | ---------------------------------------------------------- | -------- | 
+| 1   | 20520719 | [Nguyễn Đình Nhật Quang](https://github.com/quangnhat22)          | KTPM2020 | 
+| 2   | 20520342 | [Bùi Minh Tuấn](https://github.com/tuan20520342)             | KTPM2020 | 
+| 3   | 20521800 | [Đỗ Phú Quang](https://github.com/phuquang14722) | KTPM2020 | 
+| 4   | 20520236 | [Trần Đình Lộc](https://github.com/LocTranDinh)         | KTPM2020 | 
+| 5   | 20521659 | [Võ Đình Nghĩa](https://github.com/nghia0111)             | KTPM2020 | 
 
 * Sinh viên khoa Công nghệ Phần mềm, trường Đại học Công nghệ Thông tin, Đại học Quốc gia thành phố Hồ Chí Minh.
 
