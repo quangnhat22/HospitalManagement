@@ -485,7 +485,7 @@
                                                                    VerticalContentAlignment="Center"/>
                                                             <TextBlock FontSize="13" 
                                                                        FontWeight="Regular" 
-                                                                       Text="{Binding Value.BATDAU}"
+                                                                       Text="{Binding Value.BATDAU, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                                        VerticalAlignment="Center"/>
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" Margin="15 0">
@@ -496,7 +496,7 @@
                                                                    VerticalContentAlignment="Center"/>
                                                             <TextBlock FontSize="13" 
                                                                        FontWeight="Regular" 
-                                                                       Text="{Binding Value.KETTHUC}"
+                                                                       Text="{Binding Value.KETTHUC, StringFormat={}{0:d}, ConverterCulture='vi-VN'}"
                                                                        VerticalAlignment="Center"/>
                                                         </StackPanel>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 5 0 0">

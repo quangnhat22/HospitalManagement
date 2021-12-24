@@ -107,6 +107,7 @@
                   CanUserAddRows="False"
                   IsReadOnly="True"
                   Height="550"
+                  Background="White"
                   Visibility="{Binding DataGridVisibility}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="All"
