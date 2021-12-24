@@ -212,7 +212,7 @@
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
-                    Margin="0 0 102 0">
+                    Margin="0 0 108 0">
             <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
                     ToolTip="Đến toà phía trước"
                     x:Name="btnLeft"

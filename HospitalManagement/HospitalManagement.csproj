@@ -337,9 +337,6 @@
     <Compile Include="View\Others\ThankyouWindow.xaml.cs">
       <DependentUpon>ThankyouWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Others\UpdateInformationUserFirst.xaml.cs">
-      <DependentUpon>UpdateInformationUserFirst.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Patient\ChangePatientInformationForm.xaml.cs">
       <DependentUpon>ChangePatientInformationForm.xaml</DependentUpon>
     </Compile>
@@ -453,10 +450,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Others\ThankyouWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Others\UpdateInformationUserFirst.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
