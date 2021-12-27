@@ -304,7 +304,7 @@
   * Khởi tạo Database bằng cách chạy script chứa trong file TaoCSL.sql
   * Kết nối với Database vừa tạo bằng cách thay đổi connectionStrings trong file App.config.
   * Có thể sử dụng project Seeds để tạo dữ liệu giả.
-  * Đăng nhập với vai trò superadin
+  * Đăng nhập với vai trò superadmin
       * tên đăng nhập: superadmin
       * mật khẩu: 1
 
