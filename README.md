@@ -299,7 +299,7 @@
     * Github: https://github.com/quangnhat22/HospitalManagement
     * Google Drive: https://drive.google.com/drive/u/2/folders/18iDTpAigeWhwV13JjmwNXfZm_JCUT8G3
   * Cài đặt database
-    * Khuyến nghị sử dụng các dịch vụ đám mây như Azure, AWS,... để sử dụng tất cả tính năng hiện có của chương trình.
+    * Khuyến nghị sử dụng các dịch vụ đám mây như Azure, AWS,... để sử dụng tất cả tính năng hiện có của chương trình  (server đi kèm với chương trình đã đóng).
     * Ngoài ra có thể sử dụng SQL Server (Lưu ý: cách này sẽ mất đi tính năng tương tác giữa các user ở các máy tính khác nhau).
   * Khởi tạo Database bằng cách chạy script chứa trong file TaoCSL.sql
   * Kết nối với Database vừa tạo bằng cách thay đổi connectionStrings trong file App.config.
