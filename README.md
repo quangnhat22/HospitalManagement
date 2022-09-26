@@ -321,7 +321,7 @@
 | 1   | 20520719 | [Nguyễn Đình Nhật Quang](https://github.com/quangnhat22)          | KTPM2020 | 
 | 2   | 20520342 | [Bùi Minh Tuấn](https://github.com/tuan20520342)             | KTPM2020 | 
 | 3   | 20521800 | [Đỗ Phú Quang](https://github.com/phuquang14722) | KTPM2020 | 
-| 4   | 20520236 | [Trần Đình Lộc](https://github.com/LocTranDinh)         | KTPM2020 | 
+| 4   | 20520236 | [Trần Đình Lộc](https://github.com/dinhlockt02)         | KTPM2020 | 
 | 5   | 20521659 | [Võ Đình Nghĩa](https://github.com/nghia0111)             | KTPM2020 | 
 
 * Sinh viên khoa Công nghệ Phần mềm, trường Đại học Công nghệ Thông tin, Đại học Quốc gia thành phố Hồ Chí Minh.
